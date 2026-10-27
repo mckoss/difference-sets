@@ -14,12 +14,24 @@
     </header>
     <main>
       <p>
-        The residues {0, 1, 3} modulo 7 have a remarkable property: every nonzero
-        residue appears exactly once as a difference of two of them.
+        For every prime power <var>q</var>, Singer's construction gives
+        <var>q</var> + 1 residues modulo <var>q</var>² + <var>q</var> + 1 such that
+        every nonzero residue appears exactly once as a difference of two of them.
+        Each diagram places the residues on a circle, highlights the members of the
+        set, and labels every chord with its two differences.
       </p>
-      <p id="demo"></p>
-      <p><em>More coming soon.</em></p>
+      <p>
+        Multiplying a Singer set by a unit gives another difference set. The
+        diagrams below show one representative of each class that remains distinct
+        after translation and negation.
+      </p>
+      <label class="control">
+        <var>q</var> =
+        <select id="q-select"></select>
+      </label>
+      <p id="q-summary" aria-live="polite"></p>
     </main>
+    <section id="q-gallery" class="wide"></section>
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>

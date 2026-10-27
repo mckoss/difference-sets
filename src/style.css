@@ -2,6 +2,11 @@
   --bg: #fdfcf8;
   --fg: #1c1c1e;
   --muted: #6b6b70;
+  --rim: #e0e0e0;
+  --chord: rgba(66, 133, 244, 0.4);
+  --member: #ea4335;
+  --point: #9e9e9e;
+  --border: #ddd;
   color-scheme: light dark;
 }
 
@@ -10,16 +15,26 @@
     --bg: #16161a;
     --fg: #ececf0;
     --muted: #9a9aa2;
+    --rim: #3a3a40;
+    --chord: rgba(138, 180, 248, 0.45);
+    --member: #f28b82;
+    --point: #6f6f76;
+    --border: #33333a;
   }
 }
 
 body {
-  margin: 0 auto;
-  max-width: 44rem;
+  margin: 0;
   padding: 0 16px 4rem;
   background: var(--bg);
   color: var(--fg);
   font: 1.0625rem/1.6 system-ui, sans-serif;
+}
+
+header,
+main {
+  max-width: 44rem;
+  margin: 0 auto;
 }
 
 header {
@@ -30,4 +45,72 @@ header {
 
 #app-version {
   color: var(--muted);
+}
+
+.control select {
+  font: inherit;
+}
+
+.wide {
+  max-width: 72rem;
+  margin: 0 auto;
+}
+
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 5px;
+  border: 1px solid var(--border);
+}
+
+.gallery figure {
+  margin: 0;
+  max-width: 100%;
+}
+
+.gallery figcaption {
+  color: var(--muted);
+  font-size: 0.8125rem;
+  text-align: center;
+  overflow-wrap: anywhere;
+}
+
+.chord-diagram {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  font-family: system-ui, sans-serif;
+}
+
+.chord-diagram .rim {
+  fill: none;
+  stroke: var(--rim);
+  stroke-width: 1.5;
+}
+
+.chord-diagram .chord {
+  stroke: var(--chord);
+  stroke-width: 1;
+}
+
+.chord-diagram .member {
+  fill: var(--member);
+}
+
+.chord-diagram .point {
+  fill: var(--point);
+}
+
+.chord-diagram text {
+  fill: var(--fg);
+  text-anchor: middle;
+}
+
+.chord-diagram .member-label {
+  font-weight: bold;
+}
+
+.chord-diagram .diff-label {
+  fill-opacity: 0.5;
 }
