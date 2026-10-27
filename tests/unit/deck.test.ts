@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import manifest from '../../public/symbols/manifest.json';
-import { assignSymbols, checkDeck, DECK_Q, layoutCard, makeDeck, parseDeckParams, shared } from '../../src/math/deck';
+import { assignSymbols, checkDeck, DECK_Q, layoutCard, makeDeck, parseDeckParams, SLOT_COUNTS, shared } from '../../src/math/deck';
 
 describe('match-one decks', () => {
   for (const q of DECK_Q) {
@@ -46,19 +46,42 @@ describe('symbols', () => {
 });
 
 describe('card layout', () => {
-  for (const n of [3, 4, 5, 6, 8, 9, 10, 12]) {
-    it(`${n} symbols fit on the card without overlap`, () => {
-      for (let seed = 0; seed < 25; seed++) {
-        const ps = layoutCard(n, seed);
-        expect(ps).toHaveLength(n);
-        for (const p of ps) expect(Math.hypot(p.x - 0.5, p.y - 0.5) + p.r).toBeLessThanOrEqual(0.47 + 1e-9);
-        for (let i = 0; i < n; i++)
-          for (let j = i + 1; j < n; j++)
-            expect(Math.hypot(ps[i].x - ps[j].x, ps[i].y - ps[j].y)).toBeGreaterThanOrEqual(ps[i].r + ps[j].r);
-        expect(layoutCard(n, seed)).toEqual(ps);
+  it('has a layout for every deck size', () => {
+    expect(SLOT_COUNTS).toEqual(DECK_Q.map((q) => q + 1));
+  });
+
+  for (const n of SLOT_COUNTS) {
+    it(`${n} equal squares fit on the card without overlap, symmetric about the center`, () => {
+      const ps = layoutCard(n);
+      expect(ps).toHaveLength(n);
+      const size = ps[0].size;
+      for (const p of ps) {
+        expect(p.size).toBe(size);
+        expect(p.x).toBeGreaterThanOrEqual(0);
+        expect(p.y).toBeGreaterThanOrEqual(0);
+        expect(p.x + p.size).toBeLessThanOrEqual(1 + 1e-9);
+        expect(p.y + p.size).toBeLessThanOrEqual(1 + 1e-9);
       }
+      for (let i = 0; i < n; i++)
+        for (let j = i + 1; j < n; j++) {
+          const apart = Math.abs(ps[i].x - ps[j].x) >= size - 1e-9 || Math.abs(ps[i].y - ps[j].y) >= size - 1e-9;
+          expect(apart).toBe(true);
+        }
+      // Left-right mirror symmetry: each slot's mirror image is also a slot.
+      const key = (x: number, y: number) => `${x.toFixed(6)},${y.toFixed(6)}`;
+      const keys = new Set(ps.map((p) => key(p.x, p.y)));
+      for (const p of ps) expect(keys.has(key(1 - p.x - size, p.y))).toBe(true);
     });
   }
+
+  it('puts each symbol in each slot exactly once across the deck', () => {
+    for (const q of DECK_Q) {
+      const { v, cards } = makeDeck(q);
+      const slots = Array.from({ length: v }, () => new Set<number>());
+      for (const c of cards) c.forEach((p, i) => slots[p].add(i));
+      for (const s of slots) expect(s.size).toBe(q + 1);
+    }
+  });
 });
 
 describe('URL parameters', () => {

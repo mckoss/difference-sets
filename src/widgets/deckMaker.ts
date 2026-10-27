@@ -1,6 +1,6 @@
 import { checkDeck, DECK_Q, type Deck, makeDeck, parseDeckParams, shared } from '../math/deck';
 import { mulberry32, newSeed, randomInt, type Rng } from '../math/random';
-import { cardSeed, renderCard, symbolsFor } from './cards';
+import { renderCard, symbolsFor } from './cards';
 import { setText } from './format';
 
 type Mode = 'cards' | 'play' | 'verify';
@@ -134,7 +134,6 @@ export function mount(el: HTMLElement): void {
         const card = renderCard({
           points: deck.cards[c],
           symbols,
-          seed: cardSeed(seed, c),
           interactive: true,
           label: `Card ${c}`,
         });
@@ -185,7 +184,7 @@ export function mount(el: HTMLElement): void {
       ...deck.cards.map((points, j) => {
         const fig = document.createElement('figure');
         fig.className = 'deck-card';
-        fig.append(renderCard({ points, symbols, seed: cardSeed(seed, j), label: `Card ${j}` }));
+        fig.append(renderCard({ points, symbols, label: `Card ${j}` }));
         const cap = document.createElement('figcaption');
         cap.textContent = `Card ${j}`;
         fig.append(cap);
@@ -230,7 +229,7 @@ export function mount(el: HTMLElement): void {
       const page = document.createElement('div');
       page.className = 'print-page';
       for (let j = start; j < Math.min(deck.v, start + 6); j++) {
-        page.append(renderCard({ points: deck.cards[j], symbols, seed: cardSeed(seed, j), eager: true, label: `Card ${j}` }));
+        page.append(renderCard({ points: deck.cards[j], symbols, eager: true, label: `Card ${j}` }));
       }
       printSheet.append(page);
     }

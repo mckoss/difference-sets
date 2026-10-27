@@ -4,7 +4,7 @@
 // exactly one symbol and every two symbols appear together on one card.
 
 import { mod } from './numbers';
-import { mulberry32, type Rng, shuffled } from './random';
+import { mulberry32, shuffled } from './random';
 import { singerSet, singerV } from './singer';
 
 /** The orders q the deck maker offers: prime powers with at most 133 symbols. */
@@ -82,45 +82,61 @@ export function assignSymbols<T extends { theme: string }>(
 }
 
 export interface Placement {
-  /** Center, as a fraction of the card's diameter (0…1, card center at 0.5). */
+  /** Top-left corner, as a fraction of the card's side (0…1). */
   x: number;
   y: number;
-  /** Radius of the symbol's circle, as a fraction of the card's diameter. */
-  r: number;
-  /** Rotation in degrees. */
-  rotate: number;
+  /** Side of the symbol's square, as a fraction of the card's side. */
+  size: number;
 }
 
-const overlaps = (a: Placement, b: Placement, gap: number) =>
-  Math.hypot(a.x - b.x, a.y - b.y) < a.r + b.r + gap;
+/**
+ * Slot positions on a g × g grid, in slot order. Rings run clockwise from the
+ * top-left corner; the other patterns read left to right, top to bottom.
+ * Fractional cells offset a row (or column) by half a cell to keep the
+ * pattern symmetric.
+ */
+const ring = (g: number): [number, number][] => {
+  const top = Array.from({ length: g }, (_, i): [number, number] => [i, 0]);
+  const right = Array.from({ length: g - 2 }, (_, i): [number, number] => [g - 1, i + 1]);
+  const bottom = Array.from({ length: g }, (_, i): [number, number] => [g - 1 - i, g - 1]);
+  const left = Array.from({ length: g - 2 }, (_, i): [number, number] => [0, g - 2 - i]);
+  return [...top, ...right, ...bottom, ...left];
+};
+
+const SLOTS: Record<number, { g: number; cells: [number, number][] }> = {
+  3: { g: 2, cells: [[0.5, 0], [0, 1], [1, 1]] },
+  4: { g: 2, cells: [[0, 0], [1, 0], [0, 1], [1, 1]] },
+  5: { g: 3, cells: [[0, 0], [2, 0], [1, 1], [0, 2], [2, 2]] },
+  6: { g: 3, cells: [[0, 0.5], [1, 0.5], [2, 0.5], [0, 1.5], [1, 1.5], [2, 1.5]] },
+  8: { g: 3, cells: ring(3) },
+  9: { g: 3, cells: Array.from({ length: 9 }, (_, i): [number, number] => [i % 3, Math.floor(i / 3)]) },
+  10: {
+    g: 4,
+    cells: [
+      ...[0.5, 1.5, 2.5].map((x): [number, number] => [x, 0.5]),
+      ...[0, 1, 2, 3].map((x): [number, number] => [x, 1.5]),
+      ...[0.5, 1.5, 2.5].map((x): [number, number] => [x, 2.5]),
+    ],
+  },
+  12: { g: 4, cells: ring(4) },
+};
+
+/** The card sizes the deck maker can lay out: q + 1 for each q in DECK_Q. */
+export const SLOT_COUNTS = Object.keys(SLOTS).map(Number);
 
 /**
- * Place n symbol circles on a round card without overlap, at varied sizes and
- * rotations, deterministically from the seed. Symbols are placed largest
- * first by rejection sampling; a symbol that cannot fit shrinks and retries.
+ * Lay out n equal, upright squares on a square card in a fixed symmetric
+ * pattern. Slot i holds the i-th point of the card, which on card D + j is
+ * d_i + j; so across the deck each symbol sits in each slot exactly once.
  */
-export function layoutCard(n: number, seed: number): Placement[] {
-  const rng: Rng = mulberry32(seed);
-  const R = 0.47; // usable radius inside the card's rim
-  const gap = 0.012;
-  // Symbols fill a little over half the card on average.
-  const base = R * Math.sqrt(0.6 / n);
-  const sizes = Array.from({ length: n }, () => base * (0.75 + 0.5 * rng())).sort((a, b) => b - a);
-  const placed: Placement[] = [];
-  for (let s of sizes) {
-    for (let attempt = 0; ; attempt++) {
-      const ring = R - s;
-      const t = 2 * Math.PI * rng();
-      const d = ring * Math.sqrt(rng());
-      const p: Placement = { x: 0.5 + d * Math.cos(t), y: 0.5 + d * Math.sin(t), r: s, rotate: Math.round(rng() * 360) };
-      if (!placed.some((o) => overlaps(o, p, gap))) {
-        placed.push(p);
-        break;
-      }
-      if (attempt % 300 === 299) s *= 0.92;
-    }
-  }
-  return shuffled(placed, rng);
+export function layoutCard(n: number): Placement[] {
+  const slots = SLOTS[n];
+  if (!slots) throw new Error(`No card layout for ${n} symbols`);
+  const margin = 0.04; // card edge to the outer squares
+  const gap = 0.03; // between neighboring squares
+  const cell = (1 - 2 * margin + gap) / slots.g;
+  const size = cell - gap;
+  return slots.cells.map(([c, r]) => ({ x: margin + c * cell, y: margin + r * cell, size }));
 }
 
 /** Parse "?q=7&theme=vehicles&seed=123" into deck settings, with defaults. */
