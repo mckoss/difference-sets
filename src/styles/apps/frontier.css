@@ -1,0 +1,86 @@
+/* Lesson 16: higher-dimensional Singer sets */
+
+.higher-singer {
+  padding: 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+.higher-singer .widget-heading {
+  margin: 1rem 0 0.3rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.singer-params,
+.higher-singer .set-line,
+.register-rule,
+.corr-note {
+  font-variant-numeric: tabular-nums;
+  overflow-wrap: anywhere;
+}
+
+.singer-strip,
+.singer-bars {
+  display: block;
+  width: 100%;
+  height: auto;
+  font-family: system-ui, sans-serif;
+}
+
+.singer-bars {
+  height: 7rem;
+}
+
+.singer-strip .cell rect {
+  fill: var(--bg);
+  stroke: var(--border);
+}
+
+.singer-strip .cell.in rect {
+  fill: var(--member);
+  stroke: var(--member);
+}
+
+.singer-strip text {
+  fill: var(--muted);
+  font-size: 8px;
+  text-anchor: middle;
+}
+
+.singer-bars .bar {
+  fill: var(--accent);
+}
+
+.singer-bars .bar.peak {
+  fill: var(--hot);
+}
+
+.singer-bars .zero {
+  stroke: var(--muted);
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+}
+
+.register-bits {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px;
+  font: 0.8rem/1 ui-monospace, monospace;
+}
+
+.register-bits .bit {
+  display: inline-block;
+  width: 1.1rem;
+  padding: 0.2rem 0;
+  text-align: center;
+  border-radius: 3px;
+  background: var(--bg-raised);
+}
+
+.register-bits .bit.zero {
+  background: var(--member);
+  color: #fff;
+}

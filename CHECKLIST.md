@@ -48,7 +48,19 @@ lesson. Each checkpoint lands on `main` as its own PR and deploy.
 - [ ] Citations verified against sources
 - [ ] Search versus construction playground (worker)
 - [ ] Large-q explorer (Canvas)
-- [ ] Lessons 16–17 written
+- [x] Lesson 16 written (higher-dimensional Singer sets, m-sequences, GMW contrast)
+- [ ] Lesson 17 written
+
+## Checkpoint 6b: Part VII Applications (Lessons 18–23)
+
+- [x] Outline: Part VI renumbered (16 Beyond the plane, 17 completeness), Part VII added
+- [x] `singerPG.ts` (PG(m, q) Singer sets, m-sequences, shift registers) and `sequences.ts` (correlation), tested
+- [x] Lesson 18 and the match-one deck maker playground (150 symbol images, play, verify, print)
+- [x] Lesson 19 coded-aperture widget; Lesson 20 echo finder (`aperture.ts`)
+- [x] Lesson 21 majority-logic decoder (`codes.ts`, parameters computed in tests)
+- [x] Lesson 22 wake-up schedules (`schedule.ts`); Lesson 23 Golomb ruler (`ruler.ts`)
+- [x] Lesson 4 forward reference to Lesson 18
+- [ ] Optional Lesson 24: declustered RAID rebuild
 
 ## Checkpoint 7: Polish
 

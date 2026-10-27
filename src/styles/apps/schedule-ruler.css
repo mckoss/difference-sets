@@ -1,0 +1,338 @@
+/* schedule-ruler widgets: wake-up (Lesson 22) and golomb-ruler (Lesson 23) */
+
+:root {
+  --row-c: #7b3fc4;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --row-c: #c58af9;
+  }
+}
+
+.widget .button-group {
+  display: inline-flex;
+}
+
+.widget .button-group button:first-child {
+  border-radius: 6px 0 0 6px;
+}
+
+.widget .button-group button:last-child {
+  border-radius: 0 6px 6px 0;
+  margin-left: -1px;
+}
+
+/* Wake-up schedules */
+
+.wake-sliders {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1.25rem;
+  margin-bottom: 0.5rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.wake-sliders .row-a span {
+  color: var(--member);
+}
+
+.wake-sliders .row-b span {
+  color: var(--second);
+}
+
+.wake-sliders .row-c span {
+  color: var(--row-c);
+}
+
+.wake-sliders span {
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.wake-box,
+.ruler-box {
+  padding: 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+.wake-box p,
+.ruler-box p {
+  margin: 0 0 0.6rem;
+}
+
+.wake-header {
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.wake-timeline {
+  display: block;
+  width: 100%;
+  max-width: 560px;
+  height: auto;
+  font-family: system-ui, sans-serif;
+  margin-bottom: 0.6rem;
+}
+
+.wake-timeline .tick {
+  fill: var(--muted);
+  font-size: 11px;
+  text-anchor: middle;
+}
+
+.wake-timeline .row-label {
+  font-size: 14px;
+  font-weight: 700;
+  text-anchor: middle;
+}
+
+.wake-timeline .row-label.row-a {
+  fill: var(--member);
+}
+
+.wake-timeline .row-label.row-b {
+  fill: var(--second);
+}
+
+.wake-timeline .row-label.row-c {
+  fill: var(--row-c);
+}
+
+.wake-timeline .slot.off {
+  fill: var(--bg-raised);
+  stroke: var(--border);
+}
+
+.wake-timeline .slot.on.row-a {
+  fill: var(--member);
+}
+
+.wake-timeline .slot.on.row-b {
+  fill: var(--second);
+}
+
+.wake-timeline .slot.on.row-c {
+  fill: var(--row-c);
+}
+
+.wake-timeline .slot.meet {
+  stroke: var(--fg);
+  stroke-width: 2.5;
+}
+
+.schedule-line,
+.wake-pairs {
+  font-variant-numeric: tabular-nums;
+  overflow-wrap: anywhere;
+}
+
+.wake-pairs {
+  margin: 0 0 0.6rem;
+  padding-left: 1.2rem;
+}
+
+.wake-pairs li.miss {
+  color: var(--bad);
+  font-weight: 600;
+}
+
+/* Golomb rulers */
+
+.ruler-figure {
+  max-width: 360px;
+  margin: 0 auto 0.5rem;
+}
+
+.ruler-figure:has(.ruler-line) {
+  max-width: 560px;
+}
+
+.ruler-circle,
+.ruler-line,
+.coarray {
+  display: block;
+  width: 100%;
+  height: auto;
+  font-family: system-ui, sans-serif;
+}
+
+.ruler-circle .rim {
+  fill: none;
+  stroke: var(--rim);
+  stroke-width: 1.5;
+}
+
+.ruler-circle .tick-mark,
+.ruler-line .tick-mark {
+  stroke: var(--point);
+  stroke-width: 1.5;
+}
+
+.ruler-circle .arc {
+  fill: none;
+  stroke-width: 5;
+  stroke-linecap: round;
+}
+
+.ruler-circle .arc-a {
+  stroke: var(--member);
+}
+
+.ruler-circle .arc-b {
+  stroke: var(--second);
+}
+
+.ruler-circle .arc-label {
+  font-size: 15px;
+  font-weight: 700;
+  text-anchor: middle;
+}
+
+.ruler-circle .arc-label.arc-a {
+  fill: var(--member);
+}
+
+.ruler-circle .arc-label.arc-b {
+  fill: var(--second);
+}
+
+.ruler-circle .mark,
+.ruler-line .antenna {
+  cursor: pointer;
+}
+
+.ruler-circle .mark .hit,
+.ruler-line .antenna .hit {
+  fill: transparent;
+}
+
+.ruler-circle .mark .dot {
+  fill: var(--accent);
+}
+
+.ruler-circle .mark.selected .dot {
+  fill: var(--hot);
+}
+
+.ruler-circle .mark:hover .dot,
+.ruler-circle .mark:focus-visible .dot {
+  stroke: var(--fg);
+  stroke-width: 2;
+}
+
+.ruler-circle .mark:focus-visible,
+.ruler-line .antenna:focus-visible {
+  outline: none;
+}
+
+.ruler-circle .mark-label,
+.ruler-line .mark-label {
+  fill: var(--fg);
+  font-size: 13px;
+  font-weight: 700;
+  text-anchor: middle;
+}
+
+.ruler-line .baseline {
+  stroke: var(--fg);
+  stroke-width: 2;
+}
+
+.ruler-line .mast {
+  stroke: var(--accent);
+  stroke-width: 2.5;
+}
+
+.ruler-line .dish {
+  fill: var(--accent);
+}
+
+.ruler-line .antenna.selected .mast {
+  stroke: var(--hot);
+}
+
+.ruler-line .antenna.selected .dish {
+  fill: var(--hot);
+}
+
+.ruler-line .antenna:hover .dish,
+.ruler-line .antenna:focus-visible .dish {
+  stroke: var(--fg);
+  stroke-width: 1.5;
+}
+
+.coarray {
+  max-width: 560px;
+  margin-top: 0.5rem;
+}
+
+.coarray .tick {
+  fill: var(--muted);
+  font-size: 10px;
+  text-anchor: middle;
+}
+
+.coarray .spacing.once rect {
+  fill: var(--ok);
+}
+
+.coarray .spacing.repeat rect {
+  fill: var(--over);
+}
+
+.coarray .spacing.hot rect {
+  fill: var(--hot);
+}
+
+.coarray .missing-x {
+  fill: var(--bad);
+  font-size: 16px;
+  font-weight: 700;
+  text-anchor: middle;
+}
+
+.distance-tally {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-bottom: 0.6rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.tally-cell {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 2.6rem;
+  padding: 0.15rem 0.3rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--ok-soft);
+  line-height: 1.2;
+}
+
+.tally-cell small {
+  color: var(--muted);
+  font-size: 0.72rem;
+}
+
+.tally-cell.missing {
+  background: var(--bad-soft);
+}
+
+.tally-cell.hot-a {
+  border-color: var(--member);
+  box-shadow: inset 0 0 0 1.5px var(--member);
+}
+
+.tally-cell.hot-b {
+  border-color: var(--second);
+  box-shadow: inset 0 0 0 1.5px var(--second);
+}
+
+.ruler-info {
+  font-variant-numeric: tabular-nums;
+  min-height: 3em;
+}

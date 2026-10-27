@@ -1,0 +1,161 @@
+/* codes widgets: the majority-logic decoder (Lesson 21) */
+
+.majority-decoder .code-circle {
+  display: block;
+  width: 100%;
+  height: auto;
+  font-family: system-ui, sans-serif;
+}
+
+.code-circle .rim {
+  fill: none;
+  stroke: var(--rim);
+  stroke-width: 1.5;
+}
+
+.code-circle .check {
+  stroke-width: 2.5;
+  stroke-linejoin: round;
+}
+
+.code-circle .check.pass {
+  stroke: var(--ok);
+  fill: var(--ok-soft);
+}
+
+.code-circle .check.fail {
+  stroke: var(--bad);
+  fill: var(--bad-soft);
+  stroke-dasharray: 6 3;
+}
+
+.code-circle .bit {
+  cursor: pointer;
+}
+
+.code-circle .bit .cell {
+  fill: var(--bg);
+  stroke: var(--point);
+  stroke-width: 1.5;
+}
+
+.code-circle .bit.one .cell {
+  fill: var(--accent);
+  stroke: var(--accent);
+}
+
+.code-circle .bit .bit-value {
+  fill: var(--fg);
+  font-size: 13px;
+  font-weight: 700;
+  text-anchor: middle;
+  pointer-events: none;
+}
+
+.code-circle .bit.one .bit-value {
+  fill: var(--bg);
+}
+
+.code-circle .bit .bit-index {
+  fill: var(--muted);
+  font-size: 10px;
+  text-anchor: middle;
+}
+
+.code-circle .bit .ring {
+  fill: transparent;
+  stroke: none;
+}
+
+.code-circle .bit.inspect .ring {
+  stroke: var(--hot);
+  stroke-width: 2.5;
+}
+
+.code-circle .bit.err .cell {
+  stroke: var(--bad);
+  stroke-width: 3;
+}
+
+.code-circle .bit.err .bit-index {
+  fill: var(--bad);
+  font-weight: 700;
+}
+
+.code-circle .bit.fixed .ring {
+  stroke: var(--second);
+  stroke-width: 3;
+  stroke-dasharray: 3 2;
+}
+
+.code-circle .bit:hover .cell,
+.code-circle .bit:focus-visible .cell {
+  stroke: var(--hot);
+  stroke-width: 3;
+}
+
+.code-circle .bit:focus-visible {
+  outline: none;
+}
+
+.majority-decoder .check-head {
+  margin-bottom: 0.3rem;
+}
+
+.majority-decoder .check-list {
+  margin: 0 0 0.6rem;
+  padding-left: 1.2rem;
+  font-size: 0.9rem;
+  font-variant-numeric: tabular-nums;
+  overflow-wrap: anywhere;
+}
+
+.majority-decoder .check-list li.pass {
+  color: var(--ok);
+}
+
+.majority-decoder .check-list li.fail {
+  color: var(--bad);
+}
+
+.majority-decoder .vote-line {
+  font-weight: 600;
+}
+
+.majority-decoder .vote-line.flip {
+  color: var(--bad);
+}
+
+.majority-decoder .error-status {
+  font-size: 0.95rem;
+}
+
+.majority-decoder .bit-strips {
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+}
+
+.majority-decoder .bit-strip {
+  display: flex;
+  gap: 0.5rem;
+  align-items: baseline;
+  margin: 0.2rem 0;
+}
+
+.majority-decoder .strip-label {
+  flex: none;
+  width: 2.6rem;
+  color: var(--muted);
+}
+
+.majority-decoder .bit-strip code {
+  letter-spacing: 0.05em;
+  overflow-wrap: anywhere;
+  word-break: break-all;
+}
+
+.majority-decoder .bit-strip .err {
+  color: var(--bad);
+  font-weight: 700;
+  text-decoration: underline;
+}

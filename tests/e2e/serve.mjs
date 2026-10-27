@@ -17,6 +17,7 @@ const types = {
   '.woff': 'font/woff',
   '.ttf': 'font/ttf',
   '.json': 'application/json',
+  '.webp': 'image/webp',
 };
 
 createServer((req, res) => {

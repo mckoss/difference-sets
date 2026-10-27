@@ -1,6 +1,6 @@
 ---
 title: "Is every planar difference set a Singer set?"
-order: 16
+order: 17
 part: 6
 summary: "The completeness conjecture: Singer's construction may find every planar difference set there is."
 status: planned

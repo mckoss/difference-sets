@@ -38,6 +38,8 @@ $$
 
 By duality there are $n^2 + n + 1$ lines as well. For the Fano plane that is $1 + 3 \cdot 2 = 7$.
 
+This is the mathematics behind the card game Spot It, in which every two cards share exactly one picture: the cards are lines and the pictures are points (see [Lesson 18](../18-a-card-game-from-a-plane/)).
+
 These are exactly the numbers from Lesson 1: a planar difference set has $v = n^2 + n + 1$ and $k = n + 1$. The next plane up has order 3: 13 points, with 4 on each line. Its lines are the 13 translates of $\{0, 1, 3, 9\}$ mod 13:
 
 <div data-widget="translates" data-v="13" data-set="0,1,3,9" data-j="1"></div>

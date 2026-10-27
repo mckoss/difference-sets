@@ -1,0 +1,28 @@
+/* Styles for the Part VI–VII widgets, one file per widget family. */
+@import './apps/frontier.css';
+@import './apps/deck.css';
+@import './apps/aperture-echo.css';
+@import './apps/codes.css';
+@import './apps/schedule-ruler.css';
+
+/* Markdown tables in lessons */
+.lesson table {
+  border-collapse: collapse;
+  margin: 1rem 0;
+  font-variant-numeric: tabular-nums;
+  font-size: 0.95rem;
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.lesson th,
+.lesson td {
+  padding: 0.3rem 0.8rem;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+}
+
+.lesson th {
+  border-bottom-width: 2px;
+}

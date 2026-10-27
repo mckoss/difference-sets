@@ -1,0 +1,22 @@
+---
+import Base from '../../layouts/Base.astro';
+import { href, lessonPath, playgroundPath, PLAYGROUNDS } from '../../site';
+
+const pg = PLAYGROUNDS.find((p) => p.slug === 'deck-maker')!;
+const base = import.meta.env.BASE_URL;
+---
+
+<Base title={pg.title} description={pg.summary} current={playgroundPath(pg.slug)} wide>
+  <p class="eyebrow">Playground</p>
+  <h1>{pg.title}</h1>
+  <p class="lede">
+    Every two cards in this deck share exactly one picture. The cards are the lines of a projective plane of order q,
+    and the pictures are its points: card j holds the pictures for the points of D + j, where D is a Singer difference
+    set. Choose a size, browse the cards, race through the matching game, check the deck, or print it and cut it out.
+  </p>
+  <p>
+    The link in your address bar remembers the size, theme, and shuffle, so you can share a deck. Why it works is the
+    subject of <a href={href(base, lessonPath('18-a-card-game-from-a-plane'))}>Lesson 18</a>.
+  </p>
+  <div data-widget="deck-maker" data-url-state></div>
+</Base>
