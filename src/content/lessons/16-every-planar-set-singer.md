@@ -12,7 +12,7 @@ status: planned
 
 - **The completeness conjecture.** Every $(n^2 + n + 1, n + 1, 1)$ difference set is equivalent to a Singer set. Put geometrically: every cyclic projective plane is Desarguesian, coming from a field as in Part IV.
 - **The prime power conjecture**, a consequence: a planar difference set of order $n$ exists only when $n$ is a prime power.
-- **The evidence.** Exhaustive computer searches over *all* planar difference sets of small orders find exactly the Singer classes; the counts appear in OEIS [A058241](https://oeis.org/A058241). Non-Desarguesian planes do exist (the smallest have order 9), but none known is cyclic.
+- **The evidence.** Exhaustive computer searches over *all* planar difference sets of small orders find exactly the Singer classes; the counts appear in OEIS [A058241](https://oeis.org/A058241), and they equal half of the proven Singer count [A335866](https://oeis.org/A335866) wherever both are known. Non-Desarguesian planes do exist (the smallest have order 9), but none known is cyclic.
 - **How a proof might go.** Hints at the tools that settle special cases:
   - *Multiplier theorems*: every prime divisor of $n$ (under conditions) acts as a multiplier, which pins down a lot of structure.
   - *Group rings and characters*: turning $D$ into an element of $\mathbb{Z}[\mathbb{Z}/v\mathbb{Z}]$ and the equation $D D^{(-1)} = n + (\text{everything})$ into statements about cyclotomic integers.

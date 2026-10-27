@@ -91,4 +91,14 @@ describe('class counts', () => {
     expect(count).toBe(A058241[q - 2]);
     expect(count).toBe(totient(singerV(q)) / (6 * primePower(q)![1]));
   });
+
+  // OEIS A335866: Singer classes up to translation only, indexed by prime powers m = 1, 2, 3, 4, 5, 7, …
+  const A335866 = [1, 2, 4, 2, 10, 12, 8, 12, 36, 40, 12, 102, 84];
+
+  it.each(primePowersUpTo(19).map((q, i) => [q, A335866[i + 1]]))(
+    'q = %i: twice the class count matches OEIS A335866 (%i)',
+    (q, expected) => {
+      expect(2 * nonIsomorphicSingerSets(q).length).toBe(expected);
+    },
+  );
 });

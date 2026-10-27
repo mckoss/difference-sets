@@ -15,10 +15,19 @@ const pg = PLAYGROUNDS.find((p) => p.slug === 'singer-classes')!;
     translates and reflections. Every chord is labeled with its two differences.
   </p>
   <p>
-    The number of diagrams for each q matches OEIS
-    <a href="https://oeis.org/A058241">A058241</a>, which counts every planar difference set of each size up to
-    rotation and reflection, not only the Singer ones. That every one of them comes from Singer's construction is
-    still a conjecture; see Lesson 16.
+    Counting these diagrams gives φ(q² + q + 1) / 6e for q = pᵉ, where φ is Euler's totient. If a set and its mirror
+    image count as different, the count doubles to φ(q² + q + 1) / 3e: Singer conjectured that formula in 1938 and
+    Gerald Berman proved it in 1953. Both sequences are in the OEIS:
   </p>
+  <ul>
+    <li>
+      <a href="https://oeis.org/A335866">A335866</a>: Singer sets up to translation, φ(v) / 3e.
+    </li>
+    <li>
+      <a href="https://oeis.org/A058241">A058241</a>: every planar difference set up to rotation and reflection,
+      found by search rather than construction. It agrees with the Singer count (half of A335866) for every size
+      checked. That this holds for every size is still a conjecture; see Lesson 16.
+    </li>
+  </ul>
   <div data-widget="singer-classes" data-q="3" data-url-state></div>
 </Base>
