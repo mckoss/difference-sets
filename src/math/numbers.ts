@@ -40,3 +40,8 @@ export function primePowersUpTo(limit: number): number[] {
   for (let n = 2; n <= limit; n++) if (primePower(n)) result.push(n);
   return result;
 }
+
+/** Euler's totient φ(n). */
+export function totient(n: number): number {
+  return primeFactors(n).reduce((acc, p) => (acc / p) * (p - 1), n);
+}

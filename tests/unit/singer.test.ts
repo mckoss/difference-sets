@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { differenceSetLambda } from '../../src/math/difference';
-import { primePower, primePowersUpTo } from '../../src/math/numbers';
+import { primePower, primePowersUpTo, totient } from '../../src/math/numbers';
 import { findPrimitivePoly, nonIsomorphicSingerSets, normalizeSet, singerSet, singerV } from '../../src/math/singer';
 
 // Expected output copied from the "Non-isomorphic Singer Sets" notebook.
@@ -75,5 +75,20 @@ describe('Singer construction', () => {
 
   it.each(Object.entries(NOTEBOOK_COUNTS))('matches the notebook class count for q = %s', (q, count) => {
     expect(nonIsomorphicSingerSets(Number(q))).toHaveLength(count);
+  });
+});
+
+describe('class counts', () => {
+  it('computes the totient', () => {
+    expect([1, 2, 7, 12, 21, 273].map(totient)).toEqual([1, 1, 6, 4, 12, 144]);
+  });
+
+  // OEIS A058241 indexed by k = q + 1 (terms for k = 1, 2 omitted; 0 where no plane exists).
+  const A058241 = [1, 2, 1, 5, 0, 6, 4, 6, 0, 18, 0, 20, 0, 0, 6, 51, 0, 42];
+
+  it.each(primePowersUpTo(19))('q = %i matches OEIS A058241 and φ(v)/6e', (q) => {
+    const count = nonIsomorphicSingerSets(q).length;
+    expect(count).toBe(A058241[q - 2]);
+    expect(count).toBe(totient(singerV(q)) / (6 * primePower(q)![1]));
   });
 });

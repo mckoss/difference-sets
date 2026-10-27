@@ -137,56 +137,71 @@ integers mod p, and only then the prime-power fields built on top of them.
    (log tables). Primitive polynomials, and how to test one without trying
    every power: check α^((p^k − 1)/r) ≠ 1 for each prime r dividing p^k − 1.
 
+9. **Fields inside fields.** The freshman's dream (x + y)^p = x^p + y^p in
+   characteristic p, the Frobenius map x ↦ x^q, and GF(q) as the elements
+   of GF(q³) it fixes, which is {0} ∪ ⟨α^(q² + q + 1)⟩. For q = p^e, GF(q³) is
+   built directly as polynomials of degree below 3e over GF(p), as the code
+   does. This supplies everything the trace needs in Part V.
+
 **Part IV — Planes from fields**
 
-9. **Coordinates for a projective plane.** PG(2, q): points are the
+10. **Vectors over a finite field.** GF(q)³ as a finite grid of q³ vectors,
+    shown in 3D with three.js. Spans and subspaces; every line through the
+    origin holds q − 1 nonzero vectors, so there are (q³ − 1)/(q − 1) =
+    q² + q + 1 lines through the origin, and as many planes.
+11. **Coordinates for a projective plane.** PG(2, q): points are the
    1-dimensional subspaces of GF(q)³ (homogeneous coordinates [x : y : z]),
    lines are the 2-dimensional subspaces. Count them and check the axioms.
    Draw PG(2, 2) as the Fano plane and PG(2, 3) with 13 points.
-10. **The field hiding inside the plane.** GF(q³) *is* GF(q)³ as a vector
+12. **The field hiding inside the plane.** GF(q³) *is* GF(q)³ as a vector
    space, so its nonzero elements up to GF(q)* scalars are the points of
    PG(2, q). Since GF(q)* = ⟨α^v⟩, each point is α^i for exactly one
    i mod v, which gives every point a number.
-11. **The Singer cycle.** Multiplying by α is GF(q)-linear, so it sends lines
+13. **The Singer cycle.** Multiplying by α is GF(q)-linear, so it sends lines
     to lines, and it moves point i to point i + 1, cycling through all v
     points. So PG(2, q) is cyclic, and by Lesson 4 any one of its lines is a
     difference set. Animate the rotation carrying one line onto the next.
 
 **Part V — Singer's algorithm**
 
-12. **Writing down a difference set.** Choose one line: the trace-zero plane
+14. **Writing down a difference set.** Choose one line: the trace-zero plane
     {x : x + x^q + x^(q²) = 0}. Then D = {i mod v : Tr(α^i) = 0}. Step
     through it for q = 2, 3, 4: compute α^i, take the trace, keep or reject.
     This takes v field multiplications, with no search, set against the
     brute-force count from Lesson 1.
-13. **Many sets, few shapes.** Multipliers: t·D for t coprime to v is another
+15. **Many sets, few shapes.** Multipliers: t·D for t coprime to v is another
     difference set. Equivalence under translation, negation, and
     multipliers; Hall's multiplier theorem (multiplying by p gives a
-    translate). Gallery of the distinct classes per q (the notebook port).
+    translate). Gallery of the distinct classes per q (the notebook port),
+    their count φ(q² + q + 1)/6e, and OEIS A058241.
 
 **Part VI — The frontier**
 
-14. **Is every planar difference set a Singer set?** No one has found a
-    planar difference set that isn't one. Present the conjectures with care:
-    - *Prime power conjecture*: a planar difference set of order n exists
-      only when n is a prime power. Proven for many cases and verified by
-      computer for all n below 2·10⁹ (Baumert and Gordon, 2004).
-    - *Stronger conjecture*: every cyclic projective plane is Desarguesian,
-      i.e. every planar difference set is equivalent to a Singer set.
-    - Context: Bruck–Ryser rules out orders such as 6 and 14; order 10 was
-      ruled out by a large computer search (Lam, 1989); non-Desarguesian
-      planes exist (order 9), but none known is cyclic.
-    - Contrast: for higher-dimensional Singer parameters the analogue is
-      *false*; Gordon–Mills–Welch sets share Singer parameters without being
-      equivalent to them.
+16. **Is every planar difference set a Singer set?** The *completeness
+    conjecture*: Singer's construction finds every planar difference set, so
+    every cyclic projective plane is Desarguesian.
+    - Consequence: the *prime power conjecture*, that a planar difference set
+      of order n exists only for prime powers n, verified by computer to very
+      large orders.
+    - Evidence: exhaustive searches over all planar difference sets match the
+      Singer class counts, which are OEIS
+      [A058241](https://oeis.org/A058241) and equal φ(q² + q + 1)/6e for
+      q = p^e. Non-Desarguesian planes exist (order 9), but none known is
+      cyclic.
+    - Hints at a proof: multiplier theorems, group rings and characters
+      (cyclotomic integers), Bruck–Ryser–Chowla-style non-existence tests,
+      and theorems showing that enough symmetry forces a plane to be
+      Desarguesian. The open question is whether a single cycle is enough.
+    - Contrast: the higher-dimensional analogue is false (Gordon–Mills–Welch
+      sets).
 
     Playground tie-in: exhaustive search for small v finds only sets
     equivalent to Singer sets.
-15. **Where difference sets show up.** Modular Golomb rulers, optical
+17. **Where difference sets show up.** Modular Golomb rulers, optical
     orthogonal codes, sequences with two-valued autocorrelation, sensor array
     placement, and higher-dimensional Singer sets PG(m, q).
 
-Citations are checked against primary sources before Lesson 14 ships.
+Citations are checked against primary sources before Lesson 16 ships.
 
 ### Playgrounds
 
@@ -212,25 +227,33 @@ Citations are checked against primary sources before Lesson 14 ships.
 
 ## Architecture
 
-- **Vite + TypeScript**, no UI framework, built as a Vite multi-page app.
-  `src/site.ts` holds one manifest of lessons and playgrounds (slug, title,
-  part, order); the shared header, navigation, and previous/next links come
-  from it, and the build input list is generated from it.
-- **Math core (`src/math/`)**, pure and fully unit-tested:
-  - `difference.ts`: differences, translates, multipliers.
-  - `poly.ts`, `field.ts`: GF(p) polynomials and a GF(p^k) element type with
-    irreducibility and primitivity tests.
-  - `projective.ts`: PG(2, q) points and lines in coordinates.
-  - `singer.ts`: Singer sets with the intermediate steps exposed for the
-    stepper; classes up to equivalence.
-  - `search.ts`: backtracking search for planar difference sets.
-- **Widgets (`src/widgets/`)**: reusable interactive components, so a lesson
-  can embed a small version of a playground.
-- **Visualization (`src/viz/`)**: SVG for chord diagrams, planes, tables, and
-  incidence matrices; Canvas only for large v.
-- **Typesetting**: KaTeX for formulas, rendered at build time where practical.
+- **Astro** (static output, built on Vite) with TypeScript and no UI
+  framework.
+- **Lessons are Markdown** in `src/content/lessons/NN-slug.md`, with
+  frontmatter `title`, `order`, `part`, `summary`, and `status`. Math is TeX
+  (`$…$`, and `$$` on lines of its own for display), typeset by remark-math
+  and rehype-katex **at build time**, so pages ship no math JavaScript.
+- **Navigation**: a left sidebar shows the numbered outline of all lessons
+  grouped by part, plus the playgrounds, with the current page highlighted;
+  on narrow screens it folds behind a Contents button. Previous/next links
+  chain the lessons. Both come from `src/site.ts` (parts, playgrounds, and
+  pure outline helpers) and the lesson frontmatter.
+- **Widgets** (`src/widgets/`): a Markdown lesson embeds one with
+  `<div data-widget="name" data-…>`; `hydrate.ts` loads only the widget
+  modules a page uses. Playground pages (`src/pages/playgrounds/`) use the
+  same widgets full-size with URL state.
+- **Math core (`src/math/`)**, pure and fully unit-tested: `numbers.ts`,
+  `poly.ts`, `difference.ts`, `singer.ts`, and later `field.ts`,
+  `projective.ts`, and `search.ts`.
+- **Visualization (`src/viz/`)**: SVG for chord diagrams, planes, and
+  tables; Canvas for large v; **three.js** for 3D views (GF(q)³ as a grid
+  with its lines and planes through the origin, and PG(3, q) and higher),
+  loaded only by the widgets that need it.
 - The **version** is read from `package.json` and shown in the header.
   Light and dark themes via CSS custom properties.
+- Type checking: `tsc` checks all `.ts` code. `@astrojs/check` does not yet
+  support TypeScript 7, so `.astro` files stay thin templates with their
+  logic in `.ts` modules.
 
 ## Testing
 
@@ -248,13 +271,13 @@ Citations are checked against primary sources before Lesson 14 ships.
 1. **Scaffold**: repo, Vite build, Pages deploy. *(v0.1.0)*
 2. **Notebook port**: Singer construction, classes, chord-diagram gallery.
    *(v0.2.0)*
-3. **Multi-page skeleton**: manifest, shared layout and navigation, home page
-   with the lesson path, and the classes gallery moved to its playground.
+3. **Multi-page skeleton** on Astro: Markdown lessons with KaTeX, numbered
+   sidebar outline, home page, and the classes gallery playground. *(v0.3.0)*
 4. **Part I–II**: Lessons 1–4 and the difference-set workbench.
-5. **Part III**: Lessons 5–8 and the finite field calculator.
-6. **Part IV**: Lessons 9–11 and the projective plane explorer.
-7. **Part V**: Lessons 12–13 and the Singer stepper.
-8. **Part VI**: Lessons 14–15, search versus construction, large-q explorer.
+5. **Part III**: Lessons 5–9 and the finite field calculator.
+6. **Part IV**: Lessons 10–13 and the projective plane explorer.
+7. **Part V**: Lessons 14–15 and the Singer stepper.
+8. **Part VI**: Lessons 16–17, search versus construction, large-q explorer.
 9. **Polish**: accessibility, mobile layout, performance for large q.
 
 ## Open questions

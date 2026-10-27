@@ -1,0 +1,24 @@
+---
+import Base from '../../layouts/Base.astro';
+import { playgroundPath, PLAYGROUNDS } from '../../site';
+
+const pg = PLAYGROUNDS.find((p) => p.slug === 'singer-classes')!;
+---
+
+<Base title={pg.title} description={pg.summary} current={playgroundPath(pg.slug)} wide>
+  <p class="eyebrow">Playground</p>
+  <h1>{pg.title}</h1>
+  <p class="lede">
+    For each prime power q, Singer's construction gives q + 1 residues modulo q² + q + 1 such that every nonzero
+    residue appears exactly once as a difference of two of them. Multiplying such a set by any t coprime to
+    q² + q + 1 gives another one. Each diagram below is one of the sets this produces, counted once per family of
+    translates and reflections. Every chord is labeled with its two differences.
+  </p>
+  <p>
+    The number of diagrams for each q matches OEIS
+    <a href="https://oeis.org/A058241">A058241</a>, which counts every planar difference set of each size up to
+    rotation and reflection, not only the Singer ones. That every one of them comes from Singer's construction is
+    still a conjecture; see Lesson 16.
+  </p>
+  <div data-widget="singer-classes" data-q="3" data-url-state></div>
+</Base>

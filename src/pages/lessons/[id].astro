@@ -1,0 +1,46 @@
+---
+import { getCollection, render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import { href, lessonPath, neighbors, PARTS } from '../../site';
+import { lessonEntries } from '../../lib/lessons';
+
+export async function getStaticPaths() {
+  const lessons = await getCollection('lessons');
+  return lessons.map((lesson) => ({ params: { id: lesson.id }, props: { lesson } }));
+}
+
+const { lesson } = Astro.props;
+const { Content } = await render(lesson);
+const base = import.meta.env.BASE_URL;
+const { prev, next } = neighbors(await lessonEntries(), lesson.id);
+const part = PARTS.find((p) => p.part === lesson.data.part)!;
+---
+
+<Base title={lesson.data.title} description={lesson.data.summary} current={lessonPath(lesson.id)}>
+  <article class="lesson">
+    <p class="eyebrow">Part {part.numeral} · {part.title} · Lesson {lesson.data.order}</p>
+    <h1>{lesson.data.title}</h1>
+    <p class="lede">{lesson.data.summary}</p>
+    <Content />
+  </article>
+  <nav class="pager" aria-label="Lesson navigation">
+    {
+      prev ? (
+        <a class="prev" rel="prev" href={href(base, lessonPath(prev.id))}>
+          <span>Previous</span> {prev.order}. {prev.title}
+        </a>
+      ) : (
+        <a class="prev" rel="prev" href={href(base)}>
+          <span>Previous</span> Home
+        </a>
+      )
+    }
+    {
+      next && (
+        <a class="next" rel="next" href={href(base, lessonPath(next.id))}>
+          <span>Next</span> {next.order}. {next.title}
+        </a>
+      )
+    }
+  </nav>
+</Base>

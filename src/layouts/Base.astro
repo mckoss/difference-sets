@@ -1,0 +1,53 @@
+---
+import 'katex/dist/katex.min.css';
+import '../styles/global.css';
+import pkg from '../../package.json';
+import Sidebar from '../components/Sidebar.astro';
+import { href } from '../site';
+
+interface Props {
+  title: string;
+  description?: string;
+  /** Site-relative path of this page, e.g. "lessons/01-differences-on-a-circle/". */
+  current?: string;
+  wide?: boolean;
+}
+
+const { title, description, current = '', wide = false } = Astro.props;
+const base = import.meta.env.BASE_URL;
+const siteTitle = 'Singer Difference Sets';
+const pageTitle = current === '' ? siteTitle : `${title} · ${siteTitle}`;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{pageTitle}</title>
+    {description && <meta name="description" content={description} />}
+  </head>
+  <body>
+    <header class="site-header">
+      <button class="nav-toggle" type="button" aria-controls="sidebar" aria-expanded="false">Contents</button>
+      <a class="site-title" href={href(base)}>{siteTitle}</a>
+      <small id="app-version">v{pkg.version}</small>
+    </header>
+    <div class="layout">
+      <Sidebar current={current} />
+      <main class:list={['content', { wide }]}>
+        <slot />
+      </main>
+    </div>
+    <script>
+      import '../widgets/hydrate';
+
+      const toggle = document.querySelector<HTMLButtonElement>('.nav-toggle');
+      const sidebar = document.getElementById('sidebar');
+      toggle?.addEventListener('click', () => {
+        const open = sidebar?.toggleAttribute('data-open') ?? false;
+        toggle.setAttribute('aria-expanded', String(open));
+      });
+    </script>
+  </body>
+</html>

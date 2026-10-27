@@ -1,14 +1,14 @@
 {
   "name": "difference-sets",
-  "version": "0.2.2",
+  "version": "0.3.0",
   "private": true,
   "type": "module",
   "description": "An educational site explaining and visualizing Singer difference sets.",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc --noEmit && vite build",
-    "preview": "vite preview",
-    "typecheck": "tsc --noEmit",
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "typecheck": "astro sync && tsc --noEmit",
     "test": "vitest run",
     "test:e2e": "npm run build && playwright test"
   },
@@ -17,7 +17,13 @@
     "@types/node": "^26.6.5",
     "happy-dom": "^21.0.4",
     "typescript": "^7.0.2",
-    "vite": "^8.3.5",
     "vitest": "^5.0.5"
+  },
+  "dependencies": {
+    "@astrojs/markdown-remark": "^7.3.4",
+    "astro": "^7.4.2",
+    "katex": "^0.19.1",
+    "rehype-katex": "^7.0.1",
+    "remark-math": "^6.0.0"
   }
 }
