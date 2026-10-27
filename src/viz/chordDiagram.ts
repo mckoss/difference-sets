@@ -17,11 +17,13 @@ function svgEl<K extends keyof SVGElementTagNameMap>(
  * Draw a planar difference set as points on a circle with a chord between
  * every pair of members, each chord labeled with its two differences.
  * Ported from the notebook's `difference_set_svg`, including its label
- * anti-collision search along each chord.
+ * anti-collision search along each chord. The modulus defaults to the
+ * planar v = k(k − 1) + 1; pass `modulus` to draw part of a set on a
+ * bigger clock, as the Singer stepper does while D is still growing.
  */
-export function chordDiagram(ds: readonly number[]): SVGSVGElement {
+export function chordDiagram(ds: readonly number[], modulus?: number): SVGSVGElement {
   const k = ds.length;
-  const v = k * (k - 1) + 1;
+  const v = modulus ?? k * (k - 1) + 1;
   const members = new Set(ds);
 
   const r = Math.max(50, (12 * v) / (2 * Math.PI));

@@ -1,0 +1,161 @@
+/* Part V: the Singer construction stepper and the multiplier explorer */
+
+.ss-sum {
+  list-style: none;
+  padding: 0;
+  margin: 0.3rem 0;
+  font-variant-numeric: tabular-nums;
+  overflow-wrap: anywhere;
+}
+
+.ss-sum li {
+  padding: 0.1rem 0;
+}
+
+.ss-sum li:last-child {
+  border-top: 1px solid var(--border);
+  margin-top: 0.2rem;
+  padding-top: 0.25rem;
+  font-weight: 600;
+}
+
+.ss-lhs {
+  display: inline-block;
+  min-width: 6.5em;
+}
+
+.ss-layout {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.25rem;
+  align-items: flex-start;
+}
+
+.ss-figure {
+  margin: 0;
+  flex: 1 1 260px;
+  max-width: 440px;
+  min-width: 0;
+}
+
+.ss-figure figcaption {
+  color: var(--muted);
+  font-size: 0.8125rem;
+  text-align: center;
+  overflow-wrap: anywhere;
+}
+
+.ss-log {
+  flex: 1 1 240px;
+  min-width: 0;
+}
+
+.ss-log .ff-scroll {
+  max-height: 20rem;
+  overflow-y: auto;
+}
+
+.ss-table {
+  font-size: 0.85rem;
+}
+
+.ss-table td,
+.ss-table th {
+  white-space: nowrap;
+}
+
+.ff-table tr.ss-member th,
+.ff-table tr.ss-member td {
+  color: var(--ff-ok);
+  font-weight: 600;
+}
+
+.ff-table tr.ss-latest th,
+.ff-table tr.ss-latest td {
+  background: var(--ff-sel);
+}
+
+.ss-diffs {
+  max-height: 14rem;
+  overflow-y: auto;
+  font-variant-numeric: tabular-nums;
+}
+
+.singer-stepper .ss-play[aria-pressed='true'] {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* ---- multiplier explorer (Lesson 15) ---- */
+
+.me-figures {
+  border: none;
+  padding: 0;
+}
+
+.me-figures figure {
+  flex: 1 1 200px;
+  max-width: 320px;
+  min-width: 0;
+}
+
+.me-class-list {
+  list-style: none;
+  padding: 0;
+  margin: 0.3rem 0;
+}
+
+.me-class {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.25rem 0.75rem;
+  padding: 0.3rem 0.5rem;
+  border-left: 3px solid transparent;
+  border-radius: 0 6px 6px 0;
+}
+
+.me-class:nth-child(4n + 1),
+.me-class:nth-child(4n + 2) {
+  background: var(--bg-raised);
+}
+
+.me-class.now {
+  border-left-color: var(--accent);
+  background: var(--accent-soft);
+}
+
+.me-name {
+  font-weight: 600;
+  min-width: 5.5em;
+}
+
+.me-ts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+}
+
+.me-t-chip {
+  font: inherit;
+  font-size: 0.85rem;
+  min-width: 2.2em;
+  padding: 0.05rem 0.45rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--bg);
+  color: var(--fg);
+  cursor: pointer;
+}
+
+.me-t-chip.now {
+  border-color: var(--accent);
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.me-rep {
+  color: var(--muted);
+  font-size: 0.85rem;
+  overflow-wrap: anywhere;
+}

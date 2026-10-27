@@ -293,9 +293,10 @@ verified notes so far are in [docs/citations.md](docs/citations.md).
   moduli of the same degree.
 - **Projective plane explorer.** PG(2, q) for small q: points, lines,
   incidence, both the coordinate numbering and the Singer numbering.
-- **Singer construction stepper.** Choose q and a primitive polynomial, then
-  step through α^i, the trace, and the resulting D, with every intermediate
-  value shown.
+- **Singer construction stepper.** Choose q ≤ 13 (the primitive cubic of
+  Lessons 12–13), then step through α^i, its conjugates α^(iq) and α^(iq²),
+  the trace, and the resulting D, with every intermediate value shown, ending
+  in a chord diagram and a checked difference table (`?q=&i=`).
 - **Singer classes gallery.** The current home page: distinct classes for
   each q, as chord diagrams.
 - **Search versus construction.** Backtracking search for planar sets of

@@ -41,6 +41,11 @@ export const PLAYGROUNDS: Playground[] = [
     summary: 'Build a set on a clock of any size and watch its differences, translates, and verdict.',
   },
   {
+    slug: 'singer-stepper',
+    title: 'Singer construction stepper',
+    summary: 'Build a Singer difference set one power of α at a time: compute each trace and keep the zeros.',
+  },
+  {
     slug: 'singer-classes',
     title: 'Singer classes gallery',
     summary: 'Every distinct Singer difference set for a chosen q, drawn as chord diagrams.',
