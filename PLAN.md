@@ -17,6 +17,38 @@ Published with GitHub Pages at
 - Each section ends with an interactive widget that lets the reader verify the
   claim for themselves.
 
+## Writing conventions
+
+Rules every lesson follows, so the path reads as one voice.
+
+- **Assume only arithmetic and high-school algebra.** No familiarity with
+  Greek letters or math symbols is assumed. At its first use, spell out and
+  explain every symbol: "λ (the Greek letter lambda)", ∈ ("is an element
+  of"), ⊆ ("is a subset of"), ∩ ("intersection": the points in both), ≡
+  ("is congruent to"), ↦ ("goes to"), ∑, and the binomial coefficient
+  C(v, k), read "v choose k". Prefer words when a symbol isn't needed.
+- **Fixed letters.** The parameters are always (v, k, λ): v is the number of
+  points on the clock (the modulus), k is the number of elements of the set
+  D, and λ is how many times each nonzero difference occurs. For planes, n
+  is the order, with v = n² + n + 1 and k = n + 1. Don't reuse these letters
+  for anything else.
+- **Clock notation.** Lesson 1 introduces ℤ (the integers
+  …, −2, −1, 0, 1, 2, …), vℤ (the multiples of v), and ℤ/vℤ (the integers
+  mod v: numbers that differ by a multiple of v count as the same, so there
+  are exactly v residues 0, 1, …, v − 1, the points on the clock face), with
+  the notation a ≡ b (mod v). Later lessons use these freely and may point
+  back to Lesson 1.
+- **Notation boxes.** When a lesson introduces notation, put it in a
+  `<aside class="notation">` box (with a `<span class="notation-title">`
+  heading) so readers can find it again.
+- **Interactive pictures first.** Whenever a widget can show a concept
+  (wrapping a number onto the clock, a difference as steps around the clock,
+  a translate, a line of the Fano plane), put it next to the prose and let the
+  reader drive it before the formula appears.
+- **Each lesson** has a "you'll learn" lede, a "Try it" exercise whose answer
+  hides in a `<details>` block, and a link to the playground that goes
+  deeper. It rests only on earlier lessons and defines every term before use.
+
 ## The mathematics in brief
 
 A **(v, k, λ) difference set** is a k-element subset D of the cyclic group

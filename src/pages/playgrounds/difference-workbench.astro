@@ -1,0 +1,23 @@
+---
+import Base from '../../layouts/Base.astro';
+import { playgroundPath, PLAYGROUNDS } from '../../site';
+
+const pg = PLAYGROUNDS.find((p) => p.slug === 'difference-workbench')!;
+---
+
+<Base title={pg.title} description={pg.summary} current={playgroundPath(pg.slug)} wide>
+  <p class="eyebrow">Playground</p>
+  <h1>{pg.title}</h1>
+  <p class="lede">
+    Choose the number of points v, then click points on the circle to build a set D. The bar chart counts how often
+    each nonzero difference a − b (mod v) occurs. D is a (v, k, λ) difference set when every one occurs the same
+    number of times, λ. The link in your address bar keeps the set, so you can share it.
+  </p>
+  <div data-widget="difference-workbench" data-v="7" data-set="0,1,3" data-url-state></div>
+  <h2>Translates</h2>
+  <p>
+    The translates D + i and D + j of the set above, and how many points every pair of translates shares. For a
+    difference set, every entry off the diagonal is λ.
+  </p>
+  <div data-widget="translates" data-follow></div>
+</Base>

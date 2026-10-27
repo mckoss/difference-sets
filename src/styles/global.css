@@ -372,3 +372,685 @@ blockquote p {
 .chord-diagram .diff-label {
   fill-opacity: 0.5;
 }
+
+/* ==== Part I–II widgets: workbench, translates, brute force, Fano plane ==== */
+
+:root {
+  --second: #188038;
+  --second-soft: rgba(24, 128, 56, 0.35);
+  --ok: #188038;
+  --ok-soft: rgba(24, 128, 56, 0.1);
+  --bad: #c5221f;
+  --bad-soft: rgba(197, 34, 31, 0.08);
+  --over: #e37400;
+  --hot: #e37400;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --second: #81c995;
+    --second-soft: rgba(129, 201, 149, 0.4);
+    --ok: #81c995;
+    --ok-soft: rgba(129, 201, 149, 0.12);
+    --bad: #f28b82;
+    --bad-soft: rgba(242, 139, 130, 0.1);
+    --over: #fcad70;
+    --hot: #fcad70;
+  }
+}
+
+.widget .controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.widget button,
+.widget input[type='number'],
+.widget select {
+  font: inherit;
+  font-size: 0.95rem;
+  color: var(--fg);
+  background: var(--bg-raised);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 0.2rem 0.6rem;
+}
+
+.widget button {
+  cursor: pointer;
+}
+
+.widget button:hover {
+  border-color: var(--accent);
+}
+
+.widget button[aria-pressed='true'] {
+  background: var(--accent-soft);
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.widget select {
+  max-width: 100%;
+}
+
+.widget .v-input {
+  width: 4.5em;
+}
+
+.widget .control.range {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.widget .control.range input {
+  width: 7rem;
+}
+
+.widget .control.range output {
+  min-width: 1.5em;
+  font-variant-numeric: tabular-nums;
+}
+
+.widget .hint {
+  margin: 0 0 0.5rem;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.workbench-body {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 1.5rem;
+  align-items: flex-start;
+  padding: 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+.circle-box {
+  flex: 0 1 300px;
+  min-width: 0;
+  margin: 0 auto;
+}
+
+.workbench-side {
+  flex: 1 1 240px;
+  min-width: 0;
+}
+
+.workbench-side p {
+  margin: 0 0 0.6rem;
+}
+
+.set-line,
+.legend,
+.shared {
+  font-variant-numeric: tabular-nums;
+  overflow-wrap: anywhere;
+}
+
+.verdict,
+.table-note {
+  padding: 0.4rem 0.6rem;
+  border-radius: 6px;
+  background: var(--bg-raised);
+}
+
+.verdict.ok,
+.table-note.ok {
+  background: var(--ok-soft);
+  color: var(--ok);
+}
+
+.verdict.bad {
+  background: var(--bad-soft);
+  color: var(--bad);
+}
+
+.pairs {
+  font-size: 0.9rem;
+}
+
+.pairs ul {
+  columns: 2 10rem;
+  margin: 0.4rem 0 0;
+  padding-left: 1.2rem;
+}
+
+.pairs li.none {
+  color: var(--bad);
+}
+
+.circle-set,
+.histogram,
+.meet-table,
+.fano {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  font-family: system-ui, sans-serif;
+}
+
+.circle-set {
+  width: 100%;
+}
+
+.circle-set .rim {
+  fill: none;
+  stroke: var(--rim);
+  stroke-width: 1.5;
+}
+
+.circle-set .chord {
+  stroke-width: 1.5;
+}
+
+.circle-set .chord-a {
+  stroke: var(--chord);
+}
+
+.circle-set .chord-b {
+  stroke: var(--second-soft);
+  stroke-dasharray: 4 3;
+}
+
+.circle-set .chord-a.hot {
+  stroke: var(--hot);
+  stroke-width: 3;
+}
+
+.circle-set .pt .dot {
+  fill: var(--point);
+}
+
+.circle-set .pt.in-a .dot {
+  fill: var(--member);
+}
+
+.circle-set .pt.in-b .dot {
+  fill: var(--second);
+}
+
+.circle-set .pt.in-both .dot {
+  fill: var(--member);
+}
+
+.circle-set .pt .ring {
+  fill: none;
+  stroke: var(--second);
+  stroke-width: 2.5;
+}
+
+.circle-set .pt .hit {
+  fill: transparent;
+}
+
+.circle-set .pt[role='button'] {
+  cursor: pointer;
+}
+
+.circle-set .pt[role='button']:hover .dot {
+  stroke: var(--accent);
+  stroke-width: 2;
+}
+
+.circle-set .pt:focus-visible {
+  outline: none;
+}
+
+.circle-set .pt:focus-visible .dot {
+  stroke: var(--accent);
+  stroke-width: 3;
+}
+
+.circle-set .pt-label {
+  fill: var(--muted);
+  text-anchor: middle;
+}
+
+.circle-set .pt.in-a .pt-label,
+.circle-set .pt.in-b .pt-label {
+  fill: var(--fg);
+  font-weight: 700;
+}
+
+.histogram .tick,
+.meet-table .tick {
+  fill: var(--muted);
+  font-size: 9px;
+  text-anchor: middle;
+}
+
+.histogram .tick {
+  font-size: 10px;
+}
+
+.histogram .y-tick {
+  text-anchor: end;
+}
+
+.histogram .grid {
+  stroke: var(--border);
+}
+
+.histogram .bar-hit {
+  fill: transparent;
+}
+
+.histogram .bar.ok .bar-fill {
+  fill: var(--ok);
+}
+
+.histogram .bar.neutral .bar-fill {
+  fill: var(--accent);
+}
+
+.histogram .bar.few .bar-fill {
+  fill: var(--accent);
+}
+
+.histogram .bar.many .bar-fill {
+  fill: var(--over);
+}
+
+.histogram .bar-zero {
+  stroke: var(--bad);
+  stroke-width: 3;
+}
+
+.histogram .bar.few .x-tick {
+  fill: var(--bad);
+  font-weight: 700;
+}
+
+.histogram .bar:hover .bar-fill,
+.histogram .bar:focus-visible .bar-fill {
+  fill: var(--hot);
+}
+
+.histogram .bar:focus-visible {
+  outline: none;
+}
+
+.histogram .target {
+  stroke: var(--fg);
+  stroke-dasharray: 4 3;
+  stroke-opacity: 0.6;
+}
+
+.legend .key {
+  display: inline-block;
+  margin-right: 1rem;
+}
+
+.legend .key::before {
+  content: '';
+  display: inline-block;
+  width: 0.7em;
+  height: 0.7em;
+  margin-right: 0.35em;
+  border-radius: 50%;
+}
+
+.legend .key-a::before {
+  background: var(--member);
+}
+
+.legend .key-b::before {
+  background: var(--second);
+}
+
+.meet-table {
+  width: 100%;
+  max-width: 380px;
+}
+
+.meet-table .cell rect {
+  fill: var(--bg);
+  stroke: var(--border);
+}
+
+.meet-table .cell {
+  cursor: pointer;
+}
+
+.meet-table .cell text {
+  fill: var(--fg);
+  font-size: 11px;
+  text-anchor: middle;
+}
+
+.meet-table .cell.diag rect {
+  fill: var(--bg-raised);
+}
+
+.meet-table .cell.diag text {
+  fill: var(--muted);
+}
+
+.meet-table .cell.selected rect {
+  fill: var(--accent-soft);
+  stroke: var(--accent);
+  stroke-width: 2;
+}
+
+.table-scroll {
+  overflow-x: auto;
+}
+
+.count-table {
+  border-collapse: collapse;
+  font-variant-numeric: tabular-nums;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+.count-table caption {
+  text-align: left;
+  color: var(--muted);
+  font-size: 0.85rem;
+  padding-bottom: 0.3rem;
+}
+
+.count-table th,
+.count-table td {
+  white-space: nowrap;
+  padding: 0.2rem 0.6rem;
+  border-bottom: 1px solid var(--border);
+  text-align: right;
+}
+
+.count-table td:last-child,
+.count-table th:last-child {
+  text-align: left;
+}
+
+.search-progress,
+.search-found {
+  font-variant-numeric: tabular-nums;
+  overflow-wrap: anywhere;
+}
+
+.fano-figure {
+  max-width: 340px;
+  margin: 0 auto;
+}
+
+.fano .line-stroke {
+  fill: none;
+  stroke: var(--rim);
+  stroke-width: 3;
+}
+
+.fano .line-hit {
+  fill: none;
+  stroke: transparent;
+  stroke-width: 16;
+}
+
+.fano .fano-line {
+  cursor: pointer;
+}
+
+.fano .fano-line:hover .line-stroke {
+  stroke: var(--chord);
+}
+
+.fano .fano-line:focus-visible {
+  outline: none;
+}
+
+.fano .fano-line:focus-visible .line-stroke {
+  stroke: var(--accent);
+}
+
+.fano .fano-line.selected .line-stroke {
+  stroke: var(--accent);
+  stroke-width: 5;
+}
+
+.fano .fano-line.result .line-stroke {
+  stroke: var(--second);
+  stroke-width: 5;
+}
+
+.fano .fano-point {
+  cursor: pointer;
+}
+
+.fano .fano-point .dot {
+  fill: var(--bg);
+  stroke: var(--point);
+  stroke-width: 2;
+}
+
+.fano .fano-point text {
+  fill: var(--fg);
+  font-size: 13px;
+  font-weight: 700;
+  text-anchor: middle;
+}
+
+.fano .fano-point.selected .dot {
+  fill: var(--member);
+  stroke: var(--member);
+}
+
+.fano .fano-point.result .dot {
+  fill: var(--second);
+  stroke: var(--second);
+}
+
+.fano .fano-point.selected text,
+.fano .fano-point.result text {
+  fill: var(--bg);
+}
+
+.fano .fano-point:focus-visible {
+  outline: none;
+}
+
+.fano .fano-point:focus-visible .dot {
+  stroke: var(--accent);
+  stroke-width: 3;
+}
+
+.fano .arrow {
+  fill: none;
+  stroke: var(--hot);
+  stroke-width: 2;
+}
+
+.fano .arrow-head {
+  fill: var(--hot);
+}
+
+.fano-info {
+  min-height: 3.2em;
+}
+
+.line-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.widget .line-list button {
+  font-size: 0.85rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.widget .line-list button.selected {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--accent-soft);
+}
+
+.widget .line-list button.result {
+  border-color: var(--second);
+  color: var(--second);
+}
+
+.clock-box {
+  max-width: 280px;
+  margin: 0 auto;
+}
+
+.clock {
+  display: block;
+  width: 100%;
+  height: auto;
+  font-family: system-ui, sans-serif;
+}
+
+.clock .rim {
+  fill: none;
+  stroke: var(--rim);
+  stroke-width: 1.5;
+}
+
+.clock .pt .dot {
+  fill: var(--point);
+}
+
+.clock .pt.in-a .dot {
+  fill: var(--member);
+}
+
+.clock .pt.in-b .dot {
+  fill: var(--second);
+}
+
+.clock .pt .hit {
+  fill: transparent;
+}
+
+.clock .pt[role='button'] {
+  cursor: pointer;
+}
+
+.clock .pt:focus-visible {
+  outline: none;
+}
+
+.clock .pt:focus-visible .dot,
+.clock .pt[role='button']:hover .dot {
+  stroke: var(--accent);
+  stroke-width: 2.5;
+}
+
+.clock .pt-label {
+  fill: var(--fg);
+  font-size: 13px;
+  text-anchor: middle;
+}
+
+.clock .pt.in-a .pt-label,
+.clock .pt.in-b .pt-label {
+  font-weight: 700;
+}
+
+.clock .walk {
+  fill: none;
+  stroke: var(--member);
+  stroke-width: 2.5;
+}
+
+.clock .walk-b {
+  stroke: var(--second);
+}
+
+.clock .lap {
+  fill: none;
+  stroke: var(--member);
+  stroke-opacity: 0.35;
+  stroke-width: 2;
+}
+
+.clock .arrow-head-a {
+  fill: var(--member);
+}
+
+.clock .arrow-head-b {
+  fill: var(--second);
+}
+
+.clock-equation {
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+
+.clock-equation .key-a {
+  color: var(--member);
+  font-weight: 600;
+}
+
+.clock-equation .key-b {
+  color: var(--second);
+  font-weight: 600;
+}
+
+.clock-equation strong {
+  font-size: 1.2rem;
+}
+
+/* Lesson furniture: a reusable notation box and revealable answers. */
+
+.notation {
+  margin: 1.5rem 0;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--second);
+  border-radius: 0 6px 6px 0;
+  background: var(--bg-raised);
+}
+
+.notation > :first-child {
+  margin-top: 0;
+}
+
+.notation > :last-child {
+  margin-bottom: 0;
+}
+
+.notation .notation-title {
+  display: block;
+  margin-bottom: 0.25rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.lesson details {
+  margin: 1rem 0;
+  padding: 0.5rem 0.9rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+}
+
+.lesson details > summary {
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.lesson .widget details {
+  border: none;
+  padding: 0;
+}
+
+.lesson .widget details > summary {
+  font-weight: 400;
+}
+
+.try-it {
+  margin-top: 2rem;
+}
+
+/* ==== end Part I–II widgets ==== */

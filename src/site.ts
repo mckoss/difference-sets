@@ -35,6 +35,11 @@ export const PARTS: Part[] = [
 
 export const PLAYGROUNDS: Playground[] = [
   {
+    slug: 'difference-workbench',
+    title: 'Difference set workbench',
+    summary: 'Build a set on a clock of any size and watch its differences, translates, and verdict.',
+  },
+  {
     slug: 'singer-classes',
     title: 'Singer classes gallery',
     summary: 'Every distinct Singer difference set for a chosen q, drawn as chord diagrams.',
