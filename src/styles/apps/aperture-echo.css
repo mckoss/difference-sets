@@ -1,1 +1,258 @@
-/* aperture-echo widgets */
+/* aperture-echo widgets: coded-aperture (Lesson 19) and echo-finder (Lesson 20) */
+
+:root {
+  --ap-night: #13203d;
+  --ap-star: #ffc94d;
+  --ap-solid: #5f6368;
+  --ap-hole: #ffffff;
+  --ap-heat: #1a5fd0;
+  --ap-heat-bg: #ffffff;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ap-night: #0b1226;
+    --ap-star: #ffd774;
+    --ap-solid: #3c4043;
+    --ap-hole: #e8eaed;
+    --ap-heat: #8ab4f8;
+    --ap-heat-bg: #101014;
+  }
+}
+
+.ap-toggle {
+  display: inline-flex;
+}
+
+.ap-toggle button + button {
+  margin-left: -1px;
+}
+
+.ap-toggle button:first-child {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.ap-toggle button:last-child {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.ap-panels {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 0.75rem;
+  padding: 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+.ap-panel {
+  margin: 0;
+  min-width: 0;
+}
+
+.ap-panel figcaption {
+  margin-top: 0.3rem;
+  font-size: 0.85rem;
+  line-height: 1.35;
+  color: var(--muted);
+}
+
+.ap-panel figcaption strong {
+  color: var(--fg);
+}
+
+.ap-box {
+  aspect-ratio: 17 / 15;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border);
+  background: var(--bg-raised);
+}
+
+.ap-grid {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.ap-sky {
+  cursor: crosshair;
+  touch-action: none;
+}
+
+.ap-sky:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.ap-sky .night {
+  fill: var(--ap-night);
+}
+
+.ap-sky .star-dot {
+  fill: var(--ap-star);
+  pointer-events: none;
+}
+
+.ap-sky .ap-cursor {
+  fill: none;
+  stroke: var(--ap-star);
+  stroke-width: 1;
+  stroke-dasharray: 2 1.5;
+  pointer-events: none;
+}
+
+.ap-mask .solid {
+  fill: var(--ap-solid);
+}
+
+.ap-mask .hole {
+  fill: var(--ap-hole);
+}
+
+.ap-grid .heat-bg {
+  fill: var(--ap-heat-bg);
+}
+
+.ap-grid .heat {
+  fill: var(--ap-heat);
+}
+
+.ap-grid .heat.neg {
+  fill: var(--bad);
+}
+
+.ap-grid .heat.peak {
+  fill: var(--ap-heat);
+  stroke: var(--ap-star);
+  stroke-width: 1;
+}
+
+.ap-placeholder {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.floor-report,
+.echo-result {
+  min-height: 1.6em;
+  margin: 0.6rem 0 0;
+  padding: 0.4rem 0.6rem;
+  border-radius: 6px;
+}
+
+.floor-report:empty,
+.echo-result:empty {
+  padding: 0;
+}
+
+.floor-report.ok,
+.echo-result.ok {
+  background: var(--ok-soft);
+  color: var(--ok);
+}
+
+.floor-report.bad,
+.echo-result.bad {
+  background: var(--bad-soft);
+  color: var(--bad);
+}
+
+/* Echo finder */
+
+.echo-finder .echo-shift input {
+  width: min(16rem, 55vw);
+}
+
+.echo-panel {
+  margin: 0.5rem 0 0;
+  padding: 0.5rem 0.6rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+.echo-panel figcaption {
+  font-size: 0.85rem;
+  line-height: 1.35;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.echo-panel figcaption strong {
+  color: var(--fg);
+}
+
+.echo-chart {
+  display: block;
+  width: 100%;
+  height: auto;
+  font-family: system-ui, sans-serif;
+}
+
+.echo-chart .axis {
+  stroke: var(--muted);
+  stroke-width: 0.75;
+}
+
+.echo-chart .grid {
+  stroke: var(--border);
+  stroke-dasharray: 3 3;
+}
+
+.echo-chart .tick {
+  fill: var(--muted);
+  font-size: 9px;
+  text-anchor: middle;
+}
+
+.echo-chart .y-tick {
+  text-anchor: end;
+}
+
+.echo-chart .bar {
+  fill: var(--accent);
+  fill-opacity: 0.55;
+}
+
+.echo-chart .bar.neg {
+  fill: var(--muted);
+}
+
+.echo-chart .bar.current {
+  fill: var(--hot);
+  fill-opacity: 1;
+}
+
+.echo-chart .bar.found {
+  fill: var(--ok);
+  fill-opacity: 1;
+}
+
+.echo-chart.print .bar {
+  fill-opacity: 0.85;
+}
+
+.echo-signal .sig {
+  fill: var(--point);
+}
+
+.echo-signal .template {
+  fill: none;
+  stroke: var(--hot);
+  stroke-width: 1.5;
+}
+
+.echo-subhead {
+  margin: 1rem 0 0;
+  font-weight: 600;
+}
+
+.echo-prints {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 0.5rem;
+}

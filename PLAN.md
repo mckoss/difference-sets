@@ -209,7 +209,14 @@ integers mod p, and only then the prime-power fields built on top of them.
 
 **Part VI — The frontier**
 
-16. **Is every planar difference set a Singer set?** The *completeness
+16. **Beyond the plane.** Singer sets from PG(m, q) in every dimension:
+    v = (q^(m+1) − 1)/(q − 1), k = (q^m − 1)/(q − 1),
+    λ = (q^(m−1) − 1)/(q − 1). The q = 2 case is the zero set of a binary
+    m-sequence (a shift register), whose ±1 form has two-level
+    autocorrelation v and v − 4(k − λ) = −1; Part VII needs this. Contrast:
+    Gordon–Mills–Welch sets share Singer's parameters without being Singer
+    sets (smallest (63, 31, 15)), and never have planar parameters.
+17. **Is every planar difference set a Singer set?** The *completeness
     conjecture*: Singer's construction finds every planar difference set, so
     every cyclic projective plane is Desarguesian.
     - Consequence: the *prime power conjecture*, that a planar difference set
@@ -229,9 +236,33 @@ integers mod p, and only then the prime-power fields built on top of them.
 
     Playground tie-in: exhaustive search for small v finds only sets
     equivalent to Singer sets.
-17. **Where difference sets show up.** Modular Golomb rulers, optical
-    orthogonal codes, sequences with two-valued autocorrelation, sensor array
-    placement, and higher-dimensional Singer sets PG(m, q).
+
+**Part VII — Applications**
+
+Each lesson is one real use of the translate-overlap property
+|D ∩ (D + t)| = λ, with a demo and a short sourced list (research notes in
+[docs/applications.md](docs/applications.md)). They may use any earlier
+lesson; where Parts III–V are needed, they explain the idea intuitively.
+
+18. **A card game from a plane.** Spot It (Dobble): cards are lines,
+    symbols are points; card j = D + j. Order 7 gives 57 cards (retail deck
+    commonly reported as 55). Click-to-load video by Matt Parker.
+19. **Pictures without a lens.** Coded-aperture imaging: a Singer q = 2 mask
+    (255 = 15 × 17, like ASTROSAT CZTI), shadows that look like noise,
+    decoding to sharp peaks on a flat floor; a random mask leaves ghosts.
+20. **Finding an echo.** Two-level autocorrelation of m-sequences, finding a
+    delay in noise; radar, audio measurement, GPS (Gold codes, not
+    difference sets).
+21. **Majority rules.** Difference-set cyclic codes and one-step majority
+    decoding: (7, 3) and (21, 11) in the demo, (273, 191) shortened to
+    (272, 190) in DARC / VICS and Japanese teletext.
+22. **Always meet.** Wake-up schedules on (0, 1, 3) mod 7 (patent
+    US7747273B2), relabeled as shared keys and quorums.
+23. **A ruler with no repeats.** Modular Golomb rulers, v ≥ k² − k + 1 with
+    equality for planar sets, unwinding into antenna arrays and channel
+    plans.
+24. *(Optional, not yet written)* **Rebuilding a disk.** Declustered RAID
+    with stripes on the lines of the Fano plane.
 
 Citations are checked against primary sources before Lesson 17 ships; the
 verified notes so far are in [docs/citations.md](docs/citations.md).
@@ -257,6 +288,11 @@ verified notes so far are in [docs/citations.md](docs/citations.md).
   classes; set its running time beside Singer's.
 - **Large-q explorer.** Singer sets for q up to about 1000, with Canvas
   rendering, a histogram, and a download.
+- **Match-one deck maker.** A Spot It style deck for q ∈ {2, 3, 4, 5, 7, 8,
+  9, 11} with 150 locally generated symbol images (see
+  [docs/symbols.md](docs/symbols.md)): Everything or Vehicles themes, seeded
+  shuffles in the URL (`?q=7&theme=all&seed=…`), a play mode, a verify panel,
+  and a print layout for cutting out cards.
 
 ## Architecture
 
@@ -310,8 +346,10 @@ verified notes so far are in [docs/citations.md](docs/citations.md).
 5. **Part III**: Lessons 5–9 and the finite field calculator.
 6. **Part IV**: Lessons 10–13 and the projective plane explorer.
 7. **Part V**: Lessons 14–15 and the Singer stepper.
-8. **Part VI**: Lessons 16–17, search versus construction, large-q explorer.
-9. **Polish**: accessibility, mobile layout, performance for large q.
+8. **Part VI**: Lesson 17, search versus construction, large-q explorer.
+9. **Part VII**: Lessons 18–23 and the match-one deck maker; Lesson 16
+   written.
+10. **Polish**: accessibility, mobile layout, performance for large q.
 
 ## Open questions
 
