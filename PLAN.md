@@ -106,12 +106,15 @@ q = 3 → {0, 1, 3, 9} mod 13; q = 4 → {0, 1, 4, 14, 16} mod 21.
 ## Milestones
 
 1. **Scaffold** — repo, Vite build, Pages deploy, `isDifferenceSet` with
-   tests. *(this commit)*
-2. **Math core** — finite fields and the Singer construction with tests.
-3. **Sections 1–3** — difference sets, translates, Fano plane.
-4. **Sections 4–6** — finite fields, the construction, circulant view.
-5. **Sections 7–9** — multipliers, higher dimensions, applications.
-6. **Explorer** and polish: accessibility, mobile layout, performance for
+   tests. *(v0.1.0)*
+2. **Notebook port** — the "Non-isomorphic Singer Sets" Colab notebook in
+   TypeScript: GF(p) polynomials, the trace construction, classes up to
+   multiplier/translation/negation, and the chord-diagram gallery. *(v0.2.0)*
+3. **Math core** — full GF(p^k) arithmetic and step-by-step construction data.
+4. **Sections 1–3** — difference sets, translates, Fano plane.
+5. **Sections 4–6** — finite fields, the construction, circulant view.
+6. **Sections 7–9** — multipliers, higher dimensions, applications.
+7. **Explorer** and polish: accessibility, mobile layout, performance for
    large q.
 
 ## Open questions
