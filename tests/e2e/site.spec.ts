@@ -1,5 +1,6 @@
 import { readdirSync } from 'node:fs';
 import pkg from '../../package.json' with { type: 'json' };
+import { PLAYGROUNDS } from '../../src/site';
 import { expect, test } from './fixtures';
 
 const LESSON_COUNT = readdirSync('src/content/lessons').filter((f) => f.endsWith('.md')).length;
@@ -26,13 +27,14 @@ test('sidebar is a numbered outline of every lesson, grouped by part', async ({ 
   ]);
   const numbers = await sidebar.locator('.sidebar-part .num').allTextContents();
   expect(numbers).toEqual(Array.from({ length: LESSON_COUNT }, (_, i) => String(i + 1)));
-  await expect(sidebar.locator('.sidebar-playgrounds a')).toHaveText(['Singer classes gallery']);
+  await expect(sidebar.locator('.sidebar-playgrounds a')).toHaveText(PLAYGROUNDS.map((p) => p.title));
+  await expect(sidebar.locator('.sidebar-playgrounds a').first()).toHaveText('Difference set workbench');
 });
 
 test('every sidebar page loads and is marked current in the sidebar', async ({ page }) => {
   await page.goto('./');
   const links = await page.locator('#sidebar a').evaluateAll((as) => as.map((a) => (a as HTMLAnchorElement).href));
-  expect(links).toHaveLength(LESSON_COUNT + 1);
+  expect(links).toHaveLength(LESSON_COUNT + PLAYGROUNDS.length);
   for (const link of links) {
     await page.goto(link);
     await expect(page.locator('h1')).toBeVisible();
@@ -70,8 +72,9 @@ test('math is typeset by KaTeX at build time', async ({ page }) => {
   await expect(page.locator('.katex').first()).toBeVisible();
   expect(await page.locator('article').textContent()).not.toContain('$');
   await page.goto('lessons/01-differences-on-a-circle/');
-  await expect(page.locator('.katex-display')).toHaveCount(1);
-  await expect(page.locator('article .chord-diagram')).toHaveCount(1);
+  await expect(page.locator('.katex-display').first()).toBeVisible();
+  expect(await page.locator('article').textContent()).not.toContain('$');
+  await expect(page.locator('article .circle-set')).toHaveCount(1);
 });
 
 test.describe('on a phone', () => {
@@ -89,7 +92,15 @@ test.describe('on a phone', () => {
     await expect(sidebar).toBeHidden();
   });
 
-  for (const path of ['./', 'lessons/01-differences-on-a-circle/', 'playgrounds/singer-classes/?q=8']) {
+  for (const path of [
+    './',
+    'lessons/01-differences-on-a-circle/',
+    'lessons/02-rotations/',
+    'lessons/03-fano-plane/',
+    'lessons/04-projective-planes/',
+    'playgrounds/difference-workbench/?v=40&set=0,1,3,7,15,31',
+    'playgrounds/singer-classes/?q=8',
+  ]) {
     test(`${path} has no horizontal scroll`, async ({ page }) => {
       await page.goto(path);
       await page.locator('h1').waitFor();

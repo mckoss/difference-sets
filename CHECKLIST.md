@@ -16,10 +16,12 @@ lesson. Each checkpoint lands on `main` as its own PR and deploy.
 
 ## Checkpoint 2: Part I–II (Lessons 1–4)
 
-- [ ] Difference-set workbench widget and playground
-- [ ] Translates widget (rotate D, show overlaps)
-- [ ] Fano plane widget (click points and lines)
-- [ ] Lessons 1–4 written
+- [x] Difference-set workbench widget and playground (`?v=&set=` URL state, translates follow it)
+- [x] Translates widget (rotate D, show overlaps, table of all pairs)
+- [x] Fano plane widget (click points and lines, step the rotation)
+- [x] Clock widgets (wrap n onto ℤ/vℤ; a − b as steps around the clock) and brute-force count/search
+- [x] Lessons 1–4 written
+- [x] Writing conventions added to PLAN.md
 
 ## Checkpoint 3: Part III (Lessons 5–9)
 

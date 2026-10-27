@@ -1,6 +1,6 @@
 {
   "name": "difference-sets",
-  "version": "0.3.2",
+  "version": "0.4.0",
   "private": true,
   "type": "module",
   "description": "An educational site explaining and visualizing Singer difference sets.",

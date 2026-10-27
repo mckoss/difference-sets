@@ -8,6 +8,12 @@ export interface WidgetModule {
 const registry: Record<string, () => Promise<WidgetModule>> = {
   'chord-diagram': () => import('./chordDiagramWidget'),
   'singer-classes': () => import('./singerClasses'),
+  'clock-mod': () => import('./clock'),
+  'clock-difference': () => import('./clock'),
+  'difference-workbench': () => import('./differenceWorkbench'),
+  translates: () => import('./translates'),
+  'brute-force-count': () => import('./bruteForceCount'),
+  'fano-plane': () => import('./fanoPlane'),
 };
 
 for (const el of document.querySelectorAll<HTMLElement>('[data-widget]')) {
