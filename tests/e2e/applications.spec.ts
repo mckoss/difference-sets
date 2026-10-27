@@ -58,7 +58,7 @@ test.describe('match-one deck maker', () => {
   test('URL state picks q and theme, and controls write it back', async ({ page }) => {
     await page.goto('playgrounds/deck-maker/?q=3&theme=vehicles');
     const w = page.locator('[data-widget="deck-maker"]');
-    await expect(w.locator('.q-select')).toHaveValue('3');
+    await expect(w.locator('.deck-select')).toHaveValue('q3');
     await expect(w.locator('.theme-select')).toHaveValue('vehicles');
     await expect(w.locator('.deck-grid .match-card')).toHaveCount(13);
     await expect(w.locator('.deck-grid .match-card').first().locator('img')).toHaveCount(4);
@@ -66,9 +66,10 @@ test.describe('match-one deck maker', () => {
     await page.reload();
     await expect(w.locator('.deck-grid .match-card').first()).toHaveAttribute('aria-label', first!);
 
-    await w.locator('.q-select').selectOption('11');
+    await w.locator('.deck-select').selectOption('q11');
     await expect(w.locator('.deck-grid .match-card')).toHaveCount(133);
-    await expect(page).toHaveURL(/q=11/);
+    await expect(page).toHaveURL(/deck=q11/);
+    await expect(page).not.toHaveURL(/[?&]q=/);
     await expect(w.locator('.shuffle-button')).toHaveCount(0);
     await w.locator('.theme-select').selectOption('all');
     await expect(page).toHaveURL(/theme=all/);
@@ -76,7 +77,7 @@ test.describe('match-one deck maker', () => {
 
   test('the default deck is the same on every visit', async ({ page }) => {
     await page.goto('playgrounds/deck-maker/?seed=99');
-    await expect(page).toHaveURL(/q=7&theme=all/);
+    await expect(page).toHaveURL(/deck=q7&theme=all/);
     await expect(page).not.toHaveURL(/seed=/);
     const first = await page.locator('.deck-grid .match-card').first().getAttribute('aria-label');
     await page.goto('playgrounds/deck-maker/');
@@ -107,6 +108,34 @@ test.describe('match-one deck maker', () => {
     await w.locator(`.play-table .match-card >> nth=1 >> .sym[data-point="${match[0]}"]`).click();
     await expect(w.locator('.play-status')).toContainText('Score 1');
     await expect(w.locator('.sym.found')).toHaveCount(2);
+  });
+
+  test('match-3 play needs all three shared symbols before it scores', async ({ page }) => {
+    await page.goto('playgrounds/deck-maker/?deck=s2&theme=all');
+    const w = page.locator('[data-widget="deck-maker"]');
+    await expect(w.locator('.deck-select')).toHaveValue('s2');
+    await expect(w.locator('.deck-grid .match-card')).toHaveCount(15);
+    await expect(w.locator('.deck-grid .match-card').first().locator('img')).toHaveCount(7);
+    await w.locator('.mode-play').click();
+    await expect(w.locator('.play-message')).toContainText('Find all 3 symbols');
+    const points = async (n: number) =>
+      w
+        .locator('.play-table .match-card')
+        .nth(n)
+        .locator('.sym')
+        .evaluateAll((els) => els.map((e) => (e as HTMLElement).dataset.point!));
+    const a = await points(0);
+    const b = await points(1);
+    const match = a.filter((p) => b.includes(p));
+    expect(match).toHaveLength(3);
+    for (const [i, p] of match.entries()) {
+      await w.locator(`.play-table .match-card >> nth=0 >> .sym[data-point="${p}"]`).click();
+      if (i < 2) await expect(w.locator('.play-status')).toContainText('Score 0');
+    }
+    await expect(w.locator('.play-status')).toContainText('Score 1');
+    await w.locator('.mode-verify').click();
+    await expect(w.locator('.verify-set')).toContainText('(15, 7, 3)');
+    await expect(w.locator('.verify-result')).toContainText('every pair shares exactly 3 symbols');
   });
 
   test('verify panel shows D and checks every pair', async ({ page }) => {

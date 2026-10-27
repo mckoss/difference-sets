@@ -2,7 +2,7 @@
 // playground and the Lesson 18 widget.
 
 import manifest from '../../public/symbols/manifest.json';
-import { assignSymbols, layoutCard, type SymbolInfo } from '../math/deck';
+import { assignSymbols, DECK_THEMES, type DeckTheme, layoutCard, type SymbolInfo } from '../math/deck';
 
 export const SYMBOLS: SymbolInfo[] = manifest;
 
@@ -13,8 +13,9 @@ export const CARD_CREDIT = 'http://mckoss.com/difference-sets';
 export const symbolUrl = (s: SymbolInfo) => `${import.meta.env.BASE_URL.replace(/\/?$/, '/')}symbols/${s.file}`;
 
 /** The symbols for points 0 … v − 1. */
-export function symbolsFor(v: number, seed: number, theme: 'all' | 'vehicles'): SymbolInfo[] {
-  return assignSymbols(SYMBOLS, v, seed, theme === 'vehicles' ? 'vehicle' : null);
+export function symbolsFor(v: number, seed: number, theme: DeckTheme): SymbolInfo[] {
+  const { primary, fallback } = DECK_THEMES[theme];
+  return assignSymbols(SYMBOLS, v, seed, primary, fallback);
 }
 
 export interface CardOptions {
@@ -54,6 +55,7 @@ export function renderCard({ points, symbols, interactive = false, eager = false
     sym.style.left = `${x * 100}%`;
     sym.style.top = `${y * 100}%`;
     sym.style.width = sym.style.height = `${size * 100}%`;
+    sym.style.setProperty('--slot', String(size));
     const img = document.createElement('img');
     img.src = symbolUrl(s);
     img.alt = interactive ? '' : s.name;
@@ -62,6 +64,14 @@ export function renderCard({ points, symbols, interactive = false, eager = false
     img.decoding = 'async';
     img.draggable = false;
     sym.append(img);
+    if (s.caption) {
+      sym.classList.add('captioned');
+      const cap = document.createElement('span');
+      cap.className = 'sym-caption';
+      cap.setAttribute('aria-hidden', 'true');
+      cap.textContent = s.caption;
+      sym.append(cap);
+    }
     card.append(sym);
   });
   const credit = document.createElement('span');

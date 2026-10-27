@@ -176,3 +176,10 @@ Decisions I made while Mike was away, collected here instead of blocking.
     3v" multiplications (three running products per step, as in singer.ts);
     C(57, 8) ≈ 1.7 billion and C(183, 14) ≈ 3.3 × 10²⁰ are computed by the widget's
     `binomial`.
+34. **Match-N decks and biplanes.** The deck maker now offers match 2 (the
+    cyclic biplanes (7, 4, 2), (11, 5, 2), (37, 9, 2)), match 3 (PG(3, 2):
+    (15, 7, 3)), and match 4 (PG(3, 3): (40, 13, 4)). Lesson 16's new "What
+    about λ = 2?" section credits the squares to Paley (1933) and the fourth
+    powers to Chowla (1944) and says these three are the only known cyclic
+    biplanes. These attributions are from memory and still need checking
+    against docs/citations.md-style sources.
