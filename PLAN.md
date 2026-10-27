@@ -135,45 +135,56 @@ The construction rests entirely on finite fields, so this part goes slowly:
 first the fields of prime order, then the fact that they are all just the
 integers mod p, and only then the prime-power fields built on top of them.
 
+Letters in this part: v is still the number of hours on a clock (ℤ/vℤ), p is
+a prime, and a finite field has q = p^e elements, built from a polynomial of
+degree e. The letters n and k are never used for clocks or degrees, since
+they belong to plane orders and difference-set sizes.
+
 5. **What a field is, and which clocks are fields.** The field axioms in
    plain terms: add, subtract, multiply, and divide by anything nonzero.
-   Try ℤ/nℤ for several n with live addition and multiplication tables. For
-   n = 6, 2 · 3 = 0 and 2 has no inverse; for prime p every nonzero row of
-   the multiplication table is a permutation, and the extended Euclidean
-   algorithm finds each inverse. Conclusion: ℤ/nℤ is a field exactly when n
-   is prime. Name it GF(p).
+   Try ℤ/vℤ for several v with live addition and multiplication tables and
+   a clock that shows multiplication as repeated jumps. For v = 6,
+   2 · 3 = 0 and 2 has no inverse; for prime p every nonzero row of the
+   multiplication table is a permutation (Euclid's lemma), and the extended
+   Euclidean algorithm, stepped through in a widget, finds each inverse.
+   Conclusion: ℤ/vℤ is a field exactly when v is prime. Name it GF(p).
 6. **Every field with p elements is ℤ/pℤ.** Start from any field F. Add 1 to
    itself: 1, 1 + 1, 1 + 1 + 1, … In a finite field this eventually returns
    to 0, and the first time it does is a prime p (a composite would give zero
-   divisors), the *characteristic*. The multiples of 1 form a copy of
-   ℤ/pℤ inside F, the *prime subfield*. If F has exactly p elements, that
-   copy is all of F, so k ↦ k · 1 is an isomorphism and there is only one
-   field of order p up to relabeling. Widget: a field of order p shown with
-   scrambled symbols; the reader recovers the isomorphism by counting
-   1, 1 + 1, …, and the tables snap back into clock arithmetic. Corollary:
-   any finite field is a vector space over its prime subfield, so its size
-   is p^k. That is why the next lesson only looks at prime powers.
-7. **Fields with p^k elements, built from polynomials.** Polynomials with
-   coefficients in GF(p), reduced modulo a fixed polynomial f of degree k.
-   Elements are the remainders a₀ + a₁x + … + a_(k−1)x^(k−1), that is,
-   k-tuples over GF(p), matching the vector space picture from Lesson 6.
-   The parallel with Lesson 5 is exact: irreducible polynomials play the
-   role of primes. Modulo a reducible f, zero divisors appear just as in
-   ℤ/6ℤ; modulo an irreducible f, every nonzero element has an inverse
-   (the extended Euclidean algorithm again, now for polynomials). Build
-   GF(4), GF(8), and GF(9) by hand in widgets, and note that GF(4) is not
-   ℤ/4ℤ. Different irreducible moduli give the same field up to relabeling;
-   the widget finds the explicit isomorphism between two versions of GF(8).
+   divisors), the *characteristic*. The sums of 1 form a copy of ℤ/pℤ inside
+   F, the *prime subfield*. If F has exactly p elements, that copy is all of
+   F, so s ↦ s · 1 is an isomorphism and there is only one field of order p
+   up to relabeling. Widget: a field of order p shown with scrambled letters;
+   the reader recovers the isomorphism by counting 1, 1 + 1, …, and the
+   tables snap back into clock arithmetic. Corollary: picking elements one
+   at a time shows any finite field is a vector space over its prime
+   subfield, so its size is q = p^e.
+7. **Fields with p^e elements, built from polynomials.** Polynomials with
+   coefficients in GF(p), with long division shown step by step, reduced
+   modulo a fixed monic polynomial f of degree e. Elements are the
+   remainders a₀ + a₁x + … + a_(e−1)x^(e−1), that is, e-tuples over GF(p),
+   matching the vector space picture from Lesson 6. The parallel with
+   Lesson 5 is exact: irreducible polynomials play the role of primes.
+   Modulo a reducible f, zero divisors appear just as in ℤ/6ℤ; modulo an
+   irreducible f, every nonzero element has an inverse (the extended
+   Euclidean algorithm again, now for polynomials). Build GF(4), GF(8), and
+   GF(9) in widgets, and note that GF(4) is not ℤ/4ℤ. Existence of
+   irreducibles and uniqueness of GF(q) are stated without proof; the
+   isomorphism finder demonstrates uniqueness for any two moduli.
 8. **One element to generate them all.** Primitive elements: the powers of α
-   visit every nonzero element, so multiplication becomes adding exponents
-   (log tables). Primitive polynomials, and how to test one without trying
-   every power: check α^((p^k − 1)/r) ≠ 1 for each prime r dividing p^k − 1.
-
+   visit every nonzero element (a walk around a circle), so multiplication
+   becomes adding exponents (log tables). Every order divides q − 1 (product
+   of all nonzero elements). Primitive polynomials, and how to test one
+   without trying every power: check α^((q − 1)/r) ≠ 1 for each prime r
+   dividing q − 1. Existence of primitive elements gets a counting sketch
+   with φ.
 9. **Fields inside fields.** The freshman's dream (x + y)^p = x^p + y^p in
-   characteristic p, the Frobenius map x ↦ x^q, and GF(q) as the elements
-   of GF(q³) it fixes, which is {0} ∪ ⟨α^(q² + q + 1)⟩. For q = p^e, GF(q³) is
-   built directly as polynomials of degree below 3e over GF(p), as the code
-   does. This supplies everything the trace needs in Part V.
+   characteristic p, the Frobenius map x ↦ x^q drawn as a permutation with
+   arrows, its fixed points as a subfield with at most q elements, and GF(q)
+   as the elements of GF(q³) it fixes, which is {0} ∪ ⟨α^(q² + q + 1)⟩. For
+   q = p^e, GF(q³) is built directly as polynomials of degree below 3e over
+   GF(p), as the code does. A preview shows the trace lands in GF(q), which
+   Part V needs.
 
 **Part IV — Planes from fields**
 
@@ -275,8 +286,8 @@ verified notes so far are in [docs/citations.md](docs/citations.md).
 
 - **Difference set workbench.** Chord diagram for any v and subset, a
   difference histogram, translates, and an "is it a difference set?" verdict.
-- **Finite field calculator.** ℤ/nℤ for any n (showing where it stops
-  being a field), and GF(p^k) with a chosen modulus: addition and
+- **Finite field calculator.** ℤ/vℤ for any v (showing where it stops
+  being a field), and GF(p^e) with a chosen modulus: addition and
   multiplication tables, inverses, powers and log tables, an
   irreducible/primitive check, and an isomorphism finder between two
   moduli of the same degree.

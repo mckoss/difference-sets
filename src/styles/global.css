@@ -1054,3 +1054,390 @@ blockquote p {
 }
 
 /* ==== end Part I–II widgets ==== */
+
+/* ==========================================================================
+   Part III: finite field widgets (zn-tables, gf-tables, powers, frobenius, …)
+   ========================================================================== */
+
+:root {
+  --ff-one: rgba(52, 168, 83, 0.22);
+  --ff-zero: rgba(234, 67, 53, 0.22);
+  --ff-sel: rgba(26, 95, 208, 0.14);
+  --ff-fixed: #f9ab00;
+  --ff-arrow: rgba(26, 95, 208, 0.55);
+  --ff-latest: #1a5fd0;
+  --ff-ok: #188038;
+  --ff-bad: #c5221f;
+  --ff-cell-border: #e6e3da;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ff-one: rgba(129, 201, 149, 0.25);
+    --ff-zero: rgba(242, 139, 130, 0.28);
+    --ff-sel: rgba(138, 180, 248, 0.18);
+    --ff-fixed: #fdd663;
+    --ff-arrow: rgba(138, 180, 248, 0.6);
+    --ff-latest: #8ab4f8;
+    --ff-ok: #81c995;
+    --ff-bad: #f28b82;
+    --ff-cell-border: #33333a;
+  }
+}
+
+.ff-widget,
+.field-calculator {
+  min-width: 0;
+}
+
+.ff-widget .controls,
+.field-calculator .controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem 0.9rem;
+  margin: 0.5rem 0;
+}
+
+.ff-widget select,
+.ff-widget input,
+.field-calculator select {
+  font: inherit;
+  font-size: 0.95rem;
+  max-width: 100%;
+}
+
+.ff-widget input[type='text'] {
+  padding: 0.15rem 0.35rem;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: var(--bg);
+  color: var(--fg);
+}
+
+.ff-button {
+  font: inherit;
+  font-size: 0.9rem;
+  padding: 0.25rem 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--bg-raised);
+  color: var(--fg);
+  cursor: pointer;
+}
+
+.ff-button:hover:not(:disabled) {
+  border-color: var(--accent);
+}
+
+.ff-button:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.ff-scroll {
+  max-width: 100%;
+  overflow: auto;
+  max-height: 32rem;
+  margin: 0.5rem 0;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+}
+
+.ff-table {
+  border-collapse: separate;
+  border-spacing: 0;
+  font-variant-numeric: tabular-nums;
+  font-size: 0.85rem;
+  line-height: 1.2;
+}
+
+.ff-table caption {
+  caption-side: top;
+  text-align: left;
+  padding: 0.35rem 0.5rem;
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+
+.ff-table th,
+.ff-table td {
+  padding: 0.25rem 0.45rem;
+  text-align: center;
+  white-space: nowrap;
+  border-right: 1px solid var(--ff-cell-border);
+  border-bottom: 1px solid var(--ff-cell-border);
+}
+
+.ff-table thead th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: var(--bg-raised);
+}
+
+.ff-table tbody th {
+  position: sticky;
+  left: 0;
+  background: var(--bg-raised);
+}
+
+.ff-table th.corner {
+  left: 0;
+  z-index: 2;
+}
+
+.ff-table th.clickable {
+  cursor: pointer;
+}
+
+.ff-table th.clickable:hover,
+.ff-table th.clickable:focus-visible {
+  color: var(--accent);
+  outline: none;
+}
+
+.ff-table td.one {
+  background: var(--ff-one);
+}
+
+.ff-table td.zd {
+  background: var(--ff-zero);
+}
+
+.ff-table tr.sel th,
+.ff-table td.sel {
+  box-shadow: inset 0 0 0 9999px var(--ff-sel);
+}
+
+.ff-table tr.nonperm th {
+  color: var(--ff-bad);
+}
+
+.ff-table tr.perm th {
+  color: var(--ff-ok);
+}
+
+.ff-table.gf.poly td,
+.ff-table.gf.poly th {
+  font-size: 0.78rem;
+}
+
+.ff-table.scramble th.known {
+  color: var(--accent);
+}
+
+.ff-table td.hint {
+  box-shadow: inset 0 0 0 9999px var(--ff-sel);
+}
+
+.ff-table td.focus {
+  outline: 2px solid var(--ff-latest);
+  outline-offset: -2px;
+  font-weight: 700;
+}
+
+.ff-table tr.hit-one td {
+  background: var(--ff-one);
+}
+
+.ff-table tr.latest td {
+  font-weight: 600;
+}
+
+.euclid-table td {
+  text-align: left;
+}
+
+.ff-pair {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 1rem;
+}
+
+.ff-pair > .ff-scroll {
+  flex: 0 1 auto;
+}
+
+.ff-verdict {
+  padding: 0.4rem 0.7rem;
+  border-left: 3px solid var(--border);
+  background: var(--bg-raised);
+  border-radius: 0 6px 6px 0;
+}
+
+.ff-verdict.ok,
+.ff-status.ok {
+  border-left-color: var(--ff-ok);
+}
+
+.ff-verdict.bad,
+.ff-status.bad {
+  border-left-color: var(--ff-bad);
+}
+
+.ff-legend,
+.ff-trail {
+  color: var(--muted);
+  font-size: 0.875rem;
+}
+
+.ff-trail {
+  overflow-wrap: anywhere;
+}
+
+.swatch {
+  display: inline-block;
+  width: 0.9em;
+  height: 0.9em;
+  vertical-align: -0.1em;
+  border-radius: 2px;
+  border: 1px solid var(--border);
+}
+
+.swatch.one {
+  background: var(--ff-one);
+}
+
+.swatch.zd {
+  background: var(--ff-zero);
+}
+
+.ff-info p {
+  margin: 0.4rem 0;
+}
+
+.ff-steps {
+  margin: 0.3rem 0;
+  padding-left: 1.5rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.ff-checks {
+  list-style: none;
+  padding-left: 0.5rem;
+}
+
+.ff-checks li.ok::before,
+.ff-checks li.bad::before {
+  content: '';
+}
+
+.ff-checks li.ok {
+  color: var(--ff-ok);
+}
+
+.ff-checks li.bad {
+  color: var(--ff-bad);
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  list-style: none;
+  padding: 0;
+  margin: 0.4rem 0;
+  font-size: 0.85rem;
+}
+
+.chips li {
+  padding: 0.1rem 0.5rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--bg-raised);
+  white-space: nowrap;
+}
+
+.chips li.fixed {
+  border-color: var(--ff-fixed);
+}
+
+.ff-figure {
+  max-width: 100%;
+}
+
+.arrow-circle {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 0.5rem auto;
+  font-family: system-ui, sans-serif;
+}
+
+.arrow-circle .rim {
+  fill: none;
+  stroke: var(--rim);
+  stroke-width: 1.5;
+}
+
+.arrow-circle .pt circle {
+  fill: var(--point);
+}
+
+.arrow-circle .pt text,
+.arrow-circle text.center {
+  fill: var(--fg);
+}
+
+.arrow-circle .pt.visited circle {
+  fill: var(--accent);
+}
+
+.arrow-circle .pt.here circle {
+  fill: var(--member);
+  r: 9;
+}
+
+.arrow-circle .pt.hit-one text,
+.arrow-circle .pt.here text {
+  font-weight: 700;
+}
+
+.arrow-circle .pt.fixed circle {
+  fill: var(--ff-fixed);
+  stroke: var(--fg);
+  stroke-width: 1;
+}
+
+.arrow-circle .arrow {
+  stroke: var(--ff-arrow);
+  stroke-width: 1.4;
+}
+
+.arrow-circle .arrow.latest {
+  stroke: var(--ff-latest);
+  stroke-width: 2.2;
+}
+
+.arrow-circle .arrowhead {
+  fill: var(--ff-latest);
+}
+
+.arrow-circle .loop {
+  fill: none;
+  stroke: var(--ff-fixed);
+  stroke-width: 1.5;
+}
+
+.div-work p {
+  margin: 0.2rem 0;
+  font-variant-numeric: tabular-nums;
+}
+
+.div-step-row {
+  padding: 0.3rem 0 0.3rem 0.6rem;
+  border-left: 2px solid var(--border);
+  margin: 0.4rem 0;
+}
+
+.div-rem {
+  font-weight: 600;
+}
+
+.calc-section h2 {
+  font-size: 1.15rem;
+  margin: 1.75rem 0 0.25rem;
+}
+
+/* ===================== end Part III finite field widgets ================== */

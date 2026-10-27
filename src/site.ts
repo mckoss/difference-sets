@@ -60,6 +60,11 @@ export const PLAYGROUNDS: Playground[] = [
     title: 'Match-one deck maker',
     summary: 'Deal a deck of picture cards in which every two cards share exactly one symbol, then play or print it.',
   },
+  {
+    slug: 'field-calculator',
+    title: 'Finite field calculator',
+    summary: 'Clock arithmetic ℤ/vℤ and the fields GF(pᵉ): tables, inverses, powers, logs, and isomorphisms.',
+  },
 ];
 
 export interface OutlinePart extends Part {
