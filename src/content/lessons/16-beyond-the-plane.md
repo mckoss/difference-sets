@@ -88,6 +88,18 @@ $$
 
 Try $q = 3$ in the widget: the off-peak value is no longer $-1$. Planar sets with larger $q$ have a flat but tall floor, so engineers use them where only the on/off pattern matters (Lessons 21–23), and use $q = 2$ for signs.
 
+## What about λ = 2?
+
+The Singer sets have $\lambda = 1$ in a plane, $\lambda = q + 1$ in three dimensions, and larger $\lambda$ after that. Could a Singer set have $\lambda = 2$, so that every difference turns up exactly twice? That would need $(q^{m-1} - 1)/(q - 1) = 2$, which simplifies to $q^{m-1} = 2q - 1$. No prime power $q \geq 2$ solves it, so Singer's construction never gives $\lambda = 2$ directly.
+
+There is one way in. The numbers *not* in a difference set also form one: if $D$ is a $(v, k, \lambda)$ set, its complement is a $(v, v - k, v - 2k + \lambda)$ set. The complement of the Fano set $\{1, 2, 4\}$ is $\{0, 3, 5, 6\}$, a $(7, 4, 2)$ set.
+
+Two more $\lambda = 2$ sets come from multiplication rather than geometry. The nonzero squares mod 11 are $\{1, 3, 4, 5, 9\}$, an $(11, 5, 2)$ set (Lesson 1 met it). The nonzero fourth powers mod 37 are $\{1, 7, 9, 10, 12, 16, 26, 33, 34\}$, a $(37, 9, 2)$ set. These *residue* difference sets go back to Raymond Paley (squares, 1933) and Sarvadaman Chowla (fourth powers, 1944).
+
+Designs with $\lambda = 2$, where any two blocks meet in exactly two points, are called **biplanes**. They are rare: only a handful are known, these three are the only ones built on a clock, and nobody knows whether there are infinitely many. That rarity is part of what makes the planes, with a Singer set for every prime power $q$, special.
+
+Any difference set makes a card game: card $j$ holds the pictures at the points $D + j$, and any two cards share exactly $\lambda$ pictures. The [deck maker](../../playgrounds/deck-maker/?deck=s2&theme=all) offers *match 2* decks from the three biplanes, and *match 3* and *match 4* decks from the Singer sets of $\mathrm{PG}(3, 2)$ and $\mathrm{PG}(3, 3)$: 15 cards of 7 pictures, and 40 cards of 13.
+
 ## A warning from higher dimensions
 
 In the plane, every known difference set with Singer's parameters is equivalent to a Singer set, and Lesson 17 asks whether that is always so. In higher dimensions the answer is known, and it is no. In 1962 Basil Gordon, William Mills, and Lloyd Welch built difference sets with exactly Singer's parameters $v = (q^{N} - 1)/(q - 1)$ (here $N = m + 1$) that are not equivalent to any Singer set, whenever $N$ is a product of two whole numbers, one of them at least 3 and the other at least 2. The smallest case is $q = 2$, $N = 6$: two inequivalent $(63, 31, 15)$ sets, the pair Marshall Hall had found. Their construction never produces planar parameters, since that needs $N = 3$, a prime. So it says nothing about the question of Lesson 17.

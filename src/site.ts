@@ -62,8 +62,8 @@ export const PLAYGROUNDS: Playground[] = [
   },
   {
     slug: 'deck-maker',
-    title: 'Match-one deck maker',
-    summary: 'Deal a deck of picture cards in which every two cards share exactly one symbol, then play or print it.',
+    title: 'Match deck maker',
+    summary: 'Deal a deck of picture cards in which every two cards share exactly one symbol (or 2, 3, or 4), then play or print it.',
   },
   {
     slug: 'field-calculator',

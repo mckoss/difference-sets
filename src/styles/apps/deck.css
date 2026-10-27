@@ -76,6 +76,26 @@
   user-select: none;
 }
 
+/* Portraits leave room under the picture for the person's name. */
+.match-card .sym.captioned img {
+  left: 12%;
+  width: 76%;
+  height: 76%;
+}
+
+.match-card .sym-caption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 77%;
+  text-align: center;
+  font-size: calc(var(--slot, 0.25) * 9.5cqw);
+  line-height: 1.05;
+  color: #8a8a8a;
+  pointer-events: none;
+  user-select: none;
+}
+
 .match-card button.sym {
   cursor: pointer;
 }

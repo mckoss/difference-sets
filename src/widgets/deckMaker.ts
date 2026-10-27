@@ -1,10 +1,9 @@
-import { checkDeck, DECK_Q, DECK_SEED, type Deck, makeDeck, parseDeckParams, PRINT_SIZES, type PrintSize, shared } from '../math/deck';
+import { checkDeck, DECKS, DECK_SEED, DECK_THEMES, type DeckTheme, type Deck, makeDeck, parseDeckParams, PRINT_SIZES, type PrintSize, shared } from '../math/deck';
 import { mulberry32, newSeed, randomInt, type Rng } from '../math/random';
-import { renderCard, symbolsFor } from './cards';
+import { renderCard, SYMBOLS, symbolsFor } from './cards';
 import { setText } from './format';
 
 type Mode = 'cards' | 'play' | 'verify';
-type Theme = 'all' | 'vehicles';
 
 function button(text: string, cls: string): HTMLButtonElement {
   const b = document.createElement('button');
@@ -28,37 +27,50 @@ const fmtTime = (ms: number) => {
 
 /**
  * `<div data-widget="deck-maker" data-url-state>`: build a match-one deck for
- * a chosen order q, browse its cards, play the matching game, verify the
- * deck, and print it. State lives in `?q=&theme=&size=`.
+ * chosen difference set, browse its cards, play the matching game, verify the
+ * deck, and print it. State lives in `?deck=&theme=&size=`.
  */
 export function mount(el: HTMLElement): void {
   const useUrl = el.hasAttribute('data-url-state');
   const params = useUrl ? parseDeckParams(location.search) : parseDeckParams('');
-  let q = params.q;
-  let theme: Theme = params.theme;
+  let deckId = params.deck;
+  // Offer only themes that have pictures of their own.
+  const themes = (Object.keys(DECK_THEMES) as DeckTheme[]).filter((t) =>
+    SYMBOLS.some((s) => s.deck !== false && DECK_THEMES[t].primary.includes(s.theme)),
+  );
+  let theme: DeckTheme = themes.includes(params.theme) ? params.theme : 'all';
   let size: PrintSize = params.size;
   let mode: Mode = 'cards';
-  let deck: Deck = makeDeck(q);
+  let deck: Deck = makeDeck(deckId);
   let symbols = symbolsFor(deck.v, DECK_SEED, theme);
 
   // Controls
   const controls = document.createElement('div');
   controls.className = 'controls';
-  const qLabel = document.createElement('label');
-  qLabel.className = 'control';
-  const qSelect = select(
-    'q-select',
-    DECK_Q.map((n) => [String(n), `${n + 1} symbols per card (q = ${n}, ${n * n + n + 1} cards)`]),
-  );
-  qLabel.append(qSelect);
+  const deckLabel = document.createElement('label');
+  deckLabel.className = 'control';
+  const deckSelect = document.createElement('select');
+  deckSelect.className = 'deck-select';
+  for (const lambda of [...new Set(DECKS.map((d) => d.lambda))]) {
+    const group = document.createElement('optgroup');
+    group.label = lambda === 1 ? 'Match 1 (Spot It)' : `Match ${lambda}`;
+    for (const d of DECKS.filter((x) => x.lambda === lambda)) {
+      const o = document.createElement('option');
+      o.value = d.id;
+      o.textContent = `Match ${d.lambda}: ${d.k} symbols per card, ${d.v} cards`;
+      group.append(o);
+    }
+    deckSelect.append(group);
+  }
+  deckLabel.append(deckSelect);
   const themeLabel = document.createElement('label');
   themeLabel.className = 'control';
-  const themeSelect = select('theme-select', [
-    ['all', 'Everything'],
-    ['vehicles', 'Vehicles'],
-  ]);
+  const themeSelect = select(
+    'theme-select',
+    themes.map((key) => [key, DECK_THEMES[key].label]),
+  );
   themeLabel.append('Theme ', themeSelect);
-  controls.append(qLabel, themeLabel);
+  controls.append(deckLabel, themeLabel);
 
   const themeNote = document.createElement('p');
   themeNote.className = 'hint theme-note';
@@ -95,6 +107,7 @@ export function mount(el: HTMLElement): void {
   // Play state
   const playRng: Rng = mulberry32(newSeed());
   let pair: [number, number] = [0, 1];
+  let found = new Set<number>();
   let score = 0;
   let misses = 0;
   let started = 0;
@@ -117,7 +130,8 @@ export function mount(el: HTMLElement): void {
   const writeUrl = () => {
     if (!useUrl) return;
     const url = new URL(location.href);
-    url.searchParams.set('q', String(q));
+    url.searchParams.set('deck', deckId);
+    url.searchParams.delete('q');
     url.searchParams.set('theme', theme);
     url.searchParams.delete('seed');
     url.searchParams.set('size', size);
@@ -133,6 +147,7 @@ export function mount(el: HTMLElement): void {
     let j = randomInt(playRng, deck.v - 1);
     if (j >= i) j++;
     pair = [i, j];
+    found = new Set();
     locked = false;
     table.replaceChildren(
       ...pair.map((c) => {
@@ -153,7 +168,10 @@ export function mount(el: HTMLElement): void {
     score = 0;
     misses = 0;
     started = Date.now();
-    playMsg.textContent = 'Find the one symbol on both cards and click it.';
+    playMsg.textContent =
+      deck.lambda === 1
+        ? 'Find the one symbol on both cards and click it.'
+        : `Find ${deck.lambda === 2 ? 'both symbols' : `all ${deck.lambda} symbols`} that are on both cards and click each one.`;
     deal();
     renderStatus();
     window.clearInterval(timer);
@@ -164,14 +182,23 @@ export function mount(el: HTMLElement): void {
     const sym = (e.target as Element).closest<HTMLElement>('.sym');
     if (!sym || locked) return;
     const p = Number(sym.dataset.point);
-    const [match] = shared(deck.cards[pair[0]], deck.cards[pair[1]]);
-    if (p === match) {
+    const matches = shared(deck.cards[pair[0]], deck.cards[pair[1]]);
+    if (found.has(p)) return;
+    if (matches.includes(p)) {
+      found.add(p);
+      for (const s of table.querySelectorAll<HTMLElement>(`.sym[data-point="${p}"]`)) s.classList.add('found');
+      if (found.size < matches.length) {
+        playMsg.textContent = `Yes: the ${symbols[p].name}. ${matches.length - found.size} more to find.`;
+        return;
+      }
       score++;
       locked = true;
-      for (const s of table.querySelectorAll<HTMLElement>(`.sym[data-point="${p}"]`)) s.classList.add('found');
-      playMsg.textContent = `Yes: the ${symbols[p].name}.`;
+      playMsg.textContent =
+        matches.length === 1
+          ? `Yes: the ${symbols[p].name}.`
+          : `Yes: ${matches.map((m) => `the ${symbols[m].name}`).join(', ')}.`;
       renderStatus();
-      window.setTimeout(deal, 700);
+      window.setTimeout(deal, 900);
     } else {
       misses++;
       sym.classList.remove('wrong');
@@ -200,9 +227,10 @@ export function mount(el: HTMLElement): void {
   };
 
   const renderVerify = () => {
-    const check = checkDeck(deck.cards, deck.v);
+    const check = checkDeck(deck.cards, deck.v, deck.lambda);
     const ok = check.bad.length === 0;
-    const k = q + 1;
+    const { k, lambda } = deck;
+    const exactly = lambda === 1 ? 'exactly one symbol' : `exactly ${lambda} symbols`;
     const rows = deck.cards.slice(0, Math.min(deck.v, 8)).map((pts, j) => {
       const li = document.createElement('li');
       li.textContent = `Card ${j + 1} = D + ${j} = ${setText([...pts].sort((a, b) => a - b))}: ${pts.map((p) => symbols[p].name).join(', ')}`;
@@ -210,7 +238,7 @@ export function mount(el: HTMLElement): void {
     });
     const set = document.createElement('p');
     set.className = 'verify-set';
-    set.textContent = `D = ${setText(deck.set)} mod ${deck.v}, a (${deck.v}, ${k}, 1) difference set from Singer's construction with q = ${q}.`;
+    set.textContent = `D = ${setText(deck.set)} mod ${deck.v}, a (${deck.v}, ${k}, ${lambda}) difference set from ${deck.spec.source}.`;
     const how = document.createElement('p');
     how.textContent = `Symbol number p goes on card j exactly when p is in the translate D + j. Each symbol was given a random picture.`;
     const list = document.createElement('ul');
@@ -224,8 +252,8 @@ export function mount(el: HTMLElement): void {
     const result = document.createElement('p');
     result.className = `verdict verify-result ${ok ? 'ok' : 'bad'}`;
     result.textContent = ok
-      ? `Checked all ${check.pairs.toLocaleString('en-US')} pairs of cards: every pair shares exactly one symbol. Every symbol is on ${k} cards.`
-      : `${check.bad.length} of ${check.pairs} pairs do not share exactly one symbol.`;
+      ? `Checked all ${check.pairs.toLocaleString('en-US')} pairs of cards: every pair shares ${exactly}. Every symbol is on ${k} cards.`
+      : `${check.bad.length} of ${check.pairs} pairs do not share ${exactly}.`;
     verifyPanel.replaceChildren(set, how, list, result);
   };
 
@@ -259,27 +287,29 @@ export function mount(el: HTMLElement): void {
   };
 
   const rebuild = () => {
-    deck = makeDeck(q);
+    deck = makeDeck(deckId);
     symbols = symbolsFor(deck.v, DECK_SEED, theme);
-    qSelect.value = String(q);
+    deckSelect.value = deckId;
     themeSelect.value = theme;
     sizeSelect.value = size;
     printSheet.replaceChildren();
-    const vehicles = symbols.filter((s) => s.theme === 'vehicle').length;
+    const { label, primary } = DECK_THEMES[theme];
+    const inTheme = symbols.filter((s) => primary.includes(s.theme)).length;
     themeNote.textContent =
-      theme === 'vehicles' && vehicles < deck.v
-        ? `There are only ${vehicles} vehicle pictures, so ${deck.v - vehicles} other pictures fill out the ${deck.v} symbols.`
-        : `${deck.v} cards with ${q + 1} symbols each, using ${deck.v} different symbols.`;
+      inTheme < deck.v
+        ? `There are only ${inTheme} ${label} pictures, so ${deck.v - inTheme} others fill out the ${deck.v} symbols.`
+        : `${deck.v} cards with ${deck.k} symbols each, using ${deck.v} different symbols. ` +
+          (deck.lambda === 1 ? 'Any two cards share exactly one.' : `Any two cards share exactly ${deck.lambda}.`);
     writeUrl();
     showMode();
   };
 
-  qSelect.addEventListener('change', () => {
-    q = Number(qSelect.value);
+  deckSelect.addEventListener('change', () => {
+    deckId = deckSelect.value;
     rebuild();
   });
   themeSelect.addEventListener('change', () => {
-    theme = themeSelect.value === 'vehicles' ? 'vehicles' : 'all';
+    theme = themeSelect.value as DeckTheme;
     rebuild();
   });
   for (const [m, b] of Object.entries(modeButtons)) {
