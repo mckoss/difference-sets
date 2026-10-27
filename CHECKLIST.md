@@ -39,9 +39,10 @@ lesson. Each checkpoint lands on `main` as its own PR and deploy.
 
 ## Checkpoint 5: Part V (Lessons 14–15)
 
-- [ ] Singer construction stepper widget and playground
-- [ ] Multiplier and class widgets
-- [ ] Lessons 14–15 written
+- [x] `construction.ts`: trace by conjugates, trace line, multiples, translate offsets, reduced sets, multiplier classes, tested against `nonIsomorphicSingerSets`, φ(v)/3e, and φ(v)/6e
+- [x] Singer construction stepper widget and playground (`?q=&i=`)
+- [x] Multiplier explorer widget (t·D, translate or mirror, classes grouped by t)
+- [x] Lessons 14–15 written
 
 ## Checkpoint 6: Part VI (Lessons 16–17)
 

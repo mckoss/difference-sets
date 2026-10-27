@@ -31,7 +31,10 @@ Decisions I made while Mike was away, collected here instead of blocking.
    ({1, 2, 4} mod 7 and {3, 6, 7, 12, 14} mod 21, not {0, 1, 3} and
    {0, 1, 4, 14, 16}). They are equivalent sets. The deck maker's verify panel
    shows `singerSet(q)` as asked; the lessons use PLAN.md's sets. Should
-   `singerSet` normalize to the familiar representative?
+   `singerSet` normalize to the familiar representative? *(Lesson 14 now
+   explains {1, 2, 4} = {0, 1, 3} + 1 as the trace-zero line x = 0 versus the
+   line z = 0, and Lesson 15 explains q = 4's set as 5·D, the mirror image of
+   the trace set; see item 29. I left `singerSet` unnormalized.)*
 8. **Spot It facts.** Lesson 18 says the retail deck is "commonly reported"
    to have 55 cards and links Matt Parker's video for it, and has a one-line
    trademark disclaimer. The video is a click-to-load facade with a plain
@@ -91,8 +94,8 @@ Decisions I made while Mike was away, collected here instead of blocking.
     cyclic order 10 in about a second is our own measurement, set against
     Lam–Thiel–Swiercz for general planes.
 18. **Lesson 4** still says nothing about cyclic order 10; Lesson 17 links
-    back to Lesson 16 for GMW. Lessons 14 and 15 (linked from the explorer
-    and from Lesson 17's text) are still stubs.
+    back to Lesson 16 for GMW. Lessons 14 and 15 are now written (Part V
+    below).
 
 ## Part III (Lessons 5–9, finite field calculator)
 
@@ -140,3 +143,36 @@ Decisions I made while Mike was away, collected here instead of blocking.
 28. **Proof level.** Lesson 11 proves the axioms with the cross product and a
     span-counting argument; Lesson 13 states that every subspace with q² vectors
     is a plane, with a one-line reason.
+
+## Part V (Lessons 14–15, Singer stepper, multiplier explorer)
+
+29. **Which field the lessons use.** The stepper and Lessons 14–15 compute the
+    trace in GF(q)[α] modulo the primitive cubic of Lessons 12–13 (`projective.ts`),
+    by adding the three conjugates read from the power table. So the trace set is
+    a translate of the z = 0 line: +1, +0, +14, +22 for q = 2, 3, 4, 5 (tested);
+    for q = 3 it *is* z = 0. For prime q it equals `singerSet(q)` exactly. For
+    q = 4, 8, 9, `singerSet` builds GF(q³) from a degree-3e polynomial over GF(p),
+    a different α, so its set is a multiple t·D, not a translate (q = 4: 5·D = −D,
+    tested). Lesson 14 says so and Lesson 15 explains it.
+30. **Why the trace line.** Lesson 14 motivates the trace as the line that needs
+    no GF(q) coordinates (singer.ts has none for e > 1), not as faster to compute
+    than z = 0. I changed Lesson 13's last sentence, which promised "the line
+    that is quickest to compute", to match.
+31. **Proof level.** Lesson 14 proves linearity of the trace and that its zeros
+    are a line (degree-q² root bound). Lesson 15 proves t·D is a difference set,
+    that p·D = D for the trace set (Frobenius through the trace), and that t·D,
+    t′·D are translates iff t′/t is a multiplier. It states without proof that the
+    3e powers of p are distinct mod v, that they are the only multipliers (GMW
+    1962), that −1 is never a multiplier (GMW 1962; Johnsen 1964), Hall 1947, and
+    that every multiple comes from some primitive element. Counts credit Singer
+    (conjecture), Berman 1953, and Halberstam–Laxton 1964, as in citations.md.
+32. **Widgets.** `singer-stepper` (Lesson 14 and a new playground,
+    `/playgrounds/singer-stepper/?q=&i=`) offers q ∈ {2, …, 13}; Play paces itself
+    to finish in about 9 s whatever q is. `chordDiagram` gained an optional modulus
+    so the stepper can draw D while it grows. `multiplier-explorer` (Lesson 15)
+    uses the trace set, so p·D = D exactly, and names classes n and n′ (mirror
+    pairs), each shown by its reduced form (the translate containing 0 and 1).
+33. **Brute-force numbers.** Lesson 14's cost table uses C(v, q + 1) and "about
+    3v" multiplications (three running products per step, as in singer.ts);
+    C(57, 8) ≈ 1.7 billion and C(183, 14) ≈ 3.3 × 10²⁰ are computed by the widget's
+    `binomial`.

@@ -46,6 +46,9 @@ const registry: Record<string, () => Promise<WidgetModule>> = {
   'pg2-explorer': () => import('./pg2Explorer'),
   'field-points': () => import('./fieldPoints'),
   'singer-cycle': () => import('./singerCycle'),
+  // Part V: Singer's algorithm
+  'singer-stepper': () => import('./singerStepper'),
+  'multiplier-explorer': () => import('./multiplierExplorer'),
 };
 
 for (const el of document.querySelectorAll<HTMLElement>('[data-widget]')) {

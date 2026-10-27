@@ -1,0 +1,24 @@
+---
+import Base from '../../layouts/Base.astro';
+import { href, lessonPath, playgroundPath, PLAYGROUNDS } from '../../site';
+
+const pg = PLAYGROUNDS.find((p) => p.slug === 'singer-stepper')!;
+const base = import.meta.env.BASE_URL;
+---
+
+<Base title={pg.title} description={pg.summary} current={playgroundPath(pg.slug)} wide>
+  <p class="eyebrow">Playground</p>
+  <h1>{pg.title}</h1>
+  <p class="lede">
+    Singer's construction for a prime power q: build GF(q³) from a primitive cubic over GF(q), and for each i from
+    0 to v − 1 = q² + q compute the trace Tr(αⁱ) = αⁱ + α^(iq) + α^(iq²). The exponents with trace 0 form a
+    (q² + q + 1, q + 1, 1) difference set D. Step through it, play it, or jump to the end to see every difference
+    checked. The address bar keeps q and the step, so you can share a view.
+  </p>
+  <p>
+    Background: <a href={href(base, lessonPath('12-field-inside-the-plane'))}>Lesson 12</a> (the Singer numbering),
+    <a href={href(base, lessonPath('13-singer-cycle'))}>Lesson 13</a> (the Singer cycle), and
+    <a href={href(base, lessonPath('14-writing-down-a-difference-set'))}>Lesson 14</a> (the trace construction).
+  </p>
+  <div data-widget="singer-stepper" data-q="3" data-url-state></div>
+</Base>

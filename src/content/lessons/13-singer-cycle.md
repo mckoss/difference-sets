@@ -115,4 +115,4 @@ This answers the question Part I started with. A planar difference set looked as
 
 </section>
 
-Every line of every plane, in both numberings, is in the [PG(2, q) explorer](../../playgrounds/pg2-explorer/?q=4&lines=0). Part V turns the construction into an algorithm: [Lesson 14](../14-writing-down-a-difference-set/) chooses the line that is quickest to compute, and runs through it step by step.
+Every line of every plane, in both numberings, is in the [PG(2, q) explorer](../../playgrounds/pg2-explorer/?q=4&lines=0). Part V turns the construction into an algorithm: [Lesson 14](../14-writing-down-a-difference-set/) chooses a line that the field's own arithmetic picks out, with no coordinates at all, and runs through it step by step.
