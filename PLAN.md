@@ -99,46 +99,74 @@ consequence rather than a trick.
 
 **Part III — Finite fields**
 
-5. **Clock arithmetic that divides.** GF(p): addition and multiplication
-   tables, why every nonzero element needs an inverse, and why ℤ/6ℤ fails.
-6. **Fields with p^k elements.** Polynomials over GF(p) reduced modulo an
-   irreducible polynomial. Build GF(4), GF(8), and GF(9) by hand in widgets.
-   Irreducible versus reducible moduli, shown by watching inverses fail.
-7. **One element to generate them all.** Primitive elements: the powers of α
+The construction rests entirely on finite fields, so this part goes slowly:
+first the fields of prime order, then the fact that they are all just the
+integers mod p, and only then the prime-power fields built on top of them.
+
+5. **What a field is, and which clocks are fields.** The field axioms in
+   plain terms: add, subtract, multiply, and divide by anything nonzero.
+   Try ℤ/nℤ for several n with live addition and multiplication tables. For
+   n = 6, 2 · 3 = 0 and 2 has no inverse; for prime p every nonzero row of
+   the multiplication table is a permutation, and the extended Euclidean
+   algorithm finds each inverse. Conclusion: ℤ/nℤ is a field exactly when n
+   is prime. Name it GF(p).
+6. **Every field with p elements is ℤ/pℤ.** Start from any field F. Add 1 to
+   itself: 1, 1 + 1, 1 + 1 + 1, … In a finite field this eventually returns
+   to 0, and the first time it does is a prime p (a composite would give zero
+   divisors), the *characteristic*. The multiples of 1 form a copy of
+   ℤ/pℤ inside F, the *prime subfield*. If F has exactly p elements, that
+   copy is all of F, so k ↦ k · 1 is an isomorphism and there is only one
+   field of order p up to relabeling. Widget: a field of order p shown with
+   scrambled symbols; the reader recovers the isomorphism by counting
+   1, 1 + 1, …, and the tables snap back into clock arithmetic. Corollary:
+   any finite field is a vector space over its prime subfield, so its size
+   is p^k. That is why the next lesson only looks at prime powers.
+7. **Fields with p^k elements, built from polynomials.** Polynomials with
+   coefficients in GF(p), reduced modulo a fixed polynomial f of degree k.
+   Elements are the remainders a₀ + a₁x + … + a_(k−1)x^(k−1), that is,
+   k-tuples over GF(p), matching the vector space picture from Lesson 6.
+   The parallel with Lesson 5 is exact: irreducible polynomials play the
+   role of primes. Modulo a reducible f, zero divisors appear just as in
+   ℤ/6ℤ; modulo an irreducible f, every nonzero element has an inverse
+   (the extended Euclidean algorithm again, now for polynomials). Build
+   GF(4), GF(8), and GF(9) by hand in widgets, and note that GF(4) is not
+   ℤ/4ℤ. Different irreducible moduli give the same field up to relabeling;
+   the widget finds the explicit isomorphism between two versions of GF(8).
+8. **One element to generate them all.** Primitive elements: the powers of α
    visit every nonzero element, so multiplication becomes adding exponents
    (log tables). Primitive polynomials, and how to test one without trying
    every power: check α^((p^k − 1)/r) ≠ 1 for each prime r dividing p^k − 1.
 
 **Part IV — Planes from fields**
 
-8. **Coordinates for a projective plane.** PG(2, q): points are the
+9. **Coordinates for a projective plane.** PG(2, q): points are the
    1-dimensional subspaces of GF(q)³ (homogeneous coordinates [x : y : z]),
    lines are the 2-dimensional subspaces. Count them and check the axioms.
    Draw PG(2, 2) as the Fano plane and PG(2, 3) with 13 points.
-9. **The field hiding inside the plane.** GF(q³) *is* GF(q)³ as a vector
+10. **The field hiding inside the plane.** GF(q³) *is* GF(q)³ as a vector
    space, so its nonzero elements up to GF(q)* scalars are the points of
    PG(2, q). Since GF(q)* = ⟨α^v⟩, each point is α^i for exactly one
    i mod v, which gives every point a number.
-10. **The Singer cycle.** Multiplying by α is GF(q)-linear, so it sends lines
+11. **The Singer cycle.** Multiplying by α is GF(q)-linear, so it sends lines
     to lines, and it moves point i to point i + 1, cycling through all v
     points. So PG(2, q) is cyclic, and by Lesson 4 any one of its lines is a
     difference set. Animate the rotation carrying one line onto the next.
 
 **Part V — Singer's algorithm**
 
-11. **Writing down a difference set.** Choose one line: the trace-zero plane
+12. **Writing down a difference set.** Choose one line: the trace-zero plane
     {x : x + x^q + x^(q²) = 0}. Then D = {i mod v : Tr(α^i) = 0}. Step
     through it for q = 2, 3, 4: compute α^i, take the trace, keep or reject.
     This takes v field multiplications, with no search, set against the
     brute-force count from Lesson 1.
-12. **Many sets, few shapes.** Multipliers: t·D for t coprime to v is another
+13. **Many sets, few shapes.** Multipliers: t·D for t coprime to v is another
     difference set. Equivalence under translation, negation, and
     multipliers; Hall's multiplier theorem (multiplying by p gives a
     translate). Gallery of the distinct classes per q (the notebook port).
 
 **Part VI — The frontier**
 
-13. **Is every planar difference set a Singer set?** No one has found a
+14. **Is every planar difference set a Singer set?** No one has found a
     planar difference set that isn't one. Present the conjectures with care:
     - *Prime power conjecture*: a planar difference set of order n exists
       only when n is a prime power. Proven for many cases and verified by
@@ -154,19 +182,21 @@ consequence rather than a trick.
 
     Playground tie-in: exhaustive search for small v finds only sets
     equivalent to Singer sets.
-14. **Where difference sets show up.** Modular Golomb rulers, optical
+15. **Where difference sets show up.** Modular Golomb rulers, optical
     orthogonal codes, sequences with two-valued autocorrelation, sensor array
     placement, and higher-dimensional Singer sets PG(m, q).
 
-Citations are checked against primary sources before Lesson 13 ships.
+Citations are checked against primary sources before Lesson 14 ships.
 
 ### Playgrounds
 
 - **Difference set workbench.** Chord diagram for any v and subset, a
   difference histogram, translates, and an "is it a difference set?" verdict.
-- **Finite field calculator.** GF(p^k) with a chosen modulus: addition and
+- **Finite field calculator.** ℤ/nℤ for any n (showing where it stops
+  being a field), and GF(p^k) with a chosen modulus: addition and
   multiplication tables, inverses, powers and log tables, an
-  irreducible/primitive check.
+  irreducible/primitive check, and an isomorphism finder between two
+  moduli of the same degree.
 - **Projective plane explorer.** PG(2, q) for small q: points, lines,
   incidence, both the coordinate numbering and the Singer numbering.
 - **Singer construction stepper.** Choose q and a primitive polynomial, then
@@ -221,10 +251,10 @@ Citations are checked against primary sources before Lesson 13 ships.
 3. **Multi-page skeleton**: manifest, shared layout and navigation, home page
    with the lesson path, and the classes gallery moved to its playground.
 4. **Part I–II**: Lessons 1–4 and the difference-set workbench.
-5. **Part III**: Lessons 5–7 and the finite field calculator.
-6. **Part IV**: Lessons 8–10 and the projective plane explorer.
-7. **Part V**: Lessons 11–12 and the Singer stepper.
-8. **Part VI**: Lessons 13–14, search versus construction, large-q explorer.
+5. **Part III**: Lessons 5–8 and the finite field calculator.
+6. **Part IV**: Lessons 9–11 and the projective plane explorer.
+7. **Part V**: Lessons 12–13 and the Singer stepper.
+8. **Part VI**: Lessons 14–15, search versus construction, large-q explorer.
 9. **Polish**: accessibility, mobile layout, performance for large q.
 
 ## Open questions
