@@ -10,7 +10,7 @@ test('home page shows the title, version, hook, and path', async ({ page }) => {
   await expect(page).toHaveTitle('Singer Difference Sets');
   await expect(page.locator('#app-version')).toHaveText(`v${pkg.version}`);
   await expect(page.locator('.hero .chord-diagram circle.member')).toHaveCount(3);
-  await expect(page.locator('.path-part')).toHaveCount(6);
+  await expect(page.locator('.path-part')).toHaveCount(7);
   await expect(page.locator('.path-part li')).toHaveCount(LESSON_COUNT);
 });
 
@@ -24,6 +24,7 @@ test('sidebar is a numbered outline of every lesson, grouped by part', async ({ 
     /Part IV\b.*Planes from fields/,
     /Part V\b.*Singer's algorithm/,
     /Part VI\b.*The frontier/,
+    /Part VII\b.*Applications/,
   ]);
   const numbers = await sidebar.locator('.sidebar-part .num').allTextContents();
   expect(numbers).toEqual(Array.from({ length: LESSON_COUNT }, (_, i) => String(i + 1)));

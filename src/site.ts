@@ -31,6 +31,7 @@ export const PARTS: Part[] = [
   { part: 4, numeral: 'IV', title: 'Planes from fields' },
   { part: 5, numeral: 'V', title: "Singer's algorithm" },
   { part: 6, numeral: 'VI', title: 'The frontier' },
+  { part: 7, numeral: 'VII', title: 'Applications' },
 ];
 
 export const PLAYGROUNDS: Playground[] = [
@@ -43,6 +44,11 @@ export const PLAYGROUNDS: Playground[] = [
     slug: 'singer-classes',
     title: 'Singer classes gallery',
     summary: 'Every distinct Singer difference set for a chosen q, drawn as chord diagrams.',
+  },
+  {
+    slug: 'deck-maker',
+    title: 'Match-one deck maker',
+    summary: 'Deal a deck of picture cards in which every two cards share exactly one symbol, then play or print it.',
   },
 ];
 

@@ -233,7 +233,7 @@ integers mod p, and only then the prime-power fields built on top of them.
     orthogonal codes, sequences with two-valued autocorrelation, sensor array
     placement, and higher-dimensional Singer sets PG(m, q).
 
-Citations are checked against primary sources before Lesson 16 ships; the
+Citations are checked against primary sources before Lesson 17 ships; the
 verified notes so far are in [docs/citations.md](docs/citations.md).
 
 ### Playgrounds
