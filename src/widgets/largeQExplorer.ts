@@ -1,4 +1,4 @@
-import { primePowersUpTo } from '../math/numbers';
+import { mod, primePowersUpTo } from '../math/numbers';
 import { DENSITY_SIZE, RIM_INSET, type ExplorerResult } from '../workers/singerExplorer.worker';
 
 const Q_VALUES = primePowersUpTo(1024);
@@ -224,7 +224,10 @@ export function mount(el: HTMLElement): void {
   const chordCanvas = document.createElement('canvas');
   chordCanvas.className = 'chord-canvas';
   chordCanvas.setAttribute('role', 'img');
-  chordBox.append(chordCanvas);
+  const tip = document.createElement('div');
+  tip.className = 'explorer-tip';
+  tip.hidden = true;
+  chordBox.append(chordCanvas, tip);
 
   const side = document.createElement('div');
   side.className = 'explorer-side';
@@ -271,8 +274,59 @@ export function mount(el: HTMLElement): void {
     drawHistogram(histCanvas, Math.max(200, Math.floor(side.clientWidth)), result.counts);
   };
 
+  // Hovering near the rim names the nearest point: a member of the set when
+  // one is within a few pixels, otherwise (when points are drawn) any point.
+  let sorted: number[] = [];
+  const hover = (e: PointerEvent) => {
+    if (!result) return;
+    const { v } = result;
+    const size = chordCanvas.clientWidth;
+    const box = chordCanvas.getBoundingClientRect();
+    const x = e.clientX - box.left - size / 2;
+    const y = e.clientY - box.top - size / 2;
+    const r = size / 2 - RIM_INSET * size;
+    if (Math.abs(Math.hypot(x, y) - r) > 10) {
+      tip.hidden = true;
+      return;
+    }
+    // Position around the circle, 0 at the top, increasing clockwise.
+    const t = mod((Math.atan2(y, x) + Math.PI / 2) / (2 * Math.PI), 1) * v;
+    const gap = (i: number) => Math.min(Math.abs(t - i), v - Math.abs(t - i));
+    let lo = 0;
+    let hi = sorted.length;
+    while (lo < hi) {
+      const mid = (lo + hi) >> 1;
+      if (sorted[mid] < t) lo = mid + 1;
+      else hi = mid;
+    }
+    const near = [sorted[lo % sorted.length], sorted[(lo - 1 + sorted.length) % sorted.length]];
+    const member = gap(near[0]) <= gap(near[1]) ? near[0] : near[1];
+    const pxPerPoint = (2 * Math.PI * r) / v;
+    let label: string;
+    let at: number;
+    if (gap(member) * pxPerPoint <= 6) {
+      at = member;
+      label = `${num(member)} (in the set)`;
+    } else if (v <= 400) {
+      at = mod(Math.round(t), v);
+      label = num(at);
+    } else {
+      tip.hidden = true;
+      return;
+    }
+    const a = -Math.PI / 2 + (2 * Math.PI * at) / v;
+    tip.textContent = label;
+    tip.style.left = `${size / 2 + r * Math.cos(a)}px`;
+    tip.style.top = `${size / 2 + r * Math.sin(a)}px`;
+    tip.hidden = false;
+  };
+  chordCanvas.addEventListener('pointermove', hover);
+  chordCanvas.addEventListener('pointerleave', () => (tip.hidden = true));
+
   const show = (r: ExplorerResult) => {
     result = r;
+    sorted = [...r.set].sort((a, b) => a - b);
+    tip.hidden = true;
     const { v, set, counts } = r;
     const k = set.length;
     let zero = 0;

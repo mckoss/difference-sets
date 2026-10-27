@@ -56,6 +56,31 @@ test.describe('large-q explorer', () => {
     expect(download.suggestedFilename()).toBe('singer-q101.txt');
   });
 
+  test('hovering a point on the rim shows its index', async ({ page }) => {
+    await page.goto('playgrounds/explorer/?q=11');
+    const w = page.locator('.large-q-explorer');
+    await expect(w.locator('.explorer-verdict')).toContainText('λ = 1');
+    const set = (await w.locator('.set-text').inputValue()).split(', ').map(Number);
+    await w.locator('.chord-canvas').scrollIntoViewIfNeeded();
+    const box = (await w.locator('.chord-canvas').boundingBox())!;
+    // Same geometry as the drawing: the rim sits RIM_INSET (8 / 640) of the side inside the edge, 0 at the top.
+    const RIM_INSET = 8 / 640;
+    const hoverPoint = async (i: number) => {
+      const r = box.width / 2 - RIM_INSET * box.width;
+      const a = -Math.PI / 2 + (2 * Math.PI * i) / 133;
+      await page.mouse.move(box.x + box.width / 2 + r * Math.cos(a), box.y + box.width / 2 + r * Math.sin(a));
+    };
+    const tip = w.locator('.explorer-tip');
+    await hoverPoint(set[3]);
+    await expect(tip).toBeVisible();
+    await expect(tip).toHaveText(`${set[3]} (in the set)`);
+    const outside = [...Array(133).keys()].find((i) => !set.some((d) => Math.min(Math.abs(d - i), 133 - Math.abs(d - i)) < 3))!;
+    await hoverPoint(outside);
+    await expect(tip).toHaveText(String(outside));
+    await page.mouse.move(box.x + box.width / 2, box.y + box.width / 2);
+    await expect(tip).toBeHidden();
+  });
+
   test('URL state round-trips and q = 1024 works', async ({ page }) => {
     await page.goto('playgrounds/explorer/?q=1024');
     const w = page.locator('.large-q-explorer');
