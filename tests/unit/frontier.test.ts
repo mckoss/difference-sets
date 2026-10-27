@@ -111,15 +111,18 @@ describe('fast Singer construction', () => {
       expect(performance.now() - t).toBeLessThan(5000);
       expect(D.length).toBe(q + 1);
       const v = singerV(q);
+      // Count repeats with plain code: a million expect() calls is slow on CI.
       const seen = new Uint8Array(v);
+      let repeats = 0;
       for (const a of D) for (const b of D) {
         if (a === b) continue;
         const d = (a - b + v) % v;
-        expect(seen[d]).toBe(0);
+        if (seen[d]) repeats++;
         seen[d] = 1;
       }
+      expect(repeats).toBe(0);
     }
-  });
+  }, 30_000);
 });
 
 describe('the polynomial identity', () => {
