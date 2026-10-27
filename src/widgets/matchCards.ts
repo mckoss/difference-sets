@@ -1,6 +1,6 @@
 import { shared } from '../math/deck';
 import { mod } from '../math/numbers';
-import { cardSeed, renderCard, symbolsFor } from './cards';
+import { renderCard, symbolsFor } from './cards';
 import { parseSet } from './differenceWorkbench';
 import { setText } from './format';
 
@@ -41,7 +41,7 @@ export function mount(el: HTMLElement): void {
     b.className = 'match-pick';
     b.dataset.card = String(j);
     b.setAttribute('aria-pressed', 'false');
-    const card = renderCard({ points, symbols, seed: cardSeed(seed, j), label: `Card ${j}` });
+    const card = renderCard({ points, symbols, label: `Card ${j}` });
     for (const sym of card.querySelectorAll<HTMLElement>('.sym')) {
       const tag = document.createElement('span');
       tag.className = 'point-tag';
