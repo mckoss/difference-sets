@@ -6,6 +6,9 @@ import { assignSymbols, layoutCard, type SymbolInfo } from '../math/deck';
 
 export const SYMBOLS: SymbolInfo[] = manifest;
 
+/** Printed along the bottom of every card. */
+export const CARD_CREDIT = 'http://mckoss.com/difference-sets';
+
 /** URL of a symbol image under the site's base path. */
 export const symbolUrl = (s: SymbolInfo) => `${import.meta.env.BASE_URL.replace(/\/?$/, '/')}symbols/${s.file}`;
 
@@ -59,5 +62,10 @@ export function renderCard({ points, symbols, interactive = false, eager = false
     sym.append(img);
     card.append(sym);
   });
+  const credit = document.createElement('span');
+  credit.className = 'card-credit';
+  credit.setAttribute('aria-hidden', 'true');
+  credit.textContent = CARD_CREDIT;
+  card.append(credit);
   return card;
 }

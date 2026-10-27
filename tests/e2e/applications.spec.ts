@@ -128,6 +128,7 @@ test.describe('match-one deck maker', () => {
     await expect(page.locator('body')).toHaveAttribute('data-printed', '');
     await expect(page.locator('.deck-print .print-page')).toHaveCount(3);
     await expect(page.locator('.deck-print .match-card')).toHaveCount(13);
+    await expect(page.locator('.deck-print .match-card .card-credit').first()).toHaveText('http://mckoss.com/difference-sets');
     await page.emulateMedia({ media: 'print' });
     await expect(page.locator('.deck-print')).toBeVisible();
     await expect(page.locator('.deck-grid')).toBeHidden();

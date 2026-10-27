@@ -126,17 +126,20 @@ export const SLOT_COUNTS = Object.keys(SLOTS).map(Number);
 
 /**
  * Lay out n equal, upright squares on a square card in a fixed symmetric
- * pattern. Slot i holds the i-th point of the card, which on card D + j is
+ * pattern, leaving a band at the bottom for the site's address. Slot i holds the i-th point of the card, which on card D + j is
  * d_i + j; so across the deck each symbol sits in each slot exactly once.
  */
 export function layoutCard(n: number): Placement[] {
   const slots = SLOTS[n];
   if (!slots) throw new Error(`No card layout for ${n} symbols`);
   const margin = 0.04; // card edge to the outer squares
+  const footer = 0.05; // a band along the bottom for the site's address
   const gap = 0.03; // between neighboring squares
-  const cell = (1 - 2 * margin + gap) / slots.g;
+  const side = 1 - 2 * margin - footer; // the square the slots fill
+  const left = (1 - side) / 2;
+  const cell = (side + gap) / slots.g;
   const size = cell - gap;
-  return slots.cells.map(([c, r]) => ({ x: margin + c * cell, y: margin + r * cell, size }));
+  return slots.cells.map(([c, r]) => ({ x: left + c * cell, y: margin + r * cell, size }));
 }
 
 /** Parse "?q=7&theme=vehicles&seed=123" into deck settings, with defaults. */
