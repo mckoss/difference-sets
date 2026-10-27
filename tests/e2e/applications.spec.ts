@@ -55,12 +55,11 @@ test.describe('lesson 18: a card game from a plane', () => {
 });
 
 test.describe('match-one deck maker', () => {
-  test('URL state picks q, theme, and seed, and controls write it back', async ({ page }) => {
-    await page.goto('playgrounds/deck-maker/?q=3&theme=vehicles&seed=42');
+  test('URL state picks q and theme, and controls write it back', async ({ page }) => {
+    await page.goto('playgrounds/deck-maker/?q=3&theme=vehicles');
     const w = page.locator('[data-widget="deck-maker"]');
     await expect(w.locator('.q-select')).toHaveValue('3');
     await expect(w.locator('.theme-select')).toHaveValue('vehicles');
-    await expect(w.locator('.seed-out')).toHaveText('Seed 42');
     await expect(w.locator('.deck-grid .match-card')).toHaveCount(13);
     await expect(w.locator('.deck-grid .match-card').first().locator('img')).toHaveCount(4);
     const first = await w.locator('.deck-grid .match-card').first().getAttribute('aria-label');
@@ -70,21 +69,23 @@ test.describe('match-one deck maker', () => {
     await w.locator('.q-select').selectOption('11');
     await expect(w.locator('.deck-grid .match-card')).toHaveCount(133);
     await expect(page).toHaveURL(/q=11/);
-    await expect(page).toHaveURL(/seed=42/);
-    await w.locator('.shuffle-button').click();
-    await expect(page).not.toHaveURL(/seed=42\b/);
+    await expect(w.locator('.shuffle-button')).toHaveCount(0);
     await w.locator('.theme-select').selectOption('all');
     await expect(page).toHaveURL(/theme=all/);
   });
 
-  test('without a seed, one is chosen and shown in the URL', async ({ page }) => {
+  test('the default deck is the same on every visit', async ({ page }) => {
+    await page.goto('playgrounds/deck-maker/?seed=99');
+    await expect(page).toHaveURL(/q=7&theme=all/);
+    await expect(page).not.toHaveURL(/seed=/);
+    const first = await page.locator('.deck-grid .match-card').first().getAttribute('aria-label');
     await page.goto('playgrounds/deck-maker/');
-    await expect(page).toHaveURL(/q=7&theme=all&seed=\d+/);
+    await expect(page.locator('.deck-grid .match-card').first()).toHaveAttribute('aria-label', first!);
     await expect(page.locator('.deck-grid .match-card')).toHaveCount(57);
   });
 
   test('play mode: a wrong click flashes and counts a miss, the right one scores', async ({ page }) => {
-    await page.goto('playgrounds/deck-maker/?q=4&theme=all&seed=5');
+    await page.goto('playgrounds/deck-maker/?q=4&theme=all');
     const w = page.locator('[data-widget="deck-maker"]');
     await w.locator('.mode-play').click();
     await expect(w.locator('.play-table .match-card')).toHaveCount(2);
@@ -109,7 +110,7 @@ test.describe('match-one deck maker', () => {
   });
 
   test('verify panel shows D and checks every pair', async ({ page }) => {
-    await page.goto('playgrounds/deck-maker/?q=7&theme=all&seed=1');
+    await page.goto('playgrounds/deck-maker/?q=7&theme=all');
     const w = page.locator('[data-widget="deck-maker"]');
     await w.locator('.mode-verify').click();
     await expect(w.locator('.verify-set')).toContainText('mod 57, a (57, 8, 1) difference set');
@@ -120,7 +121,7 @@ test.describe('match-one deck maker', () => {
   });
 
   test('print size sets cards per page and is kept in the URL', async ({ page }) => {
-    await page.goto('playgrounds/deck-maker/?q=3&theme=all&seed=9');
+    await page.goto('playgrounds/deck-maker/?q=3&theme=all');
     await page.evaluate(() => {
       window.print = () => undefined;
     });
@@ -136,7 +137,7 @@ test.describe('match-one deck maker', () => {
   });
 
   test('print deck lays out every card for printing', async ({ page }) => {
-    await page.goto('playgrounds/deck-maker/?q=3&theme=all&seed=9');
+    await page.goto('playgrounds/deck-maker/?q=3&theme=all');
     await page.evaluate(() => {
       window.print = () => document.body.setAttribute('data-printed', '');
     });
@@ -166,7 +167,7 @@ test.describe('applications on a phone', () => {
     'lessons/21-majority-rules/',
     'lessons/22-always-meet/',
     'lessons/23-a-ruler-with-no-repeats/',
-    'playgrounds/deck-maker/?q=11&theme=all&seed=3',
+    'playgrounds/deck-maker/?q=11&theme=all',
   ]) {
     test(`${path} has no horizontal scroll`, async ({ page }) => {
       await page.goto(path);
@@ -178,7 +179,7 @@ test.describe('applications on a phone', () => {
   }
 
   test('deck maker play mode fits two cards side by side', async ({ page }) => {
-    await page.goto('playgrounds/deck-maker/?q=7&theme=all&seed=3');
+    await page.goto('playgrounds/deck-maker/?q=7&theme=all');
     await page.locator('.mode-play').click();
     const boxes = await page.locator('.play-table .match-card').evaluateAll((els) =>
       els.map((e) => e.getBoundingClientRect().toJSON() as DOMRect),

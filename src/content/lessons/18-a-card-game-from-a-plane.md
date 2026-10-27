@@ -78,7 +78,7 @@ The pair is $1$ and $0$. Turning $D$ so that 0 lands on 5 means adding $j = 5$, 
 
 </section>
 
-Make your own deck in the [match-one deck maker](../../playgrounds/deck-maker/?q=7&theme=all&seed=57): choose 3 to 12 pictures per card, play the matching game, check every pair of cards, and print the deck to cut out.
+Make your own deck in the [match-one deck maker](../../playgrounds/deck-maker/?q=7&theme=all): choose 3 to 12 pictures per card, play the matching game, check every pair of cards, and print the deck to cut out.
 
 The cards on this site are square, and every picture is the same size and stands upright in a fixed slot. Slot $i$ on card $j$ holds the point $d_i + j$, where $d_i$ is the $i$-th number of $D$. Follow one picture, say point $p$, through the deck: it is on card $p - d_i$ (mod $v$) in slot $i$, for each $i$. So every picture visits every slot exactly once, and no position on the card gives anything away.
 

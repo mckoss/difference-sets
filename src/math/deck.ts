@@ -141,6 +141,9 @@ export function layoutCard(n: number): Placement[] {
   return slots.cells.map(([c, r]) => ({ x: inset + c * cell, y: inset + r * cell, size }));
 }
 
+/** Seed that fixes which picture stands for each point, so every deck is reproducible. */
+export const DECK_SEED = 57;
+
 export type PrintSize = 'small' | 'medium' | 'large';
 
 /**
@@ -154,20 +157,17 @@ export const PRINT_SIZES: Record<PrintSize, { label: string; mm: number; cols: n
   large: { label: 'Large', mm: 94, cols: 2, rows: 2 },
 };
 
-/** Parse "?q=7&theme=vehicles&seed=123&size=small" into deck settings, with defaults. */
+/** Parse "?q=7&theme=vehicles&size=small" into deck settings, with defaults. */
 export function parseDeckParams(search: string): {
   q: number;
   theme: 'all' | 'vehicles';
-  seed: number | null;
   size: PrintSize;
 } {
   const p = new URLSearchParams(search);
   const q = Number(p.get('q'));
-  const seed = Number(p.get('seed'));
   return {
     q: (DECK_Q as readonly number[]).includes(q) ? q : 7,
     theme: p.get('theme') === 'vehicles' ? 'vehicles' : 'all',
-    seed: p.get('seed') !== null && Number.isInteger(seed) && seed >= 0 ? seed : null,
     size: (Object.keys(PRINT_SIZES) as string[]).includes(p.get('size') ?? '') ? (p.get('size') as PrintSize) : 'medium',
   };
 }

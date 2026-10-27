@@ -175,12 +175,6 @@
 
 /* Deck maker */
 
-.deck-maker .seed-out {
-  color: var(--muted);
-  font-size: 0.9rem;
-  font-variant-numeric: tabular-nums;
-}
-
 .deck-maker .mode-bar {
   margin: 0.75rem 0 1rem;
 }

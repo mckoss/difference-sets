@@ -97,10 +97,10 @@ describe('print sizes', () => {
 });
 
 describe('URL parameters', () => {
-  it('reads q, theme, and seed with defaults', () => {
-    expect(parseDeckParams('?q=3&theme=vehicles&seed=12')).toEqual({ q: 3, theme: 'vehicles', seed: 12, size: 'medium' });
-    expect(parseDeckParams('?q=6&theme=x&seed=-1')).toEqual({ q: 7, theme: 'all', seed: null, size: 'medium' });
-    expect(parseDeckParams('')).toEqual({ q: 7, theme: 'all', seed: null, size: 'medium' });
+  it('reads q, theme, and size with defaults, ignoring an old seed', () => {
+    expect(parseDeckParams('?q=3&theme=vehicles&seed=12')).toEqual({ q: 3, theme: 'vehicles', size: 'medium' });
+    expect(parseDeckParams('?q=6&theme=x&seed=-1')).toEqual({ q: 7, theme: 'all', size: 'medium' });
+    expect(parseDeckParams('')).toEqual({ q: 7, theme: 'all', size: 'medium' });
     expect(parseDeckParams('?size=small').size).toBe('small');
     expect(parseDeckParams('?size=huge').size).toBe('medium');
   });

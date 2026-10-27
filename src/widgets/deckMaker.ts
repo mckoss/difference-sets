@@ -1,4 +1,4 @@
-import { checkDeck, DECK_Q, type Deck, makeDeck, parseDeckParams, PRINT_SIZES, type PrintSize, shared } from '../math/deck';
+import { checkDeck, DECK_Q, DECK_SEED, type Deck, makeDeck, parseDeckParams, PRINT_SIZES, type PrintSize, shared } from '../math/deck';
 import { mulberry32, newSeed, randomInt, type Rng } from '../math/random';
 import { renderCard, symbolsFor } from './cards';
 import { setText } from './format';
@@ -29,18 +29,17 @@ const fmtTime = (ms: number) => {
 /**
  * `<div data-widget="deck-maker" data-url-state>`: build a match-one deck for
  * a chosen order q, browse its cards, play the matching game, verify the
- * deck, and print it. State lives in `?q=&theme=&seed=&size=`.
+ * deck, and print it. State lives in `?q=&theme=&size=`.
  */
 export function mount(el: HTMLElement): void {
   const useUrl = el.hasAttribute('data-url-state');
   const params = useUrl ? parseDeckParams(location.search) : parseDeckParams('');
   let q = params.q;
   let theme: Theme = params.theme;
-  let seed = params.seed ?? newSeed();
   let size: PrintSize = params.size;
   let mode: Mode = 'cards';
   let deck: Deck = makeDeck(q);
-  let symbols = symbolsFor(deck.v, seed, theme);
+  let symbols = symbolsFor(deck.v, DECK_SEED, theme);
 
   // Controls
   const controls = document.createElement('div');
@@ -59,10 +58,7 @@ export function mount(el: HTMLElement): void {
     ['vehicles', 'Vehicles'],
   ]);
   themeLabel.append('Theme ', themeSelect);
-  const shuffleBtn = button('Shuffle symbols', 'shuffle-button');
-  const seedOut = document.createElement('span');
-  seedOut.className = 'seed-out';
-  controls.append(qLabel, themeLabel, shuffleBtn, seedOut);
+  controls.append(qLabel, themeLabel);
 
   const themeNote = document.createElement('p');
   themeNote.className = 'hint theme-note';
@@ -123,7 +119,7 @@ export function mount(el: HTMLElement): void {
     const url = new URL(location.href);
     url.searchParams.set('q', String(q));
     url.searchParams.set('theme', theme);
-    url.searchParams.set('seed', String(seed));
+    url.searchParams.delete('seed');
     url.searchParams.set('size', size);
     history.replaceState(null, '', url);
   };
@@ -264,11 +260,10 @@ export function mount(el: HTMLElement): void {
 
   const rebuild = () => {
     deck = makeDeck(q);
-    symbols = symbolsFor(deck.v, seed, theme);
+    symbols = symbolsFor(deck.v, DECK_SEED, theme);
     qSelect.value = String(q);
     themeSelect.value = theme;
     sizeSelect.value = size;
-    seedOut.textContent = `Seed ${seed}`;
     printSheet.replaceChildren();
     const vehicles = symbols.filter((s) => s.theme === 'vehicle').length;
     themeNote.textContent =
@@ -285,10 +280,6 @@ export function mount(el: HTMLElement): void {
   });
   themeSelect.addEventListener('change', () => {
     theme = themeSelect.value === 'vehicles' ? 'vehicles' : 'all';
-    rebuild();
-  });
-  shuffleBtn.addEventListener('click', () => {
-    seed = newSeed();
     rebuild();
   });
   for (const [m, b] of Object.entries(modeButtons)) {
