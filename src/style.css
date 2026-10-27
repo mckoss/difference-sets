@@ -1,0 +1,33 @@
+:root {
+  --bg: #fdfcf8;
+  --fg: #1c1c1e;
+  --muted: #6b6b70;
+  color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #16161a;
+    --fg: #ececf0;
+    --muted: #9a9aa2;
+  }
+}
+
+body {
+  margin: 0 auto;
+  max-width: 44rem;
+  padding: 0 16px 4rem;
+  background: var(--bg);
+  color: var(--fg);
+  font: 1.0625rem/1.6 system-ui, sans-serif;
+}
+
+header {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+}
+
+#app-version {
+  color: var(--muted);
+}
