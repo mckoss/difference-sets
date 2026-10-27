@@ -41,6 +41,11 @@ const registry: Record<string, () => Promise<WidgetModule>> = {
   frobenius: () => import('./frobenius'),
   'field-isomorphism': () => import('./fieldIsomorphism'),
   'field-calculator': () => import('./fieldCalculator'),
+  // Part IV: planes from fields
+  'vector-grid': () => import('./vectorGrid'),
+  'pg2-explorer': () => import('./pg2Explorer'),
+  'field-points': () => import('./fieldPoints'),
+  'singer-cycle': () => import('./singerCycle'),
 };
 
 for (const el of document.querySelectorAll<HTMLElement>('[data-widget]')) {

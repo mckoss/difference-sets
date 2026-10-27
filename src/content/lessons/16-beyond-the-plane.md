@@ -10,7 +10,7 @@ status: ready
 
 ## From a plane to a space
 
-Part IV builds the projective plane of order $q$ from vectors with three coordinates over the finite field with $q$ elements. (Those lessons are still being written; here is the picture you need.) A *point* is a direction: a vector together with all its nonzero multiples. A *line* is a flat sheet through the origin, which contains many directions.
+Part IV builds the projective plane of order $q$ from vectors with three coordinates over the finite field with $q$ elements. ([Lessons 10](../10-vectors-over-a-finite-field/) and [11](../11-coordinates/) do this in detail; here is the picture you need.) A *point* is a direction: a vector together with all its nonzero multiples. A *line* is a flat sheet through the origin, which contains many directions.
 
 Nothing stops us from using more coordinates. With $m + 1$ coordinates we get a projective space of dimension $m$. The role of the lines is now played by **hyperplanes**: the flat pieces that are one dimension smaller than the whole space, the way a plane is one dimension smaller than 3-dimensional space.
 

@@ -32,10 +32,10 @@ lesson. Each checkpoint lands on `main` as its own PR and deploy.
 
 ## Checkpoint 4: Part IV (Lessons 10–13)
 
-- [ ] `projective.ts`: PG(2, q) points, lines, Singer numbering
-- [ ] three.js GF(q)³ grid with lines and planes through the origin
-- [ ] Projective plane explorer playground; Singer cycle animation
-- [ ] Lessons 10–13 written
+- [x] `projective.ts`: GF(q)³, PG(2, q) points, lines, incidence, Singer numbering, tested
+- [x] three.js GF(q)³ grid with lines and planes through the origin (`vector-grid`, three.js lazy-loaded)
+- [x] PG(2, q) explorer playground (`?q=&points=` / `?lines=`); field-points table; Singer cycle animation
+- [x] Lessons 10–13 written
 
 ## Checkpoint 5: Part V (Lessons 14–15)
 

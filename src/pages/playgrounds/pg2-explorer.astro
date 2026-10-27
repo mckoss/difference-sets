@@ -1,0 +1,26 @@
+---
+import Base from '../../layouts/Base.astro';
+import { href, lessonPath, playgroundPath, PLAYGROUNDS } from '../../site';
+
+const pg = PLAYGROUNDS.find((p) => p.slug === 'pg2-explorer')!;
+const base = import.meta.env.BASE_URL;
+---
+
+<Base title={pg.title} description={pg.summary} current={playgroundPath(pg.slug)} wide>
+  <p class="eyebrow">Playground</p>
+  <h1>{pg.title}</h1>
+  <p class="lede">
+    The projective plane PG(2, q) has q² + q + 1 points [x : y : z] with coordinates in GF(q), and as many lines
+    [a : b : c]; a point lies on a line when ax + by + cz = 0. One view lays the points out by coordinates, the
+    other by Singer number: point i is the point of αⁱ in GF(q³). In the Singer numbering every line is a
+    translate D + j of one difference set D. Click two points or two lines. The address bar keeps your choices, so
+    you can share a view.
+  </p>
+  <p>
+    Background: <a href={href(base, lessonPath('10-vectors-over-a-finite-field'))}>Lesson 10</a> (vectors over
+    GF(q)), <a href={href(base, lessonPath('11-coordinates'))}>Lesson 11</a> (coordinates), <a
+      href={href(base, lessonPath('12-field-inside-the-plane'))}>Lesson 12</a
+    > (the Singer numbering), and <a href={href(base, lessonPath('13-singer-cycle'))}>Lesson 13</a> (the Singer cycle).
+  </p>
+  <div data-widget="pg2-explorer" data-q="3" data-views="grid,circle" data-qs="2,3,4,5,7,8,9" data-url-state></div>
+</Base>

@@ -65,6 +65,11 @@ export const PLAYGROUNDS: Playground[] = [
     title: 'Finite field calculator',
     summary: 'Clock arithmetic ℤ/vℤ and the fields GF(pᵉ): tables, inverses, powers, logs, and isomorphisms.',
   },
+  {
+    slug: 'pg2-explorer',
+    title: 'PG(2, q) explorer',
+    summary: 'The projective plane over GF(q): coordinates, lines by dot product, and the Singer numbering by powers of α.',
+  },
 ];
 
 export interface OutlinePart extends Part {
