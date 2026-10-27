@@ -1,0 +1,24 @@
+---
+import Base from '../../layouts/Base.astro';
+import { href, lessonPath, playgroundPath, PLAYGROUNDS } from '../../site';
+
+const pg = PLAYGROUNDS.find((p) => p.slug === 'field-calculator')!;
+const base = import.meta.env.BASE_URL;
+---
+
+<Base title={pg.title} description={pg.summary} current={playgroundPath(pg.slug)} wide>
+  <p class="eyebrow">Playground</p>
+  <h1>{pg.title}</h1>
+  <p class="lede">
+    Arithmetic on a clock with v hours is a field exactly when v is prime. Every other finite field has pᵉ elements
+    for a prime p, and is built from polynomials with coefficients mod p, divided by an irreducible polynomial f of
+    degree e. Pick a mode, then explore. The address bar keeps your settings, so you can share a view.
+  </p>
+  <p>
+    Background: <a href={href(base, lessonPath('05-which-clocks-are-fields'))}>Lesson 5</a> (which clocks are
+    fields), <a href={href(base, lessonPath('07-prime-power-fields'))}>Lesson 7</a> (polynomial fields), and <a
+      href={href(base, lessonPath('08-primitive-elements'))}>Lesson 8</a
+    > (powers and logs).
+  </p>
+  <div data-widget="field-calculator"></div>
+</Base>

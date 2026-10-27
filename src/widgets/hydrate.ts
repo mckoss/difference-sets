@@ -30,6 +30,17 @@ const registry: Record<string, () => Promise<WidgetModule>> = {
   'polynomial-identity': () => import('./polynomialIdentity'),
   'plane-orders': () => import('./planeOrders'),
   'bruck-ryser': () => import('./planeOrders'),
+  // Part III: finite fields
+  'zn-tables': () => import('./znTables'),
+  'zn-clock': () => import('./znClock'),
+  euclid: () => import('./euclid'),
+  'scrambled-field': () => import('./scrambledField'),
+  'gf-tables': () => import('./gfTables'),
+  'poly-division': () => import('./polyDivision'),
+  powers: () => import('./powers'),
+  frobenius: () => import('./frobenius'),
+  'field-isomorphism': () => import('./fieldIsomorphism'),
+  'field-calculator': () => import('./fieldCalculator'),
 };
 
 for (const el of document.querySelectorAll<HTMLElement>('[data-widget]')) {

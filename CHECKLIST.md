@@ -25,10 +25,10 @@ lesson. Each checkpoint lands on `main` as its own PR and deploy.
 
 ## Checkpoint 3: Part III (Lessons 5–9)
 
-- [ ] `field.ts`: ℤ/nℤ and GF(p^k) arithmetic, irreducibility, primitivity, isomorphisms
-- [ ] Widgets: ℤ/nℤ tables, scrambled prime field, GF(p^k) tables, log table, Frobenius
-- [ ] Finite field calculator playground
-- [ ] Lessons 5–9 written
+- [x] `field.ts`: ℤ/vℤ and GF(p^e) arithmetic, irreducibility, primitivity, isomorphisms
+- [x] Widgets: ℤ/vℤ tables, multiplication clock, Euclid stepper, scrambled prime field, polynomial long division, GF(p^e) tables, powers and log table, Frobenius, isomorphism finder
+- [x] Finite field calculator playground (`?v=6`, `?p=2&e=3&poly=1,1,0,1&g=…&poly2=…`)
+- [x] Lessons 5–9 written
 
 ## Checkpoint 4: Part IV (Lessons 10–13)
 

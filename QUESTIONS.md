@@ -93,3 +93,27 @@ Decisions I made while Mike was away, collected here instead of blocking.
 18. **Lesson 4** still says nothing about cyclic order 10; Lesson 17 links
     back to Lesson 16 for GMW. Lessons 14 and 15 (linked from the explorer
     and from Lesson 17's text) are still stubs.
+
+## Part III (Lessons 5–9, finite field calculator)
+
+19. **Degree letter e.** Fields are GF(p^e) with q = p^e throughout, and the
+    modulus has degree e, so GF(q³) is built from a degree-3e polynomial.
+    The calculator's URL uses `e=` (`?p=2&e=3&poly=1,1,0,1`); the older
+    `k=` still works and is rewritten to `e=`. PLAN.md Part III now says so.
+20. **Clock letter v.** Lesson 5 writes ℤ/vℤ for a general clock, following
+    the conventions (n is a plane order). The calculator's clock mode is
+    `?v=6` (`?n=` also accepted).
+21. **Element labels.** Polynomials print highest power first
+    (x² + 1), and as coefficient digits highest first (101), which is also
+    the element's number in base p. URL polynomials stay lowest coefficient
+    first, as in `poly=1,1,0,1` = x³ + x + 1, matching `singer.ts`.
+22. **Stated without proof** (flagged in the text): existence of
+    irreducible polynomials of every degree, uniqueness of GF(q) up to
+    isomorphism (demonstrated by the isomorphism finder), "a degree-d
+    polynomial has at most d roots" (one-line factor-theorem reason given),
+    and the identity Σ φ(d) = n used in the primitive-element sketch.
+    Lesson 9 states, without proof, that GF(p^a) ⊂ GF(p^b) exactly when a | b.
+23. **Calculator limits.** Fields up to 256 elements for powers and logs,
+    tables and the isomorphism finder up to 64, Frobenius for the preset
+    sizes 4–64, clocks up to 24 hours. The Frobenius widget on its own uses
+    the first primitive polynomial for each size.
