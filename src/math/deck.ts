@@ -126,24 +126,41 @@ export const SLOT_COUNTS = Object.keys(SLOTS).map(Number);
 
 /**
  * Lay out n equal, upright squares on a square card in a fixed symmetric
- * pattern, leaving a band at the bottom for the site's address. Slot i holds the i-th point of the card, which on card D + j is
+ * pattern, leaving bands at the top and bottom for the card number and the site's address. Slot i holds the i-th point of the card, which on card D + j is
  * d_i + j; so across the deck each symbol sits in each slot exactly once.
  */
 export function layoutCard(n: number): Placement[] {
   const slots = SLOTS[n];
   if (!slots) throw new Error(`No card layout for ${n} symbols`);
-  const margin = 0.04; // card edge to the outer squares
-  const footer = 0.05; // a band along the bottom for the site's address
+  const band = 0.05; // top and bottom bands for the card number and the site's address
+  const margin = 0.015; // between a band and the squares, and at the sides
   const gap = 0.03; // between neighboring squares
-  const side = 1 - 2 * margin - footer; // the square the slots fill
-  const left = (1 - side) / 2;
-  const cell = (side + gap) / slots.g;
+  const inset = band + margin;
+  const cell = (1 - 2 * inset + gap) / slots.g;
   const size = cell - gap;
-  return slots.cells.map(([c, r]) => ({ x: left + c * cell, y: margin + r * cell, size }));
+  return slots.cells.map(([c, r]) => ({ x: inset + c * cell, y: inset + r * cell, size }));
 }
 
-/** Parse "?q=7&theme=vehicles&seed=123" into deck settings, with defaults. */
-export function parseDeckParams(search: string): { q: number; theme: 'all' | 'vehicles'; seed: number | null } {
+export type PrintSize = 'small' | 'medium' | 'large';
+
+/**
+ * Printed card sizes. Each page is a whole grid of cards that fits inside
+ * both US Letter and A4 with 10 mm margins (190 × 259 mm), so no card is
+ * ever split across a page break.
+ */
+export const PRINT_SIZES: Record<PrintSize, { label: string; mm: number; cols: number; rows: number }> = {
+  small: { label: 'Small', mm: 63, cols: 3, rows: 4 },
+  medium: { label: 'Medium', mm: 82, cols: 2, rows: 3 },
+  large: { label: 'Large', mm: 94, cols: 2, rows: 2 },
+};
+
+/** Parse "?q=7&theme=vehicles&seed=123&size=small" into deck settings, with defaults. */
+export function parseDeckParams(search: string): {
+  q: number;
+  theme: 'all' | 'vehicles';
+  seed: number | null;
+  size: PrintSize;
+} {
   const p = new URLSearchParams(search);
   const q = Number(p.get('q'));
   const seed = Number(p.get('seed'));
@@ -151,5 +168,6 @@ export function parseDeckParams(search: string): { q: number; theme: 'all' | 've
     q: (DECK_Q as readonly number[]).includes(q) ? q : 7,
     theme: p.get('theme') === 'vehicles' ? 'vehicles' : 'all',
     seed: p.get('seed') !== null && Number.isInteger(seed) && seed >= 0 ? seed : null,
+    size: (Object.keys(PRINT_SIZES) as string[]).includes(p.get('size') ?? '') ? (p.get('size') as PrintSize) : 'medium',
   };
 }

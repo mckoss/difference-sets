@@ -119,6 +119,22 @@ test.describe('match-one deck maker', () => {
     await expect(w.locator('.verify-result')).toHaveClass(/ok/);
   });
 
+  test('print size sets cards per page and is kept in the URL', async ({ page }) => {
+    await page.goto('playgrounds/deck-maker/?q=3&theme=all&seed=9');
+    await page.evaluate(() => {
+      window.print = () => undefined;
+    });
+    const w = page.locator('.deck-maker');
+    await expect(w.locator('.size-select')).toHaveValue('medium');
+    for (const [size, pages] of [['small', 2], ['large', 4], ['medium', 3]] as const) {
+      await w.locator('.size-select').selectOption(size);
+      await expect(page).toHaveURL(new RegExp(`size=${size}`));
+      await w.locator('.print-button').click();
+      await expect(page.locator('.deck-print .print-page')).toHaveCount(pages);
+      await expect(page.locator('.deck-print .match-card')).toHaveCount(13);
+    }
+  });
+
   test('print deck lays out every card for printing', async ({ page }) => {
     await page.goto('playgrounds/deck-maker/?q=3&theme=all&seed=9');
     await page.evaluate(() => {
@@ -129,6 +145,8 @@ test.describe('match-one deck maker', () => {
     await expect(page.locator('.deck-print .print-page')).toHaveCount(3);
     await expect(page.locator('.deck-print .match-card')).toHaveCount(13);
     await expect(page.locator('.deck-print .match-card .card-credit').first()).toHaveText('http://mckoss.com/difference-sets');
+    await expect(page.locator('.deck-print .match-card .card-index').first()).toHaveText('1');
+    await expect(page.locator('.deck-print .match-card .card-index').last()).toHaveText('13');
     await page.emulateMedia({ media: 'print' });
     await expect(page.locator('.deck-print')).toBeVisible();
     await expect(page.locator('.deck-grid')).toBeHidden();

@@ -27,10 +27,12 @@ export interface CardOptions {
   /** Load images right away (for printing) instead of lazily. */
   eager?: boolean;
   label?: string;
+  /** Card number printed small in the top right corner (decks count from 1). */
+  index?: number;
 }
 
 /** A square card with its symbols upright and the same size, in fixed slots (slot i holds points[i]). */
-export function renderCard({ points, symbols, interactive = false, eager = false, label }: CardOptions): HTMLElement {
+export function renderCard({ points, symbols, interactive = false, eager = false, label, index }: CardOptions): HTMLElement {
   const card = document.createElement('div');
   card.className = 'match-card';
   const names = points.map((p) => symbols[p].name);
@@ -67,5 +69,12 @@ export function renderCard({ points, symbols, interactive = false, eager = false
   credit.setAttribute('aria-hidden', 'true');
   credit.textContent = CARD_CREDIT;
   card.append(credit);
+  if (index !== undefined) {
+    const num = document.createElement('span');
+    num.className = 'card-index';
+    num.setAttribute('aria-hidden', 'true');
+    num.textContent = String(index);
+    card.append(num);
+  }
   return card;
 }

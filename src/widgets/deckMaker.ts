@@ -1,4 +1,4 @@
-import { checkDeck, DECK_Q, type Deck, makeDeck, parseDeckParams, shared } from '../math/deck';
+import { checkDeck, DECK_Q, type Deck, makeDeck, parseDeckParams, PRINT_SIZES, type PrintSize, shared } from '../math/deck';
 import { mulberry32, newSeed, randomInt, type Rng } from '../math/random';
 import { renderCard, symbolsFor } from './cards';
 import { setText } from './format';
@@ -29,7 +29,7 @@ const fmtTime = (ms: number) => {
 /**
  * `<div data-widget="deck-maker" data-url-state>`: build a match-one deck for
  * a chosen order q, browse its cards, play the matching game, verify the
- * deck, and print it. State lives in `?q=&theme=&seed=`.
+ * deck, and print it. State lives in `?q=&theme=&seed=&size=`.
  */
 export function mount(el: HTMLElement): void {
   const useUrl = el.hasAttribute('data-url-state');
@@ -37,6 +37,7 @@ export function mount(el: HTMLElement): void {
   let q = params.q;
   let theme: Theme = params.theme;
   let seed = params.seed ?? newSeed();
+  let size: PrintSize = params.size;
   let mode: Mode = 'cards';
   let deck: Deck = makeDeck(q);
   let symbols = symbolsFor(deck.v, seed, theme);
@@ -76,7 +77,14 @@ export function mount(el: HTMLElement): void {
     verify: button('Verify', 'mode-verify'),
   };
   const printBtn = button('Print deck', 'print-button');
-  modes.append(modeButtons.cards, modeButtons.play, modeButtons.verify, printBtn);
+  const sizeLabel = document.createElement('label');
+  sizeLabel.className = 'control';
+  const sizeSelect = select(
+    'size-select',
+    Object.entries(PRINT_SIZES).map(([key, { label, mm, cols, rows }]) => [key, `${label} (${mm} mm, ${cols * rows} per page)`]),
+  );
+  sizeLabel.append('Print size ', sizeSelect);
+  modes.append(modeButtons.cards, modeButtons.play, modeButtons.verify, printBtn, sizeLabel);
 
   const cardsPanel = document.createElement('div');
   cardsPanel.className = 'deck-grid';
@@ -116,6 +124,7 @@ export function mount(el: HTMLElement): void {
     url.searchParams.set('q', String(q));
     url.searchParams.set('theme', theme);
     url.searchParams.set('seed', String(seed));
+    url.searchParams.set('size', size);
     history.replaceState(null, '', url);
   };
 
@@ -135,7 +144,8 @@ export function mount(el: HTMLElement): void {
           points: deck.cards[c],
           symbols,
           interactive: true,
-          label: `Card ${c}`,
+          index: c + 1,
+          label: `Card ${c + 1}`,
         });
         card.dataset.card = String(c);
         return card;
@@ -184,9 +194,9 @@ export function mount(el: HTMLElement): void {
       ...deck.cards.map((points, j) => {
         const fig = document.createElement('figure');
         fig.className = 'deck-card';
-        fig.append(renderCard({ points, symbols, label: `Card ${j}` }));
+        fig.append(renderCard({ points, symbols, index: j + 1, label: `Card ${j + 1}` }));
         const cap = document.createElement('figcaption');
-        cap.textContent = `Card ${j}`;
+        cap.textContent = `Card ${j + 1} = D + ${j}`;
         fig.append(cap);
         return fig;
       }),
@@ -199,7 +209,7 @@ export function mount(el: HTMLElement): void {
     const k = q + 1;
     const rows = deck.cards.slice(0, Math.min(deck.v, 8)).map((pts, j) => {
       const li = document.createElement('li');
-      li.textContent = `Card ${j} = D + ${j} = ${setText([...pts].sort((a, b) => a - b))}: ${pts.map((p) => symbols[p].name).join(', ')}`;
+      li.textContent = `Card ${j + 1} = D + ${j} = ${setText([...pts].sort((a, b) => a - b))}: ${pts.map((p) => symbols[p].name).join(', ')}`;
       return li;
     });
     const set = document.createElement('p');
@@ -225,11 +235,17 @@ export function mount(el: HTMLElement): void {
 
   const renderPrint = () => {
     printSheet.replaceChildren();
-    for (let start = 0; start < deck.v; start += 6) {
+    const { mm, cols, rows } = PRINT_SIZES[size];
+    printSheet.style.setProperty('--print-card', `${mm}mm`);
+    printSheet.style.setProperty('--print-cols', String(cols));
+    const perPage = cols * rows;
+    for (let start = 0; start < deck.v; start += perPage) {
       const page = document.createElement('div');
       page.className = 'print-page';
-      for (let j = start; j < Math.min(deck.v, start + 6); j++) {
-        page.append(renderCard({ points: deck.cards[j], symbols, eager: true, label: `Card ${j}` }));
+      for (let j = start; j < Math.min(deck.v, start + perPage); j++) {
+        page.append(
+          renderCard({ points: deck.cards[j], symbols, eager: true, index: j + 1, label: `Card ${j + 1}` }),
+        );
       }
       printSheet.append(page);
     }
@@ -251,6 +267,7 @@ export function mount(el: HTMLElement): void {
     symbols = symbolsFor(deck.v, seed, theme);
     qSelect.value = String(q);
     themeSelect.value = theme;
+    sizeSelect.value = size;
     seedOut.textContent = `Seed ${seed}`;
     printSheet.replaceChildren();
     const vehicles = symbols.filter((s) => s.theme === 'vehicle').length;
@@ -280,6 +297,11 @@ export function mount(el: HTMLElement): void {
       showMode();
     });
   }
+  sizeSelect.addEventListener('change', () => {
+    size = sizeSelect.value as PrintSize;
+    printSheet.replaceChildren();
+    writeUrl();
+  });
   printBtn.addEventListener('click', async () => {
     renderPrint();
     await Promise.all([...printSheet.querySelectorAll('img')].map((img) => img.decode().catch(() => undefined)));

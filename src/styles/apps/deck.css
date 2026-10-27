@@ -28,6 +28,18 @@
   container-type: inline-size;
 }
 
+.match-card .card-index {
+  position: absolute;
+  top: 2.2%;
+  right: 3.5%;
+  font-size: 3.6cqw;
+  line-height: 1;
+  color: #a8a8a8;
+  font-variant-numeric: tabular-nums;
+  pointer-events: none;
+  user-select: none;
+}
+
 .match-card .card-credit {
   position: absolute;
   left: 0;
@@ -257,11 +269,12 @@
   /* Cards touch, so one cut along each shared edge separates two cards. */
   .print-page {
     display: grid;
-    grid-template-columns: repeat(2, 82mm);
-    grid-auto-rows: 82mm;
+    grid-template-columns: repeat(var(--print-cols, 2), var(--print-card, 82mm));
+    grid-auto-rows: var(--print-card, 82mm);
     gap: 0;
     justify-content: center;
     break-after: page;
+    break-inside: avoid;
   }
 
   .print-page:last-child {
@@ -270,14 +283,15 @@
 
   /* Neighbors overlap by one border width so each cut line prints once. */
   .print-page .match-card {
-    width: calc(82mm + 0.25mm);
-    height: calc(82mm + 0.25mm);
+    width: calc(var(--print-card, 82mm) + 0.25mm);
+    height: calc(var(--print-card, 82mm) + 0.25mm);
     margin: 0 -0.25mm -0.25mm 0;
     border: 0.25mm solid #bbb;
     border-radius: 0;
     background: #fff;
     box-shadow: none;
     print-color-adjust: exact;
+    break-inside: avoid;
   }
 }
 

@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import manifest from '../../public/symbols/manifest.json';
-import { assignSymbols, checkDeck, DECK_Q, layoutCard, makeDeck, parseDeckParams, SLOT_COUNTS, shared } from '../../src/math/deck';
+import { assignSymbols, checkDeck, DECK_Q, layoutCard, makeDeck, parseDeckParams, PRINT_SIZES, SLOT_COUNTS, shared } from '../../src/math/deck';
 
 describe('match-one decks', () => {
   for (const q of DECK_Q) {
@@ -86,10 +86,22 @@ describe('card layout', () => {
   });
 });
 
+describe('print sizes', () => {
+  // Printable area shared by US Letter and A4 with 10 mm margins.
+  for (const [name, { mm, cols, rows }] of Object.entries(PRINT_SIZES)) {
+    it(`${name} pages fit on Letter and A4`, () => {
+      expect(cols * mm + 0.25).toBeLessThanOrEqual(190);
+      expect(rows * mm + 0.25).toBeLessThanOrEqual(259);
+    });
+  }
+});
+
 describe('URL parameters', () => {
   it('reads q, theme, and seed with defaults', () => {
-    expect(parseDeckParams('?q=3&theme=vehicles&seed=12')).toEqual({ q: 3, theme: 'vehicles', seed: 12 });
-    expect(parseDeckParams('?q=6&theme=x&seed=-1')).toEqual({ q: 7, theme: 'all', seed: null });
-    expect(parseDeckParams('')).toEqual({ q: 7, theme: 'all', seed: null });
+    expect(parseDeckParams('?q=3&theme=vehicles&seed=12')).toEqual({ q: 3, theme: 'vehicles', seed: 12, size: 'medium' });
+    expect(parseDeckParams('?q=6&theme=x&seed=-1')).toEqual({ q: 7, theme: 'all', seed: null, size: 'medium' });
+    expect(parseDeckParams('')).toEqual({ q: 7, theme: 'all', seed: null, size: 'medium' });
+    expect(parseDeckParams('?size=small').size).toBe('small');
+    expect(parseDeckParams('?size=huge').size).toBe('medium');
   });
 });
