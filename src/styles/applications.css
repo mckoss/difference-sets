@@ -5,6 +5,7 @@
 @import './apps/aperture-echo.css';
 @import './apps/codes.css';
 @import './apps/schedule-ruler.css';
+@import './apps/projective.css';
 
 /* Markdown tables in lessons */
 .lesson table {

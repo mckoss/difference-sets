@@ -117,3 +117,26 @@ Decisions I made while Mike was away, collected here instead of blocking.
     tables and the isomorphism finder up to 64, Frobenius for the preset
     sizes 4–64, clocks up to 24 hours. The Frobenius widget on its own uses
     the first primitive polynomial for each size.
+
+## Part IV (Lessons 10–13, PG(2, q) explorer)
+
+24. **GF(q³) over GF(q).** `projective.ts` builds GF(q³) as GF(q)[α] modulo a
+    primitive cubic, so coordinates are (c₀, c₁, c₂) for c₀ + c₁α + c₂α². For
+    prime q the cubic is the one `singerSet` uses (so the trace-zero line equals
+    `singerSet(q)`, tested); for q = 4, 8, 9 it is `findPrimitiveCubic`. Lesson 12
+    says Lesson 7's recipe works with coefficients in any field, and that
+    Lesson 9's degree-6 GF(64) is the same field relabeled.
+25. **Featured line.** Lessons 12–13 use the line z = 0 (no α² term). With these
+    cubics it gives exactly PLAN.md's {0, 1, 3}, {0, 1, 3, 9}, {0, 1, 4, 14, 16}
+    (tested), so the trace-zero line is left for Lesson 14.
+26. **Labels.** Points normalize to first nonzero coordinate 1, ordered [1 : y : z],
+    [0 : 1 : z], [0 : 0 : 1]. GF(q) elements for q = 4, 8, 9 print as 0, 1, ω, ω², …
+    (ω a root of the first primitive polynomial over GF(p)), not as digit strings.
+27. **three.js** 0.186.1 (exact pin, @types/three 0.186.0) loads by dynamic import
+    only in the `vector-grid` widget (Lesson 10); about 740 kB uncompressed. The
+    view slowly turns until dragged (not with reduced motion); zoom and pan are
+    off so the page scrolls normally. The text description below it lists the
+    same vectors.
+28. **Proof level.** Lesson 11 proves the axioms with the cross product and a
+    span-counting argument; Lesson 13 states that every subspace with q² vectors
+    is a plane, with a one-line reason.
