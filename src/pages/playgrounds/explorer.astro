@@ -1,0 +1,26 @@
+---
+import Base from '../../layouts/Base.astro';
+import { href, lessonPath, playgroundPath, PLAYGROUNDS } from '../../site';
+
+const pg = PLAYGROUNDS.find((p) => p.slug === 'explorer')!;
+const base = import.meta.env.BASE_URL;
+---
+
+<Base title={pg.title} description={pg.summary} current={playgroundPath(pg.slug)} wide>
+  <p class="eyebrow">Playground</p>
+  <h1>{pg.title}</h1>
+  <p class="lede">
+    Singer's construction needs no search, so it scales. Pick any prime power q up to 1024 and a background thread
+    writes down a (q² + q + 1, q + 1, 1) difference set: for q = 1024 that is 1,025 numbers out of 1,049,601. The
+    picture draws a chord between every two members; the tally checks every one of the differences, and each nonzero
+    residue turns up exactly once.
+  </p>
+  <div data-widget="large-q-explorer" data-q="101" data-url-state></div>
+  <p>
+    The set is the list of i for which the trace of α<sup>i</sup> is zero, where α generates the field with q³
+    elements, exactly as in <a href={href(base, lessonPath('14-writing-down-a-difference-set'))}>Lesson 14</a>. The
+    link in your address bar keeps q, so you can share a view. For why the search in the <a
+      href={href(base, playgroundPath('search-vs-construction'))}>search versus construction</a> playground can't
+    reach these sizes, see <a href={href(base, lessonPath('17-every-planar-set-singer'))}>Lesson 17</a>.
+  </p>
+</Base>

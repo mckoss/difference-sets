@@ -46,6 +46,16 @@ export const PLAYGROUNDS: Playground[] = [
     summary: 'Every distinct Singer difference set for a chosen q, drawn as chord diagrams.',
   },
   {
+    slug: 'search-vs-construction',
+    title: 'Search versus construction',
+    summary: 'Search every planar difference set of a small order and check each one against the Singer sets.',
+  },
+  {
+    slug: 'explorer',
+    title: 'Large-q explorer',
+    summary: 'A Singer difference set for any prime power q up to 1024, drawn, checked, and ready to download.',
+  },
+  {
     slug: 'deck-maker',
     title: 'Match-one deck maker',
     summary: 'Deal a deck of picture cards in which every two cards share exactly one symbol, then play or print it.',

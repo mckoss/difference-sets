@@ -1,5 +1,6 @@
 /* Styles for the Part VI–VII widgets, one file per widget family. */
 @import './apps/frontier.css';
+@import './apps/completeness.css';
 @import './apps/deck.css';
 @import './apps/aperture-echo.css';
 @import './apps/codes.css';

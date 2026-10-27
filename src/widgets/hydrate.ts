@@ -24,6 +24,12 @@ const registry: Record<string, () => Promise<WidgetModule>> = {
   'majority-decoder': () => import('./majorityDecoder'),
   'wake-up': () => import('./wakeUp'),
   'golomb-ruler': () => import('./golombRuler'),
+  // Lesson 17 and the search and explorer playgrounds.
+  'planar-search': () => import('./planarSearch'),
+  'large-q-explorer': () => import('./largeQExplorer'),
+  'polynomial-identity': () => import('./polynomialIdentity'),
+  'plane-orders': () => import('./planeOrders'),
+  'bruck-ryser': () => import('./planeOrders'),
 };
 
 for (const el of document.querySelectorAll<HTMLElement>('[data-widget]')) {

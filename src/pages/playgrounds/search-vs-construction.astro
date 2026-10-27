@@ -1,0 +1,43 @@
+---
+import Base from '../../layouts/Base.astro';
+import { href, lessonPath, playgroundPath, PLAYGROUNDS } from '../../site';
+
+const pg = PLAYGROUNDS.find((p) => p.slug === 'search-vs-construction')!;
+const base = import.meta.env.BASE_URL;
+---
+
+<Base title={pg.title} description={pg.summary} current={playgroundPath(pg.slug)} wide>
+  <p class="eyebrow">Playground</p>
+  <h1>{pg.title}</h1>
+  <p class="lede">
+    Pick an order n. The search below tries to build every (v, k, 1) difference set with v = n² + n + 1 points and
+    k = n + 1 members, one member at a time, backing up whenever a difference repeats. It runs in a background
+    thread, so the page stays responsive, and each set it finds is checked against the Singer sets for the same
+    order.
+  </p>
+  <p>
+    The search only looks for sets that contain 0 and 1. That loses nothing: the difference 1 occurs exactly once, as
+    a − b = 1 for one pair, and sliding the set back by b gives a copy that contains 0 and 1. So each family of
+    translates shows up exactly once. The <em>completeness conjecture</em> of <a
+      href={href(base, lessonPath('17-every-planar-set-singer'))}>Lesson 17</a> predicts that every set found is of
+    Singer type: a Singer set up to sliding, or a mirror image of one.
+  </p>
+  <div data-widget="planar-search" data-n="7" data-url-state data-autorun></div>
+  <h2>What to try</h2>
+  <ul>
+    <li>
+      <strong>n = 6</strong> finishes at once with nothing found. The Bruck–Ryser theorem already says so: 6 leaves
+      remainder 2 when divided by 4 and is not a sum of two squares.
+    </li>
+    <li>
+      <strong>n = 10</strong> passes Bruck–Ryser (10 = 1² + 3²), and the search rules it out by brute force in about a
+      second. Ruling out <em>every</em> plane of order 10, cyclic or not, took Lam, Thiel, and Swiercz years of
+      computer time (1989): a cyclic plane is far more constrained.
+    </li>
+    <li>
+      <strong>n = 11 and 12</strong> take seconds to minutes, and the work grows about ninefold with each step in n.
+      Singer's construction, in the last box, stays far below a millisecond: it writes the set down instead of
+      searching for it.
+    </li>
+  </ul>
+</Base>
