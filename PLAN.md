@@ -307,7 +307,7 @@ verified notes so far are in [docs/citations.md](docs/citations.md).
   (`singerSetFast`, a worker), with Canvas rendering (chords shaded by
   density for large k), a difference tally, copy and download, and `?q=`.
 - **Match-one deck maker.** A Spot It style deck for q ∈ {2, 3, 4, 5, 7, 8,
-  9, 11} with 150 locally generated symbol images (see
+  9, 11} with 155 locally generated symbol images (32 vehicles; prompt in README.md) (see
   [docs/symbols.md](docs/symbols.md)): Everything or Vehicles themes, seeded
   shuffles in the URL (`?q=7&theme=all&seed=…`), a play mode, a verify panel,
   and a print layout for cutting out cards.

@@ -36,6 +36,23 @@ diagrams match the SVGs rendered by the original Python notebook
 drives it in Chromium with Playwright, served by `tests/e2e/serve.mjs`; run `npx playwright install chromium`
 once first. `npm run build` writes the site to `dist/`.
 
+## Symbol images
+
+The match-one deck's 155 sticker pictures in `public/symbols/` were generated
+locally with the Z-Image Turbo model (via ComfyUI), one image per name with
+seed 1000 + its number, then shrunk to 256 px WebP. The prompt template is
+
+> a single cute cartoon NAME, flat vector sticker icon, bold black outline,
+> bright saturated colors, centered, isolated on a plain pure white
+> background, no text, no shadow
+
+A few images were regenerated with a more specific prompt or another seed; the
+exact slug, name, seed, and prompt for every image are in
+[`docs/symbols-manifest.tsv`](docs/symbols-manifest.tsv), with more notes in
+[`docs/symbols.md`](docs/symbols.md). To add images, run
+`scripts/generate-symbols.sh <first number> "name" …`, review them, and list
+them in `public/symbols/manifest.json` with a theme (`vehicle` or `other`).
+
 ## Deployment
 
 GitHub Actions typechecks, tests, and builds every push and pull request. Pushes to `main` deploy

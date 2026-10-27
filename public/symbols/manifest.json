@@ -898,5 +898,35 @@
   "name": "bulldozer",
   "file": "150-bulldozer.webp",
   "theme": "vehicle"
+ },
+ {
+  "slug": "151-motorcycle",
+  "name": "motorcycle",
+  "file": "151-motorcycle.webp",
+  "theme": "vehicle"
+ },
+ {
+  "slug": "152-scooter",
+  "name": "scooter",
+  "file": "152-scooter.webp",
+  "theme": "vehicle"
+ },
+ {
+  "slug": "153-submarine",
+  "name": "submarine",
+  "file": "153-submarine.webp",
+  "theme": "vehicle"
+ },
+ {
+  "slug": "154-forklift",
+  "name": "forklift",
+  "file": "154-forklift.webp",
+  "theme": "vehicle"
+ },
+ {
+  "slug": "155-delivery-van",
+  "name": "delivery van",
+  "file": "155-delivery-van.webp",
+  "theme": "vehicle"
  }
 ]

@@ -27,10 +27,10 @@ describe('match-one decks', () => {
 });
 
 describe('symbols', () => {
-  it('has 150 symbols, each with a file, 27 of them vehicles', () => {
-    expect(manifest).toHaveLength(150);
-    expect(new Set(manifest.map((s) => s.file)).size).toBe(150);
-    expect(manifest.filter((s) => s.theme === 'vehicle')).toHaveLength(27);
+  it('has 155 symbols, each with a file, 32 of them vehicles', () => {
+    expect(manifest).toHaveLength(155);
+    expect(new Set(manifest.map((s) => s.file)).size).toBe(155);
+    expect(manifest.filter((s) => s.theme === 'vehicle')).toHaveLength(32);
   });
 
   it('assigns distinct symbols, theme first, reproducibly', () => {
@@ -40,7 +40,9 @@ describe('symbols', () => {
     expect(assignSymbols(manifest, 21, 42, 'vehicle')).toEqual(a);
     expect(assignSymbols(manifest, 21, 43, 'vehicle')).not.toEqual(a);
     const big = assignSymbols(manifest, 57, 1, 'vehicle');
-    expect(big.filter((s) => s.theme === 'vehicle')).toHaveLength(27);
+    expect(big.filter((s) => s.theme === 'vehicle')).toHaveLength(32);
+    // A q = 5 deck (31 cards, 6 per card) can be all vehicles.
+    expect(assignSymbols(manifest, 31, 1, 'vehicle').every((s) => s.theme === 'vehicle')).toBe(true);
     expect(new Set(assignSymbols(manifest, 133, 7).map((s) => s.slug)).size).toBe(133);
   });
 });
