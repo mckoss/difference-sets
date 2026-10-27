@@ -45,11 +45,12 @@ lesson. Each checkpoint lands on `main` as its own PR and deploy.
 
 ## Checkpoint 6: Part VI (Lessons 16–17)
 
-- [ ] Citations verified against sources
-- [ ] Search versus construction playground (worker)
-- [ ] Large-q explorer (Canvas)
+- [x] Citations verified against sources
+- [x] Search versus construction playground (worker)
+- [x] Large-q explorer (Canvas)
 - [x] Lesson 16 written (higher-dimensional Singer sets, m-sequences, GMW contrast)
-- [ ] Lesson 17 written
+- [x] Lesson 17 written (completeness conjecture, plane-order table, Bruck–Ryser checker, polynomial identity)
+- [x] `planarSearch.ts`, `singerFast.ts`, `planeOrders.ts`, `groupRing.ts`, tested (search counts match A058241 and A335866)
 
 ## Checkpoint 6b: Part VII Applications (Lessons 18–23)
 

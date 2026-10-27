@@ -56,3 +56,40 @@ Decisions I made while Mike was away, collected here instead of blocking.
     Vehicles theme has 27 images, so decks with q ≥ 5 fill in with others.
     Cards stay white in dark mode so the white-backed stickers blend.
 
+
+## Part VI frontier (2026-10-27)
+
+13. **Search range.** The search playground offers n ≤ 12. Measured in
+    Chromium: n = 9 in 0.12 s (914,004 nodes), n = 10 in 1.1 s (7.9 million,
+    nothing found), n = 11 in 11 s (68 million), n = 12 about 2 minutes
+    (601 million, nothing found). It autoruns only for n ≤ 9; Cancel
+    terminates the worker. The counts are reduced sets (containing 0 and 1),
+    which match A335866 (φ(v)/3e); deduplicated up to negation they match
+    A058241. Both are unit-tested for n ≤ 10.
+14. **`singerSetFast(q)`** is new (GF(q) log tables plus a primitive cubic
+    over GF(q)); `singerSet` and its tests are untouched. Its output is a
+    different but equivalent Singer set (tested for q ≤ 32). It builds
+    q = 1024 (v = 1,049,601) in about 25 ms, where `singerSet` takes about
+    15 s. The explorer stops at q = 1024 so it includes Huang–Schmidt's
+    largest verified order.
+15. **Explorer drawing.** For k > 120 the worker rasterizes the chords into a
+    512 × 512 crossing-count grid (about 110 ms at q = 1024), shaded
+    1 − e^(−count/scale); at that size the picture is an even disc. Smaller
+    sets draw real canvas lines.
+16. **Lesson 17 wording.** "Desarguesian" is defined as "built from a field"
+    without the history of the name. "9 is the smallest order with planes
+    that don't come from a field" is stated, as allowed, though
+    citations.md notes it is not separately sourced. Kantor 1987 is
+    paraphrased as flag-transitive with one exception. General orders that
+    are neither prime powers, Bruck–Ryser exclusions, nor 10 are labeled
+    "Open: no plane known".
+17. **Order table.** Each order gets the first reason that applies: prime
+    power, Bruck–Ryser, a difference-set theorem (Wilbrink, then
+    Jungnickel–Vedder, then Gordon 1994's divisor list), then computer
+    search. In the cyclic view only 85, 91, and 95 fall through to
+    "computer search" below 100. The claim that the site's search rules out
+    cyclic order 10 in about a second is our own measurement, set against
+    Lam–Thiel–Swiercz for general planes.
+18. **Lesson 4** still says nothing about cyclic order 10; Lesson 17 links
+    back to Lesson 16 for GMW. Lessons 14 and 15 (linked from the explorer
+    and from Lesson 17's text) are still stubs.

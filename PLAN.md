@@ -235,7 +235,11 @@ integers mod p, and only then the prime-power fields built on top of them.
       sets).
 
     Playground tie-in: exhaustive search for small v finds only sets
-    equivalent to Singer sets.
+    equivalent to Singer sets. Widgets: the search itself, a table of
+    orders n ≤ 100 colored by status (cyclic planes or any plane), a
+    Bruck–Ryser checker, and the identity
+    D(x)·D(x⁻¹) ≡ n + (1 + x + … + x^(v−1)) mod (x^v − 1) worked term by
+    term, with x replaced by a turn to show |D| = √n.
 
 **Part VII — Applications**
 
@@ -283,11 +287,14 @@ verified notes so far are in [docs/citations.md](docs/citations.md).
   value shown.
 - **Singer classes gallery.** The current home page: distinct classes for
   each q, as chord diagrams.
-- **Search versus construction.** Backtracking search for planar sets at
-  small v, in a worker, with each result classified against the Singer
-  classes; set its running time beside Singer's.
-- **Large-q explorer.** Singer sets for q up to about 1000, with Canvas
-  rendering, a histogram, and a download.
+- **Search versus construction.** Backtracking search for planar sets of
+  order n ≤ 12 (sets containing 0 and 1, pruned by a used-differences mask
+  and a gap bound), in a worker with a cancel button and `?n=`, with each
+  result classified against the Singer classes; its running time sits
+  beside Singer's.
+- **Large-q explorer.** Singer sets for every prime power q ≤ 1024
+  (`singerSetFast`, a worker), with Canvas rendering (chords shaded by
+  density for large k), a difference tally, copy and download, and `?q=`.
 - **Match-one deck maker.** A Spot It style deck for q ∈ {2, 3, 4, 5, 7, 8,
   9, 11} with 150 locally generated symbol images (see
   [docs/symbols.md](docs/symbols.md)): Everything or Vehicles themes, seeded

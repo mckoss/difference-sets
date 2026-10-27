@@ -1,0 +1,409 @@
+/* Lesson 17 and the search and explorer playgrounds */
+
+:root {
+  --st-exists: #188038;
+  --st-exists-bg: rgba(24, 128, 56, 0.14);
+  --st-br: #c5221f;
+  --st-br-bg: rgba(197, 34, 31, 0.12);
+  --st-theorem: #b06000;
+  --st-theorem-bg: rgba(227, 116, 0, 0.14);
+  --st-computer: #7b3fbf;
+  --st-computer-bg: rgba(123, 63, 191, 0.13);
+  --st-open: #6b6b70;
+  --st-open-bg: transparent;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --st-exists: #81c995;
+    --st-exists-bg: rgba(129, 201, 149, 0.16);
+    --st-br: #f28b82;
+    --st-br-bg: rgba(242, 139, 130, 0.14);
+    --st-theorem: #fcad70;
+    --st-theorem-bg: rgba(252, 173, 112, 0.15);
+    --st-computer: #c58af9;
+    --st-computer-bg: rgba(197, 138, 249, 0.15);
+    --st-open: #9a9aa2;
+    --st-open-bg: transparent;
+  }
+}
+
+.planar-search,
+.large-q-explorer,
+.polynomial-identity,
+.plane-orders,
+.bruck-ryser {
+  padding: 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+:is(.planar-search, .large-q-explorer, .polynomial-identity) .widget-heading {
+  margin: 1rem 0 0.3rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.widget button:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.widget button:disabled:hover {
+  border-color: var(--border);
+}
+
+/* Search versus construction */
+
+.planar-search .stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(9.5rem, 1fr));
+  gap: 0.5rem;
+  margin: 0.75rem 0;
+}
+
+.planar-search .stat {
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem 0.65rem;
+  border-radius: 6px;
+  background: var(--bg-raised);
+  min-width: 0;
+}
+
+.planar-search .stat-label {
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+.planar-search .stat-value {
+  font-size: 1.3rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.planar-search .stat-note {
+  font-size: 0.8rem;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+  overflow-wrap: anywhere;
+}
+
+.planar-search.running .stat-value {
+  color: var(--accent);
+}
+
+.search-status.done {
+  font-weight: 500;
+}
+
+.search-results {
+  margin: 0.75rem 0 0;
+  padding-left: 2.2rem;
+  font-variant-numeric: tabular-nums;
+  font-size: 0.95rem;
+}
+
+.search-results li {
+  margin: 0.15rem 0;
+  overflow-wrap: anywhere;
+}
+
+.badge {
+  display: inline-block;
+  padding: 0 0.45rem;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  white-space: nowrap;
+}
+
+.badge.singer {
+  background: var(--ok-soft);
+  color: var(--ok);
+}
+
+.badge.other {
+  background: var(--bad-soft);
+  color: var(--bad);
+}
+
+/* Large-q explorer */
+
+.explorer-summary {
+  font-variant-numeric: tabular-nums;
+}
+
+.large-q-explorer.busy .explorer-body {
+  opacity: 0.45;
+}
+
+.explorer-body {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 1.5rem;
+  align-items: flex-start;
+}
+
+.explorer-chords {
+  flex: 1 1 320px;
+  max-width: 640px;
+  min-width: 0;
+}
+
+.explorer-chords canvas,
+.explorer-side canvas {
+  display: block;
+  max-width: 100%;
+}
+
+.explorer-side {
+  flex: 1 1 260px;
+  min-width: 0;
+}
+
+.explorer-side .widget-heading:first-child {
+  margin-top: 0;
+}
+
+.set-text {
+  display: block;
+  width: 100%;
+  font: 0.85rem/1.4 ui-monospace, SFMono-Regular, Menlo, monospace;
+  color: var(--fg);
+  background: var(--bg-raised);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 0.4rem;
+  resize: vertical;
+}
+
+.widget .button-link {
+  display: inline-block;
+  font-size: 0.95rem;
+  padding: 0.2rem 0.6rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--bg-raised);
+  color: var(--fg);
+  text-decoration: none;
+}
+
+.widget .button-link:hover {
+  border-color: var(--accent);
+}
+
+.widget .copied {
+  margin: 0;
+}
+
+/* The polynomial identity */
+
+.identity-top {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+  align-items: center;
+}
+
+.identity-top .circle-box {
+  flex: 0 1 230px;
+  margin: 0;
+}
+
+.identity-polys {
+  flex: 1 1 260px;
+  min-width: 0;
+}
+
+.poly-line,
+.identity-collected,
+.identity-at-one,
+.arrow-note {
+  font-variant-numeric: tabular-nums;
+  overflow-wrap: anywhere;
+}
+
+.poly-line {
+  margin: 0 0 0.4rem;
+  font-size: 1.05rem;
+}
+
+.product-table {
+  border-collapse: collapse;
+  font-variant-numeric: tabular-nums;
+  margin-bottom: 0.5rem;
+}
+
+.product-table th,
+.product-table td {
+  min-width: 2.6rem;
+  padding: 0.2rem 0.4rem;
+  border: 1px solid var(--border);
+  text-align: center;
+}
+
+.product-table th {
+  color: var(--muted);
+  font-weight: 500;
+  background: var(--bg-raised);
+}
+
+.product-table td.diag {
+  color: var(--muted);
+}
+
+.product-table td.same {
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.identity-arrows {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+  align-items: center;
+}
+
+.identity-arrows svg {
+  width: 260px;
+  max-width: 100%;
+  height: auto;
+}
+
+.identity-arrows .arrow-note {
+  flex: 1 1 220px;
+  margin: 0;
+}
+
+.arrows .axis {
+  stroke: var(--border);
+}
+
+.arrows .target-circle {
+  fill: none;
+  stroke: var(--muted);
+  stroke-dasharray: 4 3;
+}
+
+.arrows .step {
+  stroke: var(--chord);
+  stroke-width: 2;
+}
+
+.arrows .step-head {
+  fill: var(--chord);
+}
+
+.arrows .total {
+  stroke: var(--member);
+  stroke-width: 2.5;
+}
+
+.arrows .origin {
+  fill: var(--fg);
+}
+
+/* Orders of planes */
+
+.order-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem 1rem;
+  margin: 0.25rem 0 0.6rem;
+  font-size: 0.85rem;
+}
+
+.order-key::before {
+  content: '';
+  display: inline-block;
+  width: 0.85em;
+  height: 0.85em;
+  margin-right: 0.35em;
+  vertical-align: -0.1em;
+  border-radius: 3px;
+  border: 1.5px solid var(--status);
+  background: var(--status-bg);
+}
+
+.order-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(2.35rem, 1fr));
+  gap: 3px;
+}
+
+.widget .order-cell {
+  padding: 0.25rem 0;
+  font-size: 0.85rem;
+  font-variant-numeric: tabular-nums;
+  border: 1.5px solid var(--status);
+  background: var(--status-bg);
+  color: var(--status);
+  border-radius: 4px;
+}
+
+.widget .order-cell[aria-pressed='true'] {
+  outline: 2px solid var(--fg);
+  outline-offset: 1px;
+  background: var(--status-bg);
+  color: var(--status);
+  border-color: var(--status);
+}
+
+.s-singer,
+.s-exists {
+  --status: var(--st-exists);
+  --status-bg: var(--st-exists-bg);
+}
+
+.s-bruck-ryser {
+  --status: var(--st-br);
+  --status-bg: var(--st-br-bg);
+}
+
+.s-theorem {
+  --status: var(--st-theorem);
+  --status-bg: var(--st-theorem-bg);
+}
+
+.s-computer {
+  --status: var(--st-computer);
+  --status-bg: var(--st-computer-bg);
+}
+
+.s-open {
+  --status: var(--st-open);
+  --status-bg: var(--st-open-bg);
+}
+
+.widget .order-cell.s-open {
+  border-style: dashed;
+}
+
+.order-detail {
+  margin-top: 0.75rem;
+  padding: 0.6rem 0.75rem;
+  border-radius: 6px;
+  background: var(--bg-raised);
+  font-size: 0.95rem;
+}
+
+.order-detail p {
+  margin: 0.35rem 0;
+}
+
+.order-title {
+  font-weight: 600;
+}
+
+.br-steps {
+  margin: 0.3rem 0;
+  padding-left: 1.2rem;
+  overflow-wrap: anywhere;
+}
+
+.widget .order-input {
+  width: 9em;
+}
