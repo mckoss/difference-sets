@@ -62,7 +62,8 @@ lesson. Each checkpoint lands on `main` as its own PR and deploy.
 - [x] Lesson 21 majority-logic decoder (`codes.ts`, parameters computed in tests)
 - [x] Lesson 22 wake-up schedules (`schedule.ts`); Lesson 23 Golomb ruler (`ruler.ts`)
 - [x] Lesson 4 forward reference to Lesson 18
-- [ ] Optional Lesson 24: declustered RAID rebuild
+- [x] Lesson 24 race charts (`race.ts`, `raceSearch.ts`, and the generated `raceTable.ts`: the fairest rotation for 2–8 lanes and up to 60 cars, checked against brute force and against Pope and Young's Partial Perfect-N gaps)
+- [ ] Optional Lesson 25: declustered RAID rebuild
 
 ## Checkpoint 7: Polish
 
