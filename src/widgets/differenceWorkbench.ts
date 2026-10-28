@@ -13,12 +13,12 @@ export interface Preset {
 }
 
 export const PRESETS: Preset[] = [
-  { label: '{0, 1, 3} mod 7', v: 7, set: [0, 1, 3] },
-  { label: '{0, 1, 3, 9} mod 13', v: 13, set: [0, 1, 3, 9] },
-  { label: '{0, 1, 4, 14, 16} mod 21', v: 21, set: [0, 1, 4, 14, 16] },
-  { label: '{1, 3, 4, 5, 9} mod 11 (λ = 2)', v: 11, set: [1, 3, 4, 5, 9] },
-  { label: 'Not one: {0, 1, 2} mod 7', v: 7, set: [0, 1, 2] },
-  { label: 'Not one: {0, 1, 2, 4} mod 13', v: 13, set: [0, 1, 2, 4] },
+  { label: '{0, 1, 3} mod 7: a (7, 3, 1) difference set', v: 7, set: [0, 1, 3] },
+  { label: '{0, 1, 3, 9} mod 13: a (13, 4, 1) difference set', v: 13, set: [0, 1, 3, 9] },
+  { label: '{0, 1, 4, 14, 16} mod 21: a (21, 5, 1) difference set', v: 21, set: [0, 1, 4, 14, 16] },
+  { label: '{1, 3, 4, 5, 9} mod 11: a (11, 5, 2) difference set', v: 11, set: [1, 3, 4, 5, 9] },
+  { label: '{0, 1, 2} mod 7: not a difference set', v: 7, set: [0, 1, 2] },
+  { label: '{0, 1, 2, 4} mod 13: not a difference set', v: 13, set: [0, 1, 2, 4] },
 ];
 
 /** The event a workbench fires on `document` whenever its set changes, so other widgets can follow it. */

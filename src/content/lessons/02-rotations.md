@@ -24,7 +24,7 @@ Below, $D + i$ is drawn in red and $D + j$ in green; a point in both is red with
 
 However you turn them, two different translates of $\{0, 1, 3\}$ share exactly one point. The table on the right shows this for every pair at once: the entry in row $i$, column $j$ is the number of points that $D + i$ and $D + j$ have in common. On the diagonal, where $i = j$, a copy is compared with itself and shares all $k = 3$ points. Everywhere else the entry is 1.
 
-Now switch the menu to **Not one: {0, 1, 2} mod 7**. The table fills with 0s, 1s, and 2s. Set the sliders to $i = 0$ and $j = 1$: the copies $\{0, 1, 2\}$ and $\{1, 2, 3\}$ share two points. Set $j = 3$ and they share none.
+Now switch the menu to **{0, 1, 2} mod 7: not a difference set**. The table fills with 0s, 1s, and 2s. Set the sliders to $i = 0$ and $j = 1$: the copies $\{0, 1, 2\}$ and $\{1, 2, 3\}$ share two points. Set $j = 3$ and they share none.
 
 ## Why the overlap is always λ
 
