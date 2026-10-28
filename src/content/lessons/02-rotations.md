@@ -59,7 +59,20 @@ Put the two facts side by side for a planar difference set, where $\lambda = 1$:
 - any two different points lie together in **exactly one** translate;
 - any two different translates share **exactly one** point.
 
-That is how lines behave in geometry. Through two points there is exactly one line, and two lines cross in at most one point. Here the "lines" are the translates $D, D + 1, \dots, D + (v - 1)$, and they are better behaved than ordinary lines: no two are parallel, since every two of them meet.
+These two facts should sound familiar. In ordinary geometry, through any two points there is exactly one line, and two lines cross in at most one point. The hours on the clock and the translates of $D$ are related in just the way that points and lines are. So, by analogy, we borrow the words of geometry and give them new meanings here:
+
+> **Definition.** For a planar difference set $D$ mod $v$:
+>
+> - a **point** is one of the $v$ hours $0, 1, \dots, v - 1$ on the clock;
+> - a **line** is one of the translates $D + j$ of $D$;
+> - a point is **on** a line when it is a member of that translate.
+
+We have been calling the hours "points" all along; now the word has a partner. These are new terms, not claims about anything drawn with a ruler: a line here is just a set of $k$ hours. What the names buy us is that the two facts above now read like the rules of geometry:
+
+- through any two different points there is exactly one line;
+- any two different lines meet in exactly one point.
+
+These lines even behave better than ordinary ones: no two are parallel, since every two of them meet.
 
 There are $v$ of these lines, all different: two different translates share only one point, but a translate shares all $k$ of its points with itself. For $\{0, 1, 3\}$ that is 7 points and 7 lines, each line with 3 points. The next lesson draws this little geometry, and finds that it is a famous one.
 
