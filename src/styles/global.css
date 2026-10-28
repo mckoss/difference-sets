@@ -407,6 +407,12 @@ blockquote p {
   margin-bottom: 0.5rem;
 }
 
+/* Let a labeled control shrink on a narrow screen, so a select with long options fits. */
+.widget .controls > .control {
+  min-width: 0;
+  max-width: 100%;
+}
+
 .widget button,
 .widget input[type='number'],
 .widget select {
