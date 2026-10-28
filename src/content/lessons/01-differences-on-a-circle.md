@@ -82,7 +82,7 @@ $$
 
 Check it: for $\{0, 1, 3\}$, $3 \cdot 2 = 1 \cdot 6$. For the $(11, 5, 2)$ set, $5 \cdot 4 = 2 \cdot 10$.
 
-The sets with $\lambda = 1$, where every difference occurs exactly once, are the ones this site is about. They are called **planar** difference sets, for a reason that will become clear in Lessons 3 and 4. With $\lambda = 1$ the count says $v = k(k - 1) + 1$. Writing $n = k - 1$, that is
+The sets with $\lambda = 1$, where every difference occurs exactly once, are the ones this site is about. They are called **planar** difference sets, a name that Lessons 3 and 4 explain. With $\lambda = 1$ the count says $v = k(k - 1) + 1$. For reasons that will become clear in [Lesson 4](../04-projective-planes/), we introduce one more letter, $n = k - 1$, which we call the **order** of the difference set. In terms of the order,
 
 $$
 v = n^2 + n + 1, \qquad k = n + 1.
