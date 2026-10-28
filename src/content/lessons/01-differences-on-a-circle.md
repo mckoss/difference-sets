@@ -106,7 +106,7 @@ Thirty-five candidates is nothing. But watch the table below as $n$ grows. The l
 
 Run the search for $v = 7$: it checks all 35 subsets and finds 14 difference sets, starting with $\{0, 1, 3\}$. For $v = 31$ it has to check 736,281 subsets, which still takes only a moment. But by $n = 10$, with $v = 111$, the count is in the hundreds of trillions, and by $n = 32$ no computer that could ever be built would finish. (Smarter searches prune most of these candidates, but they still grow far too fast.)
 
-Yet in 1938 James Singer wrote down a planar difference set for every $n$ that is a prime or a power of a prime, with no search at all. The rest of this site explains how. The first clue comes from turning the clock: that's the next lesson.
+Yet in 1938 James Singer pulled off a bit of mathematical magic. Rather than search through millions of possible combinations, he found a way to calculate the members of a difference set directly, without a brute-force search. The rest of this site explains how. The first clue comes from turning the clock: that's the next lesson.
 
 <section class="try-it">
 
