@@ -928,5 +928,944 @@
   "name": "delivery van",
   "file": "155-delivery-van.webp",
   "theme": "vehicle"
+ },
+ {
+  "slug": "201-george-washington",
+  "name": "George Washington",
+  "file": "201-george-washington.webp",
+  "theme": "president",
+  "caption": "1. George Washington"
+ },
+ {
+  "slug": "202-john-adams",
+  "name": "John Adams",
+  "file": "202-john-adams.webp",
+  "theme": "president",
+  "caption": "2. John Adams"
+ },
+ {
+  "slug": "203-thomas-jefferson",
+  "name": "Thomas Jefferson",
+  "file": "203-thomas-jefferson.webp",
+  "theme": "president",
+  "caption": "3. Thomas Jefferson"
+ },
+ {
+  "slug": "204-james-madison",
+  "name": "James Madison",
+  "file": "204-james-madison.webp",
+  "theme": "president",
+  "caption": "4. James Madison"
+ },
+ {
+  "slug": "205-james-monroe",
+  "name": "James Monroe",
+  "file": "205-james-monroe.webp",
+  "theme": "president",
+  "caption": "5. James Monroe"
+ },
+ {
+  "slug": "206-john-quincy-adams",
+  "name": "John Quincy Adams",
+  "file": "206-john-quincy-adams.webp",
+  "theme": "president",
+  "caption": "6. John Quincy Adams"
+ },
+ {
+  "slug": "207-andrew-jackson",
+  "name": "Andrew Jackson",
+  "file": "207-andrew-jackson.webp",
+  "theme": "president",
+  "caption": "7. Andrew Jackson"
+ },
+ {
+  "slug": "208-martin-van-buren",
+  "name": "Martin Van Buren",
+  "file": "208-martin-van-buren.webp",
+  "theme": "president",
+  "caption": "8. Martin Van Buren"
+ },
+ {
+  "slug": "209-william-henry-harrison",
+  "name": "William Henry Harrison",
+  "file": "209-william-henry-harrison.webp",
+  "theme": "president",
+  "caption": "9. William Henry Harrison"
+ },
+ {
+  "slug": "210-john-tyler",
+  "name": "John Tyler",
+  "file": "210-john-tyler.webp",
+  "theme": "president",
+  "caption": "10. John Tyler"
+ },
+ {
+  "slug": "211-james-k-polk",
+  "name": "James K. Polk",
+  "file": "211-james-k-polk.webp",
+  "theme": "president",
+  "caption": "11. James K. Polk"
+ },
+ {
+  "slug": "212-zachary-taylor",
+  "name": "Zachary Taylor",
+  "file": "212-zachary-taylor.webp",
+  "theme": "president",
+  "caption": "12. Zachary Taylor"
+ },
+ {
+  "slug": "213-millard-fillmore",
+  "name": "Millard Fillmore",
+  "file": "213-millard-fillmore.webp",
+  "theme": "president",
+  "caption": "13. Millard Fillmore"
+ },
+ {
+  "slug": "214-franklin-pierce",
+  "name": "Franklin Pierce",
+  "file": "214-franklin-pierce.webp",
+  "theme": "president",
+  "caption": "14. Franklin Pierce"
+ },
+ {
+  "slug": "215-james-buchanan",
+  "name": "James Buchanan",
+  "file": "215-james-buchanan.webp",
+  "theme": "president",
+  "caption": "15. James Buchanan"
+ },
+ {
+  "slug": "216-abraham-lincoln",
+  "name": "Abraham Lincoln",
+  "file": "216-abraham-lincoln.webp",
+  "theme": "president",
+  "caption": "16. Abraham Lincoln"
+ },
+ {
+  "slug": "217-andrew-johnson",
+  "name": "Andrew Johnson",
+  "file": "217-andrew-johnson.webp",
+  "theme": "president",
+  "caption": "17. Andrew Johnson"
+ },
+ {
+  "slug": "218-ulysses-s-grant",
+  "name": "Ulysses S. Grant",
+  "file": "218-ulysses-s-grant.webp",
+  "theme": "president",
+  "caption": "18. Ulysses S. Grant"
+ },
+ {
+  "slug": "219-rutherford-b-hayes",
+  "name": "Rutherford B. Hayes",
+  "file": "219-rutherford-b-hayes.webp",
+  "theme": "president",
+  "caption": "19. Rutherford B. Hayes"
+ },
+ {
+  "slug": "220-james-a-garfield",
+  "name": "James A. Garfield",
+  "file": "220-james-a-garfield.webp",
+  "theme": "president",
+  "caption": "20. James A. Garfield"
+ },
+ {
+  "slug": "221-chester-a-arthur",
+  "name": "Chester A. Arthur",
+  "file": "221-chester-a-arthur.webp",
+  "theme": "president",
+  "caption": "21. Chester A. Arthur"
+ },
+ {
+  "slug": "222-grover-cleveland",
+  "name": "Grover Cleveland",
+  "file": "222-grover-cleveland.webp",
+  "theme": "president",
+  "caption": "22 & 24. Grover Cleveland"
+ },
+ {
+  "slug": "223-benjamin-harrison",
+  "name": "Benjamin Harrison",
+  "file": "223-benjamin-harrison.webp",
+  "theme": "president",
+  "caption": "23. Benjamin Harrison"
+ },
+ {
+  "slug": "224-william-mckinley",
+  "name": "William McKinley",
+  "file": "224-william-mckinley.webp",
+  "theme": "president",
+  "caption": "25. William McKinley"
+ },
+ {
+  "slug": "225-theodore-roosevelt",
+  "name": "Theodore Roosevelt",
+  "file": "225-theodore-roosevelt.webp",
+  "theme": "president",
+  "caption": "26. Theodore Roosevelt"
+ },
+ {
+  "slug": "226-william-howard-taft",
+  "name": "William Howard Taft",
+  "file": "226-william-howard-taft.webp",
+  "theme": "president",
+  "caption": "27. William Howard Taft"
+ },
+ {
+  "slug": "227-woodrow-wilson",
+  "name": "Woodrow Wilson",
+  "file": "227-woodrow-wilson.webp",
+  "theme": "president",
+  "caption": "28. Woodrow Wilson"
+ },
+ {
+  "slug": "228-warren-g-harding",
+  "name": "Warren G. Harding",
+  "file": "228-warren-g-harding.webp",
+  "theme": "president",
+  "caption": "29. Warren G. Harding"
+ },
+ {
+  "slug": "229-calvin-coolidge",
+  "name": "Calvin Coolidge",
+  "file": "229-calvin-coolidge.webp",
+  "theme": "president",
+  "caption": "30. Calvin Coolidge"
+ },
+ {
+  "slug": "230-herbert-hoover",
+  "name": "Herbert Hoover",
+  "file": "230-herbert-hoover.webp",
+  "theme": "president",
+  "caption": "31. Herbert Hoover"
+ },
+ {
+  "slug": "231-franklin-d-roosevelt",
+  "name": "Franklin D. Roosevelt",
+  "file": "231-franklin-d-roosevelt.webp",
+  "theme": "president",
+  "caption": "32. Franklin D. Roosevelt"
+ },
+ {
+  "slug": "232-harry-s-truman",
+  "name": "Harry S. Truman",
+  "file": "232-harry-s-truman.webp",
+  "theme": "president",
+  "caption": "33. Harry S. Truman"
+ },
+ {
+  "slug": "233-dwight-d-eisenhower",
+  "name": "Dwight D. Eisenhower",
+  "file": "233-dwight-d-eisenhower.webp",
+  "theme": "president",
+  "caption": "34. Dwight D. Eisenhower"
+ },
+ {
+  "slug": "234-john-f-kennedy",
+  "name": "John F. Kennedy",
+  "file": "234-john-f-kennedy.webp",
+  "theme": "president",
+  "caption": "35. John F. Kennedy"
+ },
+ {
+  "slug": "235-lyndon-b-johnson",
+  "name": "Lyndon B. Johnson",
+  "file": "235-lyndon-b-johnson.webp",
+  "theme": "president",
+  "caption": "36. Lyndon B. Johnson"
+ },
+ {
+  "slug": "236-richard-nixon",
+  "name": "Richard Nixon",
+  "file": "236-richard-nixon.webp",
+  "theme": "president",
+  "caption": "37. Richard Nixon"
+ },
+ {
+  "slug": "237-gerald-ford",
+  "name": "Gerald Ford",
+  "file": "237-gerald-ford.webp",
+  "theme": "president",
+  "caption": "38. Gerald Ford"
+ },
+ {
+  "slug": "238-jimmy-carter",
+  "name": "Jimmy Carter",
+  "file": "238-jimmy-carter.webp",
+  "theme": "president",
+  "caption": "39. Jimmy Carter"
+ },
+ {
+  "slug": "239-ronald-reagan",
+  "name": "Ronald Reagan",
+  "file": "239-ronald-reagan.webp",
+  "theme": "president",
+  "caption": "40. Ronald Reagan"
+ },
+ {
+  "slug": "240-george-h-w-bush",
+  "name": "George H. W. Bush",
+  "file": "240-george-h-w-bush.webp",
+  "theme": "president",
+  "caption": "41. George H. W. Bush"
+ },
+ {
+  "slug": "241-bill-clinton",
+  "name": "Bill Clinton",
+  "file": "241-bill-clinton.webp",
+  "theme": "president",
+  "caption": "42. Bill Clinton"
+ },
+ {
+  "slug": "242-george-w-bush",
+  "name": "George W. Bush",
+  "file": "242-george-w-bush.webp",
+  "theme": "president",
+  "caption": "43. George W. Bush"
+ },
+ {
+  "slug": "243-barack-obama",
+  "name": "Barack Obama",
+  "file": "243-barack-obama.webp",
+  "theme": "president",
+  "caption": "44. Barack Obama"
+ },
+ {
+  "slug": "244-donald-trump",
+  "name": "Donald Trump",
+  "file": "244-donald-trump.webp",
+  "theme": "president",
+  "caption": "45 & 47. Donald Trump",
+  "deck": false
+ },
+ {
+  "slug": "245-joe-biden",
+  "name": "Joe Biden",
+  "file": "245-joe-biden.webp",
+  "theme": "president",
+  "caption": "46. Joe Biden"
+ },
+ {
+  "slug": "251-charlie-chaplin",
+  "name": "Charlie Chaplin",
+  "file": "251-charlie-chaplin.webp",
+  "theme": "star",
+  "caption": "Charlie Chaplin"
+ },
+ {
+  "slug": "252-buster-keaton",
+  "name": "Buster Keaton",
+  "file": "252-buster-keaton.webp",
+  "theme": "star",
+  "caption": "Buster Keaton"
+ },
+ {
+  "slug": "253-harold-lloyd",
+  "name": "Harold Lloyd",
+  "file": "253-harold-lloyd.webp",
+  "theme": "star",
+  "caption": "Harold Lloyd"
+ },
+ {
+  "slug": "254-greta-garbo",
+  "name": "Greta Garbo",
+  "file": "254-greta-garbo.webp",
+  "theme": "star",
+  "caption": "Greta Garbo"
+ },
+ {
+  "slug": "255-marlene-dietrich",
+  "name": "Marlene Dietrich",
+  "file": "255-marlene-dietrich.webp",
+  "theme": "star",
+  "caption": "Marlene Dietrich"
+ },
+ {
+  "slug": "256-jean-harlow",
+  "name": "Jean Harlow",
+  "file": "256-jean-harlow.webp",
+  "theme": "star",
+  "caption": "Jean Harlow"
+ },
+ {
+  "slug": "257-clark-gable",
+  "name": "Clark Gable",
+  "file": "257-clark-gable.webp",
+  "theme": "star",
+  "caption": "Clark Gable"
+ },
+ {
+  "slug": "258-cary-grant",
+  "name": "Cary Grant",
+  "file": "258-cary-grant.webp",
+  "theme": "star",
+  "caption": "Cary Grant"
+ },
+ {
+  "slug": "259-fred-astaire",
+  "name": "Fred Astaire",
+  "file": "259-fred-astaire.webp",
+  "theme": "star",
+  "caption": "Fred Astaire"
+ },
+ {
+  "slug": "260-ginger-rogers",
+  "name": "Ginger Rogers",
+  "file": "260-ginger-rogers.webp",
+  "theme": "star",
+  "caption": "Ginger Rogers"
+ },
+ {
+  "slug": "261-shirley-temple",
+  "name": "Shirley Temple",
+  "file": "261-shirley-temple.webp",
+  "theme": "star",
+  "caption": "Shirley Temple"
+ },
+ {
+  "slug": "262-judy-garland",
+  "name": "Judy Garland",
+  "file": "262-judy-garland.webp",
+  "theme": "star",
+  "caption": "Judy Garland"
+ },
+ {
+  "slug": "263-humphrey-bogart",
+  "name": "Humphrey Bogart",
+  "file": "263-humphrey-bogart.webp",
+  "theme": "star",
+  "caption": "Humphrey Bogart"
+ },
+ {
+  "slug": "264-ingrid-bergman",
+  "name": "Ingrid Bergman",
+  "file": "264-ingrid-bergman.webp",
+  "theme": "star",
+  "caption": "Ingrid Bergman"
+ },
+ {
+  "slug": "265-katharine-hepburn",
+  "name": "Katharine Hepburn",
+  "file": "265-katharine-hepburn.webp",
+  "theme": "star",
+  "caption": "Katharine Hepburn"
+ },
+ {
+  "slug": "266-bette-davis",
+  "name": "Bette Davis",
+  "file": "266-bette-davis.webp",
+  "theme": "star",
+  "caption": "Bette Davis"
+ },
+ {
+  "slug": "267-joan-crawford",
+  "name": "Joan Crawford",
+  "file": "267-joan-crawford.webp",
+  "theme": "star",
+  "caption": "Joan Crawford"
+ },
+ {
+  "slug": "268-rita-hayworth",
+  "name": "Rita Hayworth",
+  "file": "268-rita-hayworth.webp",
+  "theme": "star",
+  "caption": "Rita Hayworth"
+ },
+ {
+  "slug": "269-jimmy-stewart",
+  "name": "Jimmy Stewart",
+  "file": "269-jimmy-stewart.webp",
+  "theme": "star",
+  "caption": "Jimmy Stewart"
+ },
+ {
+  "slug": "270-gene-kelly",
+  "name": "Gene Kelly",
+  "file": "270-gene-kelly.webp",
+  "theme": "star",
+  "caption": "Gene Kelly"
+ },
+ {
+  "slug": "271-john-wayne",
+  "name": "John Wayne",
+  "file": "271-john-wayne.webp",
+  "theme": "star",
+  "caption": "John Wayne"
+ },
+ {
+  "slug": "272-gregory-peck",
+  "name": "Gregory Peck",
+  "file": "272-gregory-peck.webp",
+  "theme": "star",
+  "caption": "Gregory Peck"
+ },
+ {
+  "slug": "273-lucille-ball",
+  "name": "Lucille Ball",
+  "file": "273-lucille-ball.webp",
+  "theme": "star",
+  "caption": "Lucille Ball"
+ },
+ {
+  "slug": "274-audrey-hepburn",
+  "name": "Audrey Hepburn",
+  "file": "274-audrey-hepburn.webp",
+  "theme": "star",
+  "caption": "Audrey Hepburn"
+ },
+ {
+  "slug": "275-marilyn-monroe",
+  "name": "Marilyn Monroe",
+  "file": "275-marilyn-monroe.webp",
+  "theme": "star",
+  "caption": "Marilyn Monroe"
+ },
+ {
+  "slug": "276-grace-kelly",
+  "name": "Grace Kelly",
+  "file": "276-grace-kelly.webp",
+  "theme": "star",
+  "caption": "Grace Kelly"
+ },
+ {
+  "slug": "277-elizabeth-taylor",
+  "name": "Elizabeth Taylor",
+  "file": "277-elizabeth-taylor.webp",
+  "theme": "star",
+  "caption": "Elizabeth Taylor"
+ },
+ {
+  "slug": "278-ava-gardner",
+  "name": "Ava Gardner",
+  "file": "278-ava-gardner.webp",
+  "theme": "star",
+  "caption": "Ava Gardner"
+ },
+ {
+  "slug": "279-doris-day",
+  "name": "Doris Day",
+  "file": "279-doris-day.webp",
+  "theme": "star",
+  "caption": "Doris Day"
+ },
+ {
+  "slug": "280-natalie-wood",
+  "name": "Natalie Wood",
+  "file": "280-natalie-wood.webp",
+  "theme": "star",
+  "caption": "Natalie Wood"
+ },
+ {
+  "slug": "281-rock-hudson",
+  "name": "Rock Hudson",
+  "file": "281-rock-hudson.webp",
+  "theme": "star",
+  "caption": "Rock Hudson"
+ },
+ {
+  "slug": "282-marlon-brando",
+  "name": "Marlon Brando",
+  "file": "282-marlon-brando.webp",
+  "theme": "star",
+  "caption": "Marlon Brando"
+ },
+ {
+  "slug": "283-james-dean",
+  "name": "James Dean",
+  "file": "283-james-dean.webp",
+  "theme": "star",
+  "caption": "James Dean"
+ },
+ {
+  "slug": "284-paul-newman",
+  "name": "Paul Newman",
+  "file": "284-paul-newman.webp",
+  "theme": "star",
+  "caption": "Paul Newman"
+ },
+ {
+  "slug": "285-sidney-poitier",
+  "name": "Sidney Poitier",
+  "file": "285-sidney-poitier.webp",
+  "theme": "star",
+  "caption": "Sidney Poitier"
+ },
+ {
+  "slug": "286-dorothy-dandridge",
+  "name": "Dorothy Dandridge",
+  "file": "286-dorothy-dandridge.webp",
+  "theme": "star",
+  "caption": "Dorothy Dandridge"
+ },
+ {
+  "slug": "287-lena-horne",
+  "name": "Lena Horne",
+  "file": "287-lena-horne.webp",
+  "theme": "star",
+  "caption": "Lena Horne"
+ },
+ {
+  "slug": "288-steve-mcqueen",
+  "name": "Steve McQueen",
+  "file": "288-steve-mcqueen.webp",
+  "theme": "star",
+  "caption": "Steve McQueen"
+ },
+ {
+  "slug": "289-gary-cooper",
+  "name": "Gary Cooper",
+  "file": "289-gary-cooper.webp",
+  "theme": "star",
+  "caption": "Gary Cooper"
+ },
+ {
+  "slug": "290-vivien-leigh",
+  "name": "Vivien Leigh",
+  "file": "290-vivien-leigh.webp",
+  "theme": "star",
+  "caption": "Vivien Leigh"
+ },
+ {
+  "slug": "291-charlton-heston",
+  "name": "Charlton Heston",
+  "file": "291-charlton-heston.webp",
+  "theme": "star",
+  "caption": "Charlton Heston"
+ },
+ {
+  "slug": "292-kirk-douglas",
+  "name": "Kirk Douglas",
+  "file": "292-kirk-douglas.webp",
+  "theme": "star",
+  "caption": "Kirk Douglas"
+ },
+ {
+  "slug": "293-gene-wilder",
+  "name": "Gene Wilder",
+  "file": "293-gene-wilder.webp",
+  "theme": "star",
+  "caption": "Gene Wilder"
+ },
+ {
+  "slug": "294-groucho-marx",
+  "name": "Groucho Marx",
+  "file": "294-groucho-marx.webp",
+  "theme": "star",
+  "caption": "Groucho Marx"
+ },
+ {
+  "slug": "295-mae-west",
+  "name": "Mae West",
+  "file": "295-mae-west.webp",
+  "theme": "star",
+  "caption": "Mae West"
+ },
+ {
+  "slug": "296-bruce-lee",
+  "name": "Bruce Lee",
+  "file": "296-bruce-lee.webp",
+  "theme": "star",
+  "caption": "Bruce Lee"
+ },
+ {
+  "slug": "297-errol-flynn",
+  "name": "Errol Flynn",
+  "file": "297-errol-flynn.webp",
+  "theme": "star",
+  "caption": "Errol Flynn"
+ },
+ {
+  "slug": "301-richard-feynman",
+  "name": "Richard Feynman",
+  "file": "301-richard-feynman.webp",
+  "theme": "scientist",
+  "caption": "Richard Feynman"
+ },
+ {
+  "slug": "302-albert-einstein",
+  "name": "Albert Einstein",
+  "file": "302-albert-einstein.webp",
+  "theme": "scientist",
+  "caption": "Albert Einstein"
+ },
+ {
+  "slug": "303-j-robert-oppenheimer",
+  "name": "J. Robert Oppenheimer",
+  "file": "303-j-robert-oppenheimer.webp",
+  "theme": "scientist",
+  "caption": "J. Robert Oppenheimer"
+ },
+ {
+  "slug": "304-enrico-fermi",
+  "name": "Enrico Fermi",
+  "file": "304-enrico-fermi.webp",
+  "theme": "scientist",
+  "caption": "Enrico Fermi"
+ },
+ {
+  "slug": "305-niels-bohr",
+  "name": "Niels Bohr",
+  "file": "305-niels-bohr.webp",
+  "theme": "scientist",
+  "caption": "Niels Bohr"
+ },
+ {
+  "slug": "306-edward-teller",
+  "name": "Edward Teller",
+  "file": "306-edward-teller.webp",
+  "theme": "scientist",
+  "caption": "Edward Teller"
+ },
+ {
+  "slug": "307-leo-szilard",
+  "name": "Leo Szilard",
+  "file": "307-leo-szilard.webp",
+  "theme": "scientist",
+  "caption": "Leo Szilard"
+ },
+ {
+  "slug": "308-hans-bethe",
+  "name": "Hans Bethe",
+  "file": "308-hans-bethe.webp",
+  "theme": "scientist",
+  "caption": "Hans Bethe"
+ },
+ {
+  "slug": "309-john-von-neumann",
+  "name": "John von Neumann",
+  "file": "309-john-von-neumann.webp",
+  "theme": "scientist",
+  "caption": "John von Neumann"
+ },
+ {
+  "slug": "310-ernest-lawrence",
+  "name": "Ernest Lawrence",
+  "file": "310-ernest-lawrence.webp",
+  "theme": "scientist",
+  "caption": "Ernest Lawrence"
+ },
+ {
+  "slug": "311-glenn-seaborg",
+  "name": "Glenn Seaborg",
+  "file": "311-glenn-seaborg.webp",
+  "theme": "scientist",
+  "caption": "Glenn Seaborg"
+ },
+ {
+  "slug": "312-lise-meitner",
+  "name": "Lise Meitner",
+  "file": "312-lise-meitner.webp",
+  "theme": "scientist",
+  "caption": "Lise Meitner"
+ },
+ {
+  "slug": "313-stanislaw-ulam",
+  "name": "Stanislaw Ulam",
+  "file": "313-stanislaw-ulam.webp",
+  "theme": "scientist",
+  "caption": "Stanislaw Ulam"
+ },
+ {
+  "slug": "314-chien-shiung-wu",
+  "name": "Chien-Shiung Wu",
+  "file": "314-chien-shiung-wu.webp",
+  "theme": "scientist",
+  "caption": "Chien-Shiung Wu"
+ },
+ {
+  "slug": "315-marie-curie",
+  "name": "Marie Curie",
+  "file": "315-marie-curie.webp",
+  "theme": "scientist",
+  "caption": "Marie Curie"
+ },
+ {
+  "slug": "316-isaac-newton",
+  "name": "Isaac Newton",
+  "file": "316-isaac-newton.webp",
+  "theme": "scientist",
+  "caption": "Isaac Newton"
+ },
+ {
+  "slug": "317-charles-darwin",
+  "name": "Charles Darwin",
+  "file": "317-charles-darwin.webp",
+  "theme": "scientist",
+  "caption": "Charles Darwin"
+ },
+ {
+  "slug": "318-galileo-galilei",
+  "name": "Galileo Galilei",
+  "file": "318-galileo-galilei.webp",
+  "theme": "scientist",
+  "caption": "Galileo Galilei"
+ },
+ {
+  "slug": "319-nikola-tesla",
+  "name": "Nikola Tesla",
+  "file": "319-nikola-tesla.webp",
+  "theme": "scientist",
+  "caption": "Nikola Tesla"
+ },
+ {
+  "slug": "320-thomas-edison",
+  "name": "Thomas Edison",
+  "file": "320-thomas-edison.webp",
+  "theme": "scientist",
+  "caption": "Thomas Edison"
+ },
+ {
+  "slug": "321-stephen-hawking",
+  "name": "Stephen Hawking",
+  "file": "321-stephen-hawking.webp",
+  "theme": "scientist",
+  "caption": "Stephen Hawking"
+ },
+ {
+  "slug": "322-carl-sagan",
+  "name": "Carl Sagan",
+  "file": "322-carl-sagan.webp",
+  "theme": "scientist",
+  "caption": "Carl Sagan"
+ },
+ {
+  "slug": "323-alan-turing",
+  "name": "Alan Turing",
+  "file": "323-alan-turing.webp",
+  "theme": "scientist",
+  "caption": "Alan Turing"
+ },
+ {
+  "slug": "324-ada-lovelace",
+  "name": "Ada Lovelace",
+  "file": "324-ada-lovelace.webp",
+  "theme": "scientist",
+  "caption": "Ada Lovelace"
+ },
+ {
+  "slug": "325-grace-hopper",
+  "name": "Grace Hopper",
+  "file": "325-grace-hopper.webp",
+  "theme": "scientist",
+  "caption": "Grace Hopper"
+ },
+ {
+  "slug": "326-rosalind-franklin",
+  "name": "Rosalind Franklin",
+  "file": "326-rosalind-franklin.webp",
+  "theme": "scientist",
+  "caption": "Rosalind Franklin"
+ },
+ {
+  "slug": "327-louis-pasteur",
+  "name": "Louis Pasteur",
+  "file": "327-louis-pasteur.webp",
+  "theme": "scientist",
+  "caption": "Louis Pasteur"
+ },
+ {
+  "slug": "328-gregor-mendel",
+  "name": "Gregor Mendel",
+  "file": "328-gregor-mendel.webp",
+  "theme": "scientist",
+  "caption": "Gregor Mendel"
+ },
+ {
+  "slug": "329-johannes-kepler",
+  "name": "Johannes Kepler",
+  "file": "329-johannes-kepler.webp",
+  "theme": "scientist",
+  "caption": "Johannes Kepler"
+ },
+ {
+  "slug": "330-nicolaus-copernicus",
+  "name": "Nicolaus Copernicus",
+  "file": "330-nicolaus-copernicus.webp",
+  "theme": "scientist",
+  "caption": "Nicolaus Copernicus"
+ },
+ {
+  "slug": "331-michael-faraday",
+  "name": "Michael Faraday",
+  "file": "331-michael-faraday.webp",
+  "theme": "scientist",
+  "caption": "Michael Faraday"
+ },
+ {
+  "slug": "332-james-clerk-maxwell",
+  "name": "James Clerk Maxwell",
+  "file": "332-james-clerk-maxwell.webp",
+  "theme": "scientist",
+  "caption": "James Clerk Maxwell"
+ },
+ {
+  "slug": "333-max-planck",
+  "name": "Max Planck",
+  "file": "333-max-planck.webp",
+  "theme": "scientist",
+  "caption": "Max Planck"
+ },
+ {
+  "slug": "334-werner-heisenberg",
+  "name": "Werner Heisenberg",
+  "file": "334-werner-heisenberg.webp",
+  "theme": "scientist",
+  "caption": "Werner Heisenberg"
+ },
+ {
+  "slug": "335-erwin-schrodinger",
+  "name": "Erwin Schrodinger",
+  "file": "335-erwin-schrodinger.webp",
+  "theme": "scientist",
+  "caption": "Erwin Schrodinger"
+ },
+ {
+  "slug": "336-paul-dirac",
+  "name": "Paul Dirac",
+  "file": "336-paul-dirac.webp",
+  "theme": "scientist",
+  "caption": "Paul Dirac"
+ },
+ {
+  "slug": "337-carl-friedrich-gauss",
+  "name": "Carl Friedrich Gauss",
+  "file": "337-carl-friedrich-gauss.webp",
+  "theme": "scientist",
+  "caption": "Carl Friedrich Gauss"
+ },
+ {
+  "slug": "338-leonhard-euler",
+  "name": "Leonhard Euler",
+  "file": "338-leonhard-euler.webp",
+  "theme": "scientist",
+  "caption": "Leonhard Euler"
+ },
+ {
+  "slug": "339-emmy-noether",
+  "name": "Emmy Noether",
+  "file": "339-emmy-noether.webp",
+  "theme": "scientist",
+  "caption": "Emmy Noether"
+ },
+ {
+  "slug": "340-srinivasa-ramanujan",
+  "name": "Srinivasa Ramanujan",
+  "file": "340-srinivasa-ramanujan.webp",
+  "theme": "scientist",
+  "caption": "Srinivasa Ramanujan"
+ },
+ {
+  "slug": "341-archimedes",
+  "name": "Archimedes",
+  "file": "341-archimedes.webp",
+  "theme": "scientist",
+  "caption": "Archimedes"
+ },
+ {
+  "slug": "342-katherine-johnson",
+  "name": "Katherine Johnson",
+  "file": "342-katherine-johnson.webp",
+  "theme": "scientist",
+  "caption": "Katherine Johnson"
  }
 ]
