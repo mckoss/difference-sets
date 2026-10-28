@@ -78,7 +78,7 @@ The pair is $1$ and $0$. Turning $D$ so that 0 lands on 5 means adding $j = 5$, 
 
 </section>
 
-Make your own deck in the [deck maker](../../playgrounds/deck-maker/?deck=q7&theme=all): choose 3 to 12 pictures per card, play the matching game, check every pair of cards, and print the deck to cut out. It also offers *match 2*, *match 3* and *match 4* decks, where any two cards share exactly 2, 3 or 4 pictures, built from the difference sets with larger $\lambda$ in [Lesson 16](../16-beyond-the-plane/).
+Make your own deck in the [deck maker](../../playgrounds/deck-maker/?deck=q7&theme=all): choose 3 to 12 pictures per card, play the matching game, check every pair of cards, and print the deck to cut out. It also offers *match 2*, *match 3* and *match 4* decks, where any two cards share exactly 2, 3 or 4 pictures, built from the difference sets with larger $\lambda$ in [Lesson 16](../16-beyond-the-plane/). Besides the cartoon stickers, it can deal decks of US presidents, classic movie stars, and famous scientists, each labeled with a name: the full set of 133 people fills the largest deck, with 12 portraits per card.
 
 The cards on this site are square, and every picture is the same size and stands upright in a fixed slot. Slot $i$ on card $j$ holds the point $d_i + j$, where $d_i$ is the $i$-th number of $D$. Follow one picture, say point $p$, through the deck: it is on card $p - d_i$ (mod $v$) in slot $i$, for each $i$. So every picture visits every slot exactly once, and no position on the card gives anything away.
 

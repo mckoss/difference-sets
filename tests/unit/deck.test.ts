@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import manifest from '../../public/symbols/manifest.json';
-import { assignSymbols, checkDeck, DECKS, layoutCard, makeDeck, parseDeckParams, PRINT_SIZES, SLOT_COUNTS, shared } from '../../src/math/deck';
+import { assignSymbols, checkDeck, DECK_THEMES, DECKS, layoutCard, makeDeck, parseDeckParams, PRINT_SIZES, SLOT_COUNTS, shared } from '../../src/math/deck';
 
 describe('match-N decks', () => {
   for (const { id, v, k, lambda } of DECKS) {
@@ -35,10 +35,34 @@ describe('match-N decks', () => {
 });
 
 describe('symbols', () => {
-  it('has 155 symbols, each with a file, 32 of them vehicles', () => {
-    expect(manifest).toHaveLength(155);
-    expect(new Set(manifest.map((s) => s.file)).size).toBe(155);
-    expect(manifest.filter((s) => s.theme === 'vehicle')).toHaveLength(32);
+  it('has 155 stickers (32 vehicles) and 134 portraits, each with its own file', () => {
+    expect(manifest).toHaveLength(289);
+    expect(new Set(manifest.map((s) => s.file)).size).toBe(289);
+    const count = (theme: string) => manifest.filter((s) => s.theme === theme).length;
+    expect(count('other') + count('vehicle')).toBe(155);
+    expect(count('vehicle')).toBe(32);
+    expect([count('president'), count('star'), count('scientist')]).toEqual([45, 47, 42]);
+  });
+
+  it('captions every portrait, numbering the presidents', () => {
+    const people = manifest.filter((s) => ['president', 'star', 'scientist'].includes(s.theme));
+    expect(people.every((s) => s.caption)).toBe(true);
+    expect(manifest.find((s) => s.name === 'Abraham Lincoln')?.caption).toBe('16. Abraham Lincoln');
+    expect(manifest.find((s) => s.name === 'Grover Cleveland')?.caption).toBe('22 & 24. Grover Cleveland');
+  });
+
+  it('keeps Donald Trump in the collection but out of every deck', () => {
+    const trump = manifest.find((s) => s.name === 'Donald Trump');
+    expect(trump?.deck).toBe(false);
+    const all = assignSymbols(manifest, 133, 1, ['president', 'star', 'scientist']);
+    expect(all).toHaveLength(133);
+    expect(all.some((s) => s.name === 'Donald Trump')).toBe(false);
+  });
+
+  it('every theme can fill the largest deck', () => {
+    for (const { primary, fallback } of Object.values(DECK_THEMES)) {
+      expect(assignSymbols(manifest, 133, 1, primary, fallback)).toHaveLength(133);
+    }
   });
 
   it('assigns distinct symbols, theme first, reproducibly', () => {

@@ -138,6 +138,20 @@ test.describe('match-one deck maker', () => {
     await expect(w.locator('.verify-result')).toContainText('every pair shares exactly 3 symbols');
   });
 
+  test('people themes caption every portrait and never deal Donald Trump', async ({ page }) => {
+    await page.goto('playgrounds/deck-maker/?deck=q11&theme=people');
+    const w = page.locator('[data-widget="deck-maker"]');
+    await expect(w.locator('.theme-select')).toHaveValue('people');
+    await expect(w.locator('.deck-grid .match-card')).toHaveCount(133);
+    await expect(w.locator('.deck-grid .match-card').first().locator('.sym-caption')).toHaveCount(12);
+    const labels = await w.locator('.deck-grid .match-card').evaluateAll((cs) => cs.map((c) => c.getAttribute('aria-label')).join(' '));
+    expect(labels).toContain('Abraham Lincoln');
+    expect(labels).not.toContain('Trump');
+    await w.locator('.theme-select').selectOption('presidents');
+    await expect(page).toHaveURL(/theme=presidents/);
+    await expect(w.locator('.deck-grid .sym-caption', { hasText: '16. Abraham Lincoln' })).toHaveCount(12);
+  });
+
   test('verify panel shows D and checks every pair', async ({ page }) => {
     await page.goto('playgrounds/deck-maker/?q=7&theme=all');
     const w = page.locator('[data-widget="deck-maker"]');

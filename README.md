@@ -38,7 +38,7 @@ once first. `npm run build` writes the site to `dist/`.
 
 ## Symbol images
 
-The match-one deck's 155 sticker pictures in `public/symbols/` were generated
+The deck maker's 155 sticker pictures in `public/symbols/` were generated
 locally with the Z-Image Turbo model (via ComfyUI), one image per name with
 seed 1000 + its number, then shrunk to 256 px WebP. The prompt template is
 
@@ -52,6 +52,11 @@ exact slug, name, seed, and prompt for every image are in
 [`docs/symbols.md`](docs/symbols.md). To add images, run
 `scripts/generate-symbols.sh <first number> "name" …`, review them, and list
 them in `public/symbols/manifest.json` with a theme (`vehicle` or `other`).
+
+The people themes add 134 portraits of presidents, classic movie stars, and
+scientists, made from a text prompt or restyled from a freely licensed photo
+(`scripts/portraits/`). [`docs/symbols.md`](docs/symbols.md) has both prompts
+and the source photo and license for every portrait drawn from one.
 
 ## Deployment
 

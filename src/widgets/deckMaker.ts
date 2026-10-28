@@ -297,7 +297,7 @@ export function mount(el: HTMLElement): void {
     const inTheme = symbols.filter((s) => primary.includes(s.theme)).length;
     themeNote.textContent =
       inTheme < deck.v
-        ? `There are only ${inTheme} ${label} pictures, so ${deck.v - inTheme} others fill out the ${deck.v} symbols.`
+        ? `${label} has ${inTheme} pictures, so ${deck.v - inTheme} from related themes fill out the ${deck.v} symbols.`
         : `${deck.v} cards with ${deck.k} symbols each, using ${deck.v} different symbols. ` +
           (deck.lambda === 1 ? 'Any two cards share exactly one.' : `Any two cards share exactly ${deck.lambda}.`);
     writeUrl();
