@@ -276,7 +276,16 @@ lesson; where Parts III–V are needed, they explain the idea intuitively.
 23. **A ruler with no repeats.** Modular Golomb rulers, v ≥ k² − k + 1 with
     equality for planar sets, unwinding into antenna arrays and channel
     plans.
-24. *(Optional, not yet written)* **Rebuilding a disk.** Declustered RAID
+24. **A fair race.** Pinewood Derby race charts: heat j is D + j, so every
+    car runs once in each lane, and two cars meet once per way of writing
+    their difference from D. Perfect charts need λ(N − 1) = k(k − 1), so
+    N = k² − k + 1 for λ = 1; a table of which car counts have a perfect
+    rotation for 2–8 lanes; the fairest rotation for other counts (Pope and
+    Young's Partial Perfect-N charts, modular Golomb rulers past k² − k + 1);
+    every two heats share λ cars, so back-to-back races can't be avoided.
+    Stan Pope's 1997 Perfect-N pages and DerbyNet's generators are this
+    construction.
+25. *(Optional, not yet written)* **Rebuilding a disk.** Declustered RAID
     with stripes on the lines of the Fano plane.
 
 Citations are checked against primary sources before Lesson 17 ships; the
@@ -367,7 +376,7 @@ verified notes so far are in [docs/citations.md](docs/citations.md).
 6. **Part IV**: Lessons 10–13 and the projective plane explorer.
 7. **Part V**: Lessons 14–15 and the Singer stepper.
 8. **Part VI**: Lesson 17, search versus construction, large-q explorer.
-9. **Part VII**: Lessons 18–23 and the match-one deck maker; Lesson 16
+9. **Part VII**: Lessons 18–24 and the match-one deck maker; Lesson 16
    written.
 10. **Polish**: accessibility, mobile layout, performance for large q.
 
