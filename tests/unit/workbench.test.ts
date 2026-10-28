@@ -7,11 +7,13 @@ import {
   normalizeSet,
   pairsWithDifference,
   translate,
+  differenceSetLambda,
   translateIntersections,
 } from '../../src/math/difference';
 import { cyclicPlane, linesThrough, meet, projectivePlaneOrder } from '../../src/math/cyclicPlane';
 import { allDifferenceSets, binomial, planarParams, SubsetSearch } from '../../src/math/search';
 import { singerSet, singerV } from '../../src/math/singer';
+import { PRESETS } from '../../src/widgets/differenceWorkbench';
 import { formatCount, formatDuration, setText } from '../../src/widgets/format';
 
 describe('set helpers', () => {
@@ -163,5 +165,15 @@ describe('clock arithmetic', () => {
     expect(divMod(5, 7)).toEqual({ q: 0, r: 5 });
     expect(clockDifference(0, 3, 7)).toBe(4);
     expect(clockDifference(3, 0, 7)).toBe(3);
+  });
+});
+
+describe('workbench examples menu', () => {
+  it('labels each example with its parameters, or as not a difference set', () => {
+    for (const p of PRESETS) {
+      const lambda = differenceSetLambda(p.set, p.v);
+      const verdict = lambda === null ? 'not a difference set' : `a (${p.v}, ${p.set.length}, ${lambda}) difference set`;
+      expect(p.label).toBe(`${setText(p.set)} mod ${p.v}: ${verdict}`);
+    }
   });
 });
