@@ -55,6 +55,7 @@ Two words make this precise.
 <span class="notation-title">Notation: counting with 1, and renaming</span>
 
 - $s \cdot 1$ means $1 + 1 + \dots + 1$ with $s$ ones: repeated addition inside the field.
+- The **characteristic** of a finite field is the smallest number of ones that add up to 0. It is always a prime, written $p$.
 - $x \mapsto y$, read "$x$ goes to $y$", describes a rule that turns each $x$ into $y$. For example, $s \mapsto s \cdot 1$ turns each whole number $s$ into the sum of $s$ ones.
 - $F \cong G$, read "$F$ is isomorphic to $G$", means $F$ and $G$ are the same field with different labels.
 
