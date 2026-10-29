@@ -232,3 +232,58 @@ describe('race-chart widget', () => {
     expect(el.querySelectorAll('.race-table thead th')).toHaveLength(8);
   });
 });
+
+/** The fewest heats, and the empty lanes, when `byes` of the chart's cars are phantoms, over every choice of byes. */
+function bestByes(set: number[], v: number, byes: number) {
+  const heats = raceChart(set, v);
+  let best = { heats: Infinity, empty: 0 };
+  const choose = function* (start: number, picked: number[]): Generator<number[]> {
+    if (picked.length === byes) {
+      yield picked;
+      return;
+    }
+    for (let x = start; x < v; x++) yield* choose(x + 1, [...picked, x]);
+  };
+  for (const phantom of choose(0, [])) {
+    const ghost = new Set(phantom);
+    const used = heats.filter((h) => h.some((c) => !ghost.has(c))).length;
+    if (used < best.heats) best = { heats: used, empty: used * set.length - (v - byes) * set.length };
+  }
+  return best;
+}
+
+describe('byes in a perfect chart (Lesson 24)', () => {
+  it('keep every remaining pair meeting once and every car in each lane once', () => {
+    const chart = raceChart([0, 1, 3, 9], 13).map((h) => h.map((c) => (c >= 10 ? null : c)));
+    for (let a = 0; a < 10; a++) {
+      for (let b = a + 1; b < 10; b++) {
+        expect(chart.filter((h) => h.includes(a) && h.includes(b))).toHaveLength(1);
+      }
+      for (let lane = 0; lane < 4; lane++) expect(chart.filter((h) => h[lane] === a)).toHaveLength(1);
+    }
+  });
+
+  it('cost the heats in the lesson table on 4 lanes', () => {
+    const table: Record<number, [number, number]> = {
+      12: [13, 8],
+      11: [13, 15],
+      10: [13, 23],
+      9: [12, 25],
+      8: [12, 33],
+      6: [11, 45],
+    };
+    for (const [cars, [heats, pct]] of Object.entries(table)) {
+      const best = bestByes([0, 1, 3, 9], 13, 13 - Number(cars));
+      expect(best.heats).toBe(heats);
+      expect(Math.round((100 * best.empty) / (best.heats * 4))).toBe(pct);
+    }
+  });
+
+  it('cost one or two heats for 30 or 29 cars on 6 lanes, where no near-fair rotation exists', () => {
+    const D = fairestChart(6, 31)!.set;
+    expect(bestByes(D, 31, 1).heats).toBe(31);
+    expect(bestByes(D, 31, 2).heats).toBe(31);
+    expect(fairestChart(6, 29)).toMatchObject({ lo: 0, hi: 2 });
+    expect(fairestChart(6, 30)).toMatchObject({ lo: 0, hi: 2 });
+  });
+});
