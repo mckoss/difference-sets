@@ -137,6 +137,8 @@ export function mount(el: HTMLElement): void {
       const offset = Array.from({ length: v }, (_, j) => j).find((j) => translate(Z, j, v).join() === D.join());
       const L = traceLine(S);
       const mults = 3 * v;
+      // Difference 1 occurs once, as (b + 1) − b; turning D back b notches puts b at 0 and b + 1 at 1.
+      const b = pairsWithDifference(D, 1, v)[0]?.[1];
       result.replaceChildren(
         h('p', {
           class: `ff-verdict ss-done ${ok ? 'ok' : 'bad'}`,
@@ -144,6 +146,16 @@ export function mount(el: HTMLElement): void {
             ? `D = ${setText(D)} is a (${v}, ${q + 1}, 1) difference set: each of the ${v - 1} nonzero differences occurs exactly once.`
             : `D = ${setText(D)} is not a planar difference set.`,
         }),
+        ok && b !== undefined
+          ? h('p', {
+              class: 'ss-normal',
+              text:
+                b === 0
+                  ? `D already starts {0, 1}: 0 and 1 are the one pair of members one step apart.`
+                  : `Starting at {0, 1}: ${b} and ${b + 1} are the one pair of members one step apart, since the difference 1 occurs once. ` +
+                    `Turning D back ${b} notch${b === 1 ? '' : 'es'} gives D − ${b} = ${setText(translate(D, -b, v))}.`,
+            })
+          : '',
         h('p', {
           class: 'ss-line',
           text:

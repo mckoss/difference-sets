@@ -23,6 +23,7 @@ test.describe('Part V widgets', () => {
     await expect(w.locator('.ss-done')).toContainText('D = {1, 2, 4} is a (7, 3, 1) difference set');
     await expect(w.locator('.ss-line')).toContainText('[1 : 0 : 0]');
     await expect(w.locator('.ss-line')).toContainText('D = {0, 1, 3} + 1');
+    await expect(w.locator('.ss-normal')).toContainText('Turning D back 1 notch gives D − 1 = {0, 1, 3}.');
     await expect(w.locator('.ss-diffs li')).toHaveCount(6);
     await expect(w.locator('.ss-diagram circle.member')).toHaveCount(3);
     await expect(w.locator('.ss-cost')).toContainText('21 field multiplications');
@@ -36,11 +37,13 @@ test.describe('Part V widgets', () => {
     await w.locator('.ss-finish').click();
     await expect(w.locator('.ss-done')).toContainText('D = {0, 1, 3, 9} is a (13, 4, 1) difference set');
     await expect(w.locator('.ss-line')).toContainText('It is the line z = 0 from Lesson 13');
+    await expect(w.locator('.ss-normal')).toContainText('D already starts {0, 1}');
 
     await w.locator('.ss-q').selectOption('4');
     await w.locator('.ss-finish').click();
     await expect(w.locator('.ss-done')).toContainText('{7, 9, 14, 15, 18}');
     await expect(w.locator('.ss-line')).toContainText('+ 14');
+    await expect(w.locator('.ss-normal')).toContainText('D − 14 = {0, 1, 4, 14, 16}.');
     await w.locator('.ss-reset').click();
     await expect(w.locator('.ss-table tbody tr')).toHaveCount(0);
   });

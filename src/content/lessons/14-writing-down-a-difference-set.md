@@ -96,7 +96,7 @@ That is not the $\{0, 1, 3\}$ of Lesson 1, but it is a translate: $\{1, 2, 4\} =
 
 ## Step through it
 
-The stepper runs the construction for any $q$ up to 13. Each press of **Next i** computes the three conjugates of $\alpha^i$, adds them, and keeps $i$ when the sum is 0. The chord diagram grows as members join; notice that no difference label ever repeats. At the end, the widget checks every difference and names the line it found.
+The stepper runs the construction for any $q$ up to 13. Each press of **Next i** computes the three conjugates of $\alpha^i$, adds them, and keeps $i$ when the sum is 0. The chord diagram grows as members join; notice that no difference label ever repeats. At the end, the widget checks every difference, names the line it found, and turns $D$ so that it starts $\{0, 1\}$. That always works for a planar set: the difference 1 occurs exactly once, as $(b + 1) - b$, and $D - b$ contains $0$ and $1$.
 
 <div data-widget="singer-stepper" data-q="2"></div>
 
