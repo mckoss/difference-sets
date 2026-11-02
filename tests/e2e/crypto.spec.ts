@@ -1,9 +1,9 @@
 import { expect, test } from './fixtures';
 
-const LESSON = 'lessons/25-secrets-that-look-like-noise/';
+const LESSON = 'lessons/26-secrets-that-look-like-noise/';
 const bent = '[data-widget="bent-function"]';
 
-test.describe('bent functions (Lesson 25)', () => {
+test.describe('bent functions (Lesson 26)', () => {
   test('x1x2 ⊕ x3x4 is a (16, 6, 2) difference set and far from every linear rule', async ({ page }) => {
     await page.goto(LESSON);
     const w = page.locator(bent);

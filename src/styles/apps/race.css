@@ -1,0 +1,116 @@
+/* race-chart widget (Lesson 24); the opponent strip reuses .distance-tally from schedule-ruler.css */
+
+.race-box {
+  padding: 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+.race-box p {
+  margin: 0 0 0.6rem;
+}
+
+.race-chart .lineup-input {
+  font: inherit;
+  font-size: 0.95rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--fg);
+  background: var(--bg-raised);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 0.2rem 0.4rem;
+  max-width: 100%;
+}
+
+.race-chart .lineup-control {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  max-width: 100%;
+}
+
+.race-chart .lineup-message:empty {
+  display: none;
+}
+
+.race-scroll {
+  max-height: 22rem;
+  max-width: 100%;
+  overflow: auto;
+  margin-bottom: 0.6rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+}
+
+.race-table {
+  border-collapse: collapse;
+  font-variant-numeric: tabular-nums;
+  font-size: 0.9rem;
+}
+
+.race-table th,
+.race-table td {
+  padding: 0.1rem 0.45rem;
+  border-bottom: 1px solid var(--border);
+  text-align: center;
+  white-space: nowrap;
+}
+
+.race-table thead th {
+  position: sticky;
+  top: 0;
+  background: var(--bg-raised);
+  font-weight: 600;
+}
+
+.race-table tbody th {
+  color: var(--muted);
+  font-weight: 400;
+}
+
+.race-table tr.has-car th {
+  color: var(--member);
+  font-weight: 700;
+}
+
+.race-table .next-col {
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.widget .race-table button.car {
+  min-width: 2.2em;
+  padding: 0.05rem 0.3rem;
+  border-color: transparent;
+  background: transparent;
+}
+
+.widget .race-table button.car.selected {
+  background: var(--member);
+  border-color: var(--member);
+  color: var(--bg);
+  font-weight: 700;
+}
+
+.race-opponents-caption {
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.race-opponents .tally-cell {
+  min-width: 2.3rem;
+}
+
+.race-opponents .tally-cell.more {
+  background: rgba(227, 116, 0, 0.16);
+}
+
+.race-car,
+.race-next {
+  font-variant-numeric: tabular-nums;
+}
+
+.race-next {
+  color: var(--muted);
+  font-size: 0.9rem;
+}

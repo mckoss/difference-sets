@@ -1,8 +1,8 @@
-<!-- Verified citation notes for Lesson 25 (difference sets in cryptography), gathered 2026-11-02. -->
+<!-- Verified citation notes for Lesson 26 (difference sets in cryptography), gathered 2026-11-02. -->
 
 # Difference sets in cryptography: fact-check and citations
 
-Checked 2026-11-02 for Lesson 25, "Secrets that look like noise". Tags follow `docs/citations.md`: **[primary]** means I read the original text, its official abstract, or the standard itself; **[review]** means I checked it against publisher or Crossref metadata, zbMATH, or a published abstract; **[secondary]** means I only found it in a later source. Springer, ScienceDirect, DBLP and World Scientific blocked automated fetching, so most bibliographic data was confirmed through Crossref (`api.crossref.org/works/<DOI>`).
+Checked 2026-11-02 for Lesson 26, "Secrets that look like noise". Tags follow `docs/citations.md`: **[primary]** means I read the original text, its official abstract, or the standard itself; **[review]** means I checked it against publisher or Crossref metadata, zbMATH, or a published abstract; **[secondary]** means I only found it in a later source. Springer, ScienceDirect, DBLP and World Scientific blocked automated fetching, so most bibliographic data was confirmed through Crossref (`api.crossref.org/works/<DOI>`).
 
 Mathematical claims about n = 4 (the (16, 6, 2) support of x1x2 ⊕ x3x4, Walsh values ±4, nonlinearity 6, 896 bent functions, bent ⇔ nontrivial XOR difference set, and the spread of best affine matches over all 65,536 functions) are also checked by brute force in `tests/unit/bent.test.ts`. The spread (best affine rule right on 10/11/12/13/14/15/16 inputs for 896/14336/28000/17920/3840/512/32 functions) was computed once with `src/math/bent.ts`.
 

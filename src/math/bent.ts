@@ -1,5 +1,5 @@
 // Boolean functions on n-bit inputs, bent functions, and difference sets in
-// the group of n-bit strings under XOR (Lesson 25).
+// the group of n-bit strings under XOR (Lesson 26).
 //
 // An input x is an n-bit number. Bit x1 is the most significant bit, so the
 // input written 0110 has x1 = 0, x2 = 1, x3 = 1, x4 = 0. A function f is its

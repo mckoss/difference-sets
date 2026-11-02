@@ -1,6 +1,6 @@
 ---
 title: "Rebuilding a disk"
-order: 24
+order: 25
 part: 7
 summary: "Spread a disk array's stripes along the lines of the Fano plane, and every survivor shares the work of rebuilding a dead disk."
 status: ready

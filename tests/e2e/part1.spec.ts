@@ -35,7 +35,7 @@ test.describe('difference workbench', () => {
   test('presets, v, and clear', async ({ page }) => {
     await page.goto('lessons/01-differences-on-a-circle/');
     const w = page.locator(workbench);
-    await w.locator('.preset-select').selectOption({ label: '{1, 3, 4, 5, 9} mod 11 (λ = 2)' });
+    await w.locator('.preset-select').selectOption({ label: '{1, 3, 4, 5, 9} mod 11: a (11, 5, 2) difference set' });
     await expect(w.locator('.v-input')).toHaveValue('11');
     await expect(w.locator('.verdict')).toHaveText(/\(11, 5, 2\) difference set/);
     await w.locator('.v-input').fill('9');
@@ -98,7 +98,7 @@ test.describe('translates', () => {
     await expect(t.locator('.key-b')).toHaveText('D + 2 = {2, 3, 5}');
     await expect(t.locator('.circle-set .pt.in-both')).toHaveCount(1);
 
-    await t.locator('.preset-select').selectOption({ label: 'D = Not one: {0, 1, 2} mod 7' });
+    await t.locator('.preset-select').selectOption({ label: 'D = {0, 1, 2} mod 7: not a difference set' });
     await t.locator('.cell[data-i="0"][data-j="1"]').click();
     await expect(t.locator('.shared')).toHaveText(/share 2 points: \{1, 2\}/);
     await expect(t.locator('.circle-set .pt.in-both')).toHaveCount(2);

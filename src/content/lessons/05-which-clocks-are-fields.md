@@ -10,7 +10,7 @@ status: ready
 
 - What a *field* is: a number system where you can add, subtract, multiply, and divide by anything except 0.
 - Why a clock with 6 hours fails, and a clock with 7 hours succeeds.
-- How to find an inverse ("one divided by a") on a clock without trying every number.
+- How to find a multiplicative inverse ("one divided by a") on a clock without trying every number.
 
 ## Clocks, again
 
@@ -22,7 +22,7 @@ Singer's construction needs more than clock arithmetic: it needs a number system
 
 ## What a field is
 
-A **field** is a set of things we call numbers, with an addition and a multiplication that obey these rules:
+A **field** is a collection of objects over which two operations, addition and multiplication, are defined with the following properties. (We call the objects *numbers*, even though in later lessons they won't look like ordinary numbers.)
 
 | Rule | In words |
 | --- | --- |
@@ -30,12 +30,14 @@ A **field** is a set of things we call numbers, with an addition and a multiplic
 | Grouping doesn't matter | $(a + b) + c = a + (b + c)$, and the same for $\times$ |
 | Multiplying spreads over adding | $a \times (b + c) = a \times b + a \times c$ |
 | There are a 0 and a 1 (different from each other) | $a + 0 = a$ and $a \times 1 = a$ |
-| Every number has a negative | some $-a$ has $a + (-a) = 0$, so subtraction works |
-| Every number except 0 has an **inverse** | some $a^{-1}$ (read "$a$ inverse") has $a \times a^{-1} = 1$, so division works |
+| Every number has a negative (its **additive inverse**) | some $-a$ has $a + (-a) = 0$, so subtraction works |
+| Every number except 0 has a **multiplicative inverse** | some $a^{-1}$ (read "$a$ inverse") has $a \times a^{-1} = 1$, so division works |
 
-The fractions (rational numbers) form a field, and so do the real numbers. The whole numbers $\dots, -1, 0, 1, 2, \dots$ do not: 2 has no inverse among them, because $\tfrac12$ is not a whole number.
+From here on, "inverse" on its own always means the multiplicative inverse, the one that makes division work.
 
-Clock arithmetic inherits the first five rules from ordinary whole-number arithmetic, because taking remainders at the end gives the same answer as taking them along the way. The negative of $a$ on a $v$-hour clock is $v - a$. So the only question is the last rule: **does every nonzero hour have an inverse?**
+The fractions (rational numbers) form a field, and so do the real numbers. The whole numbers $\dots, -1, 0, 1, 2, \dots$ do not: 2 has no multiplicative inverse among them, because $\tfrac12$ is not a whole number.
+
+Clock arithmetic inherits the first five rules from ordinary whole-number arithmetic, because taking remainders at the end gives the same answer as taking them along the way. The negative of $a$ on a $v$-hour clock is $v - a$. So the only question is the last rule: **does every nonzero hour have a multiplicative inverse?**
 
 ## Look at the multiplication tables
 
@@ -86,13 +88,19 @@ For a prime $p$, this field is called $\mathrm{GF}(p)$. So $\mathrm{GF}(7)$ is t
 <aside class="notation">
 <span class="notation-title">Notation: fields</span>
 
-- $a^{-1}$, read "$a$ inverse", is the number with $a \times a^{-1} = 1$. Dividing by $a$ means multiplying by $a^{-1}$.
+- $a^{-1}$, read "$a$ inverse", is the multiplicative inverse of $a$: the number with $a \times a^{-1} = 1$. Dividing by $a$ means multiplying by $a^{-1}$.
 - $p$ always stands for a **prime**: a whole number above 1 whose only factors are 1 and itself (2, 3, 5, 7, 11, …).
-- $\mathrm{GF}(p)$ is the field $\mathbb{Z}/p\mathbb{Z}$ of integers mod a prime $p$. The letters stand for "Galois field", after Évariste Galois, who studied finite fields in the 1830s.
+- $\mathrm{GF}(p)$ is the field $\mathbb{Z}/p\mathbb{Z}$ of integers mod a prime $p$. The letters stand for "Galois field" (see below).
 
 </aside>
 
-These are not the only finite fields. The next lesson shows that every field with a prime number $p$ of elements is just $\mathrm{GF}(p)$ in disguise, and Lesson 7 builds fields with 4, 8, 9, and more elements, which Singer's construction needs.
+## Why "GF"?
+
+The letters stand for **Galois field**, after Évariste Galois (1811–1832), a young French mathematician who laid much of the foundation of modern algebra before he was killed in a duel at the age of 20. In a short paper of 1830, "Sur la théorie des nombres" ("On the theory of numbers"), he showed how to build number systems with $p^2$, $p^3$, … elements. He started from the integers mod $p$ and added a new number that solves an equation with no solution among them, much as $i$ is added to the real numbers to solve $x^2 = -1$. Those are the fields that [Lesson 7](../07-prime-power-fields/) builds, and Singer's construction needs them.
+
+The complete picture came later. In 1893 the American mathematician E. H. Moore proved that a finite field always has a prime or a power of a prime as its number of elements, and that for each such number there is essentially only one field. Any two finite fields with the same number of elements are **isomorphic**: they are the same field with the elements renamed, so that one's addition and multiplication tables turn into the other's. That is why it makes sense to speak of *the* field with 7 elements and give it one name, $\mathrm{GF}(7)$.
+
+You won't have to take this on trust for the prime sizes: the [next lesson](../06-fields-of-prime-order/) proves that every field with a prime number $p$ of elements is just $\mathrm{GF}(p)$ with its elements renamed. For the larger fields of Lesson 7, the proof needs more algebra than this site develops, so Lesson 7 states it as a fact and gives you a widget that tests it on examples. A full proof is in any textbook on finite fields, for example chapter 2 of Lidl and Niederreiter's *Finite Fields*.
 
 <section class="try-it">
 

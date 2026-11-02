@@ -65,7 +65,7 @@ Here is why, in two directions.
 3. *They are all the lines.* The plane has exactly $v = n^2 + n + 1$ lines, and we've found $v$ different ones.
 4. *Every difference occurs once.* Take any nonzero difference $d$. The points 0 and $d$ lie on exactly one line, which is some translate $D + j$. As in Lesson 2, each pair $a, b$ in $D$ with $a - b \equiv d$ gives a translate containing 0 and $d$ (namely $j = -b$), and different pairs give different translates. Since there is exactly one such translate, there is exactly one such pair.
 
-So $D$ is a $(v, n + 1, 1)$ difference set, and every line is a translate of it.
+So $D$ is a $(v, n + 1, 1)$ difference set, and every line is a translate of it. The order $n$ of the plane is the order $n = k - 1$ of the difference set from [Lesson 1](../01-differences-on-a-circle/), which is why we gave that number a name.
 
 ## Where do these planes come from?
 

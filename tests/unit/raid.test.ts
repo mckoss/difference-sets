@@ -73,7 +73,7 @@ describe('declustered layouts from planar difference sets', () => {
     expect(rebuildReads(L, 3).filter((_, d) => d !== 3)).toEqual([2, 2, 2, 2, 2, 2]);
   });
 
-  it('matches the Lesson 24 exercise: disk 5 of 13', () => {
+  it('matches the Lesson 25 exercise: disk 5 of 13', () => {
     const L = declusteredLayout([0, 1, 3, 9], 13);
     expect(rebuildSummary(L, 5).lost).toEqual([2, 4, 5, 9]);
   });

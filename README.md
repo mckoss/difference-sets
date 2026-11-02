@@ -58,6 +58,12 @@ scientists, made from a text prompt or restyled from a freely licensed photo
 (`scripts/portraits/`). [`docs/symbols.md`](docs/symbols.md) has both prompts
 and the source photo and license for every portrait drawn from one.
 
+## Race charts
+
+The race chart widget (Lesson 24) reads the fairest rotation for each track
+from `src/math/raceTable.ts`, which an exhaustive search writes. To rebuild it
+(about half a minute), run `node scripts/race-table.ts`.
+
 ## Deployment
 
 GitHub Actions typechecks, tests, and builds every push and pull request. Pushes to `main` deploy

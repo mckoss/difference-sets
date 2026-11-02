@@ -82,7 +82,7 @@ $$
 
 Check it: for $\{0, 1, 3\}$, $3 \cdot 2 = 1 \cdot 6$. For the $(11, 5, 2)$ set, $5 \cdot 4 = 2 \cdot 10$.
 
-The sets with $\lambda = 1$, where every difference occurs exactly once, are the ones this site is about. They are called **planar** difference sets, for a reason that will become clear in Lessons 3 and 4. With $\lambda = 1$ the count says $v = k(k - 1) + 1$. Writing $n = k - 1$, that is
+The sets with $\lambda = 1$, where every difference occurs exactly once, are the ones this site is about. They are called **planar** difference sets, a name that Lessons 3 and 4 explain. With $\lambda = 1$ the count says $v = k(k - 1) + 1$. For reasons that will become clear in [Lesson 4](../04-projective-planes/), we introduce one more letter, $n = k - 1$, which we call the **order** of the difference set. In terms of the order,
 
 $$
 v = n^2 + n + 1, \qquad k = n + 1.
@@ -106,7 +106,7 @@ Thirty-five candidates is nothing. But watch the table below as $n$ grows. The l
 
 Run the search for $v = 7$: it checks all 35 subsets and finds 14 difference sets, starting with $\{0, 1, 3\}$. For $v = 31$ it has to check 736,281 subsets, which still takes only a moment. But by $n = 10$, with $v = 111$, the count is in the hundreds of trillions, and by $n = 32$ no computer that could ever be built would finish. (Smarter searches prune most of these candidates, but they still grow far too fast.)
 
-Yet in 1938 James Singer wrote down a planar difference set for every $n$ that is a prime or a power of a prime, with no search at all. The rest of this site explains how. The first clue comes from turning the clock: that's the next lesson.
+Yet in 1938 James Singer pulled off a bit of mathematical magic. Rather than search through a very large number of possible combinations, he found a way to calculate the members of a planar difference set directly, with no brute-force search at all, for every order $n$ that is a prime or a power of a prime. The rest of this site explains how. The first clue comes from turning the clock: that's the next lesson.
 
 <section class="try-it">
 

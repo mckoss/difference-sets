@@ -1,6 +1,6 @@
-<!-- Verified citation notes for Lesson 24 (declustered RAID), gathered 2026-11-02. -->
+<!-- Verified citation notes for Lesson 25 (declustered RAID), gathered 2026-11-02. -->
 
-# Lesson 24, "Rebuilding a disk": fact-check and citations
+# Lesson 25, "Rebuilding a disk": fact-check and citations
 
 Checked 2026-11-02. Each claim is tagged **[primary]** when I read the original text (full paper, patent, or official documentation), **[review]** when I checked it only against a bibliographic record (Crossref, DBLP) or a published abstract, and **[secondary]** when I only found it reported in a later work. **[inference]** marks a statement I derived myself and did not find stated in a source.
 

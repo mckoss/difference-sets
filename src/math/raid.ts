@@ -1,4 +1,4 @@
-// Disk-array layouts and their rebuild load (Lesson 24).
+// Disk-array layouts and their rebuild load (Lesson 25).
 //
 // A layout places stripes on disks. Each stripe has one chunk on each of its
 // disks: data chunks plus one parity chunk, the XOR of the data. When a disk

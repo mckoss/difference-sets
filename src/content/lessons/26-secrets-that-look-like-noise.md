@@ -1,6 +1,6 @@
 ---
 title: "Secrets that look like noise"
-order: 25
+order: 26
 part: 7
 summary: "Bent functions: the rules a cipher can use that no straight-line guess can imitate, and why they are difference sets."
 status: ready
