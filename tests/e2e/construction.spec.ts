@@ -23,12 +23,20 @@ test.describe('Part V widgets', () => {
     await expect(w.locator('.ss-done')).toContainText('D = {1, 2, 4} is a (7, 3, 1) difference set');
     await expect(w.locator('.ss-line')).toContainText('[1 : 0 : 0]');
     await expect(w.locator('.ss-line')).toContainText('D = {0, 1, 3} + 1');
-    await expect(w.locator('.ss-normal')).toHaveText('1 and 2 are the one pair of members one step apart, so turning D back 1 notch gives {0, 1, 3}. Its mirror image −D, turned the same way, is {0, 1, 5}. The smaller of the two, comparing member by member, is the standard form: {0, 1, 3}.');
     await expect(w.locator('.ss-diffs li')).toHaveCount(6);
     await expect(w.locator('.ss-diagram circle.member')).toHaveCount(3);
-    await expect(w.locator('.ss-figure figcaption')).toHaveText('Standard form: {0, 1, 3}, the trace-zero set {1, 2, 4} turned back 1 notch');
+    await expect(w.locator('.ss-figure figcaption')).toContainText('D = {1, 2, 4}. Press Standard form');
     await expect(w.locator('.ss-cost')).toContainText('21 field multiplications');
     await expect(w.locator('.ss-cost')).toContainText('C(7, 3) = 35');
+    await expect(w.locator('.ss-next')).toHaveText('Standard form');
+    await w.locator('.ss-next').click();
+    await expect(w.locator('.ss-current')).toContainText('Last step: standard form');
+    await expect(w.locator('.ss-normal')).toContainText('as 2 − 1');
+    await expect(w.locator('.ss-candidate')).toHaveCount(2);
+    await expect(w.locator('.ss-candidate.wins')).toContainText('{0, 1, 3}');
+    await expect(w.locator('.ss-candidate').nth(1)).toContainText('{0, 1, 5}');
+    await expect(w.locator('.ss-current .ss-verdict')).toHaveText('Standard form: {0, 1, 3}');
+    await expect(w.locator('.ss-figure figcaption')).toHaveText('Standard form: {0, 1, 3}, the trace-zero set {1, 2, 4} turned back 1 notch');
     await expect(w.locator('.ss-next')).toBeDisabled();
 
     await w.locator('.ss-q').selectOption('3');
@@ -38,17 +46,19 @@ test.describe('Part V widgets', () => {
     await w.locator('.ss-finish').click();
     await expect(w.locator('.ss-done')).toContainText('D = {0, 1, 3, 9} is a (13, 4, 1) difference set');
     await expect(w.locator('.ss-line')).toContainText('It is the line z = 0 from Lesson 13');
-    await expect(w.locator('.ss-normal')).toContainText('D already starts {0, 1}. Its mirror image −D, turned the same way, is {0, 1, 5, 11}');
+    await expect(w.locator('.ss-normal')).toContainText('So D already starts {0, 1}.');
+    await expect(w.locator('.ss-candidate').nth(1)).toContainText('{0, 1, 5, 11}');
 
     await w.locator('.ss-q').selectOption('4');
     await w.locator('.ss-finish').click();
     await expect(w.locator('.ss-done')).toContainText('{7, 9, 14, 15, 18}');
     await expect(w.locator('.ss-line')).toContainText('+ 14');
-    await expect(w.locator('.ss-normal')).toContainText('standard form: {0, 1, 4, 14, 16}.');
+    await expect(w.locator('.ss-current .ss-verdict')).toHaveText('Standard form: {0, 1, 4, 14, 16}');
     await w.locator('.ss-q').selectOption('8');
     await w.locator('.ss-finish').click();
     await expect(w.locator('.ss-figure figcaption')).toContainText('Standard form: {0, 1, 3, 7, 15, 31, ');
     await expect(w.locator('.ss-figure figcaption')).toContainText('the mirror image of the trace-zero set');
+    await expect(w.locator('.ss-candidate').nth(1)).toHaveClass(/wins/);
     await w.locator('.ss-reset').click();
     await expect(w.locator('.ss-table tbody tr')).toHaveCount(0);
   });
@@ -116,7 +126,7 @@ test('the Singer stepper playground keeps q and the step in the URL', async ({ p
 
 test.describe('Part V at phone width', () => {
   test.use({ viewport: { width: 390, height: 844 } });
-  for (const path of [L14, L15, `${STEPPER}?q=13&i=183`]) {
+  for (const path of [L14, L15, `${STEPPER}?q=13&i=183`, `${STEPPER}?q=13&i=184`]) {
     test(`no horizontal scroll on ${path}`, async ({ page }) => {
       await page.goto(path);
       await page.waitForTimeout(400);

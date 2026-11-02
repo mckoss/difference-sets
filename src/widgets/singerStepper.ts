@@ -12,13 +12,54 @@ const ALL_QS = [2, 3, 4, 5, 7, 8, 9, 11, 13];
 
 const pow = (n: number) => (n === 0 ? '1' : n === 1 ? 'α' : `α${superscript(n)}`);
 
+/** A small chord diagram with a caption, for the two candidates in the standard-form step. */
+function candidate(title: string, set: readonly number[], v: number, wins: boolean): HTMLElement {
+  const svg = chordDiagram(set, v);
+  svg.classList.add('ss-candidate-diagram');
+  return h(
+    'figure',
+    { class: `ss-candidate ${wins ? 'wins' : ''}`.trim() },
+    svg,
+    h('figcaption', {}, h('span', { text: title }), h('strong', { text: setText(set) }), wins ? h('span', { class: 'ss-wins', text: 'smaller' }) : ''),
+  );
+}
+
+/** The last step: turn D, and its mirror image, so each starts {0, 1}; keep the smaller. */
+function standardFormStep(D: readonly number[], v: number, z: ReturnType<typeof startAtZeroOne>): Node[] {
+  const head = h('p', { class: 'pg-list-head', text: 'Last step: standard form' });
+  if (!z) return [head, h('p', { text: `D = ${setText(D)} has no single pair of members one step apart.` })];
+  const notches = `${z.b} notch${z.b === 1 ? '' : 'es'}`;
+  return [
+    head,
+    h('p', {
+      class: 'ss-normal',
+      text:
+        `The difference 1 occurs exactly once in D, as ${z.b + 1} − ${z.b}. ` +
+        (z.b === 0
+          ? 'So D already starts {0, 1}. '
+          : `Turning D back ${notches} moves ${z.b} to 0 and ${z.b + 1} to 1. `) +
+        `The mirror image −D, turned the same way, starts {0, 1} too. ` +
+        `Compare the two member by member and keep the smaller.`,
+    }),
+    h(
+      'div',
+      { class: 'ss-candidates' },
+      candidate(z.b === 0 ? 'D' : `D − ${z.b}`, z.turned, v, !z.mirrorWins),
+      candidate(`${z.b + 1} − D`, z.mirrored, v, z.mirrorWins),
+    ),
+    h('p', { class: 'ff-verdict ss-verdict ok' }, 'Standard form: ', h('strong', { text: setText(z.best) })),
+  ];
+}
+
 /**
  * `<div data-widget="singer-stepper" data-q="2" [data-qs="2,3,4"] [data-url-state]>`:
  * Singer's construction one exponent at a time. For i = 0, 1, …, v − 1 it
  * shows αⁱ, its conjugates α^(iq) and α^(iq²), their sum Tr(αⁱ), and whether
  * i joins D. The chord diagram grows as members join; at the end the widget
  * checks every nonzero difference and sets the cost beside a brute-force
- * search. With `data-url-state`, q and the step count live in `?q=&i=`.
+ * search. One last step (i = v + 1 in the URL) writes D in standard form: of
+ * D and its mirror image −D, each turned to start {0, 1}, the smaller one.
+ * With `data-url-state`, q and the step count live in `?q=&i=`.
  */
 export function mount(el: HTMLElement): void {
   const qs = (el.dataset.qs ?? '')
@@ -63,8 +104,11 @@ export function mount(el: HTMLElement): void {
     const { F, v } = S;
     const N = q ** 3 - 1;
     const steps = traceSteps(q);
-    done = Math.min(done, v);
-    const D = steps.slice(0, done).filter((s) => s.inD).map((s) => s.i);
+    // Steps 1…v check exponents 0…v − 1; step v + 1 puts D in standard form.
+    done = Math.min(done, v + 1);
+    const checked = Math.min(done, v);
+    const D = steps.slice(0, checked).filter((s) => s.inD).map((s) => s.i);
+    const z = done > v ? startAtZeroOne(D, v) : null;
 
     rule.textContent =
       `GF(${q ** 3}) is c₀ + c₁α + c₂α² with coefficients in GF(${q}), using ${cubicText(F, S.cubic)}. ` +
@@ -73,6 +117,8 @@ export function mount(el: HTMLElement): void {
 
     if (done === 0) {
       current.replaceChildren(h('p', { text: `Press Next i to start with i = 0, where α⁰ = 1.` }));
+    } else if (done > v) {
+      current.replaceChildren(...standardFormStep(D, v, z));
     } else {
       const s = steps[done - 1];
       const { i } = s;
@@ -103,8 +149,6 @@ export function mount(el: HTMLElement): void {
       );
     }
 
-    // Once every exponent is checked, draw D in its standard form, starting {0, 1}.
-    const z = done === v ? startAtZeroOne(D, v) : null;
     const svg = chordDiagram(z ? z.best : D, v);
     svg.classList.add('ss-diagram');
     // Small clocks draw tiny; let them grow a little, and big ones shrink to fit.
@@ -124,13 +168,17 @@ export function mount(el: HTMLElement): void {
                   ? ', the trace-zero set itself'
                   : `, the trace-zero set ${setText(D)} turned back ${z.b} notch${z.b === 1 ? '' : 'es'}`,
             ]
-          : [`D so far: ${setText(D)}, after checking ${done} of ${v} exponents`]),
+          : [
+              done === v
+                ? `D = ${setText(D)}. Press Standard form to turn it to start {0, 1}.`
+                : `D so far: ${setText(D)}, after checking ${done} of ${v} exponents`,
+            ]),
       ),
     );
 
     const table = opTable({
       corner: 'i',
-      rowHeads: steps.slice(0, done).map((s) => String(s.i)),
+      rowHeads: steps.slice(0, checked).map((s) => String(s.i)),
       colHeads: ['αⁱ', 'Tr(αⁱ)', 'in D?'],
       cell: (r, c) => {
         const s = steps[r];
@@ -141,7 +189,7 @@ export function mount(el: HTMLElement): void {
       rowClass: (r) => `${steps[r].inD ? 'ss-member' : ''} ${r === done - 1 ? 'ss-latest' : ''}`.trim(),
       cls: 'ss-table',
     });
-    log.replaceChildren(h('p', { class: 'pg-list-head', text: `${done} of ${v} steps` }), table);
+    log.replaceChildren(h('p', { class: 'pg-list-head', text: `${checked} of ${v} exponents checked` }), table);
     table.scrollTop = table.scrollHeight;
 
     if (done < v) {
@@ -160,20 +208,6 @@ export function mount(el: HTMLElement): void {
             ? `D = ${setText(D)} is a (${v}, ${q + 1}, 1) difference set: each of the ${v - 1} nonzero differences occurs exactly once.`
             : `D = ${setText(D)} is not a planar difference set.`,
         }),
-        ok && z
-          ? h(
-              'p',
-              { class: 'ss-normal' },
-              (z.b === 0
-                ? 'D already starts {0, 1}. '
-                : `${z.b} and ${z.b + 1} are the one pair of members one step apart, so turning D back ${z.b} ` +
-                  `notch${z.b === 1 ? '' : 'es'} gives ${setText(z.turned)}. `) +
-                `Its mirror image −D, turned the same way, is ${setText(z.mirrored)}. ` +
-                `The smaller of the two, comparing member by member, is the standard form: `,
-              h('strong', { text: setText(z.best) }),
-              '.',
-            )
-          : '',
         h('p', {
           class: 'ss-line',
           text:
@@ -204,9 +238,10 @@ export function mount(el: HTMLElement): void {
       );
     }
 
-    nextBtn.disabled = done >= v;
-    finishBtn.disabled = done >= v;
-    if (done >= v) stop();
+    nextBtn.textContent = done === v ? 'Standard form' : 'Next i';
+    nextBtn.disabled = done > v;
+    finishBtn.disabled = done > v;
+    if (done > v) stop();
   };
 
   const stop = () => {
@@ -223,7 +258,7 @@ export function mount(el: HTMLElement): void {
   const loop = () => {
     if (!playing) return;
     const v = singerFrame(q).v;
-    if (done >= v) return stop();
+    if (done > v) return stop();
     setDone(done + 1);
     if (playing) timer = window.setTimeout(loop, Math.max(40, Math.min(450, 9000 / v)));
   };
@@ -234,7 +269,7 @@ export function mount(el: HTMLElement): void {
   });
   playBtn.addEventListener('click', () => {
     if (playing) return stop();
-    if (done >= singerFrame(q).v) done = 0;
+    if (done > singerFrame(q).v) done = 0;
     playing = true;
     playBtn.textContent = 'Pause';
     playBtn.setAttribute('aria-pressed', 'true');
@@ -242,7 +277,7 @@ export function mount(el: HTMLElement): void {
   });
   finishBtn.addEventListener('click', () => {
     stop();
-    setDone(singerFrame(q).v);
+    setDone(singerFrame(q).v + 1);
   });
   resetBtn.addEventListener('click', () => {
     stop();
