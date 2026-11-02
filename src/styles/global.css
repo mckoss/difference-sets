@@ -1478,3 +1478,183 @@ blockquote p {
   overflow-x: auto;
   overflow-y: hidden;
 }
+
+/* Glossary terms in lesson text: a quiet dotted underline, definition on hover. */
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.lesson a.gloss {
+  color: inherit;
+  text-decoration: underline dotted;
+  text-decoration-color: var(--muted);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+}
+
+.lesson a.gloss:hover,
+.lesson a.gloss:focus-visible {
+  text-decoration-color: var(--accent);
+}
+
+.gloss-def {
+  scroll-margin-top: 4rem;
+}
+
+.gloss-def:target {
+  background: var(--accent-soft);
+  border-radius: 3px;
+  box-shadow: 0 0 0 2px var(--accent-soft);
+}
+
+.gloss-tip {
+  position: absolute;
+  z-index: 50;
+  padding: 0.55rem 0.75rem;
+  background: var(--bg-raised);
+  color: var(--fg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+  font-size: 0.875rem;
+  line-height: 1.45;
+}
+
+.gloss-tip-more {
+  white-space: nowrap;
+  font-size: 0.8rem;
+}
+
+/* Topic search in the sidebar */
+
+.topic-search {
+  margin: 0 0 1rem;
+}
+
+.topic-search input {
+  width: 100%;
+  padding: 0.4rem 0.6rem;
+  font: inherit;
+  color: var(--fg);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+}
+
+.topic-search input:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 0;
+}
+
+.sidebar .topic-search-results {
+  margin-top: 0.35rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--bg);
+  max-height: 60vh;
+  overflow-y: auto;
+}
+
+.sidebar .topic-search-results a {
+  display: block;
+  padding: 0.4rem 0.55rem;
+  border-radius: 0;
+}
+
+.topic-search-results [aria-selected='true'] a {
+  background: var(--accent-soft);
+}
+
+.topic-search-results li + li {
+  border-top: 1px solid var(--border);
+}
+
+.topic-result-title {
+  display: block;
+  font-weight: 600;
+}
+
+.topic-result-where {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+.topic-result-snippet {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.topic-search-results mark {
+  background: var(--accent-soft);
+  color: inherit;
+  border-radius: 2px;
+}
+
+.topic-search-empty {
+  padding: 0.4rem 0.55rem;
+  color: var(--muted);
+}
+
+.sidebar-reference {
+  margin-top: 1rem;
+}
+
+/* Glossary page */
+
+.glossary-letters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 0.6rem;
+  margin: 1rem 0 1.5rem;
+}
+
+.glossary-group h2 {
+  margin: 1.75rem 0 0.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.glossary dl {
+  margin: 0;
+}
+
+.glossary-entry {
+  margin: 0 0 1rem;
+  scroll-margin-top: 4rem;
+}
+
+.glossary-entry:target {
+  background: var(--accent-soft);
+  border-radius: 6px;
+  box-shadow: 0 0 0 0.5rem var(--accent-soft);
+}
+
+.glossary dt {
+  font-weight: 700;
+}
+
+.glossary dd {
+  margin: 0.15rem 0 0;
+}
+
+.glossary dd p {
+  margin: 0;
+}
+
+.glossary-meta,
+.glossary-read {
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.glossary-symbols dt {
+  font-family: 'KaTeX_Main', 'Times New Roman', serif;
+  font-size: 1.1rem;
+}

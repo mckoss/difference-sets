@@ -69,4 +69,6 @@ lesson. Each checkpoint lands on `main` as its own PR and deploy.
 ## Checkpoint 7: Polish
 
 - [x] Prerequisite audit (2026-11-02): seven reviewers checked that every lesson uses only concepts explained before it, one per Part; 0 blocking, 31 rough, 48 nit findings, 4 factual slips (Lesson 3 Fano answer, Lesson 4 "order 1000", Lessons 16–17 "(63, 31, 15) is the smallest", Lesson 25 "same amount of data"); fixes applied per lesson. Summary in `docs/lesson-audit.md`.
+- [x] Glossary and topic search (2026-11-02, v0.15.0): `src/glossary.ts` holds ~100 terms and ~30 symbols, each tied to the lesson that defines it; `/glossary/` lists them alphabetically; the `rehypeGlossary` plugin links the first use of each term on a lesson page (dotted underline, definition on hover or tap) and anchors its defining use in its own lesson. Sidebar search box searches every lesson section, glossary term, and playground (`search-index.json`) and links to section anchors. Wrap an everyday use of a term in `<span class="no-gloss">` to keep it unlinked.
+- [ ] Printable PDF: whole text with widget snapshots, version and date, URL header, index with page numbers
 - [ ] Accessibility pass, mobile pass, performance for large q

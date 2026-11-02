@@ -10,7 +10,7 @@ status: ready
 
 ## Radios that sleep
 
-A small radio sensor, say one counting cars at a road or measuring soil moisture in a field, runs for years on a battery only if its radio is switched off most of the time. But two radios can talk only when both are awake at once. If their clocks agreed, they could simply wake together. Cheap clocks drift, though, and a radio that has just been switched on has no idea what time its neighbors think it is.
+A small radio sensor, say one counting cars at a road or measuring soil moisture in a <span class="no-gloss">field</span>, runs for years on a battery only if its radio is switched off most of the time. But two radios can talk only when both are awake at once. If their clocks agreed, they could simply wake together. Cheap clocks drift, though, and a radio that has just been switched on has no idea what time its neighbors think it is.
 
 So divide time into short **slots**, grouped into a cycle of $v$ slots that repeats forever. Each radio is awake in the same few slots of every cycle and asleep in the rest. A radio whose clock runs $i$ slots ahead of ours is awake at the same slots, shifted by $i$.
 
@@ -58,7 +58,7 @@ This idea is in real designs. A 2006 patent application by Zi-Tsan Chou of Taiwa
 
 Nothing in the argument used time. It only used "item $i$ gets the set $D + i$, and any two of those sets overlap in exactly one member". Switch the menu in the widget from **Radios and time slots** to the other two readings.
 
-**Shared keys.** Before sensors are scattered in a field, give sensor $i$ the numbered secret keys $D + i$ (its *key ring*). Any two sensors then hold exactly one key in common and can use it to talk privately, while each sensor stores only about $\sqrt{v}$ keys (the square root of $v$) instead of one per neighbor. Seyit Çamtepe and Bülent Yener proposed key rings of exactly this shape, the lines of a projective plane, in 2004; any two lines of a projective plane meet in exactly one point ([Lesson 4](../04-projective-planes/)).
+**Shared keys.** Before sensors are scattered in a <span class="no-gloss">field</span>, give sensor $i$ the numbered secret keys $D + i$ (its *key ring*). Any two sensors then hold exactly one key in common and can use it to talk privately, while each sensor stores only about $\sqrt{v}$ keys (the square root of $v$) instead of one per neighbor. Seyit Çamtepe and Bülent Yener proposed key rings of exactly this shape, the lines of a projective plane, in 2004; any two lines of a projective plane meet in exactly one point ([Lesson 4](../04-projective-planes/)).
 
 **Quorums.** A group of $v$ servers shares one resource, say a file that only one server may change at a time. Before changing it, server $i$ asks permission from the servers in its *quorum* $D + i$, and each server grants permission to only one asker at a time. Since any two quorums overlap, two servers can never both collect full permission: some server in both quorums has said yes to only one of them. Mamoru Maekawa's 1985 algorithm uses quorums that are the lines of a finite projective plane, so each request takes a small multiple of $\sqrt{v}$ messages instead of the $2(v - 1)$ needed to ask everyone. This is a classic of distributed computing courses; the systems in wide use today mostly use simpler majority quorums instead.
 

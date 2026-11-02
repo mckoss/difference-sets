@@ -42,6 +42,11 @@ const pageTitle = current === '' ? siteTitle : `${title} · ${siteTitle}`;
     </div>
     <script>
       import '../widgets/hydrate';
+      import { initGlossaryTips } from '../widgets/glossaryTips';
+      import { initTopicSearch } from '../widgets/topicSearch';
+
+      initGlossaryTips();
+      initTopicSearch();
 
       const toggle = document.querySelector<HTMLButtonElement>('.nav-toggle');
       const sidebar = document.getElementById('sidebar');

@@ -36,9 +36,13 @@ const part = PARTS.find((p) => p.part === lesson.data.part)!;
       )
     }
     {
-      next && (
+      next ? (
         <a class="next" rel="next" href={href(base, lessonPath(next.id))}>
           <span>Next</span> {next.order}. {next.title}
+        </a>
+      ) : (
+        <a class="next" rel="next" href={href(base, 'glossary/')}>
+          <span>Next</span> Glossary
         </a>
       )
     }
