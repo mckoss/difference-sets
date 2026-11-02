@@ -278,7 +278,7 @@ lesson; where Parts III–V are needed, they explain the idea intuitively.
     plans.
 24. **Rebuilding a disk.** Declustered RAID with stripes on the lines of
     the Fano plane: when a disk fails, every survivor reads the same amount.
-25. **Difference sets in cryptography.** Key rings (back to Lesson 22),
+25. **Secrets that look like noise.** Key rings (back to Lesson 22),
     bent functions as (16, 6, 2) difference sets under XOR and why they
     resist linear cryptanalysis, S-boxes, and why linear shift registers
     alone make weak stream ciphers.
