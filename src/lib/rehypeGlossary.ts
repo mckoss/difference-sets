@@ -105,7 +105,14 @@ export default function rehypeGlossary(options: GlossaryOptions) {
             : {
                 type: 'element',
                 tagName: 'a',
-                properties: { className: ['gloss'], href: `${glossaryHref}#${slug}`, dataTerm: hit.term.term, dataDef: hit.term.def },
+                properties: {
+                  className: ['gloss'],
+                  href: `${glossaryHref}#${slug}`,
+                  // Unique across lessons, so the printed index can point at each use.
+                  id: lesson === undefined ? undefined : `use-${slug}-${lesson}`,
+                  dataTerm: hit.term.term,
+                  dataDef: hit.term.def,
+                },
                 children: [text],
               },
         );

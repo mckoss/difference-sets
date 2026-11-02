@@ -1,0 +1,233 @@
+/* The print edition (src/pages/print.astro), paginated by Paged.js. */
+
+@page {
+  size: letter;
+  margin: 0.85in 0.8in 0.8in;
+
+  @top-left {
+    content: string(lesson);
+    font: 8pt system-ui, sans-serif;
+    color: #6b6b70;
+  }
+
+  @top-right {
+    content: 'Interactive version: mckoss.com/difference-sets';
+    font: 8pt system-ui, sans-serif;
+    color: #6b6b70;
+  }
+
+  @bottom-center {
+    content: counter(page);
+    font: 9pt system-ui, sans-serif;
+    color: #6b6b70;
+  }
+}
+
+@page :first {
+  @top-left {
+    content: none;
+  }
+
+  @top-right {
+    content: none;
+  }
+
+  @bottom-center {
+    content: none;
+  }
+}
+
+.print-edition {
+  --bg: #fff;
+  --bg-raised: #f5f3ec;
+  --fg: #1c1c1e;
+  --muted: #5f5f66;
+  --accent: #1a5fd0;
+  --border: #d6d3ca;
+  background: #fff;
+  color: #1c1c1e;
+  font: 10.5pt/1.5 system-ui, sans-serif;
+  color-scheme: light;
+}
+
+.print-edition a {
+  color: inherit;
+}
+
+/* Cover and contents */
+
+.print-cover {
+  break-after: page;
+  padding-top: 2.2in;
+}
+
+.print-cover h1 {
+  font-size: 32pt;
+  margin: 0 0 0.2in;
+}
+
+.print-subtitle {
+  font-size: 14pt;
+  color: #5f5f66;
+  margin: 0 0 0.5in;
+}
+
+.print-lede {
+  max-width: 5in;
+}
+
+.print-edition-note {
+  margin-top: 0.5in;
+}
+
+.print-edition-note a {
+  color: #1a5fd0;
+  font-weight: 600;
+}
+
+.print-version {
+  margin-top: 1.5in;
+  color: #5f5f66;
+}
+
+.print-toc {
+  break-after: page;
+}
+
+.print-toc h2 {
+  margin-top: 0;
+}
+
+.print-toc {
+  font-size: 10pt;
+  line-height: 1.4;
+}
+
+.print-toc h3 {
+  font-size: 10pt;
+  margin: 0.6em 0 0.1em;
+}
+
+.print-toc ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.print-toc a {
+  display: flex;
+  text-decoration: none;
+}
+
+.print-toc a .num {
+  display: inline-block;
+  min-width: 1.6em;
+  color: #5f5f66;
+}
+
+.print-toc a::after {
+  content: target-counter(attr(href), page);
+  margin-left: auto;
+  padding-left: 1em;
+}
+
+.print-toc-back {
+  margin-top: 0.8em !important;
+  font-weight: 600;
+}
+
+/* Lessons */
+
+.print-lesson,
+.print-back {
+  break-before: page;
+}
+
+.print-lesson > h1,
+.print-back > h1 {
+  string-set: lesson content(text);
+}
+
+.print-edition h2,
+.print-edition h3 {
+  break-after: avoid;
+}
+
+.print-edition figure,
+.print-edition .notation,
+.print-edition table,
+.print-edition .katex-display {
+  break-inside: avoid;
+}
+
+.print-edition .widget .controls,
+.print-edition .widget input,
+.print-edition .widget select,
+.print-edition .widget textarea,
+.print-edition .widget .hint,
+.print-edition .ap-placeholder,
+.print-edition .video-play small,
+.print-edition .print-omit {
+  display: none !important;
+}
+
+.print-edition .print-summary {
+  font-weight: 600;
+  margin: 0 0 0.3em;
+}
+
+.print-edition a.gloss {
+  text-decoration: none;
+}
+
+/* Links to other lessons get their page number. */
+.print-edition a.print-xref::after {
+  content: ' (p. ' target-counter(attr(href), page) ')';
+}
+
+/* Glossary and index */
+
+.print-glossary div {
+  break-inside: avoid;
+  margin: 0 0 0.55em;
+}
+
+.print-glossary dt {
+  font-weight: 700;
+}
+
+.print-glossary dd {
+  margin: 0;
+}
+
+.print-lesson-ref,
+.print-index-note {
+  color: #5f5f66;
+  font-size: 9pt;
+}
+
+.print-index {
+  list-style: none;
+  padding: 0;
+  columns: 2;
+  column-gap: 0.4in;
+  font-size: 9.5pt;
+}
+
+.print-index li {
+  break-inside: avoid;
+  padding-left: 1em;
+  text-indent: -1em;
+}
+
+.print-pref {
+  text-decoration: none;
+}
+
+.print-pref::after {
+  content: target-counter(attr(href), page);
+}
+
+.print-pref.def {
+  font-weight: 700;
+}
