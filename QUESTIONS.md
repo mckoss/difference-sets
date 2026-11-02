@@ -26,7 +26,8 @@ Decisions I made while Mike was away, collected here instead of blocking.
 6. **Outline.** Lesson 16 is now "Beyond the plane" (PG(m, q) Singer sets and
    m-sequences) and the completeness conjecture moved to Lesson 17. The old
    "Where difference sets show up" stub became Part VII, Lessons 18–23.
-   Lesson 24 (declustered RAID) is not written.
+   Lesson 24 (declustered RAID) and Lesson 25 (cryptography) were added
+   2026-11-02 at Mike's request.
 7. **`singerSet(q)` differs from PLAN.md's featured sets** for q = 2 and 4
    ({1, 2, 4} mod 7 and {3, 6, 7, 12, 14} mod 21, not {0, 1, 3} and
    {0, 1, 4, 14, 16}). They are equivalent sets. The deck maker's verify panel

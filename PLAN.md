@@ -276,8 +276,12 @@ lesson; where Parts III–V are needed, they explain the idea intuitively.
 23. **A ruler with no repeats.** Modular Golomb rulers, v ≥ k² − k + 1 with
     equality for planar sets, unwinding into antenna arrays and channel
     plans.
-24. *(Optional, not yet written)* **Rebuilding a disk.** Declustered RAID
-    with stripes on the lines of the Fano plane.
+24. **Rebuilding a disk.** Declustered RAID with stripes on the lines of
+    the Fano plane: when a disk fails, every survivor reads the same amount.
+25. **Difference sets in cryptography.** Key rings (back to Lesson 22),
+    bent functions as (16, 6, 2) difference sets under XOR and why they
+    resist linear cryptanalysis, S-boxes, and why linear shift registers
+    alone make weak stream ciphers.
 
 Citations are checked against primary sources before Lesson 17 ships; the
 verified notes so far are in [docs/citations.md](docs/citations.md).
