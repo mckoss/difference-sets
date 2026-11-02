@@ -1,0 +1,203 @@
+/* bent-function widget (Lesson 26) */
+
+.bent-box {
+  padding: 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+.bent-box p {
+  margin: 0 0 0.6rem;
+}
+
+.bent-box h4 {
+  margin: 0.9rem 0 0.4rem;
+  font-size: 0.95rem;
+}
+
+.bent-grid {
+  border-collapse: separate;
+  border-spacing: 4px;
+  margin: 0 auto 0.5rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.bent-grid caption {
+  color: var(--muted);
+  font-size: 0.85rem;
+  padding-bottom: 0.25rem;
+}
+
+.bent-grid th {
+  color: var(--muted);
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0 0.25rem;
+}
+
+.bent-grid td {
+  padding: 0;
+}
+
+.widget .bent-cell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 3.4rem;
+  padding: 0.3rem 0.4rem;
+  margin: 0;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--bg-raised);
+  color: var(--fg);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  line-height: 1.2;
+}
+
+.widget .bent-cell.on {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--bg);
+}
+
+.widget .bent-cell:focus-visible {
+  outline: 2px solid var(--hot);
+  outline-offset: 2px;
+}
+
+.bent-cell .cell-bits {
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.bent-cell .cell-f {
+  font-size: 0.7rem;
+  opacity: 0.85;
+}
+
+.bent-grid-wrap {
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+@media (max-width: 480px) {
+  .bent-grid {
+    border-spacing: 3px;
+  }
+
+  .widget .bent-cell {
+    min-width: 2.9rem;
+    padding: 0.25rem 0.2rem;
+  }
+
+  .bent-cell .cell-bits {
+    font-size: 0.85rem;
+  }
+
+  .bent-cell .cell-f {
+    display: none;
+  }
+}
+
+.bent-info {
+  font-variant-numeric: tabular-nums;
+  overflow-wrap: anywhere;
+}
+
+.xor-overlap {
+  display: block;
+  width: 100%;
+  max-width: 460px;
+  height: auto;
+  margin-bottom: 0.4rem;
+  font-family: system-ui, sans-serif;
+}
+
+.xor-overlap rect {
+  fill: var(--accent);
+}
+
+.xor-overlap .grid-line {
+  stroke: var(--border);
+}
+
+.xor-overlap .axis {
+  fill: var(--muted);
+  font-size: 10px;
+  text-anchor: end;
+}
+
+.xor-overlap .value {
+  fill: var(--fg);
+  font-size: 11px;
+  font-weight: 700;
+  text-anchor: middle;
+}
+
+.xor-overlap .tick {
+  fill: var(--muted);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 10px;
+}
+
+.rule-list {
+  list-style: none;
+  margin: 0 0 0.6rem;
+  padding: 0;
+  max-width: 560px;
+  font-variant-numeric: tabular-nums;
+  font-size: 0.9rem;
+}
+
+.rule-list li {
+  display: grid;
+  grid-template-columns: minmax(6.5rem, 9rem) 1fr 4.2rem;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1px 0.25rem;
+  border-radius: 4px;
+}
+
+.rule-list li.best {
+  background: var(--accent-soft);
+}
+
+.rule-name {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.82rem;
+  white-space: nowrap;
+}
+
+.rule-count {
+  text-align: right;
+}
+
+.rule-bar {
+  position: relative;
+  height: 0.7rem;
+  background: var(--bg-raised);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+}
+
+.rule-fill {
+  position: absolute;
+  inset: 0 auto 0 0;
+  border-radius: 2px;
+}
+
+.rule-list li.far .rule-fill {
+  background: var(--ok);
+}
+
+.rule-list li.close .rule-fill {
+  background: var(--bad);
+}
+
+.rule-mid {
+  position: absolute;
+  top: -2px;
+  bottom: -2px;
+  left: 50%;
+  border-left: 1px dashed var(--fg);
+}

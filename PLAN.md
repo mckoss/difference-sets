@@ -285,8 +285,12 @@ lesson; where Parts III–V are needed, they explain the idea intuitively.
     every two heats share λ cars, so back-to-back races can't be avoided.
     Stan Pope's 1997 Perfect-N pages and DerbyNet's generators are this
     construction.
-25. *(Optional, not yet written)* **Rebuilding a disk.** Declustered RAID
-    with stripes on the lines of the Fano plane.
+25. **Rebuilding a disk.** Declustered RAID with stripes on the lines of
+    the Fano plane: when a disk fails, every survivor reads the same amount.
+26. **Secrets that look like noise.** Key rings (back to Lesson 22),
+    bent functions as (16, 6, 2) difference sets under XOR and why they
+    resist linear cryptanalysis, S-boxes, and why linear shift registers
+    alone make weak stream ciphers.
 
 Citations are checked against primary sources before Lesson 17 ships; the
 verified notes so far are in [docs/citations.md](docs/citations.md).

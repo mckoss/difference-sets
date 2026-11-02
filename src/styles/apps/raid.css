@@ -1,0 +1,191 @@
+/* raid-rebuild widget (Lesson 25) */
+
+:root {
+  --chunk-l: 86%;
+  --chunk-s: 70%;
+  --chunk-ink: #1c1c1e;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --chunk-l: 32%;
+    --chunk-s: 45%;
+    --chunk-ink: #ececf0;
+  }
+}
+
+.raid-box {
+  padding: 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+.raid-box p {
+  margin: 0 0 0.6rem;
+}
+
+.layout-line {
+  font-size: 0.95rem;
+  overflow-wrap: anywhere;
+}
+
+.raid-figure {
+  display: block;
+  width: 100%;
+  height: auto;
+  font-family: system-ui, sans-serif;
+  margin-bottom: 0.6rem;
+}
+
+.raid-figure .disk {
+  cursor: pointer;
+}
+
+.raid-figure .disk:focus {
+  outline: none;
+}
+
+.raid-figure .case {
+  fill: var(--bg-raised);
+  stroke: var(--border);
+  stroke-width: 1.5;
+}
+
+.raid-figure .disk:hover .case,
+.raid-figure .disk:focus-visible .case {
+  stroke: var(--accent);
+  stroke-width: 2.5;
+}
+
+.raid-figure .disk.failed .case {
+  fill: var(--bad-soft);
+  stroke: var(--bad);
+}
+
+.raid-figure .disk-label {
+  fill: var(--fg);
+  font-size: 12px;
+  font-weight: 700;
+  text-anchor: middle;
+}
+
+.raid-figure .chunk {
+  fill: hsl(var(--hue) var(--chunk-s) var(--chunk-l));
+  stroke: hsl(var(--hue) 50% 45%);
+  stroke-width: 1;
+}
+
+.raid-figure .chunk.empty {
+  fill: none;
+  stroke: var(--border);
+  stroke-dasharray: 3 3;
+}
+
+.raid-figure .chunk-label {
+  fill: var(--chunk-ink);
+  font-size: 11px;
+  font-weight: 600;
+  text-anchor: middle;
+  pointer-events: none;
+}
+
+.raid-figure .chunk-g.idle {
+  opacity: 0.3;
+}
+
+.raid-figure .chunk-g.read .chunk {
+  stroke: var(--fg);
+  stroke-width: 2.5;
+}
+
+.raid-figure .chunk-g.lost .chunk {
+  stroke: var(--bad);
+  stroke-width: 2;
+}
+
+.raid-figure .cross {
+  stroke: var(--bad);
+  stroke-width: 3;
+  stroke-linecap: round;
+  opacity: 0.8;
+}
+
+.raid-figure .bar {
+  fill: var(--accent);
+}
+
+.raid-figure .bar.busiest {
+  fill: var(--hot);
+}
+
+.raid-figure .bar-count {
+  fill: var(--fg);
+  font-size: 12px;
+  font-weight: 600;
+  text-anchor: middle;
+  font-variant-numeric: tabular-nums;
+}
+
+.raid-figure .bar-x {
+  fill: var(--bad);
+  font-size: 16px;
+  font-weight: 700;
+  text-anchor: middle;
+}
+
+.raid-figure .axis {
+  stroke: var(--muted);
+  stroke-width: 1;
+}
+
+.raid-figure .axis-label {
+  fill: var(--muted);
+  font-size: 12px;
+  text-anchor: middle;
+}
+
+.xor-panel:empty {
+  display: none;
+}
+
+.xor-panel {
+  margin-top: 0.6rem;
+}
+
+.raid-box .xor-table {
+  display: table;
+  border-collapse: collapse;
+  font-variant-numeric: tabular-nums;
+  margin-bottom: 0.5rem;
+}
+
+.raid-box .xor-table th,
+.raid-box .xor-table td {
+  border-bottom: none;
+}
+
+.raid-box .xor-table th {
+  font-weight: normal;
+  text-align: left;
+  padding: 0.1rem 0.8rem 0.1rem 0;
+}
+
+.raid-box .xor-table td {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  letter-spacing: 0.15em;
+}
+
+.raid-box .xor-table .xor-result th,
+.raid-box .xor-table .xor-result td {
+  border-top: 1px solid var(--fg);
+  font-weight: 700;
+}
+
+.raid-box .xor-table .xor-lost {
+  color: var(--muted);
+}
+
+.xor-note {
+  color: var(--ok);
+  font-size: 0.95rem;
+}

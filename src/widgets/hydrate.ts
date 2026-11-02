@@ -24,6 +24,8 @@ const registry: Record<string, () => Promise<WidgetModule>> = {
   'majority-decoder': () => import('./majorityDecoder'),
   'wake-up': () => import('./wakeUp'),
   'golomb-ruler': () => import('./golombRuler'),
+  'raid-rebuild': () => import('./raidRebuild'),
+  'bent-function': () => import('./bentFunction'),
   'race-chart': () => import('./raceChart'),
   // Lesson 17 and the search and explorer playgrounds.
   'planar-search': () => import('./planarSearch'),
