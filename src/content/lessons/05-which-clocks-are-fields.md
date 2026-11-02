@@ -14,7 +14,7 @@ status: ready
 
 ## Clocks, again
 
-[Lesson 1](../01-differences-on-a-circle/) did arithmetic on a clock: with $v$ hours, you add or multiply as usual and then keep only the remainder after dividing by $v$. The set of hours $\{0, 1, \dots, v - 1\}$ with that arithmetic is written $\mathbb{Z}/v\mathbb{Z}$, read "the integers mod $v$",[^quotient] and $a \equiv b \pmod v$ means $a$ and $b$ land on the same hour.
+[Lesson 1](../01-differences-on-a-circle/) did arithmetic on a clock: with $v$ hours, you add or multiply as usual and then keep only the remainder after dividing by $v$. The set of hours $\{0, 1, \dots, v - 1\}$ with that arithmetic is written $\mathbb{Z}/v\mathbb{Z}$[^quotient], read "the integers mod $v$", and $a \equiv b \pmod v$ means $a$ and $b$ land on the same hour.
 
 For example, on a clock with 7 hours, $5 + 4 = 9 \equiv 2$ and $3 \times 5 = 15 \equiv 1 \pmod 7$.
 

@@ -1463,8 +1463,16 @@ blockquote p {
   margin-top: 0;
 }
 [data-footnote-ref] {
+  font-weight: 600;
+  font-size: 0.85em;
   text-decoration: none;
   padding: 0 0.1em;
+}
+[data-footnote-ref]::before {
+  content: '[';
+}
+[data-footnote-ref]::after {
+  content: ']';
 }
 .footnotes .katex-display {
   overflow-x: auto;
