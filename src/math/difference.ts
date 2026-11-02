@@ -98,3 +98,25 @@ export function pairsWithDifference(set: readonly number[], d: number, v: number
   }
   return pairs;
 }
+
+/**
+ * The two ways to write a planar (λ = 1) set D so it starts {0, 1}: turned back b notches,
+ * where (b + 1) − b is the one difference equal to 1, and the mirror image −D turned the same
+ * way, {b + 1 − d}. `best` is the lexicographically smaller of the two.
+ */
+export function startAtZeroOne(
+  set: readonly number[],
+  v: number,
+): { b: number; turned: number[]; mirrored: number[]; best: number[]; mirrorWins: boolean } | null {
+  const pair = pairsWithDifference(set, 1, v);
+  if (pair.length !== 1) return null;
+  const b = pair[0][1];
+  const turned = translate(set, -b, v);
+  const mirrored = normalizeSet(
+    set.map((d) => b + 1 - d),
+    v,
+  );
+  const cmp = turned.findIndex((x, i) => x !== mirrored[i]);
+  const mirrorWins = cmp >= 0 && mirrored[cmp] < turned[cmp];
+  return { b, turned, mirrored, best: mirrorWins ? mirrored : turned, mirrorWins };
+}
