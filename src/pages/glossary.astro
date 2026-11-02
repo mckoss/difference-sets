@@ -1,0 +1,97 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import { defParts, SYMBOLS, sortedGlossary, termSlug } from '../glossary';
+import { href, lessonPath, sortLessons } from '../site';
+
+const base = import.meta.env.BASE_URL;
+const lessons = sortLessons((await getCollection('lessons')).map((l) => ({ id: l.id, ...l.data })));
+const lessonOf = (order: number) => lessons[order - 1];
+// Link to the term's defining use when rehypeGlossary anchored one, else to the lesson.
+const html = new Map((await getCollection('lessons')).map((l) => [l.id, l.rendered?.html ?? '']));
+const defHref = (order: number, term: string) => {
+  const id = lessonOf(order).id;
+  const anchor = `def-${termSlug(term)}`;
+  return href(base, lessonPath(id) + (html.get(id)?.includes(`id="${anchor}"`) ? `#${anchor}` : ''));
+};
+
+// Group the terms under their first letter.
+const groups = new Map<string, ReturnType<typeof sortedGlossary>>();
+for (const t of sortedGlossary()) {
+  const letter = t.term[0].toUpperCase();
+  groups.set(letter, [...(groups.get(letter) ?? []), t]);
+}
+const symbols = [...SYMBOLS].sort((a, b) => a.lesson - b.lesson);
+---
+
+<Base title="Glossary" description="Every term the lessons define, in alphabetical order, with the lesson that explains it." current="glossary/">
+  <article class="glossary">
+    <p class="eyebrow">Reference</p>
+    <h1>Glossary</h1>
+    <p class="lede">
+      Every term the lessons define, in alphabetical order. Each entry links to the place where the term is explained.
+      In the lessons, a term with a dotted underline is defined here: hover over it, or tap it, to see the definition.
+    </p>
+    <nav class="glossary-letters" aria-label="Jump to letter">
+      {[...groups.keys()].map((letter) => <a href={`#letter-${letter.toLowerCase()}`}>{letter}</a>)}
+      <a href="#symbols">Symbols</a>
+    </nav>
+    {
+      [...groups].map(([letter, terms]) => (
+        <section class="glossary-group" aria-labelledby={`letter-${letter.toLowerCase()}`}>
+          <h2 id={`letter-${letter.toLowerCase()}`}>{letter}</h2>
+          <dl>
+            {terms.map((t) => {
+              const lesson = lessonOf(t.lesson);
+              return (
+                <div class="glossary-entry" id={termSlug(t.term)}>
+                  <dt>{t.term}</dt>
+                  <dd>
+                    <p>{defParts(t.def).map((part) => (typeof part === 'string' ? part : <sup>{part.sup}</sup>))}</p>
+                    <p class="glossary-meta">
+                      <a href={defHref(t.lesson, t.term)}>
+                        Lesson {lesson.order}: {lesson.title}
+                      </a>
+                      {t.see && t.see.length > 0 && (
+                        <span class="glossary-see">
+                          {' '}
+                          · See also{' '}
+                          {t.see.map((s, i) => (
+                            <>
+                              {i > 0 && ', '}
+                              <a href={`#${termSlug(s)}`}>{s}</a>
+                            </>
+                          ))}
+                        </span>
+                      )}
+                    </p>
+                  </dd>
+                </div>
+              );
+            })}
+          </dl>
+        </section>
+      ))
+    }
+    <section class="glossary-group" aria-labelledby="symbols">
+      <h2 id="symbols">Symbols</h2>
+      <p>In the order the lessons introduce them.</p>
+      <dl class="glossary-symbols">
+        {
+          symbols.map((s) => (
+            <div class="glossary-entry">
+              <dt>{s.symbol}</dt>
+              <dd>
+                {s.read && <span class="glossary-read">read “{s.read}”. </span>}
+                {defParts(s.def).map((part) => (typeof part === 'string' ? part : <sup>{part.sup}</sup>))}{' '}
+                <a class="glossary-meta" href={href(base, lessonPath(lessonOf(s.lesson).id))}>
+                  Lesson {s.lesson}
+                </a>
+              </dd>
+            </div>
+          ))
+        }
+      </dl>
+    </section>
+  </article>
+</Base>

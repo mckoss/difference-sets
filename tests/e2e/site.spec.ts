@@ -35,7 +35,7 @@ test('sidebar is a numbered outline of every lesson, grouped by part', async ({ 
 test('every sidebar page loads and is marked current in the sidebar', async ({ page }) => {
   await page.goto('./');
   const links = await page.locator('#sidebar a').evaluateAll((as) => as.map((a) => (a as HTMLAnchorElement).href));
-  expect(links).toHaveLength(LESSON_COUNT + PLAYGROUNDS.length);
+  expect(links).toHaveLength(LESSON_COUNT + 1 + PLAYGROUNDS.length); // + the glossary
   for (const link of links) {
     await page.goto(link);
     await expect(page.locator('h1')).toBeVisible();
@@ -45,7 +45,7 @@ test('every sidebar page loads and is marked current in the sidebar', async ({ p
   }
 });
 
-test('next links chain through the lessons in sidebar order', async ({ page }) => {
+test('next links chain through the lessons in sidebar order, then the glossary', async ({ page }) => {
   await page.goto('./');
   const titles = await page.locator('#sidebar .sidebar-part .title').allTextContents();
   await page.locator('.hero .button').click();
@@ -56,8 +56,10 @@ test('next links chain through the lessons in sidebar order', async ({ page }) =
     if ((await next.count()) === 0) break;
     await next.click();
   }
-  expect(visited).toEqual(titles);
+  // The last lesson leads on to the glossary, which ends the chain.
+  expect(visited).toEqual([...titles, 'Glossary']);
 
+  await page.goBack();
   await page.locator('.pager a[rel="prev"]').click();
   await expect(page.locator('h1')).toHaveText(titles[LESSON_COUNT - 2]);
 });
