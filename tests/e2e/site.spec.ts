@@ -34,7 +34,11 @@ test('sidebar is a numbered outline of every lesson, grouped by part', async ({ 
 
 test('every sidebar page loads and is marked current in the sidebar', async ({ page }) => {
   await page.goto('./');
-  const links = await page.locator('#sidebar a').evaluateAll((as) => as.map((a) => (a as HTMLAnchorElement).href));
+  // The PDF is built after the e2e run, so only its link is checked here.
+  await expect(page.locator('#sidebar a[href$="singer-difference-sets.pdf"]')).toHaveCount(1);
+  const links = await page
+    .locator('#sidebar a:not([href$=".pdf"])')
+    .evaluateAll((as) => as.map((a) => (a as HTMLAnchorElement).href));
   expect(links).toHaveLength(LESSON_COUNT + 1 + PLAYGROUNDS.length); // + the glossary
   for (const link of links) {
     await page.goto(link);

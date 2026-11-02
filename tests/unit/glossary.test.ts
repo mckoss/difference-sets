@@ -71,7 +71,7 @@ describe('rehypeGlossary', () => {
     const html = toHtml(tree);
     expect(links(tree)).toHaveLength(3);
     expect(html).toContain('href="/ds/glossary/#prime-power"');
-    expect(html).toMatch(/<a class="gloss" href="\/ds\/glossary\/#prime" data-term="prime" data-def="A prime.">prime<\/a>\. Primes again/);
+    expect(html).toMatch(/<a class="gloss" href="\/ds\/glossary\/#prime" id="use-prime-9" data-term="prime" data-def="A prime.">prime<\/a>\. Primes again/);
     expect(html).toContain('>field</a>.</p><p>Fields.</p>');
   });
 

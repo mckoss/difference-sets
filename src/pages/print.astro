@@ -1,0 +1,166 @@
+---
+// The whole text on one page, for the printable PDF. scripts/build-pdf.mjs
+// opens this page in Chromium, lets the widgets draw their opening state,
+// paginates it with Paged.js (page numbers, running heads, contents, index),
+// and saves it as dist/singer-difference-sets.pdf.
+import 'katex/dist/katex.min.css';
+import '../styles/global.css';
+import '../styles/applications.css';
+import '../styles/print.css';
+import { getCollection, render } from 'astro:content';
+import pkg from '../../package.json';
+import { defParts, GLOSSARY, SYMBOLS, sortedGlossary, termSlug, linkForms } from '../glossary';
+import { buildOutline, lessonPath, PARTS, sortLessons } from '../site';
+
+const SITE = 'https://mckoss.com/difference-sets/';
+const collection = await getCollection('lessons');
+const byId = new Map(collection.map((l) => [l.id, l]));
+const lessons = sortLessons(collection.map((l) => ({ id: l.id, ...l.data })));
+const outline = buildOutline(lessons);
+const rendered = await Promise.all(lessons.map(async (l) => ({ ...l, Content: (await render(byId.get(l.id)!)).Content })));
+const anchor = (order: number) => `lesson-${order}`;
+const built = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' });
+
+// Index: for each linked term, its defining spot and each lesson that uses it.
+const html = new Map(collection.map((l) => [l.id, l.rendered?.html ?? '']));
+const index = sortedGlossary(GLOSSARY.filter((t) => linkForms(t).length > 0)).map((t) => {
+  const slug = termSlug(t.term);
+  const refs: { id: string; def: boolean }[] = [];
+  for (const l of lessons) {
+    const page = html.get(l.id) ?? '';
+    if (page.includes(`id="def-${slug}"`)) refs.push({ id: `def-${slug}`, def: true });
+    if (page.includes(`id="use-${slug}-${l.order}"`)) refs.push({ id: `use-${slug}-${l.order}`, def: false });
+  }
+  return { term: t.term, refs };
+});
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Singer Difference Sets, v{pkg.version} ({built})</title>
+    <meta name="robots" content="noindex" />
+  </head>
+  <body class="print-edition" data-site={SITE}>
+    <section class="print-cover">
+      <h1>Singer Difference Sets</h1>
+      <p class="print-subtitle">An introduction to difference sets, finite fields, and projective planes</p>
+      <p class="print-lede">
+        Mark 0, 1, and 3 on a clock with seven hours. Every distance from 1 to 6 hours appears exactly once between two
+        of the marks. Sets of numbers like this exist at arbitrarily large sizes, and in 1938 James Singer showed how to
+        write one down directly for every prime power, using finite fields and projective planes.
+      </p>
+      <p class="print-edition-note">
+        This is the printed edition. The original is interactive, with every figure live:<br />
+        <a href={SITE}>{SITE.replace(/^https:\/\//, '').replace(/\/$/, '')}</a>
+      </p>
+      <p class="print-version">Version {pkg.version} · {built}</p>
+    </section>
+
+    <nav class="print-toc" aria-label="Contents">
+      <h2>Contents</h2>
+      {
+        outline.map((part) => (
+          <section>
+            <h3>
+              Part {part.numeral}: {part.title}
+            </h3>
+            <ol>
+              {part.lessons.map((l) => (
+                <li>
+                  <a href={`#${anchor(l.order)}`}>
+                    <span class="num">{l.order}</span> {l.title}
+                  </a>
+                </li>
+              ))}
+            </ol>
+          </section>
+        ))
+      }
+      <ol class="print-toc-back">
+        <li><a href="#print-glossary">Glossary</a></li>
+        <li><a href="#print-symbols">Symbols</a></li>
+        <li><a href="#print-index">Index</a></li>
+      </ol>
+    </nav>
+
+    {
+      rendered.map((l) => {
+        const part = PARTS.find((p) => p.part === l.part)!;
+        return (
+          <article class="lesson print-lesson" id={anchor(l.order)} data-path={lessonPath(l.id)}>
+            <p class="eyebrow">
+              Part {part.numeral} · {part.title} · Lesson {l.order}
+            </p>
+            <h1>
+              {l.order}. {l.title}
+            </h1>
+            <p class="lede">{l.summary}</p>
+            <l.Content />
+          </article>
+        );
+      })
+    }
+
+    <section class="print-back" id="print-glossary">
+      <h1>Glossary</h1>
+      <dl class="print-glossary">
+        {
+          sortedGlossary().map((t) => (
+            <div>
+              <dt>{t.term}</dt>
+              <dd>
+                {defParts(t.def).map((part) => (typeof part === 'string' ? part : <sup>{part.sup}</sup>))} <span class="print-lesson-ref">(Lesson {t.lesson})</span>
+              </dd>
+            </div>
+          ))
+        }
+      </dl>
+    </section>
+
+    <section class="print-back" id="print-symbols">
+      <h1>Symbols</h1>
+      <dl class="print-glossary">
+        {
+          [...SYMBOLS]
+            .sort((a, b) => a.lesson - b.lesson)
+            .map((s) => (
+              <div>
+                <dt>{s.symbol}</dt>
+                <dd>
+                  {s.read && <>read “{s.read}”. </>}
+                  {defParts(s.def).map((part) => (typeof part === 'string' ? part : <sup>{part.sup}</sup>))} <span class="print-lesson-ref">(Lesson {s.lesson})</span>
+                </dd>
+              </div>
+            ))
+        }
+      </dl>
+    </section>
+
+    <section class="print-back" id="print-index">
+      <h1>Index</h1>
+      <p class="print-index-note">Bold page numbers mark where a term is defined.</p>
+      <ul class="print-index">
+        {
+          index.filter((e) => e.refs.length > 0).map((e) => (
+            <li>
+              {e.term}{' '}
+              {e.refs.map((r, i) => (
+                <>
+                  {i > 0 && ', '}
+                  <a class:list={['print-pref', { def: r.def }]} href={`#${r.id}`} />
+                </>
+              ))}
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+
+    <script>
+      import '../widgets/hydrate';
+    </script>
+  </body>
+</html>
