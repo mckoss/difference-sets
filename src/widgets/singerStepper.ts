@@ -103,13 +103,29 @@ export function mount(el: HTMLElement): void {
       );
     }
 
-    const svg = chordDiagram(D, v);
+    // Once every exponent is checked, draw D in its standard form, starting {0, 1}.
+    const z = done === v ? startAtZeroOne(D, v) : null;
+    const svg = chordDiagram(z ? z.best : D, v);
     svg.classList.add('ss-diagram');
     // Small clocks draw tiny; let them grow a little, and big ones shrink to fit.
     svg.style.width = `${Math.max(Number(svg.getAttribute('width')), 220)}px`;
     figure.replaceChildren(
       svg,
-      h('figcaption', { text: `D so far: ${setText(D)}, after checking ${done} of ${v} exponents` }),
+      h(
+        'figcaption',
+        {},
+        ...(z
+          ? [
+              'Standard form: ',
+              h('strong', { text: setText(z.best) }),
+              z.mirrorWins
+                ? `, the mirror image of the trace-zero set ${setText(D)}, turned to start {0, 1}`
+                : z.b === 0
+                  ? ', the trace-zero set itself'
+                  : `, the trace-zero set ${setText(D)} turned back ${z.b} notch${z.b === 1 ? '' : 'es'}`,
+            ]
+          : [`D so far: ${setText(D)}, after checking ${done} of ${v} exponents`]),
+      ),
     );
 
     const table = opTable({
@@ -137,7 +153,6 @@ export function mount(el: HTMLElement): void {
       const offset = Array.from({ length: v }, (_, j) => j).find((j) => translate(Z, j, v).join() === D.join());
       const L = traceLine(S);
       const mults = 3 * v;
-      const z = ok ? startAtZeroOne(D, v) : null;
       result.replaceChildren(
         h('p', {
           class: `ff-verdict ss-done ${ok ? 'ok' : 'bad'}`,
@@ -145,7 +160,7 @@ export function mount(el: HTMLElement): void {
             ? `D = ${setText(D)} is a (${v}, ${q + 1}, 1) difference set: each of the ${v - 1} nonzero differences occurs exactly once.`
             : `D = ${setText(D)} is not a planar difference set.`,
         }),
-        z
+        ok && z
           ? h(
               'p',
               { class: 'ss-normal' },
