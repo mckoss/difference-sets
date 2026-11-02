@@ -14,7 +14,7 @@ status: ready
 
 ## Clocks, again
 
-[Lesson 1](../01-differences-on-a-circle/) did arithmetic on a clock: with $v$ hours, you add or multiply as usual and then keep only the remainder after dividing by $v$. The set of hours $\{0, 1, \dots, v - 1\}$ with that arithmetic is written $\mathbb{Z}/v\mathbb{Z}$[^quotient], read "the integers mod $v$", and $a \equiv b \pmod v$ means $a$ and $b$ land on the same hour.
+[Lesson 1](../01-differences-on-a-circle/) did arithmetic on a clock: with $v$ hours, you add or multiply as usual and then keep only the remainder after dividing by $v$. The set of hours $\{0, 1, \dots, v - 1\}$ with that arithmetic is written $\mathbb{Z}/v\mathbb{Z}$, read "the integers mod $v$", and $a \equiv b \pmod v$ means $a$ and $b$ land on the same hour.
 
 For example, on a clock with 7 hours, $5 + 4 = 9 \equiv 2$ and $3 \times 5 = 15 \equiv 1 \pmod 7$.
 
@@ -90,7 +90,7 @@ For a prime $p$, this field is called $\mathrm{GF}(p)$. So $\mathrm{GF}(7)$ is t
 
 - $a^{-1}$, read "$a$ inverse", is the multiplicative inverse of $a$: the number with $a \times a^{-1} = 1$. Dividing by $a$ means multiplying by $a^{-1}$.
 - $p$ always stands for a **prime**: a whole number above 1 whose only factors are 1 and itself (2, 3, 5, 7, 11, …).
-- $\mathrm{GF}(p)$ is the field $\mathbb{Z}/p\mathbb{Z}$ of integers mod a prime $p$. The letters stand for "Galois field" (see below).
+- $\mathrm{GF}(p)$ is the field $\mathbb{Z}/p\mathbb{Z}$[^quotient] of integers mod a prime $p$. The letters stand for "Galois field" (see below).
 
 </aside>
 
@@ -121,7 +121,7 @@ You won't have to take this on trust for the prime sizes: the [next lesson](../0
 
 Explore any clock up to 24 hours in the [finite field calculator](../../playgrounds/field-calculator/?v=6), which shows the tables and Euclid's algorithm side by side.
 
-[^quotient]: **Why the slash in $\mathbb{Z}/v\mathbb{Z}$?** The notation looks like a division, and in a sense it is one, called a **quotient**.
+[^quotient]: **Why the slash in $\mathbb{Z}/p\mathbb{Z}$?** The notation looks like a division, and in a sense it is one, called a **quotient**.
 
     $\mathbb{Z}$ is the set of all integers, $\dots, -2, -1, 0, 1, 2, \dots$, and $v\mathbb{Z}$ is the set of all multiples of $v$. For $v = 7$ that is $7\mathbb{Z} = \{\dots, -14, -7, 0, 7, 14, \dots\}$. Writing $\mathbb{Z}/7\mathbb{Z}$ means "the integers, with every multiple of 7 treated as zero."
 
