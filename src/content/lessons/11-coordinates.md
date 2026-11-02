@@ -20,7 +20,7 @@ status: ready
 - a **line** is a plane through the origin;
 - a point **lies on** a line when the line through the origin sits inside the plane.
 
-The geometry this makes is called $\mathrm{PG}(2, q)$, the *projective geometry* of dimension 2 over $\mathrm{GF}(q)$. (The 2 counts the dimension of the plane, one less than the three coordinates.) It is an old idea from perspective drawing: a point in a painting is a ray of light through the painter's eye, and a line in the painting is a flat fan of rays.
+The geometry this makes is called $\mathrm{PG}(2, q)$, the *projective geometry* of dimension 2 over $\mathrm{GF}(q)$. (The 2 is its *dimension*, which here just means the number of coordinates minus one: a plane needs three coordinates, and the space of Lesson 10's last section needs four.) It is an old idea from perspective drawing: a point in a painting is a ray of light through the painter's eye, and a line in the painting is a flat fan of rays.
 
 ## Homogeneous coordinates
 
@@ -64,7 +64,7 @@ The explorer lays out the $q^2$ points $[1 : y : z]$ as a square, row $y$ and co
 
 [Lesson 4](../04-projective-planes/) asked three things of a projective plane. Here is why $\mathrm{PG}(2, q)$ has all three.
 
-**Different names, different lines.** If the normalized names $[a : b : c]$ and $[a' : b' : c']$ differ, the two equations have different solutions. Say $c \neq 0$. The vectors $(1, 0, -a/c)$ and $(0, 1, -b/c)$ solve the first equation. If both solved the second too, then $a' = c' a / c$ and $b' = c' b / c$, so $(a', b', c')$ would be the multiple $(c'/c) \cdot (a, b, c)$, the same line. (The cases $c = 0$ work the same way with another coordinate.)
+**Different names, different lines.** If the normalized names $[a : b : c]$ and $[a' : b' : c']$ differ, the two equations have different solutions: Lesson 10 showed that two equations with the same plane of solutions have coefficient vectors that are multiples of each other, and multiples normalize to the same name.
 
 **Any two points lie on exactly one line.** Take two different points named by vectors $u = (u_1, u_2, u_3)$ and $w = (w_1, w_2, w_3)$. Their **cross product**
 
@@ -74,9 +74,9 @@ $$
 
 has dot product zero with both. For $u$, multiply out $u_1(u_2 w_3 - u_3 w_2) + u_2(u_3 w_1 - u_1 w_3) + u_3(u_1 w_2 - u_2 w_1)$: every term cancels against another, in any field. It is not the zero vector, because $u$ and $w$ are not multiples of each other. (If, say, $u_1 \neq 0$ and the cross product were 0, its last two coordinates would give $w_2 = (w_1/u_1) u_2$ and $w_3 = (w_1/u_1) u_3$, so $w$ would be a multiple of $u$.) So the line $[u \times w]$ goes through both points.
 
-It is the only one. Any plane through the origin containing $u$ and $w$ contains every combination $s \cdot u + t \cdot w$. Those are $q^2$ different vectors: if $s u + t w = s' u + t' w$ with $s \neq s'$, then $u$ would be a multiple of $w$. A plane has only $q^2$ vectors, so the plane *is* the set of combinations, fixed by $u$ and $w$ alone.
+It is the only one. Any plane through the origin containing $u$ and $w$ contains every vector $s \cdot u + t \cdot w$, called a **combination** of $u$ and $w$. Those are $q^2$ different vectors: if $s u + t w = s' u + t' w$ with $s \neq s'$, then $u$ would be a multiple of $w$. A plane has only $q^2$ vectors, so any such plane *is* the set of combinations, fixed by $u$ and $w$ alone. In particular, the set of combinations of $u$ and $w$ is exactly the plane $[u \times w]$, and no other line passes through both points.
 
-**Any two lines meet in exactly one point.** This is the same argument with points and lines swapped, the duality of Lesson 4 made concrete: the dot product doesn't care which vector names a point and which names a line. The point where the lines named by vectors $g$ and $h$ meet is $[g \times h]$.
+**Any two lines meet in exactly one point.** Let the two lines be named by vectors $g$ and $h$, not multiples of each other. The cross product $g \times h$ is not the zero vector and has dot product zero with both, by the calculation just done, so the point $[g \times h]$ lies on both lines. It is the only one: if two different points lay on both lines, then $g$ and $h$ would name two different lines through the same two points, and we just showed there is only one. (This is the duality of Lesson 4 made concrete: the dot product doesn't care which vector names a point and which names a line.)
 
 **Four points, no three on a line.** Take $[1 : 0 : 0]$, $[0 : 1 : 0]$, $[0 : 0 : 1]$, and $[1 : 1 : 1]$. The line through the first two is $z = 0$, which misses the other two, and the other pairs work out the same way.
 
@@ -86,7 +86,7 @@ So $\mathrm{PG}(2, q)$ is a projective plane. Each line holds $q + 1$ points, th
 
 The square of points $[1 : y : z]$ in the explorer behaves like an ordinary grid. A line $[a : b : c]$ with $c \neq 0$ meets each row once: for each $y$ there is one $z$ with $a + b y + c z = 0$, like the graph of a straight line that wraps around at the edges.
 
-Lines with the same $b$ and $c$ but different $a$ never meet inside the square. They are *parallel*, as in school geometry. But they all pass through the same extra point $[0 : c : -b]$ below the square, because $0 \cdot a + c \cdot b + (-b) \cdot c = 0$ for every $a$. The $q + 1$ points with $x = 0$ make up one more line, $[1 : 0 : 0]$, the **line at infinity**, where each family of parallel lines meets. That is how a projective plane gets rid of parallels: it adds a point at infinity for each direction, as railway tracks meet at the horizon in a painting.
+Lines $[a : b : c]$ with the same $b$ and $c$ (not both 0) but different $a$ never meet inside the square. They are *parallel*, as in school geometry. But they all pass through the same extra point $[0 : c : -b]$ below the square, because $0 \cdot a + c \cdot b + (-b) \cdot c = 0$ for every $a$. The $q + 1$ points with $x = 0$ make up one more line, $[1 : 0 : 0]$, the **line at infinity**, where each family of parallel lines meets. That is how a projective plane gets rid of parallels: it adds a point at infinity for each direction, as railway tracks meet at the horizon in a painting.
 
 ## The two smallest planes
 
@@ -102,6 +102,7 @@ Lines with the same $b$ and $c$ but different $a$ never meet inside the square. 
 - $[a : b : c]$: the line $a x + b y + c z = 0$.
 - $u \cdot w = u_1 w_1 + u_2 w_2 + u_3 w_3$, the **dot product**. A point lies on a line exactly when the dot product of their coordinates is 0.
 - $u \times w$, the **cross product**: the line through two points, or the point on two lines.
+- $s \cdot u + t \cdot w$, a **combination** of $u$ and $w$. When $u$ and $w$ are not multiples of each other, their $q^2$ combinations are exactly the plane $[u \times w]$.
 
 </aside>
 

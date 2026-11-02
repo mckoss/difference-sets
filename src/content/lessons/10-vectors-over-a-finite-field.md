@@ -82,7 +82,7 @@ $$
 
 lines. With the widget on **Line and plane**, pick a line inside the plane and the dots turn orange; pick one outside it and the line meets the plane only at the origin. There is no third possibility: if a line and a plane through 0 share one nonzero vector, they share all its multiples.
 
-**There are $q^2 + q + 1$ of them.** Scaling an equation by a nonzero scalar doesn't change its solutions, so the plane only depends on the coefficient vector $(a, b, c)$ up to a nonzero multiple, that is, on the line through 0 and $(a, b, c)$. Different lines give different planes ([Lesson 11](../11-coordinates/) shows why: two equations that are not multiples of each other share only a line's worth of solutions, not a plane's). So planes through the origin match up one for one with lines through the origin, and there are $q^2 + q + 1$ of each.
+**There are $q^2 + q + 1$ of them.** Scaling an equation by a nonzero scalar doesn't change its solutions, so the plane only depends on the coefficient vector $(a, b, c)$ up to a nonzero multiple, that is, on the line through 0 and $(a, b, c)$. Different lines give different planes. Say $c \neq 0$. The vectors $(1, 0, -a/c)$ and $(0, 1, -b/c)$ solve $a x + b y + c z = 0$. If both also solve $a' x + b' y + c' z = 0$, then $a' = c' a / c$ and $b' = c' b / c$, so $(a', b', c') = (c'/c) \cdot (a, b, c)$: the two coefficient vectors lie on the same line through the origin. (If $c = 0$, do the same with whichever coefficient is nonzero.) So planes through the origin match up one for one with lines through the origin, and there are $q^2 + q + 1$ of each.
 
 <aside class="notation">
 <span class="notation-title">Notation: vectors</span>
@@ -99,7 +99,7 @@ lines. With the widget on **Line and plane**, pick a line inside the plane and t
 
 ## More coordinates
 
-Nothing here depends on having three coordinates. With four, $\mathrm{GF}(q)^4$ has $q^4$ vectors, and its lines through the origin number $(q^4 - 1)/(q - 1) = q^3 + q^2 + q + 1$. They are the points of a projective *space* of dimension 3, called $\mathrm{PG}(3, q)$, and [Lesson 16](../16-beyond-the-plane/) builds Singer difference sets from it. This part stays with three coordinates, which give planes.
+Nothing here depends on having three coordinates. With four, $\mathrm{GF}(q)^4$ has $q^4$ vectors, and its lines through the origin number $(q^4 - 1)/(q - 1) = q^3 + q^2 + q + 1$. They are the points of a projective *space* of dimension 3 (one less than the number of coordinates), called $\mathrm{PG}(3, q)$, and [Lesson 16](../16-beyond-the-plane/) builds Singer difference sets from it. This part stays with three coordinates, which give planes.
 
 <section class="try-it">
 
@@ -107,7 +107,7 @@ Nothing here depends on having three coordinates. With four, $\mathrm{GF}(q)^4$ 
 
 Work in $\mathrm{GF}(3)^3$.
 
-1. List the vectors on the line through 0 and $(2, 1, 1)$. Which canonical vector, with first nonzero coordinate 1, lies on it?
+1. List the vectors on the line through 0 and $(2, 1, 1)$. Which vector on it has first nonzero coordinate 1? (This is the *normalized* vector of [Lesson 11](../11-coordinates/).)
 2. List the 9 vectors of the plane $x + y + z = 0$, and sort its 8 nonzero vectors into its 4 lines through the origin.
 
 <details>

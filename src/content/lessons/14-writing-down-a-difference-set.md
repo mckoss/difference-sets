@@ -36,7 +36,7 @@ The three terms are the **conjugates** of $x$: what the Frobenius map $x \mapsto
 
 - $\mathrm{Tr}(x) = x + x^q + x^{q^2}$: the **trace** of $x$, an element of $\mathrm{GF}(q)$ for every $x$ in $\mathrm{GF}(q^3)$.
 - $x$, $x^q$, $x^{q^2}$: the three **conjugates** of $x$. For $x = \alpha^i$ they are $\alpha^i$, $\alpha^{iq}$, and $\alpha^{iq^2}$, with exponents taken mod $q^3 - 1$, since $\alpha^{q^3 - 1} = 1$.
-- $D = \{\, i \bmod v : \mathrm{Tr}(\alpha^i) = 0 \,\}$: the numbers of the points whose trace is 0.
+- $D = \{\, i \bmod v : \mathrm{Tr}(\alpha^i) = 0 \,\}$, read "the set of all $i$ mod $v$ such that $\mathrm{Tr}(\alpha^i) = 0$": the numbers of the points whose trace is 0. The colon means "such that"; the braces collect every $i$ that passes the test.
 
 </aside>
 
@@ -56,7 +56,7 @@ $$
 \mathrm{Tr}(s \cdot u) = s \cdot \mathrm{Tr}(u).
 $$
 
-Now write an element in coordinates, $u = c_0 + c_1 \alpha + c_2 \alpha^2$. Linearity gives
+Now write an element in coordinates, $u = c_0 + c_1 \alpha + c_2 \alpha^2$. (The trace itself needs no coordinates, so this is only a way of seeing what it does. Any two fields with $q^3$ elements are the same field with different labels, a fact [Lesson 7](../07-prime-power-fields/) stated without proof, so we may argue in the coordinate version of Lesson 12 and the conclusion holds in the code's version too.) Linearity gives
 
 $$
 \mathrm{Tr}(u) = \mathrm{Tr}(1) \cdot c_0 + \mathrm{Tr}(\alpha) \cdot c_1 + \mathrm{Tr}(\alpha^2) \cdot c_2.
@@ -66,11 +66,19 @@ That is one fixed combination of the coordinates, the kind of equation [Lesson 1
 
 > **The elements with trace 0 form a plane through the origin, so they make up one line of $\mathrm{PG}(2, q)$: the trace-zero line.**
 
-Point $i$ is on it exactly when $\mathrm{Tr}(\alpha^i) = 0$. That doesn't depend on which name of the point we use: the other names are $s \cdot \alpha^i$ for nonzero $s$ in $\mathrm{GF}(q)$ (Lesson 12), and $\mathrm{Tr}(s \cdot \alpha^i) = s \cdot \mathrm{Tr}(\alpha^i)$ is 0 exactly when $\mathrm{Tr}(\alpha^i)$ is. By Lesson 13, the numbers of the points on this line form a planar difference set:
+Point $i$ is on it exactly when $\mathrm{Tr}(\alpha^i) = 0$. That doesn't depend on which name of the point we use: the other names are $s \cdot \alpha^i$ for nonzero $s$ in $\mathrm{GF}(q)$ (Lesson 12), and $\mathrm{Tr}(s \cdot \alpha^i) = s \cdot \mathrm{Tr}(\alpha^i)$ is 0 exactly when $\mathrm{Tr}(\alpha^i)$ is. So the numbers of the points on this line,
 
 $$
-D = \{\, i \bmod v : \mathrm{Tr}(\alpha^i) = 0 \,\}.
+D = \{\, i \bmod v : \mathrm{Tr}(\alpha^i) = 0 \,\},
 $$
+
+form a planar difference set, by Lesson 13. Here is the whole reason in three lines.
+
+1. **$D$ is a line.** Trace 0 picks out a plane through the origin, so $D$ is the set of numbers of the $q + 1$ points on one line of $\mathrm{PG}(2, q)$.
+2. **Its translates are all the lines.** Multiplying by $\alpha$ carries lines to lines and sends point $i$ to point $i + 1$, so each $D + j$ is a line. The $v$ translates are all different (Lesson 4), and the plane has exactly $v$ lines, so they are all of them.
+3. **Every difference occurs once.** Two points $a$ and $a + d$, with $d \not\equiv 0$, lie on exactly one line, which is some $D + j$. So $d$ can be written as a difference of two members of $D$ in exactly one way.
+
+That is why $D$ is a $(q^2 + q + 1,\ q + 1,\ 1)$ difference set, and why it can be computed without any search.
 
 ## By hand: q = 2
 
@@ -113,7 +121,7 @@ Switch to $q = 3$. Now $\mathrm{Tr}(1) = 1 + 1 + 1 = 3 = 0$, because 3 is 0 in c
 
 The function `singerSet` behind this site follows the recipe directly, in the field of Lesson 9: polynomials of degree below $3e$ over $\mathrm{GF}(p)$, modulo a primitive polynomial. It keeps three running values, $\alpha^i$, $\alpha^{iq}$, and $\alpha^{iq^2}$, all starting at 1. At each step it adds them and checks for 0, then multiplies them by $\alpha$, $\alpha^q$, and $\alpha^{q^2}$ (worked out once at the start) to move on to $i + 1$. There is no guessing anywhere: one pass through $i = 0, 1, \dots, v - 1$ and the set is done. The only search is at the very start, for a primitive polynomial, using the test of [Lesson 8](../08-primitive-elements/). That is a search over polynomials, not over sets of points, and a far smaller job; it could even be replaced by looking a polynomial up in a table.
 
-For a prime $q$ the code uses the same cubic as the stepper, so it finds exactly the same $D$. For $q = 4$, $8$, or $9$ it builds the field from a different polynomial, so its $\alpha$ is a different primitive element, and its set is not a translate of the stepper's. For $q = 4$ it gets $\{3, 6, 7, 12, 14\}$, the mirror image of $\{7, 9, 14, 15, 18\}$. [Lesson 15](../15-many-sets-few-shapes/) shows how all of these sets are related.
+For a prime $q$ the code uses the same cubic as the stepper, so it finds exactly the same $D$. For $q = 4$, $8$, or $9$ it builds the field from a different polynomial, so its $\alpha$ is a different primitive element, and it turns out that its set is not a translate of the stepper's. For $q = 4$ it gets $\{3, 6, 7, 12, 14\}$, the mirror image of $\{7, 9, 14, 15, 18\}$. [Lesson 15](../15-many-sets-few-shapes/) shows how all of these sets are related.
 
 ## No search needed
 

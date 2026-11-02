@@ -31,13 +31,15 @@ $$
 
 Where the two agree in sign, the product is positive; where they disagree, it is negative.
 
+- Engineers call this match score the **correlation** of the two signals. A code's score against its own shifted copy is its **autocorrelation**, and the values at the wrong shifts, where the copies are not lined up, are its **sidelobes**. A good code has a tall peak at shift 0 and small sidelobes everywhere else.
+
 </aside>
 
 Below, the code is hidden in the received signal at a delay you don't know. Drag the **template shift** slider and watch the score: at most shifts it hovers near zero, and at one shift it jumps. Press **Find the echo** to let the receiver pick the best shift, then try more noise, a longer code, or a **random** code.
 
 <div data-widget="echo-finder" data-n="5" data-noise="1"></div>
 
-The two charts at the bottom compare each code with an exact copy of itself, with no noise. The m-sequence code of length $v$ scores $v$ when lined up and exactly $-1$ at *every* other shift. The random code scores $v$ when lined up too, but its other scores wander up and down. Those bumps are false echoes waiting to happen: add noise, and one of them can beat the real peak.
+The two charts at the bottom compare each code with an exact copy of itself, with no noise. The m-sequence code (a code built from a $q = 2$ Singer set; the name is explained below) of length $v$ scores $v$ when lined up and exactly $-1$ at *every* other shift. The random code scores $v$ when lined up too, but its other scores wander up and down. Those bumps are false echoes waiting to happen: add noise, and one of them can beat the real peak.
 
 ## Why the floor is flat
 
@@ -73,7 +75,7 @@ Those are the codes in the widget. They are called **maximal-length sequences**,
 - **Radar.** Sending a long coded pulse and correlating the echo against it is called *pulse compression*. A 1986 Raytheon patent uses maximal-length shift-register codes for this, and a 1979 ITT patent uses a maximal-length code precisely because its periodic correlation sidelobes are constant at $-1$.
 - **Measuring sound.** Play an m-sequence (it sounds like hiss) through a loudspeaker, record it with a microphone, and correlate. Because the code's own correlation is a single spike, the result is the room's echo pattern itself. D. D. Rife and J. Vanderkooy described this in 1989, and it became the basis of a commercial analyser used to measure loudspeakers and rooms.
 - **GPS, with a twist.** Each GPS satellite's C/A code adds together, bit by bit, two m-sequences of length 1023 made by 10-bit shift registers. Each of the two is a Singer-type sequence, but their sum is a *Gold code*, which is **not** a difference set: its correlation takes three values instead of two. That trade buys something a single m-sequence can't give: the codes of different satellites look unlike each other, so a receiver can pick out each one.
-- **Scrambling data.** The DARC data channel for FM radio (Lesson 21) mixes its bits with an m-sequence of period 511 from the shift register with polynomial $x^9 + x^4 + 1$, a step called *scrambling*.
+- **Scrambling data.** The DARC data channel for FM radio (Lesson 21) mixes its bits with an m-sequence of period 511 from the shift register with polynomial $x^9 + x^4 + 1$ (shorthand for the rule that makes each new bit: $b_{i+9} = b_{i+4} + b_i \bmod 2$), a step called *scrambling*.
 
 <section class="try-it">
 

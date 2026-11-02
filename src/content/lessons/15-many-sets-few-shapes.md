@@ -43,6 +43,8 @@ Sometimes a multiple is nothing new. $2 \cdot \{0, 1, 3\} = \{0, 2, 6\}$, and th
 - $-D$: the mirror image of $D$, the multiple with $t = -1$.
 - A **multiplier** of $D$ is a $t$ for which $t \cdot D$ is a translate $D + j$ of $D$.
 - $\varphi(v)$ (phi of $v$): how many of $1, \dots, v$ share no factor with $v$. These are the values of $t$ for which $t \cdot D$ is again a difference set.
+- The **translation class** of $D$: $D$ together with all its translates $D + j$. Two sets are in the same class exactly when one is a turn of the other.
+- A **shape**: a translation class together with its mirror image, the class of $-D$. Two sets have the same shape when one is a turn of the other or of the other's mirror image.
 
 </aside>
 
@@ -54,13 +56,13 @@ $$
 \mathrm{Tr}(x)^p = \left(x + x^q + x^{q^2}\right)^p = x^p + (x^p)^q + (x^p)^{q^2} = \mathrm{Tr}(x^p).
 $$
 
-So $\mathrm{Tr}(\alpha^{pi}) = \mathrm{Tr}(\alpha^i)^p$, and that is 0 exactly when $\mathrm{Tr}(\alpha^i)$ is. In other words, $i$ is in $D$ exactly when $p i$ is:
+So $\mathrm{Tr}(\alpha^{pi}) = \mathrm{Tr}(\alpha^i)^p$, and that is 0 exactly when $\mathrm{Tr}(\alpha^i)$ is. In other words, $i$ is in $D$ exactly when $p i$ is. And $p$ shares no factor with $v$, because $v = q^2 + q + 1$ is one more than a multiple of $p$. So multiplying by $p$ shuffles the residues mod $v$, and the shuffle sends the $q + 1$ members of $D$ to $q + 1$ different members of $D$, which is all of them:
 
 $$
 p \cdot D = D.
 $$
 
-For $q = 3$, $3 \cdot \{0, 1, 3, 9\} = \{0, 3, 9, 27\} \equiv \{0, 3, 9, 1\}$, the same set. For $q = 2$, $2 \cdot \{1, 2, 4\} = \{2, 4, 8\} \equiv \{2, 4, 1\}$. Multiplying by $p$ again and again, every power $p^m$ is a multiplier too. The powers come back to 1 after $3e$ steps, because $p^{3e} = q^3$, and $q^3 - 1 = (q - 1) v$ is a multiple of $v$. So a Singer set has (at least) the $3e$ multipliers
+For $q = 3$, $3 \cdot \{0, 1, 3, 9\} = \{0, 3, 9, 27\} \equiv \{0, 3, 9, 1\}$, the same set. For $q = 2$, $2 \cdot \{1, 2, 4\} = \{2, 4, 8\} \equiv \{2, 4, 1\}$. Multiplying by $p$ again and again, every power $p^m$ is a multiplier too. The powers come back to 1 after $3e$ steps, because $p^{3e} = q^3$, and $q^3 - 1 = (q - 1) v$ is a multiple of $v$. They do not come back sooner, so a Singer set has (at least) the $3e$ *different* multipliers
 
 $$
 1,\ p,\ p^2,\ \dots,\ p^{3e - 1} \pmod v.
@@ -68,7 +70,14 @@ $$
 
 For $q = 3$ they are $1, 3, 9$ mod 13. For $q = 4 = 2^2$ there are six: $1, 2, 4, 8, 16, 11$ mod 21.
 
-Geometrically, $x \mapsto x^p$ respects adding, $(u + w)^p = u^p + w^p$, and turns scaling by $s$ into scaling by $s^p$, which is still in $\mathrm{GF}(q)$. So it carries points to points and lines to lines: it is another symmetry of $\mathrm{PG}(2, q)$, one that sends point $i$ to point $p i$ and keeps point 0 where it is. The trace-zero line is one of the lines it leaves in place. Any other line $D + j$ goes to $p \cdot (D + j) = D + pj$, again a translate.
+<details>
+<summary>Why the 3e powers of p are all different mod v</summary>
+
+Suppose $p^a \equiv p^b \pmod v$ with $0 \le a < b < 3e$. Since $p$ has an inverse mod $v$, cancel $p^a$: $p^m \equiv 1$ with $m = b - a$, and $0 < m < 3e$. Then $p^{3e - m} \equiv p^{3e - m} \cdot p^m = p^{3e} \equiv 1$ as well. One of $m$ and $3e - m$ is at most $3e/2$, which is at most $2e$; call it $k$. So $p^k - 1$ is a positive multiple of $v$. But $p^k - 1 \le p^{2e} - 1 = q^2 - 1$, which is smaller than $v = q^2 + q + 1$. That is impossible, so no two of the $3e$ powers agree.
+
+</details>
+
+Geometrically, $x \mapsto x^p$ respects adding, $(u + w)^p = u^p + w^p$, and turns scaling by $s$ into scaling by $s^p$, which is still in $\mathrm{GF}(q)$; and every scalar is some $s^p$, because $x \mapsto x^p$ is one-to-one on the finite set $\mathrm{GF}(q)$ ([Lesson 9](../09-fields-inside-fields/)). So, by the argument of Lesson 13, it carries points to points and lines to lines: it is another symmetry of $\mathrm{PG}(2, q)$, one that sends point $i$ to point $p i$ and keeps point 0 where it is. The trace-zero line is one of the lines it leaves in place. Any other line $D + j$ goes to $p \cdot (D + j) = D + pj$, again a translate.
 
 Two theorems say how far this goes. Marshall Hall (1947) proved that for *every* planar difference set of order $n$, Singer or not, every prime dividing $n$ is a multiplier; [Lesson 17](../17-every-planar-set-singer/) shows how that theorem constrains sets nobody has found. And Gordon, Mills, and Welch (1962) showed that a Singer set has no multipliers other than the powers of $p$. In particular, $-1$ is not a multiplier; in fact it is never a multiplier of any nontrivial difference set (Gordon, Mills, and Welch 1962; Johnsen 1964). So a Singer set is never a turn of its own mirror image.
 
@@ -76,15 +85,17 @@ Two theorems say how far this goes. Marshall Hall (1947) proved that for *every*
 
 Multiplying all of $D$ by the $\varphi(v)$ choices of $t$ gives $\varphi(v)$ difference sets. Which of them are just turns of each other?
 
-Multiplication spreads over a translate: $t \cdot (D + j) = t \cdot D + t j$. So if $t' \cdot D = t \cdot D + j$, multiplying both sides by the inverse $u$ of $t$ mod $v$ gives $(u t') \cdot D = D + u j$. That makes $u t'$ a multiplier, a power of $p$. So:
+Multiplication spreads over a translate: $t \cdot (D + j) = t \cdot D + t j$. So if $t' \cdot D = t \cdot D + j$, multiplying both sides by the inverse $u$ of $t$ mod $v$ gives $(u t') \cdot D = D + u j$. That makes $u t'$ a multiplier, so by the Gordon–Mills–Welch theorem it is a power of $p$: $t' \equiv t \cdot p^m$. And conversely, $(t p^m) \cdot D = t \cdot (p^m \cdot D) = t \cdot D$. So:
 
 > $t \cdot D$ and $t' \cdot D$ are translates of each other exactly when $t' \equiv t \cdot p^m \pmod v$ for some $m$.
 
-The $\varphi(v)$ values of $t$ therefore fall into groups $\{t, tp, tp^2, \dots\}$ of $3e$ each, one group per translation class:
+The $\varphi(v)$ values of $t$ therefore fall into groups $\{t, tp, tp^2, \dots, tp^{3e - 1}\}$ of $3e$ each (the $3e$ powers of $p$ are different, so the $3e$ products are too), one group per translation class:
 
 $$
-\text{Singer sets mod } v \text{ up to translation} = \frac{\varphi(q^2 + q + 1)}{3e}.
+\text{multiples of } D \text{ up to translation} = \frac{\varphi(q^2 + q + 1)}{3e}.
 $$
+
+The next section shows that every Singer set of order $q$ is one of these multiples, so this is also the count of Singer sets up to translation.
 
 Singer conjectured this count in 1938. Gerald Berman (1953) and Heini Halberstam and R. R. Laxton (1964) proved it. Since $-1$ is never a multiplier, the mirror image of each class is a different class, and the classes pair off:
 
@@ -98,7 +109,7 @@ Choose $q$ and $t$ below. The widget multiplies the trace set by $t$, says wheth
 
 <div data-widget="multiplier-explorer" data-q="3" data-t="2"></div>
 
-| $q$ | $v$ | $\varphi(v)$ | $3e$ | sets up to translation, $\varphi(v)/3e$ | up to mirror images too, $\varphi(v)/6e$ |
+| $q$ | $v$ | $\varphi(v)$ | $3e$ | multiples of $D$ up to translation, $\varphi(v)/3e$ | up to mirror images too, $\varphi(v)/6e$ |
 | --- | --- | --- | --- | --- | --- |
 | 2 | 7 | 6 | 3 | 2 | 1 |
 | 3 | 13 | 12 | 3 | 4 | 2 |
@@ -110,15 +121,15 @@ Choose $q$ and $t$ below. The widget multiplies the trace set by $t$, says wheth
 | 11 | 133 | 108 | 3 | 36 | 18 |
 | 13 | 183 | 120 | 3 | 40 | 20 |
 
-The middle column is OEIS [A335866](https://oeis.org/A335866). The last column, $1, 2, 1, 5, 6, 4, 6, 18, 20, \dots$ for $q = 2, 3, 4, 5, 7, 8, 9, 11, 13, \dots$, is OEIS [A058241](https://oeis.org/A058241), which its contributors computed by *searching* for every planar difference set, not just Singer's. That the two agree is the evidence behind the open question of Lesson 17.
+The $\varphi(v)/3e$ column is OEIS [A335866](https://oeis.org/A335866). The last column, $1, 2, 1, 5, 6, 4, 6, 18, 20, \dots$ for $q = 2, 3, 4, 5, 7, 8, 9, 11, 13, \dots$, is OEIS [A058241](https://oeis.org/A058241), which its contributors computed by *searching* for every planar difference set, not just Singer's. That the two agree is the evidence behind the open question of Lesson 17.
 
 ## Where the other sets come from
 
-Every one of these sets is a Singer set in its own right: it comes from choosing a different primitive element. If $\beta = \alpha^s$ (beta) is another primitive element of $\mathrm{GF}(q^3)$, then the trace construction with $\beta$ keeps the $i$ with $\mathrm{Tr}(\alpha^{si}) = 0$, that is, the $i$ with $s i$ in $D$. That is the multiple $u \cdot D$, where $u$ is the inverse of $s$ mod $v$. Choosing a different primitive polynomial is choosing a different $\alpha$, so it multiplies the set.
+Every one of these sets is a Singer set in its own right: it comes from choosing a different primitive element. If $\beta = \alpha^s$ (beta) is another primitive element of $\mathrm{GF}(q^3)$, then the trace construction with $\beta$ keeps the $i$ with $\mathrm{Tr}(\alpha^{si}) = 0$, that is, the $i$ with $s i$ in $D$. That is the multiple $u \cdot D$, where $u$ is the inverse of $s$ mod $v$. ($s$ has one: if $s$ shared a factor $r$ with $q^3 - 1$, then $\beta^{(q^3 - 1)/r} = (\alpha^{q^3 - 1})^{s/r} = 1$, and $\beta$ would not be primitive. So $s$ shares no factor with $q^3 - 1$, and none with its divisor $v$.) Choosing a different primitive polynomial is choosing a different $\alpha$, so it multiplies the set. A field built from a different polynomial, like the code's degree-$3e$ version, is the same field with different labels (Lesson 12), and relabeling changes nothing that is computed by adding and multiplying, the trace included; so this covers it too.
 
 That explains the last loose end of Lesson 14. For $q = 4$ the site's `singerSet` builds the field from a degree-6 polynomial over $\mathrm{GF}(2)$, so its $\alpha$ is a different element, and it finds $\{3, 6, 7, 12, 14\}$. That is $5 \cdot D$ for the stepper's $D = \{7, 9, 14, 15, 18\}$, in the same class as $-D$, the mirror image.
 
-So the many sets are one family: all the Singer sets of order $q$ are the multiples $t \cdot D$ and their translates, the lines of one plane read with different choices of $\alpha$. The words matter here. Under translation and multiplication together, there is exactly **one** Singer set per $q$. The numbers above count *different sets*, up to translation alone or up to translation and mirror images, not essentially different ones.
+So the many sets are one family: all the Singer sets of order $q$ are the multiples $t \cdot D$ and their translates, the lines of one plane read with different choices of $\alpha$. That upgrades the count: there are exactly $\varphi(v)/3e$ **Singer sets** of order $q$ up to translation, and $\varphi(v)/6e$ up to translation and mirror images. The words matter here. Under translation and multiplication together, there is exactly **one** Singer set per $q$. The numbers above count *different sets*, up to translation alone or up to translation and mirror images, not essentially different ones.
 
 <section class="try-it">
 

@@ -58,7 +58,16 @@ $$
 W(0)^2 + W(1)^2 + \dots + W(15)^2 = 256.
 $$
 
-If any one score is small, some other score must be big. The biggest score is as small as it can be when all 16 scores have the same size: $16 \times 4^2 = 256$, so every $W(a) = \pm 4$, every rule is right on $(16 \pm 4)/2 = 10$ or $6$ inputs, and the closest affine rule is wrong 6 times. A function whose scores all have the same size is called **bent**, a name O. S. Rothaus gave them in a 1976 paper. For $n$ input bits the scores of a bent function are all $\pm 2^{n/2}$, which is a whole number only when $n$ is even, so bent functions exist only for an even number of bits.
+<details>
+<summary>Why the total is always 256</summary>
+
+Write $F(x) = +1$ where $f(x) = 0$ and $F(x) = -1$ where $f(x) = 1$, and write $L_a(x) = \pm 1$ in the same way for the rule $a \cdot x$. Then $W(a)$ is the sum of $F(x) L_a(x)$ over the 16 inputs. A linear rule turns XOR of inputs into XOR of answers, so $L_a(x) L_a(y) = L_a(x \oplus y)$, and $W(a)^2$ is the sum of $F(x) F(y) L_a(x \oplus y)$ over all $16 \times 16$ pairs $x, y$.
+
+Now add that over all 16 rules $a$. A pair with $x = y$ contributes $F(x)^2 L_a(0) = 1$ for every rule: 16 in all. A pair with $x \ne y$ has $z = x \oplus y$ nonzero, and exactly 8 of the 16 linear rules answer 1 on $z$. (Pick a bit where $z$ is 1; switching that bit of $a$ flips the answer $a \cdot z$, so the rules pair off, one saying 0 and one saying 1.) Eight $+1$s and eight $-1$s cancel, so the pair contributes nothing. That leaves the 16 pairs with $x = y$, and $16 \times 16 = 256$.
+
+</details>
+
+If any one score is small, some other score must be big. The 16 squares add up to 256, so they average $256 / 16 = 16$, and the largest is at least 16: some score has size at least 4. The biggest score is as small as it can be when all 16 scores have the same size: $16 \times 4^2 = 256$, so every $W(a) = \pm 4$, every rule is right on $(16 \pm 4)/2 = 10$ or $6$ inputs, and the closest affine rule is wrong 6 times. A function whose scores all have the same size is called **bent**, a name O. S. Rothaus gave them in a 1976 paper. For $n$ input bits the scores of a bent function are all $\pm 2^{n/2}$, which is a whole number only when $n$ is even, so bent functions exist only for an even number of bits.
 
 ## Bent functions are difference sets
 
@@ -68,7 +77,7 @@ $$
 D \oplus a = \{\, x \oplus a : x \text{ in } D \,\}.
 $$
 
-This is [Lesson 2](../02-rotations/)'s translate $D + t$, with clock addition replaced by XOR. For $x_1 x_2 \oplus x_3 x_4$, the set $D = \{0011, 0111, 1011, 1100, 1101, 1110\}$ has 6 members and every bar is exactly 2. Equivalently, every nonzero string occurs exactly twice as $x \oplus y$ for two members $x, y$ of $D$. So $D$ is a **difference set** with $v = 16$, $k = 6$, $\lambda = 2$, in the group of 4-bit strings under XOR. Since $x \oplus a = y$ exactly when $x \oplus y = a$, "difference" and "sum" are the same thing here: there is no minus sign to worry about.
+This is [Lesson 2](../02-rotations/)'s translate $D + t$, with clock addition replaced by XOR. For $x_1 x_2 \oplus x_3 x_4$, the set $D = \{0011, 0111, 1011, 1100, 1101, 1110\}$ has 6 members and every bar is exactly 2. Equivalently, every nonzero string occurs exactly twice as $x \oplus y$ for two members $x, y$ of $D$. So $D$ is a **difference set** with $v = 16$, $k = 6$, $\lambda = 2$, in the group of 4-bit strings under XOR. (A *group* here just means a set of things with an "addition" that can be undone: the hours of a clock with $+$, or the 4-bit strings with $\oplus$. The definition in [Lesson 1](../01-differences-on-a-circle/) carries over with $\oplus$ in place of $-$.) Since $x \oplus a = y$ exactly when $x \oplus y = a$, "difference" and "sum" are the same thing here: there is no minus sign to worry about.
 
 This is no accident. J. F. Dillon showed in his 1974 thesis that
 
@@ -82,19 +91,21 @@ $$
 
 (with the same sign in both places), which are called **Hadamard** or **Menon** parameters. For $n = 4$ they are $(16, 6, 2)$ and $(16, 10, 6)$; the preset **x1x4 ⊕ x2x3 ⊕ 1** is a $(16, 10, 6)$ example. Of the $2^{16} = 65{,}536$ functions on 4 bits, exactly 896 are bent, and exactly those 896 have a flat bar chart (leaving out sets with 0, 1, 15, or 16 members, whose charts are flat for trivial reasons).
 
-Here is why the two ideas match. Turn $f$ into a code of $\pm 1$s, $-1$ where $f = 1$, as in Lesson 20, and compare it with itself shifted by $a$ (XOR instead of a clock shift). Lesson 20's count works word for word and gives
+Here is why the two ideas match. Turn $f$ into a code of $\pm 1$s, $-1$ where $f = 1$, and compare it with itself shifted by $a$ (XOR instead of a clock shift): $+1$ for each input where the two copies agree, $-1$ where they disagree. The copies disagree exactly at the inputs that are in one of $D$ and $D \oplus a$ but not both. If bar $a$ has height $\lambda_a$, then $D$ has $k - \lambda_a$ members outside $D \oplus a$, and $D \oplus a$ has $k - \lambda_a$ members outside $D$: $2(k - \lambda_a)$ disagreements, $16 - 2(k - \lambda_a)$ agreements, and a score of
 
 $$
-16 - 4(k - \lambda_a),
+16 - 2(k - \lambda_a) - 2(k - \lambda_a) = 16 - 4(k - \lambda_a).
 $$
 
-where $\lambda_a$ is the height of bar $a$. When $D$ is a $(16, 6, 2)$ difference set, that is $16 - 4 \cdot 4 = 0$ for every nonzero shift: a perfectly flat floor at 0. A flat floor in the self-comparison and a flat set of scores against the linear rules turn out to be the same fact seen from two sides. (The scores $W(a)$ are the *Fourier* or *Walsh transform* of $f$, and a transform is flat exactly when the self-comparison is a single spike.) Bent functions are the XOR world's version of the m-sequences, whose floor was flat at $-1$.
+([Lesson 20](../20-finding-an-echo/) makes the same count for codes on a clock.) When $D$ is a $(16, 6, 2)$ difference set, that is $16 - 4 \cdot 4 = 0$ for every nonzero shift: a perfectly flat floor at 0.
+
+A flat floor in the self-comparison and a flat set of scores against the linear rules are the same fact seen from two sides. Here is the mechanism. Take the 16 numbers $W(b)^2$ as a list indexed by $b$, and score that list against the linear rule $a \cdot b$ in the usual way: add $W(b)^2$ where $a \cdot b = 0$ and subtract it where $a \cdot b = 1$. That total, divided by 16, is exactly the self-comparison score at shift $a$. A list of 16 equal numbers scores 0 against every nonzero rule (8 added, 8 subtracted), so flat scores give a flat floor; and the same step run the other way turns a flat floor back into flat scores. Dillon's thesis has the full proof. (The scores $W(a)$ are the *Fourier* or *Walsh transform* of $f$, and a transform is flat exactly when the self-comparison is a single spike.) Bent functions are the XOR world's version of the m-sequences, the shift-register codes of Lesson 20, whose floor was flat at $-1$.
 
 ## A second attack: following differences
 
 Another attack, **differential cryptanalysis**, published by Eli Biham and Adi Shamir in 1991, flips some input bits and watches how the output changes. If changing the input by $a$ changes $f$'s output much more (or much less) often than half the time, the attacker has a handle.
 
-For a Boolean function, the output changes, $f(x) \ne f(x \oplus a)$, exactly when $x$ is in one of $D$ and $D \oplus a$ but not the other. Lesson 20 counted those: there are $2(k - \lambda_a)$ such inputs. For a $(16, 6, 2)$ difference set that is $2 \cdot 4 = 8$, exactly half of the 16, for every $a$. Kaisa Nyberg called functions with this property **perfect nonlinear** in 1991, and for single-bit outputs they are exactly the bent functions. The difference-set property defends against both attacks at once.
+For a Boolean function, the output changes, $f(x) \ne f(x \oplus a)$, exactly when $x$ is in one of $D$ and $D \oplus a$ but not the other. We counted those above: there are $2(k - \lambda_a)$ such inputs. For a $(16, 6, 2)$ difference set that is $2 \cdot 4 = 8$, exactly half of the 16, for every $a$. Kaisa Nyberg called functions with this property **perfect nonlinear** in 1991, and for single-bit outputs they are exactly the bent functions. The difference-set property defends against both attacks at once.
 
 Real ciphers need *S-boxes* (substitution boxes), pieces with several output bits. Nyberg showed that a perfect nonlinear S-box needs at least twice as many input bits as output bits, so it can never be undone, and most ciphers need pieces that can. So designers use bent functions as raw material and accept a little less than perfect. Carlisle Adams and Stafford Tavares's design procedure for the CAST ciphers chooses bent functions as the columns of each S-box's table; the cipher CAST-128, published as an internet standard in 1997, came out of that procedure.
 
@@ -112,7 +123,7 @@ So real stream ciphers mix several shift registers *nonlinearly*. The A5/1 ciphe
 
 1. For $f = x_1 x_2 \oplus x_3 x_4$, with $D = \{0011, 0111, 1011, 1100, 1101, 1110\}$, work out $D \oplus 0001$ and its overlap with $D$. Check with bar $0001$ in the widget.
 2. On how many of the 16 inputs does the rule $x_1$ agree with $x_1 x_2 \oplus x_3 x_4$?
-3. Use Lesson 20's count to explain why a $(16, 10, 6)$ difference set also gives a floor flat at 0.
+3. Use the count of agreements and disagreements above to explain why a $(16, 10, 6)$ difference set also gives a floor flat at 0.
 
 <details>
 <summary>Show the answer</summary>

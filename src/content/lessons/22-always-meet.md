@@ -50,7 +50,7 @@ A planar difference set meets this with nothing to spare: each of the $k(k - 1)$
 | 133 | 12 | 9% |
 | 1057 | 33 | 3% |
 
-The fraction falls roughly like one over the square root of $v$, the best any schedule can do by the inequality above. Try the 13- and 21-slot cycles in the menu above.
+The fraction falls roughly like one over the square root of $v$, and that is the best any schedule can do: the inequality above says $k(k - 1)$ is at least $v - 1$, so $k$ is at least about $\sqrt{v}$, and the fraction $k / v$ is at least about $1 / \sqrt{v}$. Try the 13- and 21-slot cycles in the menu above.
 
 This idea is in real designs. A 2006 patent application by Zi-Tsan Chou of Taiwan's Institute for Information Industry describes radios whose awake beacon intervals "form a cyclic difference set", and its worked example is a cycle of 7 intervals with the radio awake in intervals 0, 1, and 3: exactly the schedule above. Earlier, Rong Zheng, Jennifer Hou, and Lui Sha framed the best wake-up schedule for radios with unsynchronized clocks as a problem about designs like these, and reported energy savings of up to 70%.
 

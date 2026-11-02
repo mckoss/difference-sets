@@ -249,3 +249,15 @@ These are the point–hyperplane (Singer) parameters of PG(N−1, q). **[primary
 - The Ostrom–Wagner theorem wording. I could not reach the Springer full text; the result is confirmed by Kantor's papers.
 - Uniqueness of planes of order ≤ 8, and therefore "order 9 is the smallest non-Desarguesian order". This is standard, but I did not source it here.
 - How the OEIS A058241 terms up to a(20) were computed. The entry does not say.
+
+---
+
+## 12. Hall's pair at (63, 31, 15), and the smallest non-Singer set with Singer parameters — **Checked 2026-11-02**
+
+- **GMW 1962, introduction (p. 614):** "Hall (2) ... also found four inequivalent difference sets with v = 121, k = 40, λ = 13 and two such sets with v = 63, k = 31, λ = 15. We have found a close connection between the two inequivalent (63, 31, 15) difference sets and have succeeded in generalizing this situation." Reference (2) is Hall's 1956 survey. **[primary: Cambridge Core PDF text layer]**
+- **GMW 1962, p. 614:** "With the exception of the finite geometries and the case v = 63, all of the difference sets that we construct are new." **[primary]**
+- **GMW 1962, §9 (pp. 624–625):** "The smallest interesting case is q = p = 2, n = 3, N = 6. ... The two (7, 4, 2) difference sets {0, 1, 2, 4} and {0, −1, −2, −4} ... lead to two inequivalent (63, 32, 16) difference sets. One of the latter corresponds to a finite geometry and the other does not. See Hall (2, p. 985)." (GMW work with the complementary parameters.) So at v = 63 the GMW construction yields exactly two inequivalent sets, the Singer set and one other, and both were already in Hall's 1956 table. **[primary]**
+- I could not reach the AMS full text of Hall 1956 (HTTP 403), so "Hall found the non-Singer (63, 31, 15) set by search" rests on GMW's description of it. **[secondary: GMW 1962]**
+- **Smallest non-Singer set with Singer parameters is not (63, 31, 15).** The nonzero squares mod 31, {1, 2, 4, 5, 7, 8, 9, 10, 14, 16, 18, 19, 20, 25, 28}, are a (31, 15, 7) Paley difference set, the parameters of PG(4, 2). An exhaustive check of all 30 multipliers t and 31 slides j (`src/math/singerPG.ts`, `singerSetPG(2, 4)` = {1, 2, 4, 7, 8, 14, 15, 16, 19, 23, 25, 27, 28, 29, 30}) finds no t·Q + j equal to the Singer set. GMW's theorem needs N = nm with n ≥ 3, m ≥ 2, so N = 5 is outside it; (63, 31, 15) is only the smallest *GMW* case. **[verified by computation]**
+- **Gordon 2022 abstract** on λ = 2: the paper "extend[s] Hughes and Dickey's computations for λ = 2 and k ≤ 5000 up to 10^10". Lesson 16 uses this as "a computer search rules out any other clock biplane with k up to 10^10". **[review: arXiv abstract 2007.07292]**
+- **Trace for PG(m, q), q = 2, m = 3:** with α⁴ = α + 1 in GF(16), the four-term trace x + x² + x⁴ + x⁸ of αⁱ gives 000100110101111, zeros {0, 1, 2, 4, 5, 8, 10} = `singerSetPG(2, 3)` = zeros of `mSequence(4)`; the three-term formula x + x² + x⁴ gives values outside {0, 1}. The rule b_{i+4} = b_{i+1} + b_i holds for every i. **[verified by computation]**

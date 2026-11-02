@@ -37,7 +37,7 @@ $$
 
 A **codeword** is a word that passes all 21 checks: every line holds an even number of 1s. The sender only ever sends codewords. So if the receiver sees a check fail, it knows some bit inside that line was flipped on the way.
 
-How many codewords are there? Solving the 21 parity equations, which a computer does in an instant, shows that only 10 of them are independent: the other 11 follow from those 10. That leaves 11 bits free. The sender chooses those 11 bits to carry the message, and the equations fix the other 10. So this code carries 11 message bits in every 21 it sends. (Coding books call the message size $k$, but on this site $k$ always means the size of $D$, so we just say "message bits".) For comparison, the simplest code of all, sending each bit three times and taking the majority, carries only 7 message bits in 21 and can fix only one flip in each group of three.
+How many codewords are there? Solving the 21 parity equations, which a computer does in an instant, shows that only 10 of them are independent: the other 11 follow from those 10. Each independent check pins down one more bit in terms of the others, so $21 - 10 = 11$ bits can be chosen freely. The sender chooses those 11 bits to carry the message, and the equations fix the other 10. So this code carries 11 message bits in every 21 it sends. (Coding books call the message size $k$, but on this site $k$ always means the size of $D$, so we just say "message bits".) For comparison, the simplest code of all, sending each bit three times and taking the majority, carries only 7 message bits in 21 and can fix only one flip in each group of three.
 
 ## A fair vote
 
