@@ -7,6 +7,7 @@
 @import './apps/schedule-ruler.css';
 @import './apps/projective.css';
 @import './apps/construction.css';
+@import './apps/raid.css';
 
 /* Markdown tables in lessons */
 .lesson table {
