@@ -1447,3 +1447,26 @@ blockquote p {
 }
 
 /* ===================== end Part III finite field widgets ================== */
+
+/* Markdown footnotes ([^name]): a quiet section after the lesson. */
+.footnotes {
+  margin-top: 3rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+  font-size: 0.95em;
+}
+.footnotes h2 {
+  font-size: 1.1rem;
+  color: var(--muted);
+}
+.footnotes li > p:first-child {
+  margin-top: 0;
+}
+[data-footnote-ref] {
+  text-decoration: none;
+  padding: 0 0.1em;
+}
+.footnotes .katex-display {
+  overflow-x: auto;
+  overflow-y: hidden;
+}

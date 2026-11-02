@@ -14,7 +14,7 @@ status: ready
 
 ## Clocks, again
 
-[Lesson 1](../01-differences-on-a-circle/) did arithmetic on a clock: with $v$ hours, you add or multiply as usual and then keep only the remainder after dividing by $v$. The set of hours $\{0, 1, \dots, v - 1\}$ with that arithmetic is written $\mathbb{Z}/v\mathbb{Z}$, read "the integers mod $v$", and $a \equiv b \pmod v$ means $a$ and $b$ land on the same hour.
+[Lesson 1](../01-differences-on-a-circle/) did arithmetic on a clock: with $v$ hours, you add or multiply as usual and then keep only the remainder after dividing by $v$. The set of hours $\{0, 1, \dots, v - 1\}$ with that arithmetic is written $\mathbb{Z}/v\mathbb{Z}$, read "the integers mod $v$",[^quotient] and $a \equiv b \pmod v$ means $a$ and $b$ land on the same hour.
 
 For example, on a clock with 7 hours, $5 + 4 = 9 \equiv 2$ and $3 \times 5 = 15 \equiv 1 \pmod 7$.
 
@@ -120,3 +120,27 @@ You won't have to take this on trust for the prime sizes: the [next lesson](../0
 </section>
 
 Explore any clock up to 24 hours in the [finite field calculator](../../playgrounds/field-calculator/?v=6), which shows the tables and Euclid's algorithm side by side.
+
+[^quotient]: **Why the slash in $\mathbb{Z}/v\mathbb{Z}$?** The notation looks like a division, and in a sense it is one, called a **quotient**.
+
+    $\mathbb{Z}$ is the set of all integers, $\dots, -2, -1, 0, 1, 2, \dots$, and $v\mathbb{Z}$ is the set of all multiples of $v$. For $v = 7$ that is $7\mathbb{Z} = \{\dots, -14, -7, 0, 7, 14, \dots\}$. Writing $\mathbb{Z}/7\mathbb{Z}$ means "the integers, with every multiple of 7 treated as zero."
+
+    To see what that leaves, take any integer $a$ and add every multiple of 7 to it. The result,
+    $$
+    a + 7\mathbb{Z} = \{\dots, a - 7, a, a + 7, \dots\},
+    $$
+    is a **class**: all the integers that land on the same hour as $a$. For example, $3 + 7\mathbb{Z} = \{\dots, -11, -4, 3, 10, 17, \dots\}$. There are exactly seven classes, $0 + 7\mathbb{Z}$ through $6 + 7\mathbb{Z}$, and every integer is in exactly one of them. The *elements* of $\mathbb{Z}/7\mathbb{Z}$ are these seven classes. The hours $0, 1, \dots, 6$ are just short names for them, each class named by its smallest member that isn't negative. The slash is apt: the integers are cut into $v$ shifted copies of $v\mathbb{Z}$, just as $21/7 = 3$ counts the copies of 7 that make 21.
+
+    To add or multiply two classes, pick any member of each, compute as usual, and take the class of the answer. It doesn't matter which members you pick. If $a' = a + mv$ and $b' = b + nv$, then
+    $$
+    a' + b' = (a + b) + (m + n)v,
+    $$
+    $$
+    a'b' = ab + (an + bm + mnv)v,
+    $$
+    which are in the classes of $a + b$ and $ab$. This works because the multiples of $v$ *absorb*: a multiple of $v$ plus a multiple of $v$, or times any integer, is again a multiple of $v$. A collection with that absorbing property is called an **ideal**, and you can always take the quotient of a number system by an ideal.
+
+    Here is how the quotient view describes this lesson's result. When $v = ab$ is composite, the multiples of $a$ form a larger ideal $a\mathbb{Z}$ that sits strictly between $v\mathbb{Z}$ and $\mathbb{Z}$. The classes of $a$ and $b$ are then not zero, but their product $ab = v$ is: a zero divisor, which rules out division. When $p$ is prime, no ideal fits between $p\mathbb{Z}$ and $\mathbb{Z}$ (algebraists call $p\mathbb{Z}$ a **maximal ideal**), and a standard theorem of algebra says that the quotient by a maximal ideal is always a field. So $\mathbb{Z}/p\mathbb{Z}$ is a field, as the next lesson spells out.
+
+    [Lesson 7](../07-prime-power-fields/) makes the same move with polynomials. It treats every multiple of an irreducible polynomial $f(x)$ as zero, and $f$ plays the role of the prime $p$.
+
