@@ -227,10 +227,14 @@ blockquote p {
   margin: 0;
 }
 
+/* A wide formula scrolls sideways, and overflow-x: auto clips vertically too,
+   so the box needs room for tall exponents like x^(q^2). Most of KaTeX's
+   1em margin moves inside as padding: same spacing, bigger box. */
 .katex-display {
   overflow-x: auto;
   overflow-y: hidden;
-  padding: 0.25rem 0;
+  margin: 0.25em 0;
+  padding: 1em 0;
 }
 
 .pager {
@@ -1474,10 +1478,7 @@ blockquote p {
 [data-footnote-ref]::after {
   content: ']';
 }
-.footnotes .katex-display {
-  overflow-x: auto;
-  overflow-y: hidden;
-}
+
 
 /* Glossary terms in lesson text: a quiet dotted underline, definition on hover. */
 

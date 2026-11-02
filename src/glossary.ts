@@ -289,7 +289,7 @@ export const GLOSSARY: GlossaryTerm[] = [
   {
     term: 'primitive element',
     lesson: 8,
-    def: 'An element of a finite field whose powers run through every nonzero element: its order is q − 1. These lessons call it α (and ω in the small field GF(q)). Every finite field has one.',
+    def: 'An element of a finite field whose powers run through every nonzero element: its order is q − 1. These lessons call it α (and ω in the small field GF(q)). Every finite field has at least one, and usually several: GF(8) has six.',
     forms: ['primitive element', 'primitive'],
     see: ['primitive polynomial', 'log'],
   },
