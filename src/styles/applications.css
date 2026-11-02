@@ -8,6 +8,7 @@
 @import './apps/projective.css';
 @import './apps/construction.css';
 @import './apps/raid.css';
+@import './apps/crypto.css';
 
 /* Markdown tables in lessons */
 .lesson table {

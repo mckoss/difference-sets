@@ -25,6 +25,7 @@ const registry: Record<string, () => Promise<WidgetModule>> = {
   'wake-up': () => import('./wakeUp'),
   'golomb-ruler': () => import('./golombRuler'),
   'raid-rebuild': () => import('./raidRebuild'),
+  'bent-function': () => import('./bentFunction'),
   // Lesson 17 and the search and explorer playgrounds.
   'planar-search': () => import('./planarSearch'),
   'large-q-explorer': () => import('./largeQExplorer'),
