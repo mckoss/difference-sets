@@ -18,7 +18,7 @@ status: ready
 
 ## GF(q³) as vectors over GF(q)
 
-[Lesson 7](../07-prime-power-fields/) built a field from remainders: choose an irreducible polynomial of degree 3, and work with the remainders of degree below 3. Lesson 7 took its coefficients mod a prime $p$, but long division only ever adds, multiplies, and divides coefficients, so the same recipe works with coefficients in any field, including $\mathrm{GF}(q)$. Choose a primitive polynomial of degree 3 over $\mathrm{GF}(q)$ ([Lesson 8](../08-primitive-elements/)), and call the remainder $x$ by the name $\alpha$. Every element of $\mathrm{GF}(q^3)$ is then
+[Lesson 7](../07-prime-power-fields/) built a field from remainders: choose an irreducible polynomial of degree 3, and work with the remainders of degree below 3. Lesson 7 took its coefficients mod a prime $p$, but long division only ever adds, multiplies, and divides coefficients, so the same recipe works with coefficients in any field, including $\mathrm{GF}(q)$. Choose a primitive polynomial of degree 3 over $\mathrm{GF}(q)$ (there always is one: [Lesson 8](../08-primitive-elements/) states that every finite field, not only $\mathrm{GF}(p)$, has a primitive polynomial of every degree), and call the remainder $x$ by the name $\alpha$. Every element of $\mathrm{GF}(q^3)$ is then
 
 $$
 c_0 + c_1 \alpha + c_2 \alpha^2
@@ -34,13 +34,20 @@ $$
 c_0 + c_1 \alpha + c_2 \alpha^2 \quad \longleftrightarrow \quad (c_0, c_1, c_2).
 $$
 
-Adding two elements adds their coefficients, which is adding vectors. Multiplying by a constant $s$ from $\mathrm{GF}(q)$ multiplies each coefficient by $s$, which is scaling a vector. So **$\mathrm{GF}(q^3)$ is $\mathrm{GF}(q)^3$**, with the bonus that any two elements can also be multiplied together. The constants $c_0$, the elements with $c_1 = c_2 = 0$, are the copy of $\mathrm{GF}(q)$ inside the big field.
+Adding two elements adds their coefficients, which is adding vectors. Multiplying by a constant $s$ from $\mathrm{GF}(q)$ multiplies each coefficient by $s$, which is scaling a vector. So **$\mathrm{GF}(q^3)$ is $\mathrm{GF}(q)^3$**, with the bonus that any two elements can also be multiplied together. The constants $c_0$, the elements with $c_1 = c_2 = 0$, are the copy of $\mathrm{GF}(q)$ inside the big field. Lesson 9 found a copy of $\mathrm{GF}(q)$ in a different way, as the fixed points of $x \mapsto x^q$. These are the same $q$ elements.
+
+<details>
+<summary>Why the constants are the fixed points</summary>
+
+The constants form a field with $q$ elements, so by Lesson 8 every nonzero constant $c$ satisfies $c^{q-1} = 1$, and multiplying by $c$ gives $c^q = c$: every constant is a fixed point of $x \mapsto x^q$ (and $0^q = 0$). There are $q$ constants, and Lesson 9 showed there are at most $q$ fixed points. So the constants are exactly the fixed points, $\{0\} \cup \langle \alpha^v \rangle$ with $v = q^2 + q + 1$.
+
+</details>
 
 ## Every point is a power of α
 
 Each point of $\mathrm{PG}(2, q)$ is a line through the origin: a nonzero vector $u$ together with its multiples $s \cdot u$ for the $q - 1$ nonzero scalars $s$. Read in the big field, $u$ is a nonzero element, so by Lesson 8 it is a power $\alpha^i$, with $0 \le i < q^3 - 1$.
 
-Which other powers name the same point? Lesson 9 found that the nonzero elements of $\mathrm{GF}(q)$ are exactly the powers of $\alpha^v$, where $v = q^2 + q + 1$:
+Which other powers name the same point? Lesson 9 found that the nonzero elements of $\mathrm{GF}(q)$, which we just saw are the nonzero constants, are exactly the powers of $\alpha^v$, where $v = q^2 + q + 1$:
 
 $$
 \mathrm{GF}(q)^* = \{1, \alpha^v, \alpha^{2v}, \dots, \alpha^{(q-2)v}\} = \langle \alpha^v \rangle.
@@ -62,7 +69,7 @@ Step through the powers of $\alpha$ below. Each power is a vector; its normalize
 
 <div data-widget="field-points" data-q="3"></div>
 
-For $q = 3$, $v = 13$ and $\alpha^{13} = 2$, the constant that Lesson 9 found fixed by $x \mapsto x^3$. So $\alpha^{4} = \alpha^2 + 2\alpha$, the vector $(0, 2, 1)$, and $\alpha^{17} = 2\alpha^4 = 2\alpha^2 + \alpha$, the vector $(0, 1, 2)$, are two names for the point $[0 : 1 : 2]$, which is point 4.
+For $q = 3$, $v = 13$ and $\alpha^{13} = 2$: a constant, as it must be, and the one Lesson 9 found fixed by $x \mapsto x^3$. So $\alpha^{4} = \alpha^2 + 2\alpha$, the vector $(0, 2, 1)$, and $\alpha^{17} = 2\alpha^4 = 2\alpha^2 + \alpha$, the vector $(0, 1, 2)$, are two names for the point $[0 : 1 : 2]$, which is point 4.
 
 ## The smallest case: q = 2
 

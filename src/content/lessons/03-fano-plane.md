@@ -37,7 +37,7 @@ $$
 \{0, 1, 3\},\ \{1, 2, 4\},\ \{2, 3, 5\},\ \{3, 4, 6\},\ \{0, 4, 5\},\ \{1, 5, 6\},\ \{0, 2, 6\}.
 $$
 
-This is no accident. Lesson 2 showed that for a planar difference set, any two points lie together in exactly one translate, and any two translates share exactly one point. Those are the two rules above. So the seven translates of $\{0, 1, 3\}$ *are* the lines of a geometry with the two rules, and with the points numbered well, that geometry is the Fano plane.
+This is no accident. Lesson 2 showed that for a planar difference set, any two points lie together in exactly one translate, and any two translates share exactly one point. Those are the two rules above. So the seven translates of $\{0, 1, 3\}$ form a geometry that obeys the two rules; and the labels in the picture show that this geometry is the Fano plane itself.
 
 ## A symmetry that turns the whole plane
 
@@ -59,8 +59,8 @@ Work them out from the list of lines, then check with the widget.
 <details>
 <summary>Show the answers</summary>
 
-1. The line $\{0, 2, 6\}$. It is $\{0, 1, 3\} + 6 = \{6, 7, 9\} \equiv \{6, 0, 2\} \pmod 7$.
-2. At the point 4, the only number in both lists. (The first is the circle, the second is the right side of the triangle.)
+1. The line $\{0, 2, 6\}$: in the picture, the straight line from the corner 6 through the center 0 to the midpoint 2. It is $\{0, 1, 3\} + 6 = \{6, 7, 9\} \equiv \{6, 0, 2\} \pmod 7$.
+2. At the point 4, the only number in both lists. (In the picture, $\{1, 2, 4\}$ is the circle and $\{3, 4, 6\}$ is the right side of the triangle.)
 
 </details>
 

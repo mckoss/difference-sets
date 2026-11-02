@@ -32,7 +32,7 @@ To say "Singer type" precisely we need to know when two sets count as the same. 
 
 For example, take $D = \{0, 1, 3\}$ mod 7 and $t = 2$. Then $2 \cdot D = \{0, 2, 6\}$, which is $D + 6 = \{6, 7, 9\} = \{6, 0, 2\}$ mod 7. So 2 is a multiplier of $\{0, 1, 3\}$. Multiplying by $t = -1$ gives the mirror image $-D = \{0, 6, 4\}$, which is not a slide of $D$.
 
-Two difference sets are **equivalent** when one can be turned into the other by multiplying and then sliding. A set is **of Singer type** when it is equivalent to a Singer set. Equivalent sets give the same plane with its points renamed, so equivalence is the right notion of "the same".
+Two difference sets are **equivalent** when one can be turned into the other by multiplying and then sliding. A set is **of Singer type** when it is equivalent to a Singer set. Equivalent sets give the same plane with its points renamed: rename point $i$ as $t \cdot i + j$, and every line $D + s$ goes to $t \cdot D + (ts + j)$, a line of the other set's plane (the renaming is one-to-one because $t$ has an inverse mod $v$). So equivalence is the right notion of "the same".
 
 <aside class="notation">
 <span class="notation-title">Notation</span>
@@ -72,7 +72,7 @@ The oldest test applies to *every* projective plane, cyclic or not.
 
 Order 6 is the first one it rules out: $6 \equiv 2 \pmod 4$, and $6 - 0^2 = 6$ and $6 - 1^2 = 5$ are not squares. Order 10 passes, since $10 = 1^2 + 3^2$, so Bruck–Ryser says nothing about it. Below 80, the orders it rules out are 6, 14, 21, 22, 30, 33, 38, 42, 46, 54, 57, 62, 66, 69, 70, 77, and 78.
 
-There is a quick way to tell whether a number is a sum of two squares: it is exactly when every prime that leaves remainder 3 on division by 4 (3, 7, 11, 19, …) divides it an even number of times. So $21 = 3 \cdot 7$ fails and $45 = 3^2 \cdot 5 = 3^2 + 6^2$ passes. Try any order:
+There is a quick way to tell whether a number is a sum of two squares, a classical theorem that goes back to Fermat and Euler, which we state without proof: it is exactly when every prime that leaves remainder 3 on division by 4 (3, 7, 11, 19, …) divides it an even number of times. So $21 = 3 \cdot 7$ fails and $45 = 3^2 \cdot 5 = 3^2 + 6^2$ passes. Try any order:
 
 <div data-widget="bruck-ryser" data-n="21"></div>
 
@@ -138,7 +138,16 @@ The $k = n + 1$ ones split as $n$ plus the 1 that begins the long sum. For $\{0,
 
 <div data-widget="polynomial-identity" data-v="7" data-set="0,1,3"></div>
 
-This turns a counting puzzle into algebra. Putting $x = 1$ gives $(n + 1)^2 = n + v$, the counting rule from Lesson 1. The bottom of the widget makes the stronger substitution: replace $x$ by a turn of $j/v$ of the way around a circle, so that each term $x^d$ becomes an arrow of length 1, and add the arrows head to tail. The $v$ arrows of $1 + x + \dots + x^{v-1}$ point evenly in all directions and cancel to nothing, and $D(x^{-1})$ becomes the mirror image of $D(x)$. So the identity says that the arrows of $D$ always add up to a total of length exactly $\sqrt n$, whichever turn you use. Mathematicians call these substitutions *characters*, and the totals are numbers called *cyclotomic integers*. Many non-existence proofs ask which cyclotomic integers of size $\sqrt n$ can exist, and show that for some orders none fits.
+This turns a counting puzzle into algebra. Putting $x = 1$ gives $(n + 1)^2 = n + v$, the counting rule from Lesson 1. The bottom of the widget makes a stronger substitution: replace $x$ by an arrow of length 1 that points $j/v$ of the way around a circle, for some $j \ne 0$. Two facts about arrows are needed, and we state them. Arrows multiply by multiplying lengths and adding angles, so $x^d$ is an arrow of length 1 turned $d$ times as far, and $x^{-d}$ is its mirror image across the horizontal line. And an arrow times its mirror image is the square of its length (the angles cancel). Adding terms now means laying arrows head to tail. The $v$ arrows of $1 + x + \dots + x^{v-1}$ point evenly in all directions and cancel to nothing, and $D(x^{-1})$ becomes the mirror image of the total arrow of $D(x)$, so the left side is the squared length of that total. So the identity says that the arrows of $D$ add up to a total of length exactly $\sqrt n$, for every turn except the zero turn (where every arrow points right and the total is $n + 1$). Mathematicians call these substitutions *characters*, and the totals are numbers called *cyclotomic integers*.
+
+<details>
+<summary>Why the v evenly spaced arrows cancel</summary>
+
+Call their total $S$. Multiplying every arrow by $x$ sends $x^d$ to $x^{d+1}$, and $x^v = 1$ brings the last one back to the first, so the $v$ arrows are only reordered: $x \cdot S = S$. But multiplying by $x$ turns an arrow by $j/v$ of a circle, which moves every arrow except the zero arrow. So $S$ is the zero arrow.
+
+</details>
+
+Many non-existence proofs ask which cyclotomic integers of size $\sqrt n$ can exist, and show that for some orders none fits.
 
 Two refinements of this idea are worth a sentence each. Turyn (1965) showed that when $n$ is *self-conjugate*, a condition on how $n$ factors among these numbers, the possible totals can be listed completely. Schmidt's *field descent* (1999; with Leung, 2005) shows that such a total must lie in a much smaller number system than it seems to, which removes Turyn's condition and gives general limits.
 
@@ -148,13 +157,13 @@ A third approach is geometric. A plane built from a field has a huge number of s
 
 - **Ostrom and Wagner (1959):** if a plane has symmetries that can carry any two points to any other two points, it is Desarguesian.
 - **Kantor (1987)** reached a similar conclusion for planes whose symmetries carry any point and line through it to any other such pair, apart from one narrow exception he could not rule out.
-- **Ho (1998):** if a plane has two different abelian "Singer groups", symmetries that carry one point to every other in exactly one way, then it is Desarguesian.
+- **Ho (1998):** if a plane has two different abelian "Singer groups", families of symmetries that carry one point to every other in exactly one way, then it is Desarguesian. (*Abelian* means commutative: applying two of the symmetries in either order gives the same result, as the turns of a clock do.)
 
-A cyclic plane has just one such cycle. The open question, in this language, is whether **a single cycle is enough** to force a field.
+A cyclic plane comes with one such group, its turns. The open question, in this language, is whether **a single cycle is enough** to force a field.
 
 ## A contrast: higher dimensions
 
-In higher dimensions the analogous question has been answered, and the answer is no. Gordon, Mills, and Welch (1962) built difference sets with exactly the parameters of Singer's higher-dimensional sets that are not equivalent to them; the smallest are $(63, 31, 15)$ sets ([Lesson 16](../16-beyond-the-plane/)). Their construction needs the dimension plus one to be a product of two whole numbers, and for planes that number is 3, a prime. So it never produces planar parameters, and the planar question remains open.
+In higher dimensions the analogous question has been answered, and the answer is no. The smallest case is $\mathrm{PG}(4, 2)$, with parameters $(31, 15, 7)$: the nonzero squares mod 31 form a difference set with those parameters (Paley's construction, [Lesson 16](../16-beyond-the-plane/)) that is not equivalent to the Singer set, as a check of all 30 multipliers and 31 slides confirms. Gordon, Mills, and Welch (1962) then built an infinite family of difference sets with Singer's parameters that are not equivalent to Singer sets, starting at $(63, 31, 15)$. Their construction needs the dimension plus one to be a product of two whole numbers, one at least 3 and the other at least 2, and for planes that number is 3, a prime. So it never produces planar parameters, and the planar question remains open.
 
 <section class="try-it">
 

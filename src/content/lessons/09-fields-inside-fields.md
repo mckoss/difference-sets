@@ -24,7 +24,7 @@ $$
 (a + b)^p = a^p + \binom{p}{1} a^{p-1} b + \binom{p}{2} a^{p-2} b^2 + \dots + \binom{p}{p-1} a b^{p-1} + b^p.
 $$
 
-Here $\binom{p}{i}$, read "$p$ choose $i$", is the binomial coefficient: the number of ways to choose $i$ things out of $p$. Each middle coefficient $\binom{p}{i} = \frac{p!}{i!\,(p - i)!}$, with $0 < i < p$, is a whole number divisible by $p$: the factor $p$ appears on top, and nothing on the bottom can cancel it, because every factor there is smaller than the prime $p$. For $p = 3$ the coefficients are $1, 3, 3, 1$; for $p = 5$ they are $1, 5, 10, 10, 5, 1$. In characteristic $p$, a multiple of $p$ is 0 (Lesson 6), so all the middle terms vanish:
+Here $\binom{p}{i}$, read "$p$ choose $i$", is the binomial coefficient: the number of ways to choose $i$ things out of $p$, the $C(p, i)$ of [Lesson 1](../01-differences-on-a-circle/). Each middle coefficient $\binom{p}{i} = \frac{p!}{i!\,(p - i)!}$, with $0 < i < p$, is a whole number divisible by $p$ (here $p!$, read "$p$ factorial", is $p (p - 1) \cdots 1$; multiply the top and bottom of Lesson 1's formula by $(p - i)!$ to get this form): the factor $p$ appears on top, and nothing on the bottom can cancel it, because every factor there is smaller than the prime $p$ (a prime that divides a product divides one of the factors, Euclid's lemma from [Lesson 5](../05-which-clocks-are-fields/), so $p$ cannot divide $i!\,(p - i)!$). For $p = 3$ the coefficients are $1, 3, 3, 1$; for $p = 5$ they are $1, 5, 10, 10, 5, 1$. In characteristic $p$, a multiple of $p$ is 0 (Lesson 6), so all the middle terms vanish:
 
 $$
 (a + b)^p = a^p + b^p.

@@ -24,7 +24,7 @@ Counting around a clock is ordinary arithmetic with one twist: after 6 comes 0 a
 
 <div data-widget="clock-mod" data-v="7" data-n="10"></div>
 
-The pattern is the division you learned in school: divide n by 7 and keep the remainder. For 10 that is $10 = 1 \cdot 7 + 3$, so 10 lands on 3. For $-1$ it is $-1 = (-1) \cdot 7 + 6$, so $-1$ lands on 6. The remainder is always one of 0, 1, …, 6, which is why every number lands on one of the seven points.
+The pattern is the division you learned in school: divide n by 7 and keep the remainder. For 10 that is $10 = 1 \cdot 7 + 3$, so 10 lands on 3. For negative numbers we always choose the remainder between 0 and 6, so the quotient may be negative. For $-1$ it is $-1 = (-1) \cdot 7 + 6$, so $-1$ lands on 6. The remainder is always one of 0, 1, …, 6, which is why every number lands on one of the seven points.
 
 <aside class="notation">
 <span class="notation-title">Notation: clock arithmetic</span>
@@ -36,6 +36,7 @@ These symbols appear throughout the site. This is where they are defined.
 - $a \equiv b \pmod v$, read "$a$ is congruent to $b$ mod $v$", means $a$ and $b$ differ by a multiple of $v$, so they land on the same point of a $v$-hour clock. For example, $10 \equiv 3 \pmod 7$ and $-1 \equiv 6 \pmod 7$.
 - $\mathbb{Z}/v\mathbb{Z}$, read "Z mod v Z", stands for the **integers mod** $v$: the integers, but with two numbers counted as the same whenever they differ by a multiple of $v$. There are exactly $v$ of them, $0, 1, \dots, v - 1$, called **residues**: they are the $v$ points on the clock face.
 - "$x \bmod v$" means the residue of $x$: its remainder after dividing by $v$. So $10 \bmod 7 = 3$.
+- The number $v$ in "mod $v$" is called the **modulus**: it is the number of hours on the clock.
 
 </aside>
 
@@ -52,7 +53,7 @@ $$
 
 Every distance from 1 to 6 shows up, and each one shows up exactly once. That is unusual. Most sets of three marks miss some distances and repeat others.
 
-Here is a workbench for trying sets yourself. Click points to add or remove them. The bar chart counts how often each difference appears; the dashed line shows how often each one *should* appear for the counts to come out even. Hover over a bar to see which chords make that difference.
+Here is a workbench for trying sets yourself. Click points to add or remove them. The bar chart counts how often each difference appears; the dashed line is where every bar would sit if all the differences appeared equally often. Hover over a bar to see which chords make that difference.
 
 <div data-widget="difference-workbench" data-v="7" data-set="0,1,3"></div>
 
@@ -62,7 +63,7 @@ Try clicking 3 to remove it and 2 to add it. The set 0, 1, 2 has the difference 
 
 Now some names, so we can talk about this in general. Curly braces list the members of a set: $\{0, 1, 3\}$ is the set whose members are 0, 1, and 3. We write $D$ for the set of marks.
 
-> A **$(v, k, \lambda)$ difference set** is a set $D$ of $k$ points on a $v$-hour clock such that every nonzero residue $1, 2, \dots, v - 1$ occurs as a difference $a - b$ of two members of $D$ exactly $\lambda$ times.
+> A **$(v, k, \lambda)$ difference set** is a set $D$ of $k$ points on a $v$-hour clock such that every nonzero residue $1, 2, \dots, v - 1$ occurs as a difference $a - b$ of two different members $a, b$ of $D$ (counting $a - b$ and $b - a$ separately) exactly $\lambda$ times.
 
 The symbol $\lambda$ is the Greek letter **lambda**. We use the same three letters everywhere on this site:
 
@@ -74,7 +75,7 @@ So $\{0, 1, 3\}$ is a $(7, 3, 1)$ difference set. The workbench has more example
 
 ### A quick count
 
-A set of $k$ points has $k(k - 1)$ ordered pairs of different points: $k$ choices for the first and $k - 1$ for the second. Each pair gives one difference. In a difference set those differences are shared out evenly, $\lambda$ apiece, among the $v - 1$ nonzero residues, so
+A set of $k$ points has $k(k - 1)$ ordered pairs of different points: $k$ choices for the first and $k - 1$ for the second. Each pair gives one difference, and it is never 0: two different marks between 0 and $v - 1$ cannot differ by a multiple of $v$. In a difference set those differences are shared out evenly, $\lambda$ apiece, among the $v - 1$ nonzero residues, so
 
 $$
 k(k - 1) = \lambda (v - 1).

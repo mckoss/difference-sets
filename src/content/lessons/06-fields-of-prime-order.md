@@ -73,8 +73,8 @@ If $F$ has exactly $p$ elements and its characteristic is $p$, the prime subfiel
 Inside a finite field $F$ of characteristic $p$, the prime subfield $\mathrm{GF}(p)$ acts like a set of "scalars". Pick elements of $F$ one at a time:
 
 1. Start with $b_1 = 1$. Its multiples $c_1 b_1$, for $c_1$ in $\mathrm{GF}(p)$, are $p$ different elements.
-2. If they are not all of $F$, pick some $b_2$ that is not among them. The combinations $c_1 b_1 + c_2 b_2$ are $p^2$ different elements. (If two were equal, subtracting would write $b_2$ as a multiple of $b_1$, which we ruled out.)
-3. Keep going. Each new pick multiplies the count by $p$, and since $F$ is finite, this stops after some number $e$ of picks, with every element of $F$ written in exactly one way as $c_1 b_1 + \dots + c_e b_e$.
+2. If they are not all of $F$, pick some $b_2$ that is not among them. The combinations $c_1 b_1 + c_2 b_2$ are $p^2$ different elements. (If two different combinations were equal, subtract them and look at the last pick whose two coefficients differ. Dividing by that nonzero difference, which has an inverse in $\mathrm{GF}(p)$, writes that pick as a combination of the earlier picks, which is impossible: $b_1 = 1$ is not 0, and each later pick was chosen outside the earlier combinations.)
+3. Keep going. Each new pick multiplies the count by $p$, for the same reason, and since $F$ is finite, this stops after some number $e$ of picks, with every element of $F$ written in exactly one way as $c_1 b_1 + \dots + c_e b_e$.
 
 So $F$ has exactly $p^e$ elements. In the language of [Lesson 10](../10-vectors-over-a-finite-field/), $F$ is a vector space over $\mathrm{GF}(p)$, and each element is a list of $e$ coordinates $(c_1, \dots, c_e)$.
 

@@ -33,7 +33,16 @@ $$
 
 Notice that over $\mathrm{GF}(2)$ subtracting is the same as adding, since $-1 = 1$.
 
-The **degree** of a polynomial is its highest power of $x$. To divide $a(x)$ by $f(x)$, do long division: divide the leading terms, subtract that multiple of $f$, and repeat until what is left has smaller degree than $f$. What is left is the **remainder**, written $a(x) \bmod f(x)$.
+The **degree** of a polynomial is its highest power of $x$. To divide $a(x)$ by $f(x)$, do long division: divide the leading terms, subtract that multiple of $f$, and repeat until what is left has smaller degree than $f$. What is left is the **remainder**, written $a(x) \bmod f(x)$. Here is the widget's default division, $a(x) = x^5 + x^2 + 1$ by $f(x) = x^3 + x + 1$ over $\mathrm{GF}(2)$, where "subtract" is the same as "add". The leading terms give $x^5 / x^3 = x^2$, then $x^3 / x^3 = 1$:
+
+$$
+\begin{aligned}
+(x^5 + x^2 + 1) - x^2 (x^3 + x + 1) &= (x^5 + x^2 + 1) - (x^5 + x^3 + x^2) = x^3 + 1, \\
+(x^3 + 1) - 1 \cdot (x^3 + x + 1) &= x.
+\end{aligned}
+$$
+
+The quotient is $x^2 + 1$ and the remainder is $x$, which has degree 1, less than the degree 3 of $f$. Check: $(x^2 + 1)(x^3 + x + 1) + x = x^5 + x^2 + 1$ over $\mathrm{GF}(2)$.
 
 <aside class="notation">
 <span class="notation-title">Notation: polynomials</span>
@@ -59,7 +68,7 @@ $$
 
 with each coefficient $a_i$ one of the $p$ numbers mod $p$. That makes $p^e$ remainders. Each one is a list of $e$ coefficients, which is exactly the "$e$ coordinates over $\mathrm{GF}(p)$" picture from Lesson 6. The widgets also write a remainder as its string of coefficient digits, highest power first, so over $\mathrm{GF}(2)$ the remainder $x^2 + 1$ is written $101$.
 
-To add two remainders, add them as polynomials. To multiply, multiply as polynomials, then take the remainder mod $f$. This is clock arithmetic, with $f(x)$ playing the role of the number of hours.
+To add two remainders, add them as polynomials. To multiply, multiply as polynomials, then take the remainder mod $f$. This is clock arithmetic, with $f(x)$ playing the role of the number of hours, and for the same reason as in [Lesson 5](../05-which-clocks-are-fields/) (reducing at the end gives the same answer as reducing along the way, because multiples of $f$ absorb sums and products just as multiples of $v$ do), the first five field rules carry over from ordinary polynomial algebra. Only the last rule, inverses, is in question.
 
 Here is the smallest example that is not a clock: $p = 2$ and $f(x) = x^2 + x + 1$. The four remainders are $0, 1, x, x + 1$. The only new rule is how to reduce $x^2$: since $x^2 + x + 1 \equiv 0$, we have $x^2 \equiv x + 1$ (over $\mathrm{GF}(2)$, moving terms across the equals sign doesn't change their sign). So, for instance, $x \times (x + 1) = x^2 + x \equiv (x + 1) + x = 1$.
 
@@ -67,13 +76,15 @@ Here is the smallest example that is not a clock: $p = 2$ and $f(x) = x^2 + x + 
 
 Every nonzero row of the multiplication table contains a 1, so this is a field with 4 elements, $\mathrm{GF}(4)$. It is not $\mathbb{Z}/4\mathbb{Z}$: in $\mathrm{GF}(4)$, $1 + 1 = 0$, while on the 4-hour clock $1 + 1 = 2$.
 
+Notice what has happened to $x$. We said it was just a symbol, but in this new field it is itself one of the four numbers, and it is a root of the modulus: $x^2 + x + 1 = 0$ there, even though neither 0 nor 1 is a root over $\mathrm{GF}(2)$. This is Galois's "new number" from [Lesson 5](../05-which-clocks-are-fields/), exactly as $i$ is a new number with $i^2 + 1 = 0$.
+
 ## Irreducible polynomials are the primes
 
 A polynomial is **irreducible** over $\mathrm{GF}(p)$ if it cannot be written as a product of two polynomials of smaller degree (each of degree at least 1). Otherwise it is **reducible**.
 
 **Reducible moduli give zero divisors.** If $f = g \times h$ with $g$ and $h$ of smaller degree, then $g$ and $h$ are nonzero remainders, but $g \times h = f \equiv 0$. The argument from Lesson 5 then shows $g$ has no inverse. Try it in the widget above: choose the modulus $x^2 + 1$, which over $\mathrm{GF}(2)$ equals $(x + 1)^2$, and watch $x + 1$ turn red.
 
-**Irreducible moduli give fields.** If $f$ is irreducible and $a(x)$ is a nonzero remainder, then $a$ and $f$ have no common factor of degree 1 or more (the only factors of $f$ are constants and constant multiples of $f$ itself, which has larger degree than $a$). The extended Euclidean algorithm from Lesson 5 works for polynomials too, using long division in place of whole-number division. It produces polynomials $s(x)$ and $t(x)$ with
+**Irreducible moduli give fields.** If $f$ is irreducible and $a(x)$ is a nonzero remainder, then $a$ and $f$ have no common factor of degree 1 or more (the only factors of $f$ are constants and constant multiples of $f$ itself, which has larger degree than $a$). The extended Euclidean algorithm from Lesson 5 works for polynomials too, using long division in place of whole-number division. As in Lesson 5, its last nonzero remainder divides both $a$ and $f$, so here it is a nonzero constant $c$; dividing the final equation by $c$ (a number mod $p$, which has an inverse) produces polynomials $s(x)$ and $t(x)$ with
 
 $$
 s(x)\,a(x) + t(x)\,f(x) = 1.
@@ -83,7 +94,7 @@ Modulo $f$, the second term is 0, so $s(x)\,a(x) \equiv 1$: the remainder of $s(
 
 > The remainders modulo an irreducible polynomial of degree $e$ over $\mathrm{GF}(p)$ form a field with $p^e$ elements.
 
-**A quick test for degree 2 or 3.** If such an $f$ factors, one factor has degree 1, so it looks like $x - c$, and then $f(c) = 0$. So $f$ of degree 2 or 3 is irreducible exactly when no number $c$ mod $p$ is a root. For example, $x^3 + x + 1$ over $\mathrm{GF}(2)$ has $f(0) = 1$ and $f(1) = 3 \equiv 1$, so it is irreducible and gives $\mathrm{GF}(8)$. And $x^2 + 1$ over $\mathrm{GF}(3)$ has values $1, 2, 2$ at $0, 1, 2$, so it gives $\mathrm{GF}(9)$. (For degree 4 and up, this test is not enough: over $\mathrm{GF}(2)$, $(x^2 + x + 1)^2$ has no roots but is reducible.)
+**A quick test for degree 2 or 3.** If such an $f$ factors, one factor has degree 1, say $ax + b$ with $a \ne 0$; multiplying it by $a^{-1}$ (and the other factor by $a$) makes it $x - c$ with $c = -a^{-1} b$, and then $f(c) = 0$. Conversely, dividing $f$ by $x - c$ leaves a constant remainder $r$, so $f(x) = (x - c)\,g(x) + r$; replacing $x$ by $c$ on both sides gives $r = f(c)$, so $f(c) = 0$ means $x - c$ divides $f$. So $f$ of degree 2 or 3 is irreducible exactly when no number $c$ mod $p$ is a root. For example, $x^3 + x + 1$ over $\mathrm{GF}(2)$ has $f(0) = 1$ and $f(1) = 3 \equiv 1$, so it is irreducible and gives $\mathrm{GF}(8)$. And $x^2 + 1$ over $\mathrm{GF}(3)$ has values $1, 2, 2$ at $0, 1, 2$, so it gives $\mathrm{GF}(9)$. (For degree 4 and up, this test is not enough: over $\mathrm{GF}(2)$, $(x^2 + x + 1)^2$ has no roots but is reducible.)
 
 Use the selectors above to build $\mathrm{GF}(8)$ ($p = 2$, $e = 3$) and $\mathrm{GF}(9)$ ($p = 3$, $e = 2$). The modulus menu groups every monic polynomial of the chosen degree into irreducible and reducible ones.
 

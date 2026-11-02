@@ -83,7 +83,7 @@ The counting rule leaves only a few car counts for each track. A computer search
 - **$k + 1$ cars** is the easy case: each heat leaves out one car, and every two cars meet $k - 1$ times.
 - **$k^2 - k + 1$ cars** is a planar difference set, so by Lessons 4 and 14 it exists when $k - 1$ is a prime power: Singer's construction gives the 3, 7, 13, 21, 31, and 57 in the last column. For 7 lanes, 43 cars would need a projective plane of order 6, and there is none. That rules out every perfect chart for 7 lanes and 43 cars, not just rotations, because a perfect chart *is* a projective plane: its heats are the lines and its cars the points.
 - **The cases in between** are difference sets with $\lambda > 1$, like the ones in [Lesson 16](../16-beyond-the-plane/). Seven lanes and 15 cars is the Singer set of $\mathrm{PG}(3, 2)$, with every two cars meeting 3 times. Eleven cars on 5 lanes is the biplane $\{0, 1, 2, 4, 7\}$ mod 11, where every two cars meet twice.
-- **Twenty-two cars on 7 lanes and 29 cars on 8** pass the counting test, but no perfect chart of any kind exists for them. The Bruck–Ryser–Chowla theorem, the general form of the test with squares in [Lesson 17](../17-every-planar-set-singer/), rules them out.
+- **Twenty-two cars on 7 lanes and 29 cars on 8** pass the counting test, but no perfect chart of any kind exists for them. The Bruck–Ryser–Chowla theorem rules them out: a 1950 result that shows some $(N, k, \lambda)$ parameter sets impossible by an argument about sums of squares ([Lesson 17](../17-every-planar-set-singer/) shows the planar case).
 - **Sixteen cars on 6 lanes** is the odd one out. A perfect chart exists, with every two cars meeting twice. It is even a rotation if the cars are named by pairs $(x, y)$ of numbers mod 4 and both coordinates are rotated: start from $\{(0, 1), (0, 2), (0, 3), (1, 0), (2, 0), (3, 0)\}$. But no lineup works on a 16-hour clock.
 
 ## How the search works
@@ -151,7 +151,7 @@ Stan Pope, whose web pages on running Pinewood Derbies go back to the 1990s, des
 
 Pope soon found the theory behind it. Marshall Hall's 1967 book *Combinatorial Theory* has the theorem that the translates of a difference set form a block design, and Pope wrote that "every symmetric Perfect-N chart which I had previously created can be replaced by an equivalent cyclic $(v, k, l)$ block design", with $l$ for λ. He thanks "Douglas J. Zare with a 'Cal Tech' E-Mail address" for pointing him to Hall's book, so Caltech was in this story from the start.
 
-The idea still runs races today. DerbyNet's scheduler builds each round from a generator in the same way. Its 4-lane chart for 13 cars uses the generator $(2, 4, 12)$, which gives the heat-0 lineup $\{0, 2, 6, 18\} = \{0, 2, 6, 5\}$ mod 13. That is $2 \cdot \{0, 1, 3, 9\}$: the same difference set multiplied by 2, as in [Lesson 15](../15-many-sets-few-shapes/).
+The idea still runs races today. DerbyNet's scheduler builds each round from a generator in the same way. Its 4-lane chart for 13 cars uses the generator $(2, 4, 12)$, which gives the heat-0 lineup $\{0, 2, 6, 18\} = \{0, 2, 6, 5\}$ mod 13. That is $2 \cdot \{0, 1, 3, 9\}$: the same difference set multiplied by 2. Doubling every member doubles every difference, and doubling is a one-to-one shuffle of the nonzero residues mod 13, so each difference still occurs exactly once. ([Lesson 15](../15-many-sets-few-shapes/) is about which multipliers do this.)
 
 <section class="try-it">
 

@@ -36,7 +36,7 @@ $$
 x \text{ is in } D \quad\text{and}\quad x - j \text{ is in } D.
 $$
 
-That makes $x$ and $x - j$ a pair of members of $D$ whose difference is $x - (x - j) = j$. It works the other way too: any pair $a, b$ in $D$ with $a - b \equiv j$ gives the shared point $x = a$. So shared points and pairs with difference $j$ match up one for one:
+That makes $x$ and $x - j$ a pair of members of $D$ whose difference is $x - (x - j) = j$. It works the other way too: any pair $a, b$ in $D$ with $a - b \equiv j$ gives the shared point $x = a$, and different pairs give different shared points, since $x = a$ pins down $b = a - j$. So shared points and pairs with difference $j$ match up one for one:
 
 > The number of points shared by $D$ and $D + j$ equals the number of times $j$ occurs as a difference of $D$.
 
@@ -48,7 +48,7 @@ You can watch this in the widget. With $D = \{0, 1, 2\}$ and $j = 1$ the copies 
 
 Turn the question around. Pick two different points $x$ and $y$ on the clock. How many translates contain both of them?
 
-The translate $D + j$ contains $x$ and $y$ exactly when $x - j$ and $y - j$ are both in $D$. Those two members of $D$ have difference $(x - j) - (y - j) = x - y$. Each pair in $D$ with difference $x - y$ gives one such $j$, and different pairs give different $j$. So:
+The translate $D + j$ contains $x$ and $y$ exactly when $x - j$ and $y - j$ are both in $D$. Those two members of $D$ have difference $(x - j) - (y - j) = x - y$. Each pair in $D$ with difference $x - y$ gives one such $j$, and different pairs give different $j$. To see this, let $a, b$ be a pair in $D$ with $a - b \equiv x - y$, and take $j = x - a$. Then $x - j = a$ and $y - j = y - x + a = b$ are both in $D$, so $D + j$ contains $x$ and $y$. And two pairs that gave the same $j$ would both be $x - j, y - j$, so they are the same pair. So:
 
 > Any two different points lie together in exactly $\lambda$ translates of $D$.
 
@@ -74,7 +74,7 @@ We have been calling the hours "points" all along; now the word has a partner. T
 
 These lines even behave better than ordinary ones: no two are parallel, since every two of them meet.
 
-There are $v$ of these lines, all different: two different translates share only one point, but a translate shares all $k$ of its points with itself. For $\{0, 1, 3\}$ that is 7 points and 7 lines, each line with 3 points. The next lesson draws this little geometry, and finds that it is a famous one.
+There are $v$ of these lines, all different. If $D + i$ were the same set as $D + j$ for some $i \ne j$, the two would share all $k$ of their points; but we showed that two translates with $i \ne j$ share exactly one point, and $k > 1$. For $\{0, 1, 3\}$ that is 7 points and 7 lines, each line with 3 points. The next lesson draws this little geometry, and finds that it is a famous one.
 
 <section class="try-it">
 

@@ -44,7 +44,14 @@ so as vectors, $(x, y, z) \mapsto (2z,\ x + z,\ y)$. Every linear map of $\mathr
 
 **Points go to points.** The point through $u$ is the set of multiples $s \cdot u$. Their images $\alpha(s \cdot u) = s \cdot (\alpha u)$ are the multiples of $\alpha u$: the point through $\alpha u$.
 
-**Lines go to lines.** A line of $\mathrm{PG}(2, q)$ is a plane through the origin, a set of $q^2$ vectors closed under adding and scaling. Its image is closed under adding and scaling too, since $\alpha u + \alpha w = \alpha(u + w)$ and $s \cdot \alpha u = \alpha (s \cdot u)$. It still has $q^2$ different vectors, since the map is one-to-one. Every subspace with $q^2$ vectors is a plane through the origin (it contains two vectors $u$, $w$ that are not multiples of each other, and their $q^2$ combinations from Lesson 11 fill it). So the image of a line is a line.
+**Lines go to lines.** A line of $\mathrm{PG}(2, q)$ is a plane through the origin, a set of $q^2$ vectors closed under adding and scaling. Its image is closed under adding and scaling too, since $\alpha u + \alpha w = \alpha(u + w)$ and $s \cdot \alpha u = \alpha (s \cdot u)$. It still has $q^2$ different vectors, since the map is one-to-one. Every subspace with $q^2$ vectors is a plane through the origin, so the image of a line is a line.
+
+<details>
+<summary>Why a subspace with q² vectors is a plane</summary>
+
+A line through 0 has only $q$ vectors, so a subspace $S$ with $q^2$ vectors does not fit inside one: pick a nonzero $u$ in $S$, and then a $w$ in $S$ that is not a multiple of $u$. Being closed under adding and scaling, $S$ contains all $q^2$ combinations $s \cdot u + t \cdot w$, and [Lesson 11](../11-coordinates/) showed those are exactly the plane $[u \times w]$. Since $S$ has only $q^2$ vectors, $S$ *is* that plane.
+
+</details>
 
 A rearrangement of the points that carries every line onto a line is what Lesson 3 called a **symmetry** of the geometry. Multiplication by $\alpha$ is one.
 
@@ -66,7 +73,7 @@ Now Lesson 4's theorem does the rest. Pick any line, and let $D$ be the set of n
 
 1. **The translates of $D$ are lines.** Multiplying by $\alpha$ adds 1 to the number of every point, so it carries the line $D$ onto a line whose numbers are $D + 1$. Doing it $j$ times gives the line $D + j$.
 2. **They are all the lines.** Lesson 4 showed that the $v$ translates $D, D + 1, \dots, D + (v - 1)$ are all different, and the plane has exactly $v$ lines.
-3. **Every difference occurs once.** Any two points $a$ and $a + d$, with $d \not\equiv 0$, lie on exactly one line (Lesson 11). Each way of writing $d$ as a difference of two elements of $D$ gives a translate $D + j$ through both points, so there is exactly one such way.
+3. **Every difference occurs once.** Any two points $a$ and $a + d$, with $d \not\equiv 0$, lie on exactly one line (Lesson 11). Each way of writing $d = b - c$ with $b, c$ in $D$ gives a translate $D + j$ through both points, namely $j = a - c$, and different pairs give different translates, since the pair determines $j$ (Lesson 4, step 4). So there is exactly one such way.
 
 So $D$ is a $(q^2 + q + 1,\ q + 1,\ 1)$ difference set. Here is the line $z = 0$ turning:
 

@@ -68,4 +68,5 @@ lesson. Each checkpoint lands on `main` as its own PR and deploy.
 
 ## Checkpoint 7: Polish
 
+- [x] Prerequisite audit (2026-11-02): seven reviewers checked that every lesson uses only concepts explained before it, one per Part; 0 blocking, 31 rough, 48 nit findings, 4 factual slips (Lesson 3 Fano answer, Lesson 4 "order 1000", Lessons 16–17 "(63, 31, 15) is the smallest", Lesson 25 "same amount of data"); fixes applied per lesson. Summary in `docs/lesson-audit.md`.
 - [ ] Accessibility pass, mobile pass, performance for large q

@@ -41,7 +41,7 @@ In a classic layout, the disks are split into separate groups as wide as a strip
 
 ## Stripes along the lines of the Fano plane
 
-Here is another way to lay out the same amount of data. Number the 7 disks 0 to 6 and use the difference set $D = \{0, 1, 3\}$ mod 7 from [Lesson 1](../01-differences-on-a-circle/). Stripe $j$ goes on the disks
+Here is another layout with the same 3 chunks per disk, now using the spare disk too. Number the 7 disks 0 to 6 and use the difference set $D = \{0, 1, 3\}$ mod 7 from [Lesson 1](../01-differences-on-a-circle/). Stripe $j$ goes on the disks
 
 $$
 D + j = \{j,\ j + 1,\ j + 3\} \pmod 7,
@@ -84,7 +84,7 @@ Declustering is now in shipping products. OpenZFS added **dRAID** in version 2.1
 ## Try it
 
 1. Take 13 disks with stripes $D + j$ for $D = \{0, 1, 3, 9\}$ mod 13. Disk 5 fails. Which stripes lost a chunk? How many chunks does disk 6 read? Check with the widget.
-2. The complement $\{2, 4, 5, 6\}$ of $\{0, 1, 3\}$ in the 7 numbers mod 7 is a $(7, 4, 2)$ difference set. With stripes $\{2, 4, 5, 6\} + j$ (3 data chunks and 1 parity chunk each), how many chunks does each survivor read when a disk fails? What do you gain and lose compared with the Fano layout?
+2. The complement $\{2, 4, 5, 6\}$ of $\{0, 1, 3\}$ in the 7 numbers mod 7 is a $(7, 4, 2)$ difference set (check it in the workbench; [Lesson 16](../16-beyond-the-plane/) explains why the complement of any difference set is one too). With stripes $\{2, 4, 5, 6\} + j$ (3 data chunks and 1 parity chunk each), how many chunks does each survivor read when a disk fails? What do you gain and lose compared with the Fano layout?
 
 <details>
 <summary>Show the answer</summary>

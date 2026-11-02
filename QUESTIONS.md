@@ -163,9 +163,10 @@ Decisions I made while Mike was away, collected here instead of blocking.
     are a line (degree-q² root bound). Lesson 15 proves t·D is a difference set,
     that p·D = D for the trace set (Frobenius through the trace), and that t·D,
     t′·D are translates iff t′/t is a multiplier. It states without proof that the
-    3e powers of p are distinct mod v, that they are the only multipliers (GMW
-    1962), that −1 is never a multiplier (GMW 1962; Johnsen 1964), Hall 1947, and
-    that every multiple comes from some primitive element. Counts credit Singer
+    3e powers of p are distinct mod v *(now proved in one line, audit of
+    2026-11-02)*, that they are the only multipliers (GMW 1962, now cited at the
+    point of use), that −1 is never a multiplier (GMW 1962; Johnsen 1964), Hall
+    1947, and that every multiple comes from some primitive element. Counts credit Singer
     (conjecture), Berman 1953, and Halberstam–Laxton 1964, as in citations.md.
 32. **Widgets.** `singer-stepper` (Lesson 14 and a new playground,
     `/playgrounds/singer-stepper/?q=&i=`) offers q ∈ {2, …, 13}; Play paces itself

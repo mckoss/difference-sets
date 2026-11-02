@@ -69,15 +69,19 @@ which contradicts $b$ being between 1 and $v$. So $\mathbb{Z}/6\mathbb{Z}$, $\ma
 
 ## Why prime clocks succeed
 
-Now let $v = p$ be prime and $a$ a nonzero hour. Could row $a$ of the table repeat a value, $a \times b \equiv a \times c$ with $b \ne c$? Then $p$ divides $a \times (b - c)$. A prime that divides a product divides one of the factors (this is *Euclid's lemma*), and $p$ does not divide $a$ or $b - c$, which are both smaller than $p$ and not 0. So the row never repeats. It has $p$ entries, all different, so it is a permutation and contains a 1 somewhere. That entry is the inverse of $a$.
+Now let $v = p$ be prime and $a$ a nonzero hour. Could row $a$ of the table repeat a value, $a \times b \equiv a \times c$ with $b \ne c$? Then $p$ divides $a \times (b - c)$. A prime that divides a product divides one of the factors (this is *Euclid's lemma*; it is the reason prime factorizations are unique, and the next section proves it in two lines), and $p$ does not divide $a$ or $b - c$, which are both smaller than $p$ and not 0. So the row never repeats. It has $p$ entries, all different, so it is a permutation and contains a 1 somewhere. That entry is the inverse of $a$.
 
 ## Finding an inverse quickly
 
-For a large prime, reading across a row is slow. The **extended Euclidean algorithm** finds the inverse directly. Divide $v$ by $a$ and keep the remainder, then divide the previous divisor by that remainder, and so on, the way you would to find a greatest common divisor. Along the way, keep track of how each remainder is built from $v$ and $a$. When the remainder reaches 1, you have $1 = x \times v + y \times a$, and since $x \times v \equiv 0$, this says $y \times a \equiv 1$: $y$ is the inverse.
+For a large prime, reading across a row is slow. The **extended Euclidean algorithm** finds the inverse directly. Divide $v$ by $a$ and keep the remainder; then divide $a$ by that remainder, then the first remainder by the second, and so on, each time dividing the last divisor by the last remainder, until a division comes out even. Along the way, keep track of how each remainder is built from $v$ and $a$. When $v$ is prime the last nonzero remainder is always 1 (the reason is below the widget), so you end with $1 = x \times v + y \times a$, and since $x \times v \equiv 0$, this says $y \times a \equiv 1$: $y$ is the inverse.
 
 <div data-widget="euclid" data-a="5" data-v="13"></div>
 
 Step through it for $a = 5$, $v = 13$: the remainders are 13, 5, 3, 2, 1, and the last line says $1 = 2 \times 13 + (-5) \times 5$. So $5^{-1} \equiv -5 \equiv 8$, and indeed $5 \times 8 = 40 = 3 \times 13 + 1$. If $a$ and $v$ share a factor, the remainders stop at that factor instead of 1, and there is no inverse.
+
+**Why the chain ends at the greatest common divisor.** Each remainder is built from the two numbers before it, so every remainder is some multiple of $v$ plus some multiple of $a$; a factor shared by $v$ and $a$ therefore divides every remainder, including the last nonzero one. In the other direction, the last nonzero remainder divides the one before it (that division came out even), hence the one before that, and so on back up the chain to $a$ and $v$. So the last nonzero remainder is a common factor of $v$ and $a$ that every common factor divides: their **greatest common divisor**. When $v = p$ is prime and $a$ is a nonzero hour, the only common factor is 1, so the chain ends at 1 and every nonzero $a$ has an inverse. That is a second proof of the last section's result, and this one carries over to polynomials in [Lesson 7](../07-prime-power-fields/).
+
+The same equation proves Euclid's lemma. If a prime $p$ does not divide $a$, then $1 = x \times p + y \times a$ for some integers $x$ and $y$; multiplying by $b$ gives $b = x \times p \times b + y \times (a \times b)$. If $p$ divides $a \times b$, it divides both terms on the right, so $p$ divides $b$.
 
 ## The conclusion
 
@@ -140,7 +144,7 @@ Explore any clock up to 24 hours in the [finite field calculator](../../playgrou
     $$
     which are in the classes of $a + b$ and $ab$. This works because the multiples of $v$ *absorb*: a multiple of $v$ plus a multiple of $v$, or times any integer, is again a multiple of $v$. A collection with that absorbing property is called an **ideal**, and you can always take the quotient of a number system by an ideal.
 
-    Here is how the quotient view describes this lesson's result. When $v = ab$ is composite, the multiples of $a$ form a larger ideal $a\mathbb{Z}$ that sits strictly between $v\mathbb{Z}$ and $\mathbb{Z}$. The classes of $a$ and $b$ are then not zero, but their product $ab = v$ is: a zero divisor, which rules out division. When $p$ is prime, no ideal fits between $p\mathbb{Z}$ and $\mathbb{Z}$ (algebraists call $p\mathbb{Z}$ a **maximal ideal**), and a standard theorem of algebra says that the quotient by a maximal ideal is always a field. So $\mathbb{Z}/p\mathbb{Z}$ is a field, as the next lesson spells out.
+    Here is how the quotient view describes this lesson's result. When $v = ab$ is composite, the multiples of $a$ form a larger ideal $a\mathbb{Z}$ that sits strictly between $v\mathbb{Z}$ and $\mathbb{Z}$. The classes of $a$ and $b$ are then not zero, but their product $ab = v$ is: a zero divisor, which rules out division. When $p$ is prime, no ideal fits between $p\mathbb{Z}$ and $\mathbb{Z}$ (algebraists call $p\mathbb{Z}$ a **maximal ideal**), and a standard theorem of algebra says that the quotient by a maximal ideal is always a field. So $\mathbb{Z}/p\mathbb{Z}$ is a field, which this lesson showed directly above. The maximal-ideal theorem is mentioned only so that the word *quotient* makes sense; nothing later depends on it.
 
     [Lesson 7](../07-prime-power-fields/) makes the same move with polynomials. It treats every multiple of an irreducible polynomial $f(x)$ as zero, and $f$ plays the role of the prime $p$.
 
