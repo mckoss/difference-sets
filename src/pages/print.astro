@@ -40,7 +40,7 @@ const index = sortedGlossary(GLOSSARY.filter((t) => linkForms(t).length > 0)).ma
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Singer Difference Sets (print edition)</title>
+    <title>Singer Difference Sets, v{pkg.version} ({built})</title>
     <meta name="robots" content="noindex" />
   </head>
   <body class="print-edition" data-site={SITE}>
@@ -144,7 +144,7 @@ const index = sortedGlossary(GLOSSARY.filter((t) => linkForms(t).length > 0)).ma
       <p class="print-index-note">Bold page numbers mark where a term is defined.</p>
       <ul class="print-index">
         {
-          index.map((e) => (
+          index.filter((e) => e.refs.length > 0).map((e) => (
             <li>
               {e.term}{' '}
               {e.refs.map((r, i) => (

@@ -27,6 +27,9 @@ jobs:
       - run: npm test -- --reporter=verbose
       - run: npx playwright install --with-deps chromium
       - run: npm run test:e2e
+      # The printable edition, rendered from the build that just passed.
+      - run: npm run pdf
+        timeout-minutes: 10
       - uses: actions/upload-artifact@v4
         if: failure()
         with:

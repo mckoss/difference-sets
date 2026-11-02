@@ -153,6 +153,7 @@
   break-after: avoid;
 }
 
+.print-edition .print-keep,
 .print-edition figure,
 .print-edition .notation,
 .print-edition table,

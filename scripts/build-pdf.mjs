@@ -38,13 +38,25 @@ try {
 
   // Run a few widgets to their most telling state, the way the lesson text
   // asks the reader to.
-  for (const [widget, button] of [
+  // (Their buttons sit in control rows the print style hides, so click in the page.)
+  const clicked = await page.evaluate((actions) => {
+    let n = 0;
+    for (const [widget, label] of actions) {
+      for (const w of document.querySelectorAll(`[data-widget="${widget}"]`)) {
+        const b = [...w.querySelectorAll('button')].find((x) => x.textContent.trim() === label);
+        if (b) {
+          b.click();
+          n++;
+        }
+      }
+    }
+    return n;
+  }, [
     ['coded-aperture', 'Decode'],
     ['echo-finder', 'Find the echo'],
     ['planar-search', 'Run search'],
-  ]) {
-    for (const b of await page.locator(`[data-widget="${widget}"]`).getByRole('button', { name: button, exact: true }).all()) await b.click();
-  }
+  ]);
+  if (clicked < 3) throw new Error(`Only ${clicked} of 3 print-time widget buttons found`);
   for (const disk of await page.locator('[data-widget="raid-rebuild"] [data-disk="0"]').all()) await disk.click();
   await page.waitForTimeout(1500);
 
@@ -62,6 +74,12 @@ try {
     const site = document.body.dataset.site;
     const base = '/difference-sets/';
     const lessonByPath = new Map([...document.querySelectorAll('.print-lesson')].map((a) => [base + a.dataset.path, a.id]));
+
+    // Keep a widget on one page when it fits (the text block is about 900px
+    // tall); a taller one may split, since Paged.js can't place it otherwise.
+    for (const w of document.querySelectorAll('.print-lesson .widget')) {
+      if (w.getBoundingClientRect().height < 800) w.classList.add('print-keep');
+    }
 
     // Canvases don't survive Paged.js's copy of the page; freeze them as images.
     for (const canvas of document.querySelectorAll('canvas')) {

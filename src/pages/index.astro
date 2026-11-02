@@ -1,4 +1,5 @@
 ---
+import pkg from '../../package.json';
 import Base from '../layouts/Base.astro';
 import { buildOutline, href, lessonPath, PLAYGROUNDS, playgroundPath } from '../site';
 import { lessonEntries } from '../lib/lessons';
@@ -20,6 +21,10 @@ const first = outline[0].lessons[0];
         using finite fields and projective planes.
       </p>
       <p><a class="button" href={href(base, lessonPath(first.id))}>Start with lesson 1: {first.title}</a></p>
+      <p class="print-link">
+        Prefer paper? <a href={href(base, 'singer-difference-sets.pdf')}>Download the printable PDF</a> (v{pkg.version}):
+        every lesson, with the figures as snapshots, a glossary, and an index.
+      </p>
     </div>
     <div data-widget="chord-diagram" data-set="0,1,3"></div>
   </section>
