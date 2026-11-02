@@ -112,3 +112,30 @@ test.describe('on a phone', () => {
     });
   }
 });
+
+test('no formula is clipped by its scroll box', async ({ page }) => {
+  // Wide display math scrolls sideways (overflow-x: auto), which also clips
+  // vertically; tall exponents like x^(q^2) must still fit inside the box.
+  const lessons = readdirSync('src/content/lessons').filter((f) => f.endsWith('.md'));
+  for (const file of lessons) {
+    await page.goto(`lessons/${file.replace(/\.md$/, '')}/`);
+    const clipped = await page.evaluate(() => {
+      const out: string[] = [];
+      for (const display of document.querySelectorAll('.katex-display')) {
+        const box = display.getBoundingClientRect();
+        const walker = document.createTreeWalker(display.querySelector('.katex-html')!, NodeFilter.SHOW_TEXT);
+        for (let n = walker.nextNode(); n; n = walker.nextNode()) {
+          const range = document.createRange();
+          range.selectNodeContents(n);
+          const over = Math.max(...[...range.getClientRects()].map((r) => Math.max(box.top - r.top, r.bottom - box.bottom)));
+          if (over > 1) {
+            out.push(display.querySelector('annotation')?.textContent ?? '');
+            break;
+          }
+        }
+      }
+      return out;
+    });
+    expect(clipped, file).toEqual([]);
+  }
+});
