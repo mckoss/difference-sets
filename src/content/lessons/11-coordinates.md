@@ -58,7 +58,7 @@ The left side is the **dot product** of $(a, b, c)$ and $(x, y, z)$, written $(a
 
 <div data-widget="pg2-explorer" data-q="3" data-qs="2,3,4,5,7"></div>
 
-The explorer lays out the $q^2$ points $[1 : y : z]$ as a square, row $y$ and column $z$, with the other $q + 1$ points below. Click a point to see the $q + 1$ lines through it. Click a second point to see the line through both, with the dot products that prove it. Click two lines in the list to see where they meet.
+The explorer lays out the $q^2$ points $[1 : y : z]$ as a square, row $y$ and column $z$, with the other $q + 1$ points below. Click a point to see the $q + 1$ lines through it. Click a second point to see the line through both, with the dot products that prove it. Click two lines in the list to see where they meet. For $q = 4$ the coordinates come from $\mathrm{GF}(4)$, which is not a clock, so the explorer writes its elements as $0, 1, \omega, \omega^2$: the powers of a primitive element $\omega$ (the Greek letter omega) from [Lesson 8](../08-primitive-elements/), with $\omega^2 = \omega + 1$. Later lessons save $\alpha$ for a primitive element of the bigger field $\mathrm{GF}(q^3)$, so the small field gets its own letter.
 
 ## The plane axioms
 

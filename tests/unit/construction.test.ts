@@ -17,8 +17,8 @@ import {
 } from '../../src/math/construction';
 import { differenceSetLambda } from '../../src/math/difference';
 import { primePower, primePowersUpTo, totient } from '../../src/math/numbers';
-import { addVec, lineIndex, scale, singerFrame, singerLine, trace } from '../../src/math/projective';
-import { nonIsomorphicSingerSets, normalizeSet, singerSet, singerV } from '../../src/math/singer';
+import { addVec, gf, lineIndex, omegaNote, omegaRule, scale, singerFrame, singerLine, trace } from '../../src/math/projective';
+import { findPrimitivePoly, nonIsomorphicSingerSets, normalizeSet, singerSet, singerV } from '../../src/math/singer';
 
 const SMALL_Q = [2, 3, 4, 5, 7, 8, 9, 11, 13];
 
@@ -154,5 +154,31 @@ describe('multipliers', () => {
   it('counts 1, 2, 1, 5, 6, 4, 6, 18, 20 classes up to translation and negation (A058241)', () => {
     const counts = SMALL_Q.map((q) => multiplierClasses(traceSet(q), singerV(q)).length / 2);
     expect(counts).toEqual([1, 2, 1, 5, 6, 4, 6, 18, 20]);
+  });
+});
+
+describe('omegaRule and omegaNote', () => {
+  it('names the rule each non-prime field is built from', () => {
+    expect(omegaRule(3)).toBeNull();
+    expect(omegaRule(4)).toBe('ω² = ω + 1');
+    expect(omegaRule(8)).toBe('ω³ = ω + 1');
+    expect(omegaRule(9)).toBe('ω² = 2ω + 1');
+    expect(omegaNote(4)).toContain('0, 1, ω, ω²:');
+    expect(omegaNote(9)).toContain('…, ω⁷');
+  });
+
+  it('ω is a root of the polynomial its field is built from', () => {
+    for (const q of [4, 8, 9]) {
+      const F = gf(q);
+      const omega = F.elements.find((a) => F.label(a) === 'ω')!;
+      const poly = findPrimitivePoly(F.p, F.e); // monic, low degree first
+      let sum = 0;
+      let power = 1;
+      for (const c of poly) {
+        for (let k = 0; k < c; k++) sum = F.add(sum, power);
+        power = F.mul(power, omega);
+      }
+      expect(sum).toBe(0);
+    }
   });
 });

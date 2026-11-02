@@ -6,6 +6,7 @@ import {
   joinLine,
   meetPoint,
   normalize,
+  omegaNote,
   type PG2,
   pg2,
   singerFrame,
@@ -122,7 +123,8 @@ export function mount(el: HTMLElement): void {
     verdict.className = `ff-verdict pg-verdict ${good === pairs ? 'ok' : 'bad'}`;
     verdict.textContent =
       `PG(2, ${q}): ${P.v} points and ${P.v} lines, ${q + 1} points on every line and ${q + 1} lines through every point. ` +
-      `Checked all ${pairs} pairs: every two points lie on exactly one line, and every two lines meet in exactly one point.`;
+      `Checked all ${pairs} pairs: every two points lie on exactly one line, and every two lines meet in exactly one point.` +
+      (omegaNote(q) ? ` ${omegaNote(q)}` : '');
 
     // Grid view: the q × q square of points [1 : y : z], then the points at infinity.
     const gridButtons = new Map<number, HTMLButtonElement>();

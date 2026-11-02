@@ -160,48 +160,19 @@
   overflow-wrap: anywhere;
 }
 
-/* The standard-form step: D and its mirror image, each turned to start {0, 1}. */
-.ss-candidates {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.75rem;
-  margin: 0.5rem 0;
+/* The last step: the lexicographically smallest rotation or reflection of D. */
+.ss-smallest {
+  margin: 0.5rem 0 0;
+  max-width: 280px;
 }
 
-.ss-candidate {
-  margin: 0;
-  flex: 1 1 150px;
-  max-width: 240px;
-  min-width: 0;
-  padding: 0.4rem;
-  border: 1px solid var(--border);
-  border-radius: 6px;
-}
-
-.ss-candidate.wins {
-  border: 2px solid var(--second);
-}
-
-.ss-candidate-diagram {
+.ss-smallest-diagram {
   display: block;
   width: 100%;
   height: auto;
 }
 
-.ss-candidate figcaption {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.ss-smallest figcaption {
   font-size: 0.8125rem;
-  text-align: center;
   overflow-wrap: anywhere;
-}
-
-.ss-candidate figcaption span:first-child {
-  color: var(--muted);
-}
-
-.ss-wins {
-  color: var(--second);
-  font-weight: 600;
 }

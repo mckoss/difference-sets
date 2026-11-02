@@ -64,6 +64,36 @@ export function gf(q: number): GF {
   return field;
 }
 
+/**
+ * For q = p^e with e > 1, the sentence that explains the labels ω, ω², …: ω is a
+ * primitive element of GF(q), a root of the polynomial the field is built from.
+ * For example "ω² = ω + 1" for GF(4). Null for a prime q, whose labels are digits.
+ */
+export function omegaRule(q: number): string | null {
+  const pe = primePower(q);
+  if (!pe || pe[1] === 1) return null;
+  const [p, e] = pe;
+  const poly = findPrimitivePoly(p, e); // monic, low degree first: ω^e = −(poly[0] + poly[1] ω + …)
+  const terms: string[] = [];
+  for (let j = e - 1; j >= 0; j--) {
+    const c = (p - (poly[j] % p)) % p;
+    if (c === 0) continue;
+    const w = j === 0 ? '' : j === 1 ? 'ω' : `ω${superscript(j)}`;
+    terms.push(w === '' ? String(c) : c === 1 ? w : `${c}${w}`);
+  }
+  return `ω${superscript(e)} = ${terms.join(' + ') || '0'}`;
+}
+
+/** A sentence for readers: what the labels 0, 1, ω, ω², … mean in GF(q). Null for a prime q. */
+export function omegaNote(q: number): string | null {
+  const rule = omegaRule(q);
+  if (!rule) return null;
+  return (
+    `GF(${q}) is not a clock, so its elements are written ${q === 4 ? '0, 1, ω, ω²' : `0, 1, ω, ω², …, ω${superscript(q - 2)}`}: ` +
+    `the powers of a primitive element ω (Lesson 8), which satisfies ${rule}.`
+  );
+}
+
 // ---------------------------------------------------------------------------
 // Vectors in GF(q)³
 

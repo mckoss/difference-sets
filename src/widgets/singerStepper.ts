@@ -1,7 +1,7 @@
 import { traceLine, traceSteps } from '../math/construction';
 import { differenceCounts, pairsWithDifference, startAtZeroOne, translate } from '../math/difference';
 import { superscript } from '../math/poly';
-import { formatPoint, lineIndex, normalize, singerFrame, singerLine } from '../math/projective';
+import { formatPoint, lineIndex, normalize, omegaNote, singerFrame, singerLine } from '../math/projective';
 import { binomial } from '../math/search';
 import { chordDiagram } from '../viz/chordDiagram';
 import { alphaPoly, cubicText } from './fieldPoints';
@@ -12,42 +12,31 @@ const ALL_QS = [2, 3, 4, 5, 7, 8, 9, 11, 13];
 
 const pow = (n: number) => (n === 0 ? '1' : n === 1 ? 'α' : `α${superscript(n)}`);
 
-/** A small chord diagram with a caption, for the two candidates in the standard-form step. */
-function candidate(title: string, set: readonly number[], v: number, wins: boolean): HTMLElement {
-  const svg = chordDiagram(set, v);
-  svg.classList.add('ss-candidate-diagram');
-  return h(
-    'figure',
-    { class: `ss-candidate ${wins ? 'wins' : ''}`.trim() },
-    svg,
-    h('figcaption', {}, h('span', { text: title }), h('strong', { text: setText(set) }), wins ? h('span', { class: 'ss-wins', text: 'smaller' }) : ''),
-  );
-}
-
-/** The last step: turn D, and its mirror image, so each starts {0, 1}; keep the smaller. */
+/** The last step: one diagram of the lexicographically smallest rotation or reflection of D. */
 function standardFormStep(D: readonly number[], v: number, z: ReturnType<typeof startAtZeroOne>): Node[] {
-  const head = h('p', { class: 'pg-list-head', text: 'Last step: standard form' });
+  const head = h('p', { class: 'pg-list-head', text: 'Smallest form' });
   if (!z) return [head, h('p', { text: `D = ${setText(D)} has no single pair of members one step apart.` })];
-  const notches = `${z.b} notch${z.b === 1 ? '' : 'es'}`;
+  const svg = chordDiagram(z.best, v);
+  svg.classList.add('ss-smallest-diagram');
+  const how = z.mirrorWins
+    ? `reflecting D (each member d becomes −d) and rotating it ${z.b + 1} notch${z.b + 1 === 1 ? '' : 'es'}: ${z.b + 1} − D`
+    : z.b === 0
+      ? 'D itself, with no rotation'
+      : `rotating D back ${z.b} notch${z.b === 1 ? '' : 'es'}: D − ${z.b}`;
   return [
     head,
-    h('p', {
-      class: 'ss-normal',
-      text:
-        `The difference 1 occurs exactly once in D, as ${z.b + 1} − ${z.b}. ` +
-        (z.b === 0
-          ? 'So D already starts {0, 1}. '
-          : `Turning D back ${notches} moves ${z.b} to 0 and ${z.b + 1} to 1. `) +
-        `The mirror image −D, turned the same way, starts {0, 1} too. ` +
-        `Compare the two member by member and keep the smaller.`,
-    }),
     h(
-      'div',
-      { class: 'ss-candidates' },
-      candidate(z.b === 0 ? 'D' : `D − ${z.b}`, z.turned, v, !z.mirrorWins),
-      candidate(`${z.b + 1} − D`, z.mirrored, v, z.mirrorWins),
+      'figure',
+      { class: 'ss-smallest' },
+      svg,
+      h(
+        'figcaption',
+        {},
+        'Lexicographically smallest form: ',
+        h('strong', { text: setText(z.best) }),
+        `. It comes from ${how}.`,
+      ),
     ),
-    h('p', { class: 'ff-verdict ss-verdict ok' }, 'Standard form: ', h('strong', { text: setText(z.best) })),
   ];
 }
 
@@ -57,8 +46,8 @@ function standardFormStep(D: readonly number[], v: number, z: ReturnType<typeof 
  * shows αⁱ, its conjugates α^(iq) and α^(iq²), their sum Tr(αⁱ), and whether
  * i joins D. The chord diagram grows as members join; at the end the widget
  * checks every nonzero difference and sets the cost beside a brute-force
- * search. One last step (i = v + 1 in the URL) writes D in standard form: of
- * D and its mirror image −D, each turned to start {0, 1}, the smaller one.
+ * search. One last step (i = v + 1 in the URL) adds a second diagram: the
+ * lexicographically smallest rotation or reflection of D, which starts {0, 1}.
  * With `data-url-state`, q and the step count live in `?q=&i=`.
  */
 export function mount(el: HTMLElement): void {
@@ -88,6 +77,7 @@ export function mount(el: HTMLElement): void {
   const figure = h('figure', { class: 'ss-figure' });
   const log = h('div', { class: 'ss-log' });
   layout.append(figure, log);
+  const smallest = h('div', { class: 'ss-smallest-box' });
   const result = h('div', { class: 'ss-result' });
 
   const syncUrl = () => {
@@ -104,7 +94,7 @@ export function mount(el: HTMLElement): void {
     const { F, v } = S;
     const N = q ** 3 - 1;
     const steps = traceSteps(q);
-    // Steps 1…v check exponents 0…v − 1; step v + 1 puts D in standard form.
+    // Steps 1…v check exponents 0…v − 1; step v + 1 shows D's smallest form.
     done = Math.min(done, v + 1);
     const checked = Math.min(done, v);
     const D = steps.slice(0, checked).filter((s) => s.inD).map((s) => s.i);
@@ -113,12 +103,16 @@ export function mount(el: HTMLElement): void {
     rule.textContent =
       `GF(${q ** 3}) is c₀ + c₁α + c₂α² with coefficients in GF(${q}), using ${cubicText(F, S.cubic)}. ` +
       `For each i from 0 to v − 1 = ${v - 1}, add up αⁱ, α^(iq), and α^(iq²): that sum is the trace Tr(αⁱ). ` +
-      `Keep i when it is 0. (Exponents wrap around at ${q}³ − 1 = ${N}.)`;
+      `Keep i when it is 0. (Exponents wrap around at ${q}³ − 1 = ${N}.)` +
+      (omegaNote(q) ? ` ${omegaNote(q)} The letter α is the primitive element of the bigger field GF(${q ** 3}).` : '');
 
     if (done === 0) {
       current.replaceChildren(h('p', { text: `Press Next i to start with i = 0, where α⁰ = 1.` }));
     } else if (done > v) {
-      current.replaceChildren(...standardFormStep(D, v, z));
+      current.replaceChildren(
+        h('p', { class: 'pg-list-head', text: 'Last step: smallest form' }),
+        h('p', { text: `All ${v} exponents are checked. Below the table, a second diagram draws D in its lexicographically smallest form.` }),
+      );
     } else {
       const s = steps[done - 1];
       const { i } = s;
@@ -149,32 +143,18 @@ export function mount(el: HTMLElement): void {
       );
     }
 
-    const svg = chordDiagram(z ? z.best : D, v);
+    const svg = chordDiagram(D, v);
     svg.classList.add('ss-diagram');
     // Small clocks draw tiny; let them grow a little, and big ones shrink to fit.
     svg.style.width = `${Math.max(Number(svg.getAttribute('width')), 220)}px`;
     figure.replaceChildren(
       svg,
-      h(
-        'figcaption',
-        {},
-        ...(z
-          ? [
-              'Standard form: ',
-              h('strong', { text: setText(z.best) }),
-              z.mirrorWins
-                ? `, the mirror image of the trace-zero set ${setText(D)}, turned to start {0, 1}`
-                : z.b === 0
-                  ? ', the trace-zero set itself'
-                  : `, the trace-zero set ${setText(D)} turned back ${z.b} notch${z.b === 1 ? '' : 'es'}`,
-            ]
-          : [
-              done === v
-                ? `D = ${setText(D)}. Press Standard form to turn it to start {0, 1}.`
-                : `D so far: ${setText(D)}, after checking ${done} of ${v} exponents`,
-            ]),
-      ),
+      h('figcaption', {
+        text: done >= v ? `D = ${setText(D)}` : `D so far: ${setText(D)}, after checking ${done} of ${v} exponents`,
+      }),
     );
+
+    smallest.replaceChildren(...(done > v ? standardFormStep(D, v, z) : []));
 
     const table = opTable({
       corner: 'i',
@@ -238,7 +218,7 @@ export function mount(el: HTMLElement): void {
       );
     }
 
-    nextBtn.textContent = done === v ? 'Standard form' : 'Next i';
+    nextBtn.textContent = done === v ? 'Smallest form' : 'Next i';
     nextBtn.disabled = done > v;
     finishBtn.disabled = done > v;
     if (done > v) stop();
@@ -299,6 +279,6 @@ export function mount(el: HTMLElement): void {
   );
 
   el.classList.add('widget', 'ff-widget', 'singer-stepper');
-  el.replaceChildren(controls, buttons, rule, current, layout, result);
+  el.replaceChildren(controls, buttons, rule, current, layout, smallest, result);
   render();
 }
