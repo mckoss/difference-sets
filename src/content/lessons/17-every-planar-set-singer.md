@@ -184,6 +184,24 @@ Is a projective plane of order 21 possible? What about a *cyclic* plane of order
 
 Go further in the [search versus construction](../../playgrounds/search-vs-construction/?n=9) playground, which sets the search's time beside Singer's, and in the [large-q explorer](../../playgrounds/explorer/?q=1024), which builds Singer sets far beyond the reach of any search.
 
+## Where to go from here
+
+This is the end of the theory on this site, and about where the textbooks begin. You can now read the statement of an open research problem, the completeness conjecture, and understand every word of it. Here are some ways to go further.
+
+**Experiment.**
+
+- Write the recipe as a program. For a prime $q$, [Lesson 14](../14-writing-down-a-difference-set/)'s algorithm needs only arithmetic mod $q$ and a cubic from the table in [Lesson 13](../13-singer-cycle/). For $q = 7$, find a primitive cubic yourself with the test of [Lesson 8](../08-primitive-elements/), build the set of 8 marks on the 57-hour clock, and deal a deck of cards from it as in [Lesson 18](../18-a-card-game-from-a-plane/).
+- Before opening the [Singer classes gallery](../../playgrounds/singer-classes/) for a new $q$, predict how many shapes it will show from the formula $\varphi(q^2 + q + 1)/6e$ of [Lesson 15](../15-many-sets-few-shapes/).
+- Run the [search](../../playgrounds/search-vs-construction/?n=6) for orders 6 and 10 and watch it come back empty. Then check each order against the theorems above: which one rules it out?
+
+**Read.**
+
+- Emily Moore and Harriet Pollatsek, *Difference Sets: Connecting Algebra, Combinatorics, and Geometry* (American Mathematical Society, 2013), is written for undergraduates. It has chapters on multipliers and on the Bruck–Ryser theorem in its general form (called Bruck–Ryser–Chowla), two results this site only quotes, and it treats difference sets in groups other than the clock, like the XOR group of [Lesson 26](../26-secrets-that-look-like-noise/).
+- Rudolf Lidl and Harald Niederreiter, *Introduction to Finite Fields and Their Applications* (Cambridge University Press, revised edition 1994), proves the facts about finite fields that Lessons 7 and 8 took on trust.
+- Albrecht Beutelspacher and Ute Rosenbaum, *Projective Geometry: From Foundations to Applications* (Cambridge University Press, 1998), starts from axioms like those of [Lesson 4](../04-projective-planes/) and ends with codes and cryptography.
+
+**See what it is for.** Part VII comes next. Each of its lessons is one real use of the fact from Lesson 2, that two translates of a difference set share exactly $\lambda$ points, starting with a [card game](../18-a-card-game-from-a-plane/).
+
 ## Sources
 
 - J. Singer, “A theorem in finite projective geometry and some applications to number theory,” *Trans. Amer. Math. Soc.* 43 (1938), 377–385. [DOI 10.1090/S0002-9947-1938-1501951-4](https://doi.org/10.1090/S0002-9947-1938-1501951-4).

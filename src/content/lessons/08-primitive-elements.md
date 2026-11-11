@@ -12,6 +12,10 @@ status: ready
 - With a primitive element, multiplying becomes adding exponents, using a log table.
 - How to test whether an element is primitive without listing all its powers.
 
+## A cycle inside every field
+
+Since [Lesson 4](../04-projective-planes/) we have been looking for one move that carries every point of a plane around a single cycle. Finite fields have a move like that built in, and this lesson finds it: multiply by the right element, again and again, and you pass through every nonzero element of the field before coming back to where you started. Part IV turns that cycle of elements into the cycle of points.
+
 ## Powers of x
 
 Take $\mathrm{GF}(8)$ from [Lesson 7](../07-prime-power-fields/): remainders mod $x^3 + x + 1$ over $\mathrm{GF}(2)$, where $x^3 \equiv x + 1$. Keep multiplying by $x$:

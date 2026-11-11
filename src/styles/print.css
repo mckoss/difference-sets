@@ -156,6 +156,7 @@
 .print-edition .print-keep,
 .print-edition figure,
 .print-edition .notation,
+.print-edition .roadmap,
 .print-edition table,
 .print-edition .katex-display {
   break-inside: avoid;

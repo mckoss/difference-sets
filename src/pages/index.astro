@@ -7,6 +7,9 @@ import { lessonEntries } from '../lib/lessons';
 const base = import.meta.env.BASE_URL;
 const outline = buildOutline(await lessonEntries());
 const first = outline[0].lessons[0];
+const lessons = outline.flatMap((part) => part.lessons);
+/** Link to a lesson by its number, so the home page follows any renaming. */
+const lessonHref = (order: number) => href(base, lessonPath(lessons.find((l) => l.order === order)!.id));
 ---
 
 <Base title="Singer Difference Sets" description="An interactive introduction to Singer difference sets, finite fields, and projective planes.">
@@ -20,6 +23,12 @@ const first = outline[0].lessons[0];
         possible set of marks, but in 1938 James Singer showed how to write one down directly for every prime power,
         using finite fields and projective planes.
       </p>
+      <p>
+        These lessons explain how his method works and why, starting from clock arithmetic and assuming only high-school
+        algebra. Along the way the same sets turn out to deal a <a href={lessonHref(18)}>card game</a>, take{' '}
+        <a href={lessonHref(19)}>pictures without a lens</a>, <a href={lessonHref(20)}>find a radar echo</a>,{' '}
+        <a href={lessonHref(21)}>correct errors</a> in broadcast data, and schedule a <a href={lessonHref(24)}>fair race</a>.
+      </p>
       <p><a class="button" href={href(base, lessonPath(first.id))}>Start with lesson 1: {first.title}</a></p>
       <p class="print-link">
         Prefer paper? <a href={href(base, 'singer-difference-sets.pdf')}>Download the printable PDF</a> (v{pkg.version}):
@@ -28,6 +37,31 @@ const first = outline[0].lessons[0];
     </div>
     <div data-widget="chord-diagram" data-set="0,1,3"></div>
   </section>
+
+  <h2>How to read this</h2>
+  <ul class="how-to-read">
+    <li>
+      <strong>Lessons 1 to 15 are the main path.</strong> Lessons 1 to 4 turn the puzzle into geometry, 5 to 9 build the
+      number systems called finite fields, 10 to 13 build a plane from a field and prove Singer's theorem, and{' '}
+      <a href={lessonHref(14)}>Lesson 14</a> gives the algorithm, with the whole argument on one page.
+    </li>
+    <li>
+      <strong>Play with each figure before reading the argument under it.</strong> Every lesson has one, and a{' '}
+      <em>Try it</em> exercise at the end with its answer folded away.
+    </li>
+    <li>
+      <strong>Skip the folded "Why…" boxes the first time through.</strong> They hold the longer proofs, and the main
+      thread never depends on having read them.
+    </li>
+    <li>
+      <strong>Words with a dotted underline are in the <a href={href(base, 'glossary/')}>glossary</a>.</strong> Hover
+      or tap for a reminder of what they mean.
+    </li>
+    <li>
+      <strong>Want to see what it is all for first?</strong> After Lesson 4 you can read most of{' '}
+      <a href={lessonHref(18)}>Part VII</a>, the applications, and come back.
+    </li>
+  </ul>
 
   <h2>The path</h2>
   {

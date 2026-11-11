@@ -14,6 +14,8 @@ status: ready
 
 ## The plan: copy Lesson 5
 
+Singer's construction for a plane of order $q$ runs inside a field with $q^3$ elements: 8 for the Fano plane, 27 for the plane of order 3, 64 for order 4. None of those sizes is a prime, so none of those fields is a clock, and so far we have no way to build them.
+
 [Lesson 6](../06-fields-of-prime-order/) showed that a finite field has $q = p^e$ elements, and that for $e > 1$ it cannot be a clock. We need a new raw material, and polynomials work, because they behave remarkably like whole numbers:
 
 | Whole numbers | Polynomials over $\mathrm{GF}(p)$ |
@@ -109,6 +111,8 @@ No. In the second field, look for an element $r$ with $r^3 + r + 1 = 0$: a root 
 <div data-widget="field-isomorphism" data-p="2" data-e="3" data-a="1,1,0,1" data-b="1,0,1,1"></div>
 
 This always works: for every prime power $q$, any two fields with $q$ elements are isomorphic. The proof needs more machinery than we develop here, so we take it as a fact, which the widget lets you test for any pair of moduli. That is why it makes sense to speak of *the* field with $q$ elements, written $\mathrm{GF}(q)$. The choice of $f$ only chooses the labels.
+
+We now have every finite field there is. The [next lesson](../08-primitive-elements/) finds the feature of these fields that Singer's construction is built on: in each one, the powers of a single element run through every nonzero element, around one cycle.
 
 <section class="try-it">
 

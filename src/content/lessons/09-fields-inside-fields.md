@@ -10,7 +10,8 @@ status: ready
 
 - In a field of characteristic $p$, $(a + b)^p = a^p + b^p$. This "freshman's dream" is actually true there.
 - The *Frobenius map* $x \mapsto x^q$ rearranges a field while respecting its arithmetic, and the elements it leaves alone form a smaller field.
-- Inside $\mathrm{GF}(q^3)$ with primitive element $\alpha$, the field $\mathrm{GF}(q)$ is $\{0\} \cup \langle \alpha^{q^2 + q + 1} \rangle$, and $\mathrm{GF}(q^3)$ itself can be built as polynomials of degree below $3e$ over $\mathrm{GF}(p)$.
+- The big field $\mathrm{GF}(q^3)$ contains a copy of the small field $\mathrm{GF}(q)$: the element 0 together with the powers of $\alpha^{q^2 + q + 1}$, where $\alpha$ is a primitive element.
+- $\mathrm{GF}(q^3)$ can be built in one step, as polynomials of degree below $3e$ over $\mathrm{GF}(p)$.
 
 ## Why we need this
 
@@ -118,6 +119,8 @@ $$
 $$
 
 gives $x^q + x^{q^2} + x^{q^3} = x^q + x^{q^2} + x$, the same three terms in a new order. So $\mathrm{Tr}(x)$ is always a fixed point: the **trace** carries every element of $\mathrm{GF}(q^3)$ down to $\mathrm{GF}(q)$, and by the freshman's dream it respects addition. [Lesson 14](../14-writing-down-a-difference-set/) uses exactly this map to write down a Singer difference set.
+
+That completes the toolkit: fields of every prime power size, a primitive element in each, and the small field found inside the big one. Part IV puts it to work. [Lesson 10](../10-vectors-over-a-finite-field/) uses a field as coordinates, and a projective plane follows.
 
 <section class="try-it">
 

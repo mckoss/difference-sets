@@ -44,6 +44,8 @@ In a $(v, k, \lambda)$ difference set every nonzero $j$ occurs exactly $\lambda$
 
 You can watch this in the widget. With $D = \{0, 1, 2\}$ and $j = 1$ the copies share two points, and the difference 1 occurs twice in $D$ ($1 - 0$ and $2 - 1$).
 
+Remember this fact. It is the working part of every application in Part VII: two cards that share exactly one picture, two radios that are awake together in exactly one time slot, and a telescope mask that overlaps a shifted copy of itself by the same amount whichever way it is shifted are all two translates sharing exactly $\lambda$ points.
+
 ## The same fact, seen from the points
 
 Turn the question around. Pick two different points $x$ and $y$ on the clock. How many translates contain both of them?

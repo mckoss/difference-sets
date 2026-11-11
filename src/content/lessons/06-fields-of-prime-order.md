@@ -14,7 +14,7 @@ status: ready
 
 ## A field you have never seen
 
-[Lesson 5](../05-which-clocks-are-fields/) found fields among the clocks. But a field is anything that obeys the rules, and its elements do not have to be numbers. Here is a field with 5 elements, called A, B, C, D, and E, given only by its addition and multiplication tables. The names were handed out in a random order, so the tables look like noise.
+[Lesson 5](../05-which-clocks-are-fields/) found fields among the clocks. But a field is anything that obeys the rules, and its elements do not have to be numbers. So before building any more fields, it is worth asking how many different ones there could be, and what sizes they can have. The answers shape everything that follows: they are the reason Singer's construction works for prime powers and for nothing else. Start with a puzzle. Here is a field with 5 elements, called A, B, C, D, and E, given only by its addition and multiplication tables. The names were handed out in a random order, so the tables look like noise.
 
 <div data-widget="scrambled-field" data-p="5" data-seed="7"></div>
 
@@ -79,6 +79,8 @@ Inside a finite field $F$ of characteristic $p$, the prime subfield $\mathrm{GF}
 So $F$ has exactly $p^e$ elements. In the language of [Lesson 10](../10-vectors-over-a-finite-field/), $F$ is a vector space over $\mathrm{GF}(p)$, and each element is a list of $e$ coordinates $(c_1, \dots, c_e)$.
 
 Throughout the site, $q = p^e$ stands for the size of a finite field, with $p$ its characteristic and $e$ the exponent. There is no field with 6, 10, or 12 elements, because those are not prime powers. Fields with 4, 8, 9, 16, … elements do exist, but they are *not* clocks, since $\mathbb{Z}/4\mathbb{Z}$ has the zero divisor $2 \times 2 = 0$. The next lesson builds them from polynomials.
+
+Compare the possible sizes, $2, 3, 4, 5, 7, 8, 9, 11, \dots$, with the orders for which [Lesson 4](../04-projective-planes/) said projective planes are known. They are the same list. That is no coincidence: Part IV builds a plane of order $q$ out of a field with $q$ elements, so every field size is the order of a plane.
 
 <section class="try-it">
 

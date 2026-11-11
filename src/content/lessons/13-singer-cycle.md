@@ -96,6 +96,8 @@ The first is the Fano plane of [Lesson 3](../03-fano-plane/): its rotation $i \m
 
 This answers the question Part I started with. A planar difference set looked as though it had to be found by search, and Lesson 1 showed how hopeless searching becomes. Singer's construction writes one down from the arithmetic of $\mathrm{GF}(q^3)$.
 
+Every earlier lesson fed into this one: the translates that behave like lines (Lesson 2), the planes that are difference sets when they have a turning symmetry (Lesson 4), the fields (Lessons 5 to 7), the primitive element (Lesson 8), the small field inside the big one (Lesson 9), and the plane built from coordinates (Lessons 10 to 12). [Lesson 14](../14-writing-down-a-difference-set/) lays the whole argument out on one page, with a note of the few facts that were taken on trust.
+
 <aside class="notation">
 <span class="notation-title">Notation: the Singer cycle</span>
 
