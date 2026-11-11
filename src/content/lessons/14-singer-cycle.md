@@ -1,8 +1,8 @@
 ---
 title: "The Singer cycle"
-order: 13
+order: 14
 part: 4
-summary: "Multiplying by α turns the whole plane one notch, so PG(2, q) is cyclic and each of its lines is a difference set."
+summary: "Multiplying by α moves every point of the plane to the next, so PG(2, q) is cyclic and each of its lines is a difference set."
 status: ready
 ---
 
@@ -10,11 +10,11 @@ status: ready
 
 - That multiplying every element of $\mathrm{GF}(q^3)$ by $\alpha$ respects adding and scaling, so it carries lines of $\mathrm{PG}(2, q)$ to lines.
 - That it moves point $i$ to point $i + 1$, carrying every point around a single cycle of length $v$: the **Singer cycle**.
-- That this makes $\mathrm{PG}(2, q)$ a cyclic projective plane, so by Lesson 4 the numbers of the points on any one line form a $(q^2 + q + 1,\ q + 1,\ 1)$ difference set.
+- That this makes $\mathrm{PG}(2, q)$ a cyclic projective plane, so by Lesson 5 the numbers of the points on any one line form a $(q^2 + q + 1,\ q + 1,\ 1)$ difference set.
 
-## The question from Lesson 4
+## The question from Lesson 5
 
-[Lesson 4](../04-projective-planes/) showed that a cyclic projective plane, one with a symmetry that carries every point around a single cycle, is the same thing as a planar difference set. It ended by asking where planes with such a symmetry come from. We now have a plane of every prime power order, $\mathrm{PG}(2, q)$ ([Lesson 11](../11-coordinates/)), and a numbering of its points by powers of $\alpha$ ([Lesson 12](../12-field-inside-the-plane/)). The symmetry has been hiding in that numbering all along.
+[Lesson 5](../05-cyclic-planes/) showed that a cyclic projective plane, one with a symmetry that carries every point around a single cycle, is the same thing as a planar difference set. It ended by asking where planes with such a symmetry come from. We now have a plane of every prime power order, $\mathrm{PG}(2, q)$ ([Lesson 12](../12-coordinates/)), and a numbering of its points by powers of $\alpha$ ([Lesson 13](../13-field-inside-the-plane/)). The symmetry has been hiding in that numbering all along.
 
 ## Multiplying by α
 
@@ -24,7 +24,7 @@ $$
 x \mapsto \alpha x.
 $$
 
-It respects the two vector operations of Lesson 10, because multiplication in a field distributes over addition and can be done in any order:
+It respects the two vector operations of Lesson 11, because multiplication in a field distributes over addition and can be done in any order:
 
 $$
 \alpha (u + w) = \alpha u + \alpha w, \qquad \alpha (s \cdot u) = s \cdot (\alpha u) \quad \text{for } s \text{ in } \mathrm{GF}(q).
@@ -49,7 +49,7 @@ so as vectors, $(x, y, z) \mapsto (2z,\ x + z,\ y)$. Every linear map of $\mathr
 <details>
 <summary>Why a subspace with q² vectors is a plane</summary>
 
-A line through 0 has only $q$ vectors, so a subspace $S$ with $q^2$ vectors does not fit inside one: pick a nonzero $u$ in $S$, and then a $w$ in $S$ that is not a multiple of $u$. Being closed under adding and scaling, $S$ contains all $q^2$ combinations $s \cdot u + t \cdot w$, and [Lesson 11](../11-coordinates/) showed those are exactly the plane $[u \times w]$. Since $S$ has only $q^2$ vectors, $S$ *is* that plane.
+A line through 0 has only $q$ vectors, so a subspace $S$ with $q^2$ vectors does not fit inside one: pick a nonzero $u$ in $S$, and then a $w$ in $S$ that is not a multiple of $u$. Being closed under adding and scaling, $S$ contains all $q^2$ combinations $s \cdot u + t \cdot w$, and [Lesson 12](../12-coordinates/) showed those are exactly the plane $[u \times w]$. Since $S$ has only $q^2$ vectors, $S$ *is* that plane.
 
 </details>
 
@@ -65,21 +65,21 @@ $$
 
 So multiplying by $\alpha$ sends point $i$ to point $i + 1$. Starting from point 0, it visits $1, 2, \dots, v - 1$, and then point $v$, which is point 0 again, because the numbers are taken mod $v$. One symmetry carries every point around a single cycle of length $v = q^2 + q + 1$. It is called the **Singer cycle**, after James Singer, who found it in 1938.
 
-**So $\mathrm{PG}(2, q)$ is a cyclic projective plane**, and the numbering by powers of $\alpha$ is already the one Lesson 4 asked for, in which the symmetry is "add 1".
+**So $\mathrm{PG}(2, q)$ is a cyclic projective plane**, and the numbering by powers of $\alpha$ is already the one Lesson 5 asked for, in which the symmetry is "add 1".
 
 ## The lines are translates
 
-Now Lesson 4's theorem does the rest. Pick any line, and let $D$ be the set of numbers of its points. For example, take the line $z = 0$, the elements with no $\alpha^2$ term. It has $k = q + 1$ points.
+Now Lesson 5's theorem does the rest. Pick any line, and let $D$ be the set of numbers of its points. For example, take the line $z = 0$, the elements with no $\alpha^2$ term. It has $k = q + 1$ points.
 
 1. **The translates of $D$ are lines.** Multiplying by $\alpha$ adds 1 to the number of every point, so it carries the line $D$ onto a line whose numbers are $D + 1$. Doing it $j$ times gives the line $D + j$.
-2. **They are all the lines.** Lesson 4 showed that the $v$ translates $D, D + 1, \dots, D + (v - 1)$ are all different, and the plane has exactly $v$ lines.
-3. **Every difference occurs once.** Any two points $a$ and $a + d$, with $d \not\equiv 0$, lie on exactly one line (Lesson 11). Each way of writing $d = b - c$ with $b, c$ in $D$ gives a translate $D + j$ through both points, namely $j = a - c$, and different pairs give different translates, since the pair determines $j$ (Lesson 4, step 4). So there is exactly one such way.
+2. **They are all the lines.** Lesson 5 showed that the $v$ translates $D, D + 1, \dots, D + (v - 1)$ are all different, and the plane has exactly $v$ lines.
+3. **Every difference occurs once.** Any two points $a$ and $a + d$, with $d \not\equiv 0$, lie on exactly one line (Lesson 12). Each way of writing $d = b - c$ with $b, c$ in $D$ gives a translate $D + j$ through both points, namely $j = a - c$, and different pairs give different translates, since the pair determines $j$ (Lesson 5, step 4). So there is exactly one such way.
 
-So $D$ is a $(q^2 + q + 1,\ q + 1,\ 1)$ difference set. Here is the line $z = 0$ turning:
+So $D$ is a $(q^2 + q + 1,\ q + 1,\ 1)$ difference set. Here is the line $z = 0$ under repeated multiplication by $\alpha$:
 
 <div data-widget="singer-cycle" data-q="3"></div>
 
-Press **Multiply by α** to multiply every point of the line by $\alpha$. The polygon turns one notch around the clock, and the table shows the coordinates doing the arithmetic. Press **Play** to watch all $v$ lines go by, each exactly once.
+Press **Multiply by α** to multiply every point of the line by $\alpha$. The polygon moves one step around the clock, from the line $D$ to its translate $D + 1$, and the table shows the coordinates doing the arithmetic. Press **Play** to watch all $v$ lines go by, each exactly once.
 
 For the first few prime powers, the line $z = 0$ gives:
 
@@ -90,13 +90,13 @@ For the first few prime powers, the line $z = 0$ gives:
 | 4 | $\alpha^2 + \alpha + \omega$ | 21 | $\{0, 1, 4, 14, 16\}$ |
 | 5 | $2\alpha + 3$ | 31 | $\{0, 1, 3, 10, 14, 26\}$ |
 
-The first is the Fano plane of [Lesson 3](../03-fano-plane/): its rotation $i \mapsto i + 1$ was multiplication by $\alpha$ in $\mathrm{GF}(8)$ all along. The second is the plane of order 3 from Lesson 4.
+The first is the Fano plane of [Lesson 3](../03-fano-plane/): its symmetry $i \mapsto i + 1$ was multiplication by $\alpha$ in $\mathrm{GF}(8)$ all along. The second is the plane of order 3 from Lesson 4.
 
 > **Singer's theorem (1938).** For every prime power $q$, there is a $(q^2 + q + 1,\ q + 1,\ 1)$ difference set: the numbers $i \bmod v$ for which $\alpha^i$ lies on one fixed line of $\mathrm{PG}(2, q)$.
 
 This answers the question Part I started with. A planar difference set looked as though it had to be found by search, and Lesson 1 showed how hopeless searching becomes. Singer's construction writes one down from the arithmetic of $\mathrm{GF}(q^3)$.
 
-Every earlier lesson fed into this one: the translates that behave like lines (Lesson 2), the planes that are difference sets when they have a turning symmetry (Lesson 4), the fields (Lessons 5 to 7), the primitive element (Lesson 8), the small field inside the big one (Lesson 9), and the plane built from coordinates (Lessons 10 to 12). [Lesson 14](../14-writing-down-a-difference-set/) lays the whole argument out on one page, with a note of the few facts that were taken on trust.
+Every earlier lesson fed into this one: the translates that behave like lines (Lesson 2), the cyclic planes, which are difference sets (Lesson 5), the fields (Lessons 6 to 8), the primitive element (Lesson 9), the small field inside the big one (Lesson 10), and the plane built from coordinates (Lessons 11 to 13). [Lesson 15](../15-writing-down-a-difference-set/) lays the whole argument out on one page, with a note of the few facts that were taken on trust.
 
 <aside class="notation">
 <span class="notation-title">Notation: the Singer cycle</span>
@@ -112,16 +112,16 @@ Every earlier lesson fed into this one: the translates that behave like lines (L
 ## Try it
 
 1. For $q = 3$, the line $z = 0$ holds points 0, 1, 3, and 9: the vectors $(1, 0, 0)$, $(0, 1, 0)$, $(1, 2, 0)$, and $(1, 1, 0)$ after normalizing. Apply $(x, y, z) \mapsto (2z,\ x + z,\ y)$ to each. Which line do the images lie on, and what are their numbers?
-2. For $q = 4$, $D = \{0, 1, 4, 14, 16\}$ mod 21. Which power of $\alpha$ carries the line $D$ onto the line through points 0 and 2? (Use the method of Lesson 4: which pair in $D$ has difference 2?)
+2. For $q = 4$, $D = \{0, 1, 4, 14, 16\}$ mod 21. Which power of $\alpha$ carries the line $D$ onto the line through points 0 and 2? (Use the method of Lesson 5: which pair in $D$ has difference 2?)
 
 <details>
 <summary>Show the answers</summary>
 
-1. The images are $(0, 1, 0)$, $(0, 0, 1)$, $(0, 1, 2)$, and $(0, 1, 1)$. All have first coordinate 0, so they lie on the line $x = 0$, which is $[1 : 0 : 0]$. They are points 1, 2, 4, and 10 (the widget's table for Lesson 12 lists them), and indeed $\{1, 2, 4, 10\} = \{0, 1, 3, 9\} + 1$.
+1. The images are $(0, 1, 0)$, $(0, 0, 1)$, $(0, 1, 2)$, and $(0, 1, 1)$. All have first coordinate 0, so they lie on the line $x = 0$, which is $[1 : 0 : 0]$. They are points 1, 2, 4, and 10 (the widget's table for Lesson 13 lists them), and indeed $\{1, 2, 4, 10\} = \{0, 1, 3, 9\} + 1$.
 2. $16 - 14 = 2$. Adding $j = -14 \equiv 7$ sends 14 to 0 and 16 to 2, so $\alpha^7$ carries $D$ onto $D + 7 = \{7, 8, 11, 0, 2\}$, the line through 0 and 2. Check it with the widget set to $q = 4$: press **Multiply by α** seven times.
 
 </details>
 
 </section>
 
-Every line of every plane, in both numberings, is in the [PG(2, q) explorer](../../playgrounds/pg2-explorer/?q=4&lines=0). Part V turns the construction into an algorithm: [Lesson 14](../14-writing-down-a-difference-set/) chooses a line that the field's own arithmetic picks out, with no coordinates at all, and runs through it step by step.
+Every line of every plane, in both numberings, is in the [PG(2, q) explorer](../../playgrounds/pg2-explorer/?q=4&lines=0). Part V turns the construction into an algorithm: [Lesson 15](../15-writing-down-a-difference-set/) chooses a line that the field's own arithmetic picks out, with no coordinates at all, and runs through it step by step.

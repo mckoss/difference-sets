@@ -1,8 +1,8 @@
 import { expect, test } from './fixtures';
 
-test.describe('lesson 16: higher-dimensional Singer sets', () => {
+test.describe('lesson 17: higher-dimensional Singer sets', () => {
   test('parameters, flat tally, and shift register follow q and m', async ({ page }) => {
-    await page.goto('lessons/16-beyond-the-plane/');
+    await page.goto('lessons/17-beyond-the-plane/');
     const w = page.locator('[data-widget="higher-singer"]');
     await expect(w.locator('.singer-params')).toContainText('= 15 points');
     await expect(w.locator('.set-line')).toHaveText('D = {0, 1, 2, 4, 5, 8, 10} mod 15');
@@ -20,9 +20,9 @@ test.describe('lesson 16: higher-dimensional Singer sets', () => {
   });
 });
 
-test.describe('lesson 18: a card game from a plane', () => {
+test.describe('lesson 20: a card game from a plane', () => {
   test('clicking two cards shows their one shared symbol', async ({ page }) => {
-    await page.goto('lessons/18-a-card-game-from-a-plane/');
+    await page.goto('lessons/20-a-card-game-from-a-plane/');
     const w = page.locator('[data-widget="match-cards"]').first();
     await expect(w.locator('.match-pick')).toHaveCount(7);
     await expect(w.locator('.match-card img').first()).toHaveAttribute('alt', /\w/);
@@ -43,7 +43,7 @@ test.describe('lesson 18: a card game from a plane', () => {
     await page.route(/youtube-nocookie\.com/, (route) =>
       route.fulfill({ status: 200, contentType: 'text/html', body: '<!doctype html><title>stub</title>' }),
     );
-    await page.goto('lessons/18-a-card-game-from-a-plane/');
+    await page.goto('lessons/20-a-card-game-from-a-plane/');
     const v = page.locator('[data-widget="video-facade"]');
     await expect(v.locator('.video-play')).toBeVisible();
     await expect(page.locator('iframe')).toHaveCount(0);
@@ -202,14 +202,14 @@ test.describe('applications on a phone', () => {
   test.use({ viewport: { width: 390, height: 844 } });
 
   for (const path of [
-    'lessons/16-beyond-the-plane/',
-    'lessons/17-every-planar-set-singer/',
-    'lessons/18-a-card-game-from-a-plane/',
-    'lessons/19-pictures-without-a-lens/',
-    'lessons/20-finding-an-echo/',
-    'lessons/21-majority-rules/',
-    'lessons/22-always-meet/',
-    'lessons/23-a-ruler-with-no-repeats/',
+    'lessons/17-beyond-the-plane/',
+    'lessons/18-every-planar-set-singer/',
+    'lessons/20-a-card-game-from-a-plane/',
+    'lessons/21-pictures-without-a-lens/',
+    'lessons/22-finding-an-echo/',
+    'lessons/23-majority-rules/',
+    'lessons/24-always-meet/',
+    'lessons/25-a-ruler-with-no-repeats/',
     'playgrounds/deck-maker/?q=11&theme=all',
   ]) {
     test(`${path} has no horizontal scroll`, async ({ page }) => {

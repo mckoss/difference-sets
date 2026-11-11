@@ -1,6 +1,6 @@
 ---
 title: "Coordinates for a projective plane"
-order: 11
+order: 12
 part: 4
 summary: "PG(2, q): points and lines as subspaces of GF(q)³, named by homogeneous coordinates, with incidence by dot product."
 status: ready
@@ -14,13 +14,13 @@ status: ready
 
 ## Points are lines, lines are planes
 
-[Lesson 10](../10-vectors-over-a-finite-field/) found $q^2 + q + 1$ lines through the origin of $\mathrm{GF}(q)^3$ and as many planes through the origin. Now rename them:
+[Lesson 11](../11-vectors-over-a-finite-field/) found $q^2 + q + 1$ lines through the origin of $\mathrm{GF}(q)^3$ and as many planes through the origin. Now rename them:
 
 - a **point** is a line through the origin;
 - a **line** is a plane through the origin;
 - a point **lies on** a line when the line through the origin sits inside the plane.
 
-The geometry this makes is called $\mathrm{PG}(2, q)$, the *projective geometry* of dimension 2 over $\mathrm{GF}(q)$. (The 2 is its *dimension*, which here means the number of coordinates minus one: a plane needs three coordinates, and the space of Lesson 10's last section needs four.) It is an old idea from perspective drawing: a point in a painting is a ray of light through the painter's eye, and a line in the painting is a flat fan of rays.
+The geometry this makes is called $\mathrm{PG}(2, q)$, the *projective geometry* of dimension 2 over $\mathrm{GF}(q)$. (The 2 is its *dimension*, which here means the number of coordinates minus one: a plane needs three coordinates, and the space of Lesson 11's last section needs four.) It is an old idea from perspective drawing: a point in a painting is a ray of light through the painter's eye, and a line in the painting is a flat fan of rays.
 
 ## Homogeneous coordinates
 
@@ -46,7 +46,7 @@ Every point has exactly one normalized name, of one of three shapes:
 | $[0 : 1 : z]$ | $q$ | $z$ is free |
 | $[0 : 0 : 1]$ | $1$ | |
 
-That is $q^2 + q + 1$ points, matching the count from Lesson 10.
+That is $q^2 + q + 1$ points, matching the count from Lesson 11.
 
 **Lines get coordinates too.** The line (plane through the origin) $a x + b y + c z = 0$ doesn't change when the equation is scaled, so we name it $[a : b : c]$ and normalize the same way. A point $[x : y : z]$ lies on the line $[a : b : c]$ exactly when
 
@@ -58,13 +58,13 @@ The left side is the **dot product** of $(a, b, c)$ and $(x, y, z)$, written $(a
 
 <div data-widget="pg2-explorer" data-q="3" data-qs="2,3,4,5,7"></div>
 
-The explorer lays out the $q^2$ points $[1 : y : z]$ as a square, row $y$ and column $z$, with the other $q + 1$ points below. Click a point to see the $q + 1$ lines through it. Click a second point to see the line through both, with the dot products that prove it. Click two lines in the list to see where they meet. For $q = 4$ the coordinates come from $\mathrm{GF}(4)$, which is not a clock, so the explorer writes its elements as $0, 1, \omega, \omega^2$: the powers of a primitive element $\omega$ from [Lesson 8](../08-primitive-elements/), with $\omega^2 = \omega + 1$. Later lessons save $\alpha$ for a primitive element of the bigger field $\mathrm{GF}(q^3)$, so the small field gets its own letter.
+The explorer lays out the $q^2$ points $[1 : y : z]$ as a square, row $y$ and column $z$, with the other $q + 1$ points below. Click a point to see the $q + 1$ lines through it. Click a second point to see the line through both, with the dot products that prove it. Click two lines in the list to see where they meet. For $q = 4$ the coordinates come from $\mathrm{GF}(4)$, which is not a clock, so the explorer writes its elements as $0, 1, \omega, \omega^2$: the powers of a primitive element $\omega$ from [Lesson 9](../09-primitive-elements/), with $\omega^2 = \omega + 1$. Later lessons save $\alpha$ for a primitive element of the bigger field $\mathrm{GF}(q^3)$, so the small field gets its own letter.
 
 ## The plane axioms
 
 [Lesson 4](../04-projective-planes/) asked three things of a projective plane. Here is why $\mathrm{PG}(2, q)$ has all three.
 
-**Different names, different lines.** If the normalized names $[a : b : c]$ and $[a' : b' : c']$ differ, the two equations have different solutions: Lesson 10 showed that two equations with the same plane of solutions have coefficient vectors that are multiples of each other, and multiples normalize to the same name.
+**Different names, different lines.** If the normalized names $[a : b : c]$ and $[a' : b' : c']$ differ, the two equations have different solutions: Lesson 11 showed that two equations with the same plane of solutions have coefficient vectors that are multiples of each other, and multiples normalize to the same name.
 
 **Any two points lie on exactly one line.** Take two different points named by vectors $u = (u_1, u_2, u_3)$ and $w = (w_1, w_2, w_3)$. Their **cross product**
 
@@ -90,13 +90,13 @@ Lines $[a : b : c]$ with the same $b$ and $c$ (not both 0) but different $a$ nev
 
 ## The two smallest planes
 
-**$\mathrm{PG}(2, 2)$ is the Fano plane.** Over $\mathrm{GF}(2)$ the only nonzero scalar is 1, so every point has a single name, and the 7 points are the 7 nonzero vectors of $\mathrm{GF}(2)^3$. The 7 lines are the equations: $[0 : 0 : 1]$ is $z = 0$, holding $[1 : 0 : 0]$, $[0 : 1 : 0]$, and $[1 : 1 : 0]$. Set $q = 2$ in the explorer and compare with the drawing in [Lesson 3](../03-fano-plane/). The two pictures have the same incidences but different labels; [Lesson 12](../12-field-inside-the-plane/) finds the numbering that turns these lines into the translates of $\{0, 1, 3\}$.
+**$\mathrm{PG}(2, 2)$ is the Fano plane.** Over $\mathrm{GF}(2)$ the only nonzero scalar is 1, so every point has a single name, and the 7 points are the 7 nonzero vectors of $\mathrm{GF}(2)^3$. The 7 lines are the equations: $[0 : 0 : 1]$ is $z = 0$, holding $[1 : 0 : 0]$, $[0 : 1 : 0]$, and $[1 : 1 : 0]$. Set $q = 2$ in the explorer and compare with the drawing in [Lesson 3](../03-fano-plane/). The two pictures have the same incidences but different labels; [Lesson 13](../13-field-inside-the-plane/) finds the numbering that turns these lines into the translates of $\{0, 1, 3\}$.
 
 **$\mathrm{PG}(2, 3)$** has 13 points and 13 lines, with 4 points on each line, the plane of order 3 from Lesson 4.
 
 ## What is still missing
 
-We have a projective plane of every prime power order. But Lesson 4 asked for more: a plane with a symmetry that carries every point around a single cycle, because only such a plane gives a difference set. Nothing in these coordinates shows one. The next two lessons find it, and the idea is the one from [Lesson 8](../08-primitive-elements/): the vectors of $\mathrm{GF}(q)^3$ can be multiplied together like the elements of a field, and the powers of one of them run around a cycle.
+We have a projective plane of every prime power order. But Lesson 5 asked for more: a plane with a symmetry that carries every point around a single cycle, because only such a plane gives a difference set. Nothing in these coordinates shows one. The next two lessons find it, and the idea is the one from [Lesson 9](../09-primitive-elements/): the vectors of $\mathrm{GF}(q)^3$ can be multiplied together like the elements of a field, and the powers of one of them run around a cycle.
 
 <aside class="notation">
 <span class="notation-title">Notation: the projective plane</span>

@@ -1,6 +1,6 @@
 ---
 title: "A ruler with no repeats"
-order: 23
+order: 25
 part: 7
 summary: "Marks whose distances are all different, for antennas and radio channels."
 status: ready
@@ -53,7 +53,7 @@ These cut-open Singer sets are very nearly the shortest Golomb rulers known. The
 
 ## Where these rulers are used
 
-Engineers have long laid out thinned antenna arrays this way. A 1978 Bell Labs patent by David Leeper places the elements of an antenna array at the positions of a cyclic difference set, taking the sets from L. D. Baumert's 1971 tables, and builds flat arrays from cyclic shifts of one row. In a 1999 follow-up, Leeper explains how the difference-set property keeps the array's unwanted side signals (its *side-lobes*) at an even, well-controlled level, the same "flat floor" idea that coded-aperture telescopes use in [Lesson 19](../19-pictures-without-a-lens/).
+Engineers have long laid out thinned antenna arrays this way. A 1978 Bell Labs patent by David Leeper places the elements of an antenna array at the positions of a cyclic difference set, taking the sets from L. D. Baumert's 1971 tables, and builds flat arrays from cyclic shifts of one row. In a 1999 follow-up, Leeper explains how the difference-set property keeps the array's unwanted side signals (its *side-lobes*) at an even, well-controlled level, the same "flat floor" idea that coded-aperture telescopes use in [Lesson 21](../21-pictures-without-a-lens/).
 
 The motivating problem is older: in 1968 A. T. Moffet studied linear antenna arrays with as few repeated baselines as possible, which he found by searching rather than by construction. Difference-set layouts also appear in books on designing interferometers, such as Kopilovich and Sodin's. I have not, though, confirmed any operating radio telescope whose dishes sit on a Singer ruler, so think of this as a design method rather than a famous installation.
 

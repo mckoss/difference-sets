@@ -1,6 +1,6 @@
 ---
 title: "Always meet"
-order: 22
+order: 24
 part: 7
 summary: "Radios that wake on a few slots and still always hear each other, whatever their clocks say."
 status: ready
@@ -26,7 +26,7 @@ However you set the clocks, every two radios with different offsets share exactl
 
 ## Why they always meet
 
-A radio whose clock is $i$ slots ahead is awake in the slots $D + i$: the translate from [Lesson 2](../02-rotations/), with every member of $D$ moved $i$ steps around the 7-slot clock (counting mod 7, as in [Lesson 1](../01-differences-on-a-circle/)). Two radios with offsets $i$ and $j$ are both awake in the slots in both $D + i$ and $D + j$, the *intersection* $(D + i) \cap (D + j)$.
+A radio whose clock is $i$ slots ahead is awake in the slots $D + i$: the translate from [Lesson 2](../02-translates/), with every member of $D$ moved $i$ steps around the 7-slot clock (counting mod 7, as in [Lesson 1](../01-differences-on-a-circle/)). Two radios with offsets $i$ and $j$ are both awake in the slots in both $D + i$ and $D + j$, the *intersection* $(D + i) \cap (D + j)$.
 
 Lesson 2 counted that intersection: two translates share as many points as there are ways to write $j - i$ as a difference of two members of $D$. In a difference set, every nonzero difference occurs exactly $\lambda$ times, and for $\{0, 1, 3\}$ mod 7 that is once. So any two radios with different clocks share exactly $\lambda = 1$ awake slot, whatever the offsets are. The radios don't need to know the offset. The schedule works for all of them at once.
 

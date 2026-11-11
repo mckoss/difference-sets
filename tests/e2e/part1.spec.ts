@@ -90,7 +90,7 @@ test.describe('workbench playground', () => {
 
 test.describe('translates', () => {
   test('stepping j and clicking the table', async ({ page }) => {
-    await page.goto('lessons/02-rotations/');
+    await page.goto('lessons/02-translates/');
     const t = page.locator('[data-widget="translates"]');
     await expect(t.locator('.shared')).toHaveText(/share 1 point: \{1\}/);
     await t.locator('.step-button').click();
@@ -105,6 +105,14 @@ test.describe('translates', () => {
     await t.locator('.cell[data-i="0"][data-j="3"]').click();
     await expect(t.locator('.shared')).toHaveText(/share 0 points/);
     await expect(t.locator('.table-note')).toContainText('not all equal');
+  });
+
+  test('the plane of order 4 in Lesson 5: every two translates of {0, 1, 4, 14, 16} share one point', async ({ page }) => {
+    await page.goto('lessons/05-cyclic-planes/');
+    const t = page.locator('[data-widget="translates"]');
+    const off = await t.locator('.cell.off text').allTextContents();
+    expect(off).toHaveLength(21 * 20);
+    expect(new Set(off)).toEqual(new Set(['1']));
   });
 
   test('every off-diagonal entry is λ for {0, 1, 3, 9} mod 13', async ({ page }) => {

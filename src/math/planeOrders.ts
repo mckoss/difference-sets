@@ -1,5 +1,5 @@
 // Which orders n can a projective plane, or a cyclic one, have? The tests
-// behind Lesson 17's table, each tied to a theorem in docs/citations.md.
+// behind Lesson 18's table, each tied to a theorem in docs/citations.md.
 
 import { primePower } from './numbers';
 

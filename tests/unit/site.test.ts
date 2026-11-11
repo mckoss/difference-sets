@@ -1,6 +1,6 @@
 import { readdirSync, readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
-import { buildOutline, href, type LessonEntry, neighbors, PARTS, sortLessons } from '../../src/site';
+import { buildOutline, href, type LessonEntry, MOVED_LESSONS, neighbors, PARTS, sortLessons } from '../../src/site';
 
 const lesson = (order: number, part: number): LessonEntry => ({
   id: `${String(order).padStart(2, '0')}-l`,
@@ -56,6 +56,14 @@ describe('lesson files', () => {
       expect(e.order).toBe(i + 1);
       expect(e.file.startsWith(`${String(e.order).padStart(2, '0')}-`)).toBe(true);
     });
+  });
+
+  it('forward every old address to a lesson that exists', () => {
+    const ids = files.map((f) => f.replace(/\.md$/, ''));
+    for (const [from, to] of Object.entries(MOVED_LESSONS)) {
+      expect(ids, `${from} → ${to}`).toContain(to);
+      expect(ids, `${from} is a current lesson`).not.toContain(from);
+    }
   });
 
   it('only use known parts, in nondecreasing order', () => {

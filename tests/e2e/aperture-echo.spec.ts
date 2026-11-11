@@ -1,7 +1,7 @@
 import { expect, test } from './fixtures';
 
-const APERTURE = 'lessons/19-pictures-without-a-lens/';
-const ECHO = 'lessons/20-finding-an-echo/';
+const APERTURE = 'lessons/21-pictures-without-a-lens/';
+const ECHO = 'lessons/22-finding-an-echo/';
 
 test.describe('coded aperture', () => {
   test('decoding the Singer mask gives sharp peaks on a flat floor; a random mask leaves ghosts', async ({ page }) => {

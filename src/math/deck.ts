@@ -1,6 +1,6 @@
 // Match-N card decks from cyclic difference sets: points are symbols, and
 // with D a (v, k, λ) difference set mod v, card j holds the symbols at the
-// points D + j. Every two cards then share exactly λ symbols (Lesson 4's
+// points D + j. Every two cards then share exactly λ symbols (Lesson 2's
 // theorem), so λ = 1 is Spot It and larger λ asks players to find more.
 
 import { mod } from './numbers';

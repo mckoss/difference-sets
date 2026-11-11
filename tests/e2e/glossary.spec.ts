@@ -9,13 +9,13 @@ test.describe('glossary', () => {
     expect(terms).toEqual([...terms].sort((a, b) => a.localeCompare(b, 'en', { sensitivity: 'base' })));
     const trace = page.locator('#trace');
     await expect(trace.locator('dd')).toContainText('Tr(x) = x + xq + xq²');
-    await trace.getByRole('link', { name: 'Lesson 9: Fields inside fields' }).click();
-    await expect(page).toHaveURL(/lessons\/09-fields-inside-fields\/#def-trace$/);
+    await trace.getByRole('link', { name: 'Lesson 10: Fields inside fields' }).click();
+    await expect(page).toHaveURL(/lessons\/10-fields-inside-fields\/#def-trace$/);
     await expect(page.locator('#def-trace')).toHaveText('trace');
   });
 
   test('a term in the text shows its definition on hover, then opens the glossary on click', async ({ page }) => {
-    await page.goto('lessons/14-writing-down-a-difference-set/');
+    await page.goto('lessons/15-writing-down-a-difference-set/');
     const term = page.locator('a.gloss[data-term="Frobenius map"]');
     await expect(term).toHaveCount(1);
     const tip = page.locator('#gloss-tip');
@@ -36,7 +36,7 @@ test.describe('glossary', () => {
   });
 
   test('a tap shows the definition first; Escape closes it', async ({ page }) => {
-    await page.goto('lessons/14-writing-down-a-difference-set/');
+    await page.goto('lessons/15-writing-down-a-difference-set/');
     const term = page.locator('a.gloss[data-term="Frobenius map"]');
     await term.focus();
     const tip = page.locator('#gloss-tip');
@@ -46,17 +46,17 @@ test.describe('glossary', () => {
     // A click before the definition shows just shows it.
     await term.dispatchEvent('click');
     await expect(tip).toBeVisible();
-    await expect(page).toHaveURL(/14-writing-down-a-difference-set\/$/);
+    await expect(page).toHaveURL(/15-writing-down-a-difference-set\/$/);
   });
 
   test('the introducing lesson anchors a term instead of linking it', async ({ page }) => {
-    await page.goto('lessons/09-fields-inside-fields/');
+    await page.goto('lessons/10-fields-inside-fields/');
     await expect(page.locator('a.gloss[data-term="trace"]')).toHaveCount(0);
     await expect(page.locator('#def-trace')).toHaveCount(1);
   });
 
   test('the last lesson leads on to the glossary', async ({ page }) => {
-    await page.goto('lessons/26-secrets-that-look-like-noise/');
+    await page.goto('lessons/29-secrets-that-look-like-noise/');
     await page.locator('.pager a.next').click();
     await expect(page).toHaveURL(/glossary\/$/);
   });
@@ -71,7 +71,7 @@ test.describe('topic search', () => {
     await expect(results.first()).toBeVisible();
     await expect(page.locator('.topic-result-title').first()).toContainText(/freshman/i);
     const titles = await page.locator('.topic-result-where').allTextContents();
-    expect(titles).toContain('Lesson 9 · Fields inside fields');
+    expect(titles).toContain('Lesson 10 · Fields inside fields');
 
     await input.fill('freshmans dream');
     await page.keyboard.press('ArrowDown');
@@ -98,7 +98,7 @@ test.describe('glossary and search at phone width', () => {
   test('no sideways scroll, and the popup fits on screen', async ({ page }) => {
     await page.goto('glossary/');
     expect(await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth)).toBeLessThanOrEqual(0);
-    await page.goto('lessons/14-writing-down-a-difference-set/');
+    await page.goto('lessons/15-writing-down-a-difference-set/');
     const term = page.locator('a.gloss[data-term="Frobenius map"]');
     await term.scrollIntoViewIfNeeded();
     await term.dispatchEvent('click');

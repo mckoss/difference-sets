@@ -1,5 +1,5 @@
 // Square picture cards for the match-one deck: shared by the deck maker
-// playground and the Lesson 18 widget.
+// playground and the Lesson 20 widget.
 
 import manifest from '../../public/symbols/manifest.json';
 import { assignSymbols, DECK_THEMES, type DeckTheme, layoutCard, type SymbolInfo } from '../math/deck';

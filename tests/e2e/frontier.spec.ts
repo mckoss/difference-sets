@@ -1,6 +1,6 @@
 import { expect, test } from './fixtures';
 
-const LESSON = 'lessons/17-every-planar-set-singer/';
+const LESSON = 'lessons/18-every-planar-set-singer/';
 
 test.describe('search versus construction', () => {
   test('autoruns n = 7 and streams Singer-type results', async ({ page }) => {
@@ -98,9 +98,9 @@ test.describe('large-q explorer', () => {
   });
 });
 
-test.describe('lesson 17 widgets', () => {
+test.describe('lesson 18 and 19 widgets', () => {
   test('polynomial identity checks {0, 1, 3} mod 7 and fails when broken', async ({ page }) => {
-    await page.goto(LESSON);
+    await page.goto('lessons/19-how-a-proof-might-go/');
     const w = page.locator('.polynomial-identity');
     await expect(w.locator('.identity-verdict')).toContainText('(7, 3, 1) difference set of order n = 2');
     await expect(w.locator('.product-table td')).toHaveCount(9);

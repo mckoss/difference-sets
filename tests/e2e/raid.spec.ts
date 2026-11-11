@@ -1,9 +1,9 @@
 import { expect, test } from './fixtures';
 
 const raid = '[data-widget="raid-rebuild"]';
-const path = 'lessons/25-rebuilding-a-disk/';
+const path = 'lessons/28-rebuilding-a-disk/';
 
-test.describe('rebuilding a disk (Lesson 25)', () => {
+test.describe('rebuilding a disk (Lesson 28)', () => {
   test('a failed disk on the Fano layout costs every survivor one read', async ({ page }) => {
     await page.goto(path);
     const w = page.locator(raid);

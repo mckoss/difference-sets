@@ -1,6 +1,6 @@
 ---
 title: "Many sets, few shapes"
-order: 15
+order: 16
 part: 5
 summary: "Multiplying a difference set by t gives another one; multiplying a Singer set by p gives it back, which is why there are exactly φ(v)/3e Singer sets up to translation."
 status: ready
@@ -14,19 +14,19 @@ status: ready
 
 ## Multiplying a difference set
 
-[Lesson 14](../14-writing-down-a-difference-set/) left a loose end. For $q = 4$, the stepper and the code behind this site both follow Singer's algorithm, yet they produce two different sets, and neither is a translate of the other. So how many Singer sets are there for one $q$, and how are they related? The answer starts with a second way to move a set around the clock.
+[Lesson 15](../15-writing-down-a-difference-set/) left a loose end. For $q = 4$, the stepper and the code behind this site both follow Singer's algorithm, yet they produce two different sets, and neither is a translate of the other. So how many Singer sets are there for one $q$, and how are they related? The answer starts with a second way to move a set around the clock.
 
-[Lesson 2](../02-rotations/) moved a difference set around the clock by adding: $D + j$. Here is another move: multiply every member by the same number $t$, mod $v$. Write the result $t \cdot D$ ("$t$ times $D$"). For $D = \{0, 1, 3\}$ mod 7,
+[Lesson 2](../02-translates/) moved a difference set around the clock by adding: $D + j$. Here is another move: multiply every member by the same number $t$, mod $v$. Write the result $t \cdot D$ ("$t$ times $D$"). For $D = \{0, 1, 3\}$ mod 7,
 
 $$
 2 \cdot D = \{0, 2, 6\}, \qquad 3 \cdot D = \{0, 3, 9\} \equiv \{0, 2, 3\} \pmod 7.
 $$
 
-Both are difference sets again. The reason is short. Every difference of $t \cdot D$ is $t d_1 - t d_2 = t (d_1 - d_2)$, a difference of $D$ multiplied by $t$. When $t$ is coprime to $v$, it has an inverse mod $v$ ([Lesson 5](../05-which-clocks-are-fields/)), so multiplying by $t$ permutes the nonzero residues: different residues go to different residues, and none goes to 0. Each nonzero residue occurred once as a difference of $D$, so each one still occurs once as a difference of $t \cdot D$.
+Both are difference sets again. The reason is short. Every difference of $t \cdot D$ is $t d_1 - t d_2 = t (d_1 - d_2)$, a difference of $D$ multiplied by $t$. When $t$ is coprime to $v$, it has an inverse mod $v$ ([Lesson 6](../06-which-clocks-are-fields/)), so multiplying by $t$ permutes the nonzero residues: different residues go to different residues, and none goes to 0. Each nonzero residue occurred once as a difference of $D$, so each one still occurs once as a difference of $t \cdot D$.
 
 When $t$ is not coprime to $v$, multiplying by $t$ is no longer a permutation. With $v = 21$ and $t = 3$, $3 \cdot \{0, 1, 4, 14, 16\} = \{0, 3, 12, 42, 48\} \equiv \{0, 3, 12, 0, 6\}$: two members collide, and only four are left.
 
-How many useful values of $t$ are there? Exactly $\varphi(v)$ of them, where $\varphi$ is Euler's totient function, met in [Lesson 8](../08-primitive-elements/): the count of numbers from 1 to $v$ that are coprime to $v$. For $v = 7$ that is all six of $1, \dots, 6$; for $v = 21$ it is twelve.
+How many useful values of $t$ are there? Exactly $\varphi(v)$ of them, where $\varphi$ is Euler's totient function, met in [Lesson 9](../09-primitive-elements/): the count of numbers from 1 to $v$ that are coprime to $v$. For $v = 7$ that is all six of $1, \dots, 6$; for $v = 21$ it is twelve.
 
 ## Three ways to move a set
 
@@ -52,7 +52,7 @@ Sometimes a multiple is nothing new. $2 \cdot \{0, 1, 3\} = \{0, 2, 6\}$, and th
 
 ## Multiplying by p is a symmetry
 
-Now take the Singer set of [Lesson 14](../14-writing-down-a-difference-set/), $D = \{\, i : \mathrm{Tr}(\alpha^i) = 0 \,\}$, with $q = p^e$. The Frobenius map $x \mapsto x^p$ of [Lesson 9](../09-fields-inside-fields/) sends $\alpha^i$ to $\alpha^{pi}$, and by the freshman's dream it passes straight through the trace:
+Now take the Singer set of [Lesson 15](../15-writing-down-a-difference-set/), $D = \{\, i : \mathrm{Tr}(\alpha^i) = 0 \,\}$, with $q = p^e$. The Frobenius map $x \mapsto x^p$ of [Lesson 10](../10-fields-inside-fields/) sends $\alpha^i$ to $\alpha^{pi}$, and by the freshman's dream it passes straight through the trace:
 
 $$
 \mathrm{Tr}(x)^p = \left(x + x^q + x^{q^2}\right)^p = x^p + (x^p)^q + (x^p)^{q^2} = \mathrm{Tr}(x^p).
@@ -79,9 +79,9 @@ Suppose $p^a \equiv p^b \pmod v$ with $0 \le a < b < 3e$. Since $p$ has an inver
 
 </details>
 
-Geometrically, $x \mapsto x^p$ respects adding, $(u + w)^p = u^p + w^p$, and turns scaling by $s$ into scaling by $s^p$, which is still in $\mathrm{GF}(q)$; and every scalar is some $s^p$, because $x \mapsto x^p$ is one-to-one on the finite set $\mathrm{GF}(q)$ ([Lesson 9](../09-fields-inside-fields/)). So, by the argument of Lesson 13, it carries points to points and lines to lines: it is another symmetry of $\mathrm{PG}(2, q)$, one that sends point $i$ to point $p i$ and keeps point 0 where it is. The trace-zero line is one of the lines it leaves in place. Any other line $D + j$ goes to $p \cdot (D + j) = D + pj$, again a translate.
+Geometrically, $x \mapsto x^p$ respects adding, $(u + w)^p = u^p + w^p$, and turns scaling by $s$ into scaling by $s^p$, which is still in $\mathrm{GF}(q)$; and every scalar is some $s^p$, because $x \mapsto x^p$ is one-to-one on the finite set $\mathrm{GF}(q)$ ([Lesson 10](../10-fields-inside-fields/)). So, by the argument of Lesson 14, it carries points to points and lines to lines: it is another symmetry of $\mathrm{PG}(2, q)$, one that sends point $i$ to point $p i$ and keeps point 0 where it is. The trace-zero line is one of the lines it leaves in place. Any other line $D + j$ goes to $p \cdot (D + j) = D + pj$, again a translate.
 
-Two theorems say how far this goes. Marshall Hall (1947) proved that for *every* planar difference set of order $n$, Singer or not, every prime dividing $n$ is a multiplier; [Lesson 17](../17-every-planar-set-singer/) shows how that theorem constrains sets nobody has found. And Gordon, Mills, and Welch (1962) showed that a Singer set has no multipliers other than the powers of $p$. In particular, $-1$ is not a multiplier; in fact it is never a multiplier of any nontrivial difference set, that is, one with $1 < k < v - 1$ (Gordon, Mills, and Welch 1962; Johnsen 1964). So a Singer set is never a translate of its own mirror image.
+Two theorems say how far this goes. Marshall Hall (1947) proved that for *every* planar difference set of order $n$, Singer or not, every prime dividing $n$ is a multiplier; [Lesson 19](../19-how-a-proof-might-go/) shows how that theorem constrains sets nobody has found. And Gordon, Mills, and Welch (1962) showed that a Singer set has no multipliers other than the powers of $p$. In particular, $-1$ is not a multiplier; in fact it is never a multiplier of any nontrivial difference set, that is, one with $1 < k < v - 1$ (Gordon, Mills, and Welch 1962; Johnsen 1964). So a Singer set is never a translate of its own mirror image.
 
 ## Counting the shapes
 
@@ -123,17 +123,17 @@ Choose $q$ and $t$ below. The widget multiplies the trace set by $t$, says wheth
 | 11 | 133 | 108 | 3 | 36 | 18 |
 | 13 | 183 | 120 | 3 | 40 | 20 |
 
-The $\varphi(v)/3e$ column is OEIS [A335866](https://oeis.org/A335866). The last column, $1, 2, 1, 5, 6, 4, 6, 18, 20, \dots$ for $q = 2, 3, 4, 5, 7, 8, 9, 11, 13, \dots$, is OEIS [A058241](https://oeis.org/A058241), which its contributors computed by *searching* for every planar difference set, not just Singer's. That the two agree is the evidence behind the open question of Lesson 17.
+The $\varphi(v)/3e$ column is OEIS [A335866](https://oeis.org/A335866). The last column, $1, 2, 1, 5, 6, 4, 6, 18, 20, \dots$ for $q = 2, 3, 4, 5, 7, 8, 9, 11, 13, \dots$, is OEIS [A058241](https://oeis.org/A058241), which its contributors computed by *searching* for every planar difference set, not just Singer's. That the two agree is the evidence behind the open question of Lesson 18.
 
 ## Where the other sets come from
 
-Every one of these sets is a Singer set in its own right: it comes from choosing a different primitive element. If $\beta = \alpha^s$ (beta) is another primitive element of $\mathrm{GF}(q^3)$, then the trace construction with $\beta$ keeps the $i$ with $\mathrm{Tr}(\alpha^{si}) = 0$, that is, the $i$ with $s i$ in $D$. That is the multiple $u \cdot D$, where $u$ is the inverse of $s$ mod $v$. ($s$ has one: if $s$ shared a factor $r$ with $q^3 - 1$, then $\beta^{(q^3 - 1)/r} = (\alpha^{q^3 - 1})^{s/r} = 1$, and $\beta$ would not be primitive. So $s$ is coprime to $q^3 - 1$, and so to its divisor $v$.) Choosing a different primitive polynomial is choosing a different $\alpha$, so it multiplies the set. A field built from a different polynomial, like the code's degree-$3e$ version, is isomorphic to this one (Lesson 12), and an isomorphism preserves everything that is computed by adding and multiplying, the trace included; so this covers it too.
+Every one of these sets is a Singer set in its own right: it comes from choosing a different primitive element. If $\beta = \alpha^s$ (beta) is another primitive element of $\mathrm{GF}(q^3)$, then the trace construction with $\beta$ keeps the $i$ with $\mathrm{Tr}(\alpha^{si}) = 0$, that is, the $i$ with $s i$ in $D$. That is the multiple $u \cdot D$, where $u$ is the inverse of $s$ mod $v$. ($s$ has one: if $s$ shared a factor $r$ with $q^3 - 1$, then $\beta^{(q^3 - 1)/r} = (\alpha^{q^3 - 1})^{s/r} = 1$, and $\beta$ would not be primitive. So $s$ is coprime to $q^3 - 1$, and so to its divisor $v$.) Choosing a different primitive polynomial is choosing a different $\alpha$, so it multiplies the set. A field built from a different polynomial, like the code's degree-$3e$ version, is isomorphic to this one (Lesson 13), and an isomorphism preserves everything that is computed by adding and multiplying, the trace included; so this covers it too.
 
-That explains the last loose end of Lesson 14. For $q = 4$ the site's `singerSet` builds the field from a degree-6 polynomial over $\mathrm{GF}(2)$, so its $\alpha$ is a different element, and it finds $\{3, 6, 7, 12, 14\}$. That is $5 \cdot D$ for the stepper's $D = \{7, 9, 14, 15, 18\}$, in the same class as $-D$, the mirror image.
+That explains the last loose end of Lesson 15. For $q = 4$ the site's `singerSet` builds the field from a degree-6 polynomial over $\mathrm{GF}(2)$, so its $\alpha$ is a different element, and it finds $\{3, 6, 7, 12, 14\}$. That is $5 \cdot D$ for the stepper's $D = \{7, 9, 14, 15, 18\}$, in the same class as $-D$, the mirror image.
 
 So the many sets are one family: all the Singer sets of order $q$ are the multiples $t \cdot D$ and their translates, the lines of one plane read with different choices of $\alpha$. That upgrades the count: there are exactly $\varphi(v)/3e$ **Singer sets** of order $q$ up to translation, and $\varphi(v)/6e$ up to translation and mirror images. The words matter here. Under translation and multiplication together, there is exactly **one** Singer set per $q$. The numbers above count *different sets*, up to translation alone or up to translation and mirror images, not essentially different ones.
 
-That finishes the construction and the count of what it produces. Part VI looks past it. [Lesson 16](../16-beyond-the-plane/) carries the same idea into more dimensions, where the sets become the bit streams that Part VII's telescopes and radars use. [Lesson 17](../17-every-planar-set-singer/) asks a question nobody has answered: are Singer's sets the only planar difference sets there are?
+That finishes the construction and the count of what it produces. Part VI looks past it. [Lesson 17](../17-beyond-the-plane/) carries the same idea into more dimensions, where the sets become the bit streams that Part VII's telescopes and radars use. [Lesson 18](../18-every-planar-set-singer/) asks a question nobody has answered: are Singer's sets the only planar difference sets there are?
 
 <section class="try-it">
 

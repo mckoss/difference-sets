@@ -1,6 +1,6 @@
 ---
 title: "Finding an echo"
-order: 20
+order: 22
 part: 7
 summary: "Codes that look like noise but line up with themselves in only one place."
 status: ready
@@ -45,13 +45,13 @@ The two charts at the bottom compare each code with an exact copy of itself, wit
 
 The m-sequence code is built from a difference set $D$, a set of $k$ points on a clock with $v$ hours in which every nonzero difference occurs $\lambda$ times ([Lesson 1](../01-differences-on-a-circle/)). Put $s_i = -1$ when $i$ is in $D$, and $s_i = +1$ otherwise.
 
-Compare the code with itself shifted by $t$, a shift that is not $0 \pmod v$. Entry by entry, the product is $+1$ where the two agree and $-1$ where they disagree. They disagree exactly at the points that are in one of $D$ and $D + t$ but not in the other. By [Lesson 2](../02-rotations/), $D$ and $D + t$ share exactly $\lambda$ points, so each has $k - \lambda$ points the other lacks: $2(k - \lambda)$ disagreements in all, and $v - 2(k - \lambda)$ agreements. So
+Compare the code with itself shifted by $t$, a shift that is not $0 \pmod v$. Entry by entry, the product is $+1$ where the two agree and $-1$ where they disagree. They disagree exactly at the points that are in one of $D$ and $D + t$ but not in the other. By [Lesson 2](../02-translates/), $D$ and $D + t$ share exactly $\lambda$ points, so each has $k - \lambda$ points the other lacks: $2(k - \lambda)$ disagreements in all, and $v - 2(k - \lambda)$ agreements. So
 
 $$
 C(0) = v, \qquad C(t) = v - 2(k - \lambda) - 2(k - \lambda) = v - 4(k - \lambda) \quad \text{for every other } t.
 $$
 
-The score at every wrong shift is the same number. (For the codes of 0s and 1s in [Lesson 19](../19-pictures-without-a-lens/), the same counting gives $k$ at shift 0 and $\lambda$ everywhere else.)
+The score at every wrong shift is the same number. (For the codes of 0s and 1s in [Lesson 21](../21-pictures-without-a-lens/), the same counting gives $k$ at shift 0 and $\lambda$ everywhere else.)
 
 ## Which difference sets make good codes?
 
@@ -66,16 +66,16 @@ We want the wrong shifts to score as little as possible compared with the peak $
 | $\mathrm{PG}(3, 2)$ | 15 | 7 | 3 | $-1$ |
 | $\mathrm{PG}(m, 2)$ | $2^{m+1} - 1$ | $2^m - 1$ | $2^{m-1} - 1$ | $-1$ |
 
-For the planes, the wrong-shift score is $q^2 - 3q + 1$, which grows quickly: planar Singer sets with large $q$ are poor $\pm 1$ codes. (They do better in the on/off settings of Lessons 19 and 21–23.) But for the Singer sets of $\mathrm{PG}(m, 2)$ from [Lesson 16](../16-beyond-the-plane/), $k - \lambda = 2^{m-1}$, so $4(k - \lambda) = 2^{m+1} = v + 1$, and every wrong shift scores exactly $-1$ against a peak of $v$.
+For the planes, the wrong-shift score is $q^2 - 3q + 1$, which grows quickly: planar Singer sets with large $q$ are poor $\pm 1$ codes. (They do better in the on/off settings of Lessons 21 and 23–25.) But for the Singer sets of $\mathrm{PG}(m, 2)$ from [Lesson 17](../17-beyond-the-plane/), $k - \lambda = 2^{m-1}$, so $4(k - \lambda) = 2^{m+1} = v + 1$, and every wrong shift scores exactly $-1$ against a peak of $v$.
 
-Those are the codes in the widget. They are called **maximal-length sequences**, or **m-sequences**, and a **shift register** makes them: a row of bits that moves along one place per tick, with a few of the bits added (mod 2) to make the next one. As Lesson 16 explains, the positions of the 0s in one period form the Singer set. For length 7 the bits are 1, 0, 0, 1, 0, 1, 1: the 0s sit at $\{1, 2, 4\} = \{0, 1, 3\} + 1$.
+Those are the codes in the widget. They are called **maximal-length sequences**, or **m-sequences**, and a **shift register** makes them: a row of bits that moves along one place per tick, with a few of the bits added (mod 2) to make the next one. As Lesson 17 explains, the positions of the 0s in one period form the Singer set. For length 7 the bits are 1, 0, 0, 1, 0, 1, 1: the 0s sit at $\{1, 2, 4\} = \{0, 1, 3\} + 1$.
 
 ## Where these codes work
 
 - **Radar.** Sending a long coded pulse and correlating the echo against it is called *pulse compression*. A 1986 Raytheon patent uses maximal-length shift-register codes for this, and a 1979 ITT patent uses a maximal-length code precisely because its periodic correlation sidelobes are constant at $-1$.
 - **Measuring sound.** Play an m-sequence (it sounds like hiss) through a loudspeaker, record it with a microphone, and correlate. Because the code's own correlation is a single spike, the result is the room's echo pattern itself. D. D. Rife and J. Vanderkooy described this in 1989, and it became the basis of a commercial analyser used to measure loudspeakers and rooms.
 - **GPS, with a twist.** Each GPS satellite's C/A code adds together, bit by bit, two m-sequences of length 1023 made by 10-bit shift registers. Each of the two is a Singer-type sequence, but their sum is a *Gold code*, which is **not** a difference set: its correlation takes three values instead of two. That trade buys something a single m-sequence can't give: the codes of different satellites look unlike each other, so a receiver can pick out each one.
-- **Scrambling data.** The DARC data channel for FM radio (Lesson 21) mixes its bits with an m-sequence of period 511 from the shift register with polynomial $x^9 + x^4 + 1$ (shorthand for the rule that makes each new bit: $b_{i+9} = b_{i+4} + b_i \bmod 2$), a step called *scrambling*.
+- **Scrambling data.** The DARC data channel for FM radio (Lesson 23) mixes its bits with an m-sequence of period 511 from the shift register with polynomial $x^9 + x^4 + 1$ (shorthand for the rule that makes each new bit: $b_{i+9} = b_{i+4} + b_i \bmod 2$), a step called *scrambling*.
 
 <section class="try-it">
 

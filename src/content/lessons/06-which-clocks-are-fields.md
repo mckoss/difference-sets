@@ -1,6 +1,6 @@
 ---
 title: "Which clocks are fields"
-order: 5
+order: 6
 part: 3
 summary: "The field axioms, and why clock arithmetic ℤ/vℤ is a field exactly when v is prime."
 status: ready
@@ -20,7 +20,7 @@ For example, on a clock with 7 hours, $5 + 4 = 9 \equiv 2$ and $3 \times 5 = 15 
 
 ## Why a plane needs division
 
-[Lesson 4](../04-projective-planes/) ended with a plan: build a finite plane the way coordinate geometry builds the ordinary one. There, a point is a pair of numbers $(x, y)$, and a line is the set of points that solve an equation such as $y = 2x$. Try that with coordinates taken from a clock.
+[Lesson 5](../05-cyclic-planes/) ended with a plan: build a finite plane the way coordinate geometry builds the ordinary one. There, a point is a pair of numbers $(x, y)$, and a line is the set of points that solve an equation such as $y = 2x$. Try that with coordinates taken from a clock.
 
 On the 7-hour clock, the lines $y = 0$ and $y = 2x$ meet where $2x \equiv 0 \pmod 7$. The only such hour is $x = 0$, so the lines cross once, at $(0, 0)$, as lines should. On the 6-hour clock, $2x \equiv 0 \pmod 6$ has *two* solutions, $x = 0$ and $x = 3$, because $2 \times 3 = 6 \equiv 0$. Now the two lines cross twice, at $(0, 0)$ and at $(3, 0)$, and the rule that two points lie on only one line is broken.
 
@@ -85,7 +85,7 @@ For a large prime, reading across a row is slow. The **extended Euclidean algori
 
 Step through it for $a = 5$, $v = 13$: the remainders are 13, 5, 3, 2, 1, and the last line says $1 = 2 \times 13 + (-5) \times 5$. So $5^{-1} \equiv -5 \equiv 8$, and indeed $5 \times 8 = 40 = 3 \times 13 + 1$. If $a$ and $v$ are not coprime, the remainders stop at their largest common factor instead of 1, and there is no inverse.
 
-**Why the chain ends at the greatest common divisor.** Each remainder is built from the two numbers before it, so every remainder is some multiple of $v$ plus some multiple of $a$; a factor shared by $v$ and $a$ therefore divides every remainder, including the last nonzero one. In the other direction, the last nonzero remainder divides the one before it (that division came out even), hence the one before that, and so on back up the chain to $a$ and $v$. So the last nonzero remainder is a common factor of $v$ and $a$ that every common factor divides: their **greatest common divisor**. Coprime numbers are the ones whose greatest common divisor is 1, so the chain ends at 1, and produces an inverse of $a$ mod $v$, exactly when $a$ and $v$ are coprime. (Otherwise there is no inverse at all: if $y \times a \equiv 1 \pmod v$, then $y \times a - 1$ is a multiple of $v$, so any common factor of $a$ and $v$ divides 1.) When $v = p$ is prime and $a$ is a nonzero hour, the only common factor is 1, so the chain ends at 1 and every nonzero $a$ has an inverse. That is a second proof of the last section's result, and this one carries over to polynomials in [Lesson 7](../07-prime-power-fields/).
+**Why the chain ends at the greatest common divisor.** Each remainder is built from the two numbers before it, so every remainder is some multiple of $v$ plus some multiple of $a$; a factor shared by $v$ and $a$ therefore divides every remainder, including the last nonzero one. In the other direction, the last nonzero remainder divides the one before it (that division came out even), hence the one before that, and so on back up the chain to $a$ and $v$. So the last nonzero remainder is a common factor of $v$ and $a$ that every common factor divides: their **greatest common divisor**. Coprime numbers are the ones whose greatest common divisor is 1, so the chain ends at 1, and produces an inverse of $a$ mod $v$, exactly when $a$ and $v$ are coprime. (Otherwise there is no inverse at all: if $y \times a \equiv 1 \pmod v$, then $y \times a - 1$ is a multiple of $v$, so any common factor of $a$ and $v$ divides 1.) When $v = p$ is prime and $a$ is a nonzero hour, the only common factor is 1, so the chain ends at 1 and every nonzero $a$ has an inverse. That is a second proof of the last section's result, and this one carries over to polynomials in [Lesson 8](../08-prime-power-fields/).
 
 The same equation proves Euclid's lemma. If a prime $p$ does not divide $a$, then $1 = x \times p + y \times a$ for some integers $x$ and $y$; multiplying by $b$ gives $b = x \times p \times b + y \times (a \times b)$. If $p$ divides $a \times b$, it divides both terms on the right, so $p$ divides $b$.
 
@@ -106,11 +106,11 @@ For a prime $p$, this field is called $\mathrm{GF}(p)$. So $\mathrm{GF}(7)$ is t
 
 ## Why "GF"?
 
-The letters stand for **Galois field**, after Évariste Galois (1811–1832), a young French mathematician who laid much of the foundation of modern algebra before he was killed in a duel at the age of 20. In a short paper of 1830, "Sur la théorie des nombres" ("On the theory of numbers"), he showed how to build number systems with $p^2$, $p^3$, … elements. He started from the integers mod $p$ and added a new number that solves an equation with no solution among them, much as $i$ is added to the real numbers to solve $x^2 = -1$. Those are the fields that [Lesson 7](../07-prime-power-fields/) builds, and Singer's construction needs them.
+The letters stand for **Galois field**, after Évariste Galois (1811–1832), a young French mathematician who laid much of the foundation of modern algebra before he was killed in a duel at the age of 20. In a short paper of 1830, "Sur la théorie des nombres" ("On the theory of numbers"), he showed how to build number systems with $p^2$, $p^3$, … elements. He started from the integers mod $p$ and added a new number that solves an equation with no solution among them, much as $i$ is added to the real numbers to solve $x^2 = -1$. Those are the fields that [Lesson 8](../08-prime-power-fields/) builds, and Singer's construction needs them.
 
 The complete picture came later. In 1893 the American mathematician E. H. Moore proved that a finite field always has a prime or a power of a prime as its number of elements, and that for each such number there is essentially only one field. Any two finite fields with the same number of elements are **isomorphic**: they are the same field with the elements renamed, so that one's addition and multiplication tables turn into the other's. That is why it makes sense to speak of *the* field with 7 elements and give it one name, $\mathrm{GF}(7)$.
 
-You won't have to take this on trust for the prime sizes: the [next lesson](../06-fields-of-prime-order/) proves that every field with a prime number $p$ of elements is isomorphic to $\mathrm{GF}(p)$. For the larger fields of Lesson 7, the proof needs more algebra than this site develops, so Lesson 7 states it as a fact and gives you a widget that tests it on examples. A full proof is in any textbook on finite fields, for example chapter 2 of Lidl and Niederreiter's *Finite Fields*.
+You won't have to take this on trust for the prime sizes: the [next lesson](../07-fields-of-prime-order/) proves that every field with a prime number $p$ of elements is isomorphic to $\mathrm{GF}(p)$. For the larger fields of Lesson 8, the proof needs more algebra than this site develops, so Lesson 8 states it as a fact and gives you a widget that tests it on examples. A full proof is in any textbook on finite fields, for example chapter 2 of Lidl and Niederreiter's *Finite Fields*.
 
 <section class="try-it">
 
@@ -152,5 +152,5 @@ Explore any clock up to 24 hours in the [finite field calculator](../../playgrou
 
     Here is how the quotient view describes this lesson's result. When $v = ab$ is composite, the multiples of $a$ form a larger ideal $a\mathbb{Z}$ that sits strictly between $v\mathbb{Z}$ and $\mathbb{Z}$. The classes of $a$ and $b$ are then not zero, but their product $ab = v$ is: a zero divisor, which rules out division. When $p$ is prime, no ideal fits between $p\mathbb{Z}$ and $\mathbb{Z}$ (algebraists call $p\mathbb{Z}$ a **maximal ideal**), and a standard theorem of algebra says that the quotient by a maximal ideal is always a field. So $\mathbb{Z}/p\mathbb{Z}$ is a field, which this lesson showed directly above. The maximal-ideal theorem is mentioned only so that the word *quotient* makes sense; nothing later depends on it.
 
-    [Lesson 7](../07-prime-power-fields/) makes the same move with polynomials. It treats every multiple of an irreducible polynomial $f(x)$ as zero, and $f$ plays the role of the prime $p$.
+    [Lesson 8](../08-prime-power-fields/) makes the same move with polynomials. It treats every multiple of an irreducible polynomial $f(x)$ as zero, and $f$ plays the role of the prime $p$.
 

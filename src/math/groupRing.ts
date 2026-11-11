@@ -1,5 +1,5 @@
 // A set D mod v as the polynomial D(x) = Σ x^d, and the identity
-// D(x) · D(x⁻¹) ≡ n + (1 + x + … + x^(v−1)) (mod x^v − 1) that Lesson 17 uses.
+// D(x) · D(x⁻¹) ≡ n + (1 + x + … + x^(v−1)) (mod x^v − 1) that Lesson 19 uses.
 
 import { mod } from './numbers';
 

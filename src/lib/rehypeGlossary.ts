@@ -39,7 +39,7 @@ export function glossaryMatcher(terms: readonly GlossaryTerm[]): { re: RegExp; t
   return { re, termOf };
 }
 
-/** Lesson order from a source path like ".../05-which-clocks-are-fields.md". */
+/** Lesson order from a source path like ".../06-which-clocks-are-fields.md". */
 export function lessonOrderOf(path: string | undefined): number | undefined {
   const m = path?.match(/(?:^|[/\\])(\d+)-[^/\\]*\.md$/);
   return m ? Number(m[1]) : undefined;

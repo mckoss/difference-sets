@@ -1,6 +1,6 @@
 ---
 title: "The field hiding inside the plane"
-order: 12
+order: 13
 part: 4
 summary: "GF(q³) is GF(q)³, so every point of PG(2, q) is a power of α, and the points get numbers mod v."
 status: ready
@@ -8,19 +8,19 @@ status: ready
 
 ## You'll learn
 
-- That the big field $\mathrm{GF}(q^3)$ *is* the space $\mathrm{GF}(q)^3$ of Lesson 10, with one extra ability: its vectors can be multiplied.
+- That the big field $\mathrm{GF}(q^3)$ *is* the space $\mathrm{GF}(q)^3$ of Lesson 11, with one extra ability: its vectors can be multiplied.
 - That the nonzero elements, taken up to scaling by $\mathrm{GF}(q)$, are exactly the points of $\mathrm{PG}(2, q)$.
 - That because $\mathrm{GF}(q)^* = \langle \alpha^v \rangle$ with $v = q^2 + q + 1$, each point is $\alpha^i$ for exactly one $i \bmod v$. That gives every point a number on a clock with $v$ hours.
 
 ## Two descriptions of the same thing
 
-[Lesson 11](../11-coordinates/) built the plane $\mathrm{PG}(2, q)$ out of vectors with three coordinates. [Lesson 9](../09-fields-inside-fields/) built the field $\mathrm{GF}(q^3)$, with $q^3$ elements, and found $\mathrm{GF}(q)$ sitting inside it. This lesson notices that these are the same object, seen two ways.
+[Lesson 12](../12-coordinates/) built the plane $\mathrm{PG}(2, q)$ out of vectors with three coordinates. [Lesson 10](../10-fields-inside-fields/) built the field $\mathrm{GF}(q^3)$, with $q^3$ elements, and found $\mathrm{GF}(q)$ sitting inside it. This lesson notices that these are the same object, seen two ways.
 
-The payoff is multiplication. As vectors, the elements can be added and scaled. As field elements they can also be multiplied and divided by each other, with every rule of ordinary algebra in force. And once the points of the plane are field elements, they can be numbered by the powers of a primitive element $\alpha$. [Lesson 13](../13-singer-cycle/) then shows that multiplying by $\alpha$ is the turning symmetry that Lesson 4 asked for.
+The payoff is multiplication. As vectors, the elements can be added and scaled. As field elements they can also be multiplied and divided by each other, with every rule of ordinary algebra in force. And once the points of the plane are field elements, they can be numbered by the powers of a primitive element $\alpha$. [Lesson 14](../14-singer-cycle/) then shows that multiplying by $\alpha$ is the symmetry that Lesson 5 asked for.
 
 ## GF(q³) as vectors over GF(q)
 
-[Lesson 7](../07-prime-power-fields/) built a field from remainders: choose an irreducible polynomial of degree 3, and work with the remainders of degree below 3. Lesson 7 took its coefficients mod a prime $p$, but long division only ever adds, multiplies, and divides coefficients, so the same construction works with coefficients in any field, including $\mathrm{GF}(q)$. Choose a primitive polynomial of degree 3 over $\mathrm{GF}(q)$ (there always is one: [Lesson 8](../08-primitive-elements/) states that every finite field, not only $\mathrm{GF}(p)$, has a primitive polynomial of every degree), and call the remainder $x$ by the name $\alpha$. Every element of $\mathrm{GF}(q^3)$ is then
+[Lesson 8](../08-prime-power-fields/) built a field from remainders: choose an irreducible polynomial of degree 3, and work with the remainders of degree below 3. Lesson 8 took its coefficients mod a prime $p$, but long division only ever adds, multiplies, and divides coefficients, so the same construction works with coefficients in any field, including $\mathrm{GF}(q)$. Choose a primitive polynomial of degree 3 over $\mathrm{GF}(q)$ (there always is one: [Lesson 9](../09-primitive-elements/) states that every finite field, not only $\mathrm{GF}(p)$, has a primitive polynomial of every degree), and call the remainder $x$ by the name $\alpha$. Every element of $\mathrm{GF}(q^3)$ is then
 
 $$
 c_0 + c_1 \alpha + c_2 \alpha^2
@@ -28,7 +28,7 @@ $$
 
 for exactly one choice of $c_0, c_1, c_2$ in $\mathrm{GF}(q)$, and $\alpha$ is primitive: its powers visit every nonzero element.
 
-For $q = 3$, the site uses $x^3 + 2x + 1$, so $\alpha^3 + 2\alpha + 1 = 0$, which means $\alpha^3 = \alpha + 2$ (since $-2 \equiv 1$ and $-1 \equiv 2$ mod 3). For $q = 2$ it uses $x^3 + x + 1$ from Lesson 7, so $\alpha^3 = \alpha + 1$. For $q = 4$ the coefficients come from $\mathrm{GF}(4) = \{0, 1, \omega, \omega^2\}$, and $\alpha^3 = \alpha^2 + \alpha + \omega$. (Lesson 9 built $\mathrm{GF}(64)$ differently, from a polynomial of degree 6 over $\mathrm{GF}(2)$. The two are isomorphic, as all fields of one size are; the isomorphism finder of Lesson 7 shows it for small cases.)
+For $q = 3$, the site uses $x^3 + 2x + 1$, so $\alpha^3 + 2\alpha + 1 = 0$, which means $\alpha^3 = \alpha + 2$ (since $-2 \equiv 1$ and $-1 \equiv 2$ mod 3). For $q = 2$ it uses $x^3 + x + 1$ from Lesson 8, so $\alpha^3 = \alpha + 1$. For $q = 4$ the coefficients come from $\mathrm{GF}(4) = \{0, 1, \omega, \omega^2\}$, and $\alpha^3 = \alpha^2 + \alpha + \omega$. (Lesson 10 built $\mathrm{GF}(64)$ differently, from a polynomial of degree 6 over $\mathrm{GF}(2)$. The two are isomorphic, as all fields of one size are; the isomorphism finder of Lesson 8 shows it for small cases.)
 
 Now read the three coefficients as a vector:
 
@@ -36,20 +36,20 @@ $$
 c_0 + c_1 \alpha + c_2 \alpha^2 \quad \longleftrightarrow \quad (c_0, c_1, c_2).
 $$
 
-Adding two elements adds their coefficients, which is adding vectors. Multiplying by a constant $s$ from $\mathrm{GF}(q)$ multiplies each coefficient by $s$, which is scaling a vector. So **$\mathrm{GF}(q^3)$ is $\mathrm{GF}(q)^3$**, with the bonus that any two elements can also be multiplied together. The constants $c_0$, the elements with $c_1 = c_2 = 0$, are the copy of $\mathrm{GF}(q)$ inside the big field. Lesson 9 found a copy of $\mathrm{GF}(q)$ in a different way, as the fixed points of $x \mapsto x^q$. These are the same $q$ elements.
+Adding two elements adds their coefficients, which is adding vectors. Multiplying by a constant $s$ from $\mathrm{GF}(q)$ multiplies each coefficient by $s$, which is scaling a vector. So **$\mathrm{GF}(q^3)$ is $\mathrm{GF}(q)^3$**, with the bonus that any two elements can also be multiplied together. The constants $c_0$, the elements with $c_1 = c_2 = 0$, are the copy of $\mathrm{GF}(q)$ inside the big field. Lesson 10 found a copy of $\mathrm{GF}(q)$ in a different way, as the fixed points of $x \mapsto x^q$. These are the same $q$ elements.
 
 <details>
 <summary>Why the constants are the fixed points</summary>
 
-The constants form a field with $q$ elements, so by Lesson 8 every nonzero constant $c$ satisfies $c^{q-1} = 1$, and multiplying by $c$ gives $c^q = c$: every constant is a fixed point of $x \mapsto x^q$ (and $0^q = 0$). There are $q$ constants, and Lesson 9 showed there are at most $q$ fixed points. So the constants are exactly the fixed points, $\{0\} \cup \langle \alpha^v \rangle$ with $v = q^2 + q + 1$.
+The constants form a field with $q$ elements, so by Lesson 9 every nonzero constant $c$ satisfies $c^{q-1} = 1$, and multiplying by $c$ gives $c^q = c$: every constant is a fixed point of $x \mapsto x^q$ (and $0^q = 0$). There are $q$ constants, and Lesson 10 showed there are at most $q$ fixed points. So the constants are exactly the fixed points, $\{0\} \cup \langle \alpha^v \rangle$ with $v = q^2 + q + 1$.
 
 </details>
 
 ## Every point is a power of α
 
-Each point of $\mathrm{PG}(2, q)$ is a line through the origin: a nonzero vector $u$ together with its multiples $s \cdot u$ for the $q - 1$ nonzero scalars $s$. Read in the big field, $u$ is a nonzero element, so by Lesson 8 it is a power $\alpha^i$, with $0 \le i < q^3 - 1$.
+Each point of $\mathrm{PG}(2, q)$ is a line through the origin: a nonzero vector $u$ together with its multiples $s \cdot u$ for the $q - 1$ nonzero scalars $s$. Read in the big field, $u$ is a nonzero element, so by Lesson 9 it is a power $\alpha^i$, with $0 \le i < q^3 - 1$.
 
-Which other powers name the same point? Lesson 9 found that the nonzero elements of $\mathrm{GF}(q)$, which we just saw are the nonzero constants, are exactly the powers of $\alpha^v$, where $v = q^2 + q + 1$:
+Which other powers name the same point? Lesson 10 found that the nonzero elements of $\mathrm{GF}(q)$, which we just saw are the nonzero constants, are exactly the powers of $\alpha^v$, where $v = q^2 + q + 1$:
 
 $$
 \mathrm{GF}(q)^* = \{1, \alpha^v, \alpha^{2v}, \dots, \alpha^{(q-2)v}\} = \langle \alpha^v \rangle.
@@ -71,7 +71,7 @@ Step through the powers of $\alpha$ below. Each power is a vector; its normalize
 
 <div data-widget="field-points" data-q="3"></div>
 
-For $q = 3$, $v = 13$ and $\alpha^{13} = 2$: a constant, as it must be, and the one Lesson 9 found fixed by $x \mapsto x^3$. So $\alpha^{4} = \alpha^2 + 2\alpha$, the vector $(0, 2, 1)$, and $\alpha^{17} = 2\alpha^4 = 2\alpha^2 + \alpha$, the vector $(0, 1, 2)$, are two names for the point $[0 : 1 : 2]$, which is point 4.
+For $q = 3$, $v = 13$ and $\alpha^{13} = 2$: a constant, as it must be, and the one Lesson 10 found fixed by $x \mapsto x^3$. So $\alpha^{4} = \alpha^2 + 2\alpha$, the vector $(0, 2, 1)$, and $\alpha^{17} = 2\alpha^4 = 2\alpha^2 + \alpha$, the vector $(0, 1, 2)$, are two names for the point $[0 : 1 : 2]$, which is point 4.
 
 ## The smallest case: q = 2
 
@@ -87,7 +87,7 @@ For $q = 2$ there is only one nonzero scalar, so each point is a single element 
 | 5 | $\alpha^2 + \alpha + 1$ | $[1 : 1 : 1]$ |
 | 6 | $\alpha^2 + 1$ | $[1 : 0 : 1]$ |
 
-Now look at the line $z = 0$, the elements with no $\alpha^2$ term. Its points are numbers 0, 1, and 3: the set $\{0, 1, 3\}$ from Lesson 1. The line $x = 0$, the elements with no constant term, holds points 1, 2, and 4: the set $\{1, 2, 4\} = \{0, 1, 3\} + 1$. Numbered by powers of $\alpha$, the lines of $\mathrm{PG}(2, 2)$ are starting to look like the translates of a difference set. [Lesson 13](../13-singer-cycle/) shows why every one of them is.
+Now look at the line $z = 0$, the elements with no $\alpha^2$ term. Its points are numbers 0, 1, and 3: the set $\{0, 1, 3\}$ from Lesson 1. The line $x = 0$, the elements with no constant term, holds points 1, 2, and 4: the set $\{1, 2, 4\} = \{0, 1, 3\} + 1$. Numbered by powers of $\alpha$, the lines of $\mathrm{PG}(2, 2)$ are starting to look like the translates of a difference set. [Lesson 14](../14-singer-cycle/) shows why every one of them is.
 
 ## Both numberings at once
 

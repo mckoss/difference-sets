@@ -2,6 +2,12 @@
 
 # Teaching audit: does each lesson move the reader forward, and make them want the next one?
 
+> **Lesson numbers.** This file was written before v0.18.0, when Lessons 4,
+> 17, and 24 were each split in two. Its numbers are the old ones: old 4 is
+> now 4 and 5; old 5 to 16 are now 6 to 17; old 17 is now 18 and 19; old 18
+> to 23 are now 20 to 25; old 24 is now 26 and 27; old 25 and 26 are now 28
+> and 29.
+
 The earlier audit ([lesson-audit.md](lesson-audit.md)) asked whether every lesson
 rests only on what came before it. This one asks a different question of the
 same text. The goal is a set of lessons from which a motivated high-school
@@ -254,6 +260,13 @@ where a high-school reader is most likely to slow down.
 ## Not changed: for Mike to decide
 
 These are judgment calls or larger rewrites, so they were left alone.
+
+Three of these were done in v0.18.0 at Mike's direction: item 1 (Lesson 14,
+now Lesson 15, runs q = 2 by hand and the stepper before the linearity
+argument), item 3 (old Lessons 4, 17, and 24 are each two lessons now, with
+forwarding pages at the old addresses), and item 4 ("translate" everywhere,
+including Lesson 2's title, the stepper's captions, and "cyclic chart" for a
+race chart made of translates).
 
 1. **Lesson 14, example before theory.** The site's own convention is "small
    examples first", but this lesson proves the trace is linear and only then

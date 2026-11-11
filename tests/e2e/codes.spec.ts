@@ -1,6 +1,6 @@
 import { expect, test } from './fixtures';
 
-const page21 = 'lessons/21-majority-rules/';
+const page21 = 'lessons/23-majority-rules/';
 
 test.describe('majority decoder', () => {
   test('flipping a bit fails all of its checks, and the vote repairs two errors', async ({ page }) => {
@@ -66,7 +66,7 @@ test.describe('majority decoder', () => {
 test.describe('on a phone', () => {
   test.use({ viewport: { width: 390, height: 800 } });
 
-  test('lesson 21 has no horizontal scroll', async ({ page }) => {
+  test('lesson 23 has no horizontal scroll', async ({ page }) => {
     await page.goto(page21);
     await page.locator('.majority-decoder .bit').first().waitFor();
     const overflow = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth);

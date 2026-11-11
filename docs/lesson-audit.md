@@ -2,6 +2,12 @@
 
 # Lesson audit: does each lesson rest only on what came before it?
 
+> **Lesson numbers.** This file was written before v0.18.0, when Lessons 4,
+> 17, and 24 were each split in two. Its numbers are the old ones: old 4 is
+> now 4 and 5; old 5 to 16 are now 6 to 17; old 17 is now 18 and 19; old 18
+> to 23 are now 20 to 25; old 24 is now 26 and 27; old 25 and 26 are now 28
+> and 29.
+
 Goal: a reader with high-school math, with some study and effort, can follow
 every step to the Singer construction (Lessons 1–15), then the frontier
 (16–17). The applications (18–26) motivate difference sets and should stand on

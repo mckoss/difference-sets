@@ -1,9 +1,9 @@
 import { expect, test } from './fixtures';
 
-const L10 = 'lessons/10-vectors-over-a-finite-field/';
-const L11 = 'lessons/11-coordinates/';
-const L12 = 'lessons/12-field-inside-the-plane/';
-const L13 = 'lessons/13-singer-cycle/';
+const L10 = 'lessons/11-vectors-over-a-finite-field/';
+const L11 = 'lessons/12-coordinates/';
+const L12 = 'lessons/13-field-inside-the-plane/';
+const L13 = 'lessons/14-singer-cycle/';
 const PG = 'playgrounds/pg2-explorer/';
 
 test.describe('Part IV widgets', () => {
@@ -92,7 +92,7 @@ test.describe('Part IV widgets', () => {
     await expect(w.locator('.fp-all-table tbody tr')).toHaveCount(21);
   });
 
-  test('lesson 12 explorer shows both numberings', async ({ page }) => {
+  test('lesson 13 explorer shows both numberings', async ({ page }) => {
     await page.goto(L12);
     const w = page.locator('[data-widget="pg2-explorer"]');
     await expect(w.locator('.plane-circle .pt')).toHaveCount(13);

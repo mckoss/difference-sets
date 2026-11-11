@@ -54,6 +54,7 @@ describe('glossary data', () => {
     const standIns: [RegExp, string][] = [
       [/shares? no (common )?factor with/i, 'coprime'],
       [/\b(a|the) (turn|slide)s? of (\$|its|the other)/i, 'translate'],
+      [/\bturned cop(y|ies)\b|\brotations? of \{|\brotation chart/i, 'translate'],
       [/\bjust shuffles\b|\bshuffles the (nonzero|residues)/i, 'permutes'],
       [/you learned in school|school geometry/i, 'the name of the subject'],
     ];
@@ -71,7 +72,7 @@ describe('glossary data', () => {
   });
 
   it('reads lesson orders from source paths', () => {
-    expect(lessonOrderOf('/x/src/content/lessons/05-which-clocks-are-fields.md')).toBe(5);
+    expect(lessonOrderOf('/x/src/content/lessons/06-which-clocks-are-fields.md')).toBe(6);
     expect(lessonOrderOf('/x/README.md')).toBeUndefined();
   });
 });

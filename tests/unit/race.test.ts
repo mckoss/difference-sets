@@ -127,7 +127,7 @@ describe('the fairest-rotation table', () => {
     expect(rotationInWindow(6, 16, 2, 2)).toBeNull();
   });
 
-  it('has the perfect charts listed in Lesson 24', () => {
+  it('has the perfect charts listed in Lesson 26', () => {
     const perfect: Record<number, number[]> = {
       2: [3],
       3: [4, 7],
@@ -252,7 +252,7 @@ function bestByes(set: number[], v: number, byes: number) {
   return best;
 }
 
-describe('byes in a perfect chart (Lesson 24)', () => {
+describe('byes in a perfect chart (Lesson 27)', () => {
   it('keep every remaining pair meeting once and every car in each lane once', () => {
     const chart = raceChart([0, 1, 3, 9], 13).map((h) => h.map((c) => (c >= 10 ? null : c)));
     for (let a = 0; a < 10; a++) {

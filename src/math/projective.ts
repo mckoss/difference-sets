@@ -2,7 +2,7 @@
 // it, and the Singer cycle that multiplication by α induces on that plane.
 //
 // GF(q) comes from `smallField` (elements 0 … q − 1, the base-p numbering of
-// Lesson 7). GF(q³) is GF(q)[α] modulo a primitive cubic, so an element
+// Lesson 8). GF(q³) is GF(q)[α] modulo a primitive cubic, so an element
 // c₀ + c₁α + c₂α² is the coordinate vector (c₀, c₁, c₂) in GF(q)³. For prime
 // q the cubic is the one `singerSet` uses, so the two agree exactly.
 
@@ -90,7 +90,7 @@ export function omegaNote(q: number): string | null {
   if (!rule) return null;
   return (
     `GF(${q}) is not a clock, so its elements are written ${q === 4 ? '0, 1, ω, ω²' : `0, 1, ω, ω², …, ω${superscript(q - 2)}`}: ` +
-    `the powers of a primitive element ω (Lesson 8), which satisfies ${rule}.`
+    `the powers of a primitive element ω (Lesson 9), which satisfies ${rule}.`
   );
 }
 

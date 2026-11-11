@@ -1,9 +1,9 @@
-// Part V: Singer's algorithm. The trace construction (Lesson 14) and the
-// multipliers that turn one Singer set into the others (Lesson 15).
+// Part V: Singer's algorithm. The trace construction (Lesson 15) and the
+// multipliers that turn one Singer set into the others (Lesson 16).
 //
 // Elements of GF(q³) are coordinate vectors (c₀, c₁, c₂) for c₀ + c₁α + c₂α²,
 // exactly as in `projective.ts`, so the steps shown here use the same α, the
-// same cubic, and the same point numbering as Lessons 12 and 13.
+// same cubic, and the same point numbering as Lessons 13 and 14.
 
 import { gcd, mod, primePower } from './numbers';
 import { addVec, type SingerFrame, singerFrame, type Vec } from './projective';
@@ -61,7 +61,7 @@ export function traceSteps(q: number): TraceStep[] {
   });
 }
 
-/** D = {i mod v : Tr(αⁱ) = 0}, in the numbering of Lessons 12 and 13. */
+/** D = {i mod v : Tr(αⁱ) = 0}, in the numbering of Lessons 13 and 14. */
 export function traceSet(q: number): number[] {
   return traceSteps(q)
     .filter((s) => s.inD)

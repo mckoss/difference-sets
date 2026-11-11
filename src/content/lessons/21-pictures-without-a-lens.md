@@ -1,6 +1,6 @@
 ---
 title: "Pictures without a lens"
-order: 19
+order: 21
 part: 7
 summary: "Coded-aperture telescopes: a mask of holes whose shadows can be unscrambled."
 status: ready
@@ -24,11 +24,11 @@ What makes the first mask special is that its holes are a difference set.
 
 ## A difference set folded into a grid
 
-The mask comes from the Singer set of the 7-dimensional geometry $\mathrm{PG}(7, 2)$ from [Lesson 16](../16-beyond-the-plane/). It is a set $D$ of $k = 127$ points on a clock with $v = 255$ hours, and every nonzero difference occurs exactly $\lambda = 63$ times, in the notation of [Lesson 1](../01-differences-on-a-circle/).
+The mask comes from the Singer set of the 7-dimensional geometry $\mathrm{PG}(7, 2)$ from [Lesson 17](../17-beyond-the-plane/). It is a set $D$ of $k = 127$ points on a clock with $v = 255$ hours, and every nonzero difference occurs exactly $\lambda = 63$ times, in the notation of [Lesson 1](../01-differences-on-a-circle/).
 
 To make a rectangle, write $255 = 15 \times 17$ and send hour $i$ of the clock to the cell in row $i \bmod 15$ and column $i \bmod 17$. Because 15 and 17 are coprime, every one of the 255 cells gets exactly one hour. If two hours landed in the same cell, their difference would be a multiple of both 15 and 17, and so, since those are coprime, of $15 \times 17 = 255$; that is impossible for two different hours between 0 and 254. So the 255 hours land in 255 different cells, which is all of them. (This is the *Chinese remainder theorem*: a number from 0 to 254 is pinned down by its remainders mod 15 and mod 17.) The cell is open when its hour is in $D$.
 
-Folding keeps what matters. Sliding the grid down $a$ rows and right $b$ columns, wrapping around the edges, is the same as turning the clock by the one $t$ with $t \equiv a \pmod{15}$ and $t \equiv b \pmod{17}$. And by [Lesson 2](../02-rotations/), a translate $D + t$ shares exactly $\lambda$ points with $D$ whenever $t$ is not $0 \pmod{255}$. So:
+Folding keeps what matters. Sliding the grid down $a$ rows and right $b$ columns, wrapping around the edges, is the same as translating by the one $t$ with $t \equiv a \pmod{15}$ and $t \equiv b \pmod{17}$. And by [Lesson 2](../02-translates/), a translate $D + t$ shares exactly $\lambda$ points with $D$ whenever $t$ is not $0 \pmod{255}$. So:
 
 > However you slide the mask (except not at all), the slid copy and the original have exactly $\lambda = 63$ open holes in common.
 
@@ -53,13 +53,13 @@ $$
 
 That is exactly what the widget computes at every cell. The wrong positions all get the same contribution, $\lambda B$, and subtracting it leaves a perfectly flat floor at 0. With a random mask the overlaps vary from shift to shift, so there is no single number to subtract, and what is left over shows up as ghosts.
 
-The same works for any difference set, with $k$ and $\lambda$ in place of 127 and 63. It is the 2-D version of a fact we'll meet again in [Lesson 20](../20-finding-an-echo/): a difference set compared with a shifted copy of itself scores $k$ at no shift and $\lambda$ at every other shift.
+The same works for any difference set, with $k$ and $\lambda$ in place of 127 and 63. It is the 2-D version of a fact we'll meet again in [Lesson 22](../22-finding-an-echo/): a difference set compared with a shifted copy of itself scores $k$ at no shift and $\lambda$ at every other shift.
 
 ## In orbit
 
 - E. E. Fenimore and T. M. Cannon called masks like this **uniformly redundant arrays** (1978): masks built from cyclic difference sets, so that the decoded floor is flat. J. Gunson and B. Polychronopulos had based an X-ray mask design on cyclic difference sets two years earlier.
 - The X-ray telescope on **Spacelab 2**, flown on the Space Shuttle *Challenger* in 1985, used two "Hadamard" masks of 31 × 33 and 127 × 129 cells. Since 31 × 33 = 1023 = 2¹⁰ − 1 and 127 × 129 = 16383 = 2¹⁴ − 1, these sizes suggest folded Singer sets with $q = 2$, as in our widget. (That reading is ours, from the dimensions.) The TTM telescope on the **Mir** space station used a 255 × 257 mask of the same kind.
-- India's **ASTROSAT** observatory (in orbit since 2015) carries a coded-mask camera, CZTI. Its mask is built from 16 × 16 units, each holding a 255-element pseudo-noise pattern made from primitive polynomials of degree 8 (for an engineer, the specification of a 255-bit shift-register sequence, as in [Lesson 20](../20-finding-an-echo/); [Lesson 8](../08-primitive-elements/) explains the polynomials themselves) plus one closed cell. A pseudo-noise pattern of length 255 = 2⁸ − 1 is exactly the kind of $q = 2$ Singer set the widget uses.
+- India's **ASTROSAT** observatory (in orbit since 2015) carries a coded-mask camera, CZTI. Its mask is built from 16 × 16 units, each holding a 255-element pseudo-noise pattern made from primitive polynomials of degree 8 (for an engineer, the specification of a 255-bit shift-register sequence, as in [Lesson 22](../22-finding-an-echo/); [Lesson 9](../09-primitive-elements/) explains the polynomials themselves) plus one closed cell. A pseudo-noise pattern of length 255 = 2⁸ − 1 is exactly the kind of $q = 2$ Singer set the widget uses.
 - Not every telescope uses Singer sets. ESA's **INTEGRAL** uses patterns built from the perfect squares mod a prime (a different family, close cousins of difference sets), and NASA's **Swift** uses a random mask. A random mask copes better with a very large detector with gaps, and it has no repeating pattern to confuse, at the price of ghosts like the ones you saw.
 
 Real instruments lay out a 2 × 2 mosaic of the basic pattern, so that every star in view casts a complete, wrapped-around copy of it, just as the widget's wrapping grid assumes.
@@ -79,7 +79,7 @@ At the star, all 31 holes line up, so the score is $31 \times 2 = 62$. Everywher
 
 </section>
 
-The smallest mask of this kind folds the 15-hour set $\{0, 1, 2, 4, 5, 8, 10\}$ (with $k = 7$, $\lambda = 3$) into a 3 × 5 grid. Check in the [difference set workbench](../../playgrounds/difference-workbench/?v=15&set=0,1,2,4,5,8,10) that every difference occurs exactly 3 times, and in its translates table that every two different turns share exactly 3 points.
+The smallest mask of this kind folds the 15-hour set $\{0, 1, 2, 4, 5, 8, 10\}$ (with $k = 7$, $\lambda = 3$) into a 3 × 5 grid. Check in the [difference set workbench](../../playgrounds/difference-workbench/?v=15&set=0,1,2,4,5,8,10) that every difference occurs exactly 3 times, and in its translates table that every two different translates share exactly 3 points.
 
 ## Sources
 
