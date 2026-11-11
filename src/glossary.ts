@@ -190,6 +190,18 @@ export const GLOSSARY: GlossaryTerm[] = [
     see: ['quotient', 'maximal ideal'],
   },
   {
+    term: 'map',
+    lesson: 6,
+    def: 'A rule that turns each x into some y, written x ↦ y: another word for a function. Multiplying by α and raising to the power q are maps.',
+    forms: [],
+  },
+  {
+    term: 'image',
+    lesson: 13,
+    def: 'The image of a set under a map is the set of things its members are carried to.',
+    forms: [],
+  },
+  {
     term: 'isomorphism',
     lesson: 5,
     def: 'A one-to-one matching of the elements of one field with the elements of another that turns its addition and multiplication tables into the other\'s. Isomorphic fields are the same field with different labels.',
@@ -491,7 +503,7 @@ export const GLOSSARY: GlossaryTerm[] = [
   {
     term: 'hyperplane',
     lesson: 16,
-    def: 'The solutions of one linear equation a₀x₀ + … + aₘxₘ = 0 in GF(q)^(m+1): a subspace with one dimension fewer than the whole space, as a plane through the origin is in GF(q)³. In PG(m, q) the hyperplanes play the role of lines, and their points give Singer\'s higher difference sets.',
+    def: 'The solutions of one linear equation a₀x₀ + … + aₘxₘ = 0 in GF(q)^(m+1): a subspace with qᵐ vectors, as a plane through the origin is in GF(q)³. In PG(m, q) the hyperplanes play the role of lines, and their points give Singer\'s higher difference sets.',
     see: ['projective space'],
   },
   {

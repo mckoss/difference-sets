@@ -18,7 +18,7 @@ $$
 a_0 x_0 + a_1 x_1 + \dots + a_m x_m = 0
 $$
 
-whose coefficients are not all zero. A hyperplane is a subspace with one dimension fewer than the whole space, as a plane through the origin is in $\mathrm{GF}(q)^3$.
+whose coefficients are not all zero. A hyperplane is a subspace in the sense of Lesson 10: it contains 0 and is closed under adding and scaling. In $\mathrm{GF}(q)^3$ the hyperplanes are the planes through the origin.
 
 <aside class="notation">
 <span class="notation-title">Notation</span>
@@ -36,7 +36,7 @@ $$
 v = \frac{q^{m+1} - 1}{q - 1}.
 $$
 
-A hyperplane has $q^m$ vectors: choose all coordinates but one freely, and the equation fixes the last. So by the same count it holds $k = (q^m - 1)/(q - 1)$ points. Two different hyperplanes share the $q^{m-1}$ vectors that solve both of their equations, and those make up
+A hyperplane has $q^m$ vectors: choose all coordinates but one freely, and the equation fixes the last. So by the same count it holds $k = (q^m - 1)/(q - 1)$ points. Two different hyperplanes have equations that are not multiples of each other. Use the first equation to write one coordinate in terms of the others and substitute into the second; what is left is not identically zero, because the second is not a multiple of the first, so it fixes one more coordinate. That leaves $m - 1$ coordinates free, so $q^{m-1}$ vectors solve both equations, and they make up
 
 $$
 \lambda = \frac{q^{m-1} - 1}{q - 1}

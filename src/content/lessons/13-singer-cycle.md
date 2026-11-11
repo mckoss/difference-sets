@@ -42,9 +42,9 @@ so as vectors, $(x, y, z) \mapsto (2z,\ x + z,\ y)$. Every linear map of $\mathr
 
 ## It sends lines to lines
 
-**Points go to points.** The point through $u$ is the set of multiples $s \cdot u$. Their images $\alpha(s \cdot u) = s \cdot (\alpha u)$ are the multiples of $\alpha u$: the point through $\alpha u$.
+**Points go to points.** The point through $u$ is the set of multiples $s \cdot u$. Multiplying each of them by $\alpha$ gives $\alpha(s \cdot u) = s \cdot (\alpha u)$, the multiples of $\alpha u$: the point through $\alpha u$.
 
-**Lines go to lines.** A line of $\mathrm{PG}(2, q)$ is a plane through the origin, a set of $q^2$ vectors closed under adding and scaling. Its image is closed under adding and scaling too, since $\alpha u + \alpha w = \alpha(u + w)$ and $s \cdot \alpha u = \alpha (s \cdot u)$. It still has $q^2$ different vectors, since the map is one-to-one. Every subspace with $q^2$ vectors is a plane through the origin, so the image of a line is a line.
+**Lines go to lines.** A line of $\mathrm{PG}(2, q)$ is a plane through the origin, a set of $q^2$ vectors closed under adding and scaling. Its **image**, the set of vectors it is carried to, is closed under adding and scaling too, since $\alpha u + \alpha w = \alpha(u + w)$ and $s \cdot \alpha u = \alpha (s \cdot u)$. It still has $q^2$ different vectors, since the map is one-to-one. Every subspace with $q^2$ vectors is a plane through the origin, so the image of a line is a line.
 
 <details>
 <summary>Why a subspace with q² vectors is a plane</summary>
@@ -102,7 +102,7 @@ Every earlier lesson fed into this one: the translates that behave like lines (L
 <span class="notation-title">Notation: the Singer cycle</span>
 
 - $x \mapsto \alpha x$: multiplication by $\alpha$ on $\mathrm{GF}(q^3)$. It is **linear**: it respects adding vectors and scaling by $\mathrm{GF}(q)$.
-- The **Singer cycle**: the symmetry of $\mathrm{PG}(2, q)$ it induces, point $i \mapsto$ point $i + 1$.
+- The **Singer cycle**: the symmetry of $\mathrm{PG}(2, q)$ that this multiplication gives, point $i \mapsto$ point $i + 1$.
 - $D$: the numbers of the points on one line; the lines are its translates $D + j$.
 
 </aside>

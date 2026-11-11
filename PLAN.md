@@ -29,7 +29,10 @@ Rules every lesson follows, so the path reads as one voice.
   C(v, k), read "v choose k". Prefer words when a symbol isn't needed.
 - **Keep a model of the reader.** At every sentence, know what the reader has
   been taught so far: the terms, symbols, and facts of the earlier lessons
-  (`src/glossary.ts` records the lesson that introduces each term and symbol).
+  (`src/glossary.ts` records the lesson that introduces each term and symbol;
+  `docs/reader-model.md` records the facts each lesson establishes, what is
+  taken on trust, and where readers stall). When a step is asserted, ask
+  whether this reader could supply the reason in a line; if not, give it.
   Use nothing that is not in that model without explaining it, and don't
   re-explain what is: no second gloss of λ, ≡, exponents, or "prime power"
   ten lessons after they were taught. Point back to the lesson instead, and

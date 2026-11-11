@@ -55,7 +55,7 @@ Two words make this precise.
 <span class="notation-title">Notation: counting with 1, and renaming</span>
 
 - $s \cdot 1$ means $1 + 1 + \dots + 1$ with $s$ ones: repeated addition inside the field.
-- $x \mapsto y$, read "$x$ goes to $y$", describes a rule that turns each $x$ into $y$. For example, $s \mapsto s \cdot 1$ turns each whole number $s$ into the sum of $s$ ones.
+- $x \mapsto y$, read "$x$ goes to $y$", describes a rule that turns each $x$ into $y$. For example, $s \mapsto s \cdot 1$ turns each whole number $s$ into the sum of $s$ ones. A rule like this is called a **map** (another word for a function).
 - $F \cong G$, read "$F$ is isomorphic to $G$", means $F$ and $G$ are the same field with different labels.
 
 </aside>
@@ -73,8 +73,8 @@ If $F$ has exactly $p$ elements and its characteristic is $p$, the prime subfiel
 Inside a finite field $F$ of characteristic $p$, the prime subfield $\mathrm{GF}(p)$ acts like a set of "scalars". Pick elements of $F$ one at a time:
 
 1. Start with $b_1 = 1$. Its multiples $c_1 b_1$, for $c_1$ in $\mathrm{GF}(p)$, are $p$ different elements.
-2. If they are not all of $F$, pick some $b_2$ that is not among them. The combinations $c_1 b_1 + c_2 b_2$ are $p^2$ different elements. (If two different combinations were equal, subtract them and look at the last pick whose two coefficients differ. Dividing by that nonzero difference, which has an inverse in $\mathrm{GF}(p)$, writes that pick as a combination of the earlier picks, which is impossible: $b_1 = 1$ is not 0, and each later pick was chosen outside the earlier combinations.)
-3. Keep going. Each new pick multiplies the count by $p$, for the same reason, and since $F$ is finite, this stops after some number $e$ of picks, with every element of $F$ written in exactly one way as $c_1 b_1 + \dots + c_e b_e$.
+2. If they are not all of $F$, pick some $b_2$ that is not among them. The combinations $c_1 b_1 + c_2 b_2$ are $p^2$ different elements. To see why, suppose two of them are equal: $c_1 b_1 + c_2 b_2 = c_1' b_1 + c_2' b_2$. If $c_2 \ne c_2'$, collect terms to get $(c_2 - c_2')\, b_2 = (c_1' - c_1)\, b_1$ and divide by $c_2 - c_2'$, which has an inverse in $\mathrm{GF}(p)$. That writes $b_2$ as a multiple of $b_1$, and $b_2$ was chosen not to be one. So $c_2 = c_2'$, which leaves $c_1 b_1 = c_1' b_1$, and since $b_1 = 1$, also $c_1 = c_1'$. The two combinations were the same one.
+3. Keep going. Each new pick multiplies the count by $p$, by the same argument (compare the coefficients of the newest pick first, then work back), and since $F$ is finite, this stops after some number $e$ of picks, with every element of $F$ written in exactly one way as $c_1 b_1 + \dots + c_e b_e$.
 
 So $F$ has exactly $p^e$ elements. In the language of [Lesson 10](../10-vectors-over-a-finite-field/), $F$ is a vector space over $\mathrm{GF}(p)$, and each element is a list of $e$ coordinates $(c_1, \dots, c_e)$.
 

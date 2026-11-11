@@ -33,7 +33,7 @@ Two difference sets are **equivalent** when one is a translate of a multiple of 
 
 > **Conjecture.** Every planar difference set is equivalent to a Singer set.
 
-In the language of geometry: every cyclic projective plane comes from a finite field, exactly as in Part IV. Planes built from a field that way are called **Desarguesian**, so the conjecture says *every cyclic projective plane is Desarguesian*. Huang and Schmidt (2009) state it in exactly these words as their Conjecture 1, and they prove that the two forms match: a planar difference set of prime-power order that is not of Singer type would give a plane that does not come from a field.
+In the language of geometry: every cyclic projective plane comes from a finite field, exactly as in Part IV. Planes built from a field that way are called **Desarguesian** (after Desargues's theorem of classical geometry, which holds in a finite projective plane exactly when the plane comes from a field), so the conjecture says *every cyclic projective plane is Desarguesian*. Huang and Schmidt (2009) state it in exactly these words as their Conjecture 1, and they prove that the two forms match: a planar difference set of prime-power order that is not of Singer type would give a plane that does not come from a field.
 
 The conjecture really makes two claims at once.
 

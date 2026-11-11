@@ -77,6 +77,8 @@ If $g$ is *not* primitive, its order $d$ is a divisor of $q - 1$ smaller than $q
 
 > $g$ is primitive exactly when $g^{(q-1)/r} \ne 1$ for every prime $r$ dividing $q - 1$.
 
+The other direction is immediate: if $g$ is primitive, no exponent from 1 to $q - 2$ gives 1, and each $(q - 1)/r$ is in that range.
+
 In $\mathrm{GF}(16)$, $q - 1 = 15 = 3 \times 5$, so it is enough to check $g^5 \ne 1$ and $g^3 \ne 1$. The widget runs this test for every $g$ you pick. For a field with millions of elements, this is the difference between a handful of multiplications and millions of them, and it is how the code behind this site finds primitive polynomials for Singer's construction.
 
 ## Do primitive elements always exist?
