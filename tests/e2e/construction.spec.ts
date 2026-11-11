@@ -1,7 +1,7 @@
 import { expect, test } from './fixtures';
 
-const L14 = 'lessons/14-writing-down-a-difference-set/';
-const L15 = 'lessons/15-many-sets-few-shapes/';
+const L14 = 'lessons/15-writing-down-a-difference-set/';
+const L15 = 'lessons/16-many-sets-few-shapes/';
 const STEPPER = 'playgrounds/singer-stepper/';
 
 test.describe('Part V widgets', () => {
@@ -32,7 +32,7 @@ test.describe('Part V widgets', () => {
     await w.locator('.ss-next').click();
     await expect(w.locator('.ss-current')).toContainText('Last step: smallest form');
     await expect(w.locator('.ss-smallest figcaption')).toHaveText(
-      'Lexicographically smallest form: {0, 1, 3}. It comes from rotating D back 1 notch: D − 1.',
+      'Lexicographically smallest form: {0, 1, 3}. It comes from translating D by −1: D − 1.',
     );
     await expect(w.locator('.ss-smallest .chord-diagram circle.member')).toHaveCount(3);
     await expect(w.locator('.ss-figure figcaption')).toHaveText('D = {1, 2, 4}');
@@ -44,19 +44,19 @@ test.describe('Part V widgets', () => {
     await expect(w.locator('.ss-verdict')).toContainText('0 joins D');
     await w.locator('.ss-finish').click();
     await expect(w.locator('.ss-done')).toContainText('D = {0, 1, 3, 9} is a (13, 4, 1) difference set');
-    await expect(w.locator('.ss-line')).toContainText('It is the line z = 0 from Lesson 13');
-    await expect(w.locator('.ss-smallest figcaption')).toContainText('{0, 1, 3, 9}. It comes from D itself, with no rotation.');
+    await expect(w.locator('.ss-line')).toContainText('It is the line z = 0 from Lesson 14');
+    await expect(w.locator('.ss-smallest figcaption')).toContainText('{0, 1, 3, 9}. It comes from D itself, with no translation.');
 
     await w.locator('.ss-q').selectOption('4');
     await w.locator('.ss-finish').click();
     await expect(w.locator('.ss-done')).toContainText('{7, 9, 14, 15, 18}');
     await expect(w.locator('.ss-line')).toContainText('+ 14');
-    await expect(w.locator('.ss-smallest figcaption')).toContainText('{0, 1, 4, 14, 16}. It comes from rotating D back 14 notches: D − 14.');
+    await expect(w.locator('.ss-smallest figcaption')).toContainText('{0, 1, 4, 14, 16}. It comes from translating D by −14: D − 14.');
     await w.locator('.ss-q').selectOption('8');
-    await expect(w.locator('.ss-rule')).toContainText('primitive element ω (Lesson 8), which satisfies ω³ = ω + 1');
+    await expect(w.locator('.ss-rule')).toContainText('primitive element ω (Lesson 9), which satisfies ω³ = ω + 1');
     await w.locator('.ss-finish').click();
     await expect(w.locator('.ss-smallest figcaption')).toContainText('{0, 1, 3, 7, 15, 31, ');
-    await expect(w.locator('.ss-smallest figcaption')).toContainText('reflecting D (each member d becomes −d) and rotating it');
+    await expect(w.locator('.ss-smallest figcaption')).toContainText('taking the mirror image −D and translating it by');
     await w.locator('.ss-reset').click();
     await expect(w.locator('.ss-table tbody tr')).toHaveCount(0);
   });

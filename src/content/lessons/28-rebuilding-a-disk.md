@@ -1,6 +1,6 @@
 ---
 title: "Rebuilding a disk"
-order: 25
+order: 28
 part: 7
 summary: "Spread a disk array's stripes along the lines of the Fano plane, and every survivor shares the work of rebuilding a dead disk."
 status: ready
@@ -47,9 +47,9 @@ $$
 D + j = \{j,\ j + 1,\ j + 3\} \pmod 7,
 $$
 
-the translate from [Lesson 2](../02-rotations/), for $j = 0, 1, \dots, 6$. These seven stripes are the seven lines of the Fano plane ([Lesson 3](../03-fano-plane/)), with the disks as its points. Stripe 0 sits on disks 0, 1, 3; stripe 1 on disks 1, 2, 4; and so on round. Each disk is on 3 stripes, so it still holds 3 chunks, and each stripe still has 2 data chunks and 1 parity chunk.
+the translate from [Lesson 2](../02-translates/), for $j = 0, 1, \dots, 6$. These seven stripes are the seven lines of the Fano plane ([Lesson 3](../03-fano-plane/)), with the disks as its points. Stripe 0 sits on disks 0, 1, 3; stripe 1 on disks 1, 2, 4; and so on round. Each disk is on 3 stripes, so it still holds 3 chunks, and each stripe still has 2 data chunks and 1 parity chunk.
 
-Now let disk 0 die. Lesson 2 showed that any two translates of a planar difference set share exactly one member. Turned around, that says any two *points* lie together on exactly one translate: any two disks share exactly $\lambda = 1$ stripe. This is the "always meet" property of [Lesson 22](../22-always-meet/), with disks in place of radios. So each of the 6 surviving disks shares exactly one stripe with disk 0, and reads exactly one chunk. The rebuild takes 1 read-time instead of 3.
+Now let disk 0 die. Lesson 2 showed that any two translates of a planar difference set share exactly one member. Read the other way, that says any two *points* lie together on exactly one translate: any two disks share exactly $\lambda = 1$ stripe. This is the "always meet" property of [Lesson 24](../24-always-meet/), with disks in place of radios. So each of the 6 surviving disks shares exactly one stripe with disk 0, and reads exactly one chunk. The rebuild takes 1 read-time instead of 3.
 
 The total work hasn't changed. Disk 0 lost 3 chunks, and each needs 2 reads, so there are $3 \times 2 = 6$ reads either way. The difference is that the Fano layout spreads them perfectly evenly over all 6 survivors, instead of piling them onto 2.
 
@@ -84,7 +84,7 @@ Declustering is now in shipping products. OpenZFS added **dRAID** in version 2.1
 ## Try it
 
 1. Take 13 disks with stripes $D + j$ for $D = \{0, 1, 3, 9\}$ mod 13. Disk 5 fails. Which stripes lost a chunk? How many chunks does disk 6 read? Check with the widget.
-2. The complement $\{2, 4, 5, 6\}$ of $\{0, 1, 3\}$ in the 7 numbers mod 7 is a $(7, 4, 2)$ difference set (check it in the workbench; [Lesson 16](../16-beyond-the-plane/) explains why the complement of any difference set is one too). With stripes $\{2, 4, 5, 6\} + j$ (3 data chunks and 1 parity chunk each), how many chunks does each survivor read when a disk fails? What do you gain and lose compared with the Fano layout?
+2. The complement $\{2, 4, 5, 6\}$ of $\{0, 1, 3\}$ in the 7 numbers mod 7 is a $(7, 4, 2)$ difference set (check it in the workbench; [Lesson 17](../17-beyond-the-plane/) explains why the complement of any difference set is one too). With stripes $\{2, 4, 5, 6\} + j$ (3 data chunks and 1 parity chunk each), how many chunks does each survivor read when a disk fails? What do you gain and lose compared with the Fano layout?
 
 <details>
 <summary>Show the answer</summary>

@@ -77,6 +77,37 @@ export const PLAYGROUNDS: Playground[] = [
   },
 ];
 
+/**
+ * Lessons whose address changed when Lessons 4, 17, and 24 were each split in
+ * two (v0.18.0) and Lesson 2 was renamed. Each old address still answers, with
+ * a page that sends the reader on to the new one.
+ */
+export const MOVED_LESSONS: Readonly<Record<string, string>> = {
+  '02-rotations': '02-translates',
+  '05-which-clocks-are-fields': '06-which-clocks-are-fields',
+  '06-fields-of-prime-order': '07-fields-of-prime-order',
+  '07-prime-power-fields': '08-prime-power-fields',
+  '08-primitive-elements': '09-primitive-elements',
+  '09-fields-inside-fields': '10-fields-inside-fields',
+  '10-vectors-over-a-finite-field': '11-vectors-over-a-finite-field',
+  '11-coordinates': '12-coordinates',
+  '12-field-inside-the-plane': '13-field-inside-the-plane',
+  '13-singer-cycle': '14-singer-cycle',
+  '14-writing-down-a-difference-set': '15-writing-down-a-difference-set',
+  '15-many-sets-few-shapes': '16-many-sets-few-shapes',
+  '16-beyond-the-plane': '17-beyond-the-plane',
+  '17-every-planar-set-singer': '18-every-planar-set-singer',
+  '18-a-card-game-from-a-plane': '20-a-card-game-from-a-plane',
+  '19-pictures-without-a-lens': '21-pictures-without-a-lens',
+  '20-finding-an-echo': '22-finding-an-echo',
+  '21-majority-rules': '23-majority-rules',
+  '22-always-meet': '24-always-meet',
+  '23-a-ruler-with-no-repeats': '25-a-ruler-with-no-repeats',
+  '24-a-fair-race': '26-a-fair-race',
+  '25-rebuilding-a-disk': '28-rebuilding-a-disk',
+  '26-secrets-that-look-like-noise': '29-secrets-that-look-like-noise',
+};
+
 export interface OutlinePart extends Part {
   lessons: LessonEntry[];
 }

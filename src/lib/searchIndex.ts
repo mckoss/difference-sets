@@ -9,7 +9,7 @@ import { fromHtml } from 'hast-util-from-html';
 export interface SearchEntry {
   /** What the result is called: a section heading, glossary term, or playground. */
   title: string;
-  /** Where it lives, e.g. "Lesson 9 · Fields inside fields" or "Glossary". */
+  /** Where it lives, e.g. "Lesson 10 · Fields inside fields" or "Glossary". */
   where: string;
   /** Site-relative link, with the section anchor. */
   href: string;

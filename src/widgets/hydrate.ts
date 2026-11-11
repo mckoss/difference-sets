@@ -27,7 +27,7 @@ const registry: Record<string, () => Promise<WidgetModule>> = {
   'raid-rebuild': () => import('./raidRebuild'),
   'bent-function': () => import('./bentFunction'),
   'race-chart': () => import('./raceChart'),
-  // Lesson 17 and the search and explorer playgrounds.
+  // Lesson 18 and the search and explorer playgrounds.
   'planar-search': () => import('./planarSearch'),
   'large-q-explorer': () => import('./largeQExplorer'),
   'polynomial-identity': () => import('./polynomialIdentity'),

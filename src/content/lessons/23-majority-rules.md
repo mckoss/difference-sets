@@ -1,6 +1,6 @@
 ---
 title: "Majority rules"
-order: 21
+order: 23
 part: 7
 summary: "An error-correcting code that fixes bits by a simple vote, broadcast to car radios."
 status: ready
@@ -12,7 +12,7 @@ status: ready
 
 Digital messages are strings of **bits**: each bit is a 0 or a 1. Radio static can flip a bit, turning a 0 into a 1 or back. An **error-correcting code** adds extra bits so the receiver can find and undo a few flips.
 
-Here is a word of 21 bits, one at each point of the plane of order 4 from [Lesson 4](../04-projective-planes/). Blue bits are 1s. The orange ring marks a bit, and the shapes drawn through it are the 5 lines of the plane that pass through it. Click any bit to flip it, as static would.
+Here is a word of 21 bits, one at each point of the plane of order 4 from [Lesson 5](../05-cyclic-planes/). Blue bits are 1s. The orange ring marks a bit, and the shapes drawn through it are the 5 lines of the plane that pass through it. Click any bit to flip it, as static would.
 
 <div data-widget="majority-decoder" data-q="4"></div>
 
@@ -29,7 +29,7 @@ A **parity check** is a set of positions. A word **passes** the check when the b
 
 </aside>
 
-The checks of this code are the lines of the plane. The positions are the residues $0, 1, \dots, 20$ mod 21, and as in Lessons 2 and 4 the lines are the 21 translates $D + t$ of the planar difference set
+The checks of this code are the lines of the plane. The positions are the residues $0, 1, \dots, 20$ mod 21, and as in Lessons 2 and 5 the lines are the 21 translates $D + t$ of the planar difference set
 
 $$
 D = \{0, 1, 4, 14, 16\} \pmod{21}.
@@ -66,7 +66,7 @@ The vote flips bit 0 and many others, and makes the word worse. A code can only 
 
 ## On the radio
 
-These **difference-set cyclic codes** were described by E. J. Weldon Jr. at Bell Labs in 1966. His paper reports them to be about as powerful as the BCH codes, a leading family of codes at the time, and much simpler to build. *Cyclic* means that turning a codeword around the circle gives another codeword, because turning carries each line $D + t$ to the line $D + (t + 1)$. So a receiver can check every bit with the same small circuit, as the bits slide past it, and the vote needs no algebra at all: just counting.
+These **difference-set cyclic codes** were described by E. J. Weldon Jr. at Bell Labs in 1966. His paper reports them to be about as powerful as the BCH codes, a leading family of codes at the time, and much simpler to build. *Cyclic* means that translating a codeword by one position around the circle gives another codeword, because the translation carries each line $D + t$ to the line $D + (t + 1)$. So a receiver can check every bit with the same small circuit, as the bits slide past it, and the vote needs no algebra at all: just counting.
 
 The order used in practice is $n = 16$. Then the circle has $16^2 + 16 + 1 = 273$ bits, every bit has 17 checks, and the vote fixes up to 8 flips. For orders $n = 2^s$ the standard count of independent checks is $3^s + 1$, here $3^4 + 1 = 82$, which leaves 191 message bits. (The unit tests for this site recompute the 82, along with the 10 for order 4.) This is the **(273, 191) code**.
 
@@ -92,7 +92,7 @@ Use the smallest plane: 7 bits, with the lines being the translates of $\{0, 1, 
 
 </section>
 
-The checks are the translates of a difference set, so you can draw them yourself: open the [difference set workbench with $\{0, 1, 4, 14, 16\}$ mod 21](../../playgrounds/difference-workbench/?v=21&set=0,1,4,14,16) and turn the translates to see the lines through any point.
+The checks are the translates of a difference set, so you can draw them yourself: open the [difference set workbench with $\{0, 1, 4, 14, 16\}$ mod 21](../../playgrounds/difference-workbench/?v=21&set=0,1,4,14,16) and step through the translates to see the lines through any point.
 
 ## Sources
 

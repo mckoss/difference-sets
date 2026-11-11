@@ -1,5 +1,5 @@
 // Coded apertures and echoes: the two-level correlation of a difference set
-// put to work on a 2-D detector (Lesson 19) and on a noisy signal (Lesson 20).
+// put to work on a 2-D detector (Lesson 21) and on a noisy signal (Lesson 22).
 //
 // Images are rows × cols grids stored row by row and treated cyclically, like
 // a clock in each direction. When gcd(rows, cols) = 1, the Chinese remainder

@@ -100,7 +100,7 @@ export function mount(el: HTMLElement): void {
   rotToggle.type = 'button';
   rotToggle.className = 'rotate-toggle';
   rotToggle.setAttribute('aria-pressed', 'false');
-  rotToggle.textContent = 'Rotate: i ↦ i + 1';
+  rotToggle.textContent = 'Translate: i ↦ i + 1';
   const rotStep = document.createElement('button');
   rotStep.type = 'button';
   rotStep.className = 'rotate-step';

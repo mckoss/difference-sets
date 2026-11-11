@@ -1,6 +1,6 @@
 // The incidence structure whose points are ℤ/vℤ and whose lines are the
 // translates D + j of a set D. When D is a planar difference set this is a
-// cyclic projective plane (Lesson 4); for D = {0, 1, 3} and v = 7 it is the
+// cyclic projective plane (Lesson 5); for D = {0, 1, 3} and v = 7 it is the
 // Fano plane (Lesson 3).
 
 import { allTranslates, intersection } from './difference';

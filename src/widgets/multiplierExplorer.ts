@@ -10,7 +10,7 @@ const ALL_QS = [2, 3, 4, 5, 7, 8, 9, 11, 13];
 
 /**
  * `<div data-widget="multiplier-explorer" data-q="3" data-t="2" [data-qs="…"]>`:
- * multiply the trace set D of Lesson 14 by any t coprime to v. Shows t·D
+ * multiply the trace set D of Lesson 15 by any t coprime to v. Shows t·D
  * beside D, says whether it is a translate D + j (t is then a multiplier, a
  * power of p), and groups all φ(v) choices of t into the classes of t·D up
  * to translation, with each class next to its mirror image.
@@ -81,7 +81,7 @@ export function mount(el: HTMLElement): void {
     const pText = (x: number) => (x === 0 ? '1' : `${p}${superscript(x)}`);
     verdict.replaceChildren(
       h('p', {
-        text: `D = ${setText(D)} mod ${v}, the trace set of Lesson 14. Multiply each member by ${t}: ${t}·D = ${setText(tD)}.`,
+        text: `D = ${setText(D)} mod ${v}, the trace set of Lesson 15. Multiply each member by ${t}: ${t}·D = ${setText(tD)}.`,
       }),
       h('p', {
         class: `ff-verdict me-result ${j !== null ? 'ok' : ''}`,

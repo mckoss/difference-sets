@@ -60,7 +60,7 @@ and the source photo and license for every portrait drawn from one.
 
 ## Race charts
 
-The race chart widget (Lesson 24) reads the fairest rotation for each track
+The race chart widget (Lesson 26) reads the fairest cyclic chart for each track
 from `src/math/raceTable.ts`, which an exhaustive search writes. To rebuild it
 (about half a minute), run `node scripts/race-table.ts`.
 

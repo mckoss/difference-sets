@@ -1,6 +1,6 @@
 ---
 title: "Fields with pᵉ elements, built from polynomials"
-order: 7
+order: 8
 part: 3
 summary: "Polynomials with coefficients mod p, divided by an irreducible polynomial: irreducible polynomials play the role of primes."
 status: ready
@@ -12,11 +12,11 @@ status: ready
 - Why remainders modulo an *irreducible* polynomial $f$ of degree $e$ form a field with $p^e$ elements.
 - How to build $\mathrm{GF}(4)$, $\mathrm{GF}(8)$, and $\mathrm{GF}(9)$, and why two different choices of $f$ give the same field.
 
-## The plan: copy Lesson 5
+## The plan: copy Lesson 6
 
 Singer's construction for a plane of order $q$ runs inside a field with $q^3$ elements: 8 for the Fano plane, 27 for the plane of order 3, 64 for order 4. None of those sizes is a prime, so none of those fields is a clock, and so far we have no way to build them.
 
-[Lesson 6](../06-fields-of-prime-order/) showed that a finite field has $q = p^e$ elements, and that for $e > 1$ it cannot be a clock. We need a new raw material, and polynomials work, because they behave remarkably like whole numbers:
+[Lesson 7](../07-fields-of-prime-order/) showed that a finite field has $q = p^e$ elements, and that for $e > 1$ it cannot be a clock. We need a new raw material, and polynomials work, because they behave remarkably like whole numbers:
 
 | Whole numbers | Polynomials over $\mathrm{GF}(p)$ |
 | --- | --- |
@@ -52,7 +52,7 @@ The quotient is $x^2 + 1$ and the remainder is $x$, which has degree 1, less tha
 - $f(x)$, $a(x)$, … name polynomials in the symbol $x$. Writing $f(c)$ means "replace $x$ by the number $c$ and calculate".
 - The **degree** of a polynomial is its highest power of $x$: $x^3 + x + 1$ has degree 3.
 - $a(x) \bmod f(x)$ is the remainder of $a(x)$ after long division by $f(x)$, and $a(x) \equiv b(x) \pmod{f(x)}$ means they leave the same remainder.
-- $q = p^e$ is the size of a finite field: $p$ is the prime from Lesson 6, and the exponent $e$ is the degree of the polynomial $f$ used to build it.
+- $q = p^e$ is the size of a finite field: $p$ is the prime from Lesson 7, and the exponent $e$ is the degree of the polynomial $f$ used to build it.
 
 </aside>
 
@@ -68,9 +68,9 @@ $$
 a_0 + a_1 x + \dots + a_{e-1} x^{e-1},
 $$
 
-with each coefficient $a_i$ one of the $p$ numbers mod $p$. That makes $p^e$ remainders. Each one is a list of $e$ coefficients, which is exactly the "$e$ coordinates over $\mathrm{GF}(p)$" picture from Lesson 6. The widgets also write a remainder as its string of coefficient digits, highest power first, so over $\mathrm{GF}(2)$ the remainder $x^2 + 1$ is written $101$.
+with each coefficient $a_i$ one of the $p$ numbers mod $p$. That makes $p^e$ remainders. Each one is a list of $e$ coefficients, which is exactly the "$e$ coordinates over $\mathrm{GF}(p)$" picture from Lesson 7. The widgets also write a remainder as its string of coefficient digits, highest power first, so over $\mathrm{GF}(2)$ the remainder $x^2 + 1$ is written $101$.
 
-To add two remainders, add them as polynomials. To multiply, multiply as polynomials, then take the remainder mod $f$. This is clock arithmetic, with $f(x)$ playing the role of the number of hours, and for the same reason as in [Lesson 5](../05-which-clocks-are-fields/) (reducing at the end gives the same answer as reducing along the way, because changing either input of a sum or a product by a multiple of $f$ changes the result only by a multiple of $f$, as with multiples of $v$), the first five field axioms carry over from ordinary polynomial algebra. Only the last axiom, multiplicative inverses, is in question.
+To add two remainders, add them as polynomials. To multiply, multiply as polynomials, then take the remainder mod $f$. This is clock arithmetic, with $f(x)$ playing the role of the number of hours, and for the same reason as in [Lesson 6](../06-which-clocks-are-fields/) (reducing at the end gives the same answer as reducing along the way, because changing either input of a sum or a product by a multiple of $f$ changes the result only by a multiple of $f$, as with multiples of $v$), the first five field axioms carry over from ordinary polynomial algebra. Only the last axiom, multiplicative inverses, is in question.
 
 Here is the smallest example that is not a clock: $p = 2$ and $f(x) = x^2 + x + 1$. The four remainders are $0, 1, x, x + 1$. The only new rule is how to reduce $x^2$: since $x^2 + x + 1 \equiv 0$, we have $x^2 \equiv x + 1$ (over $\mathrm{GF}(2)$, moving terms across the equals sign doesn't change their sign). So, for instance, $x \times (x + 1) = x^2 + x \equiv (x + 1) + x = 1$.
 
@@ -78,15 +78,15 @@ Here is the smallest example that is not a clock: $p = 2$ and $f(x) = x^2 + x + 
 
 Every nonzero row of the multiplication table contains a 1, so this is a field with 4 elements, $\mathrm{GF}(4)$. It is not $\mathbb{Z}/4\mathbb{Z}$: in $\mathrm{GF}(4)$, $1 + 1 = 0$, while on the 4-hour clock $1 + 1 = 2$.
 
-Notice what has happened to $x$. It began as a formal symbol, but in this new field it is one of the four elements, and it is a root of the modulus: $x^2 + x + 1 = 0$ there, even though neither 0 nor 1 is a root over $\mathrm{GF}(2)$. This is Galois's "new number" from [Lesson 5](../05-which-clocks-are-fields/), exactly as $i$ is a new number with $i^2 + 1 = 0$.
+Notice what has happened to $x$. It began as a formal symbol, but in this new field it is one of the four elements, and it is a root of the modulus: $x^2 + x + 1 = 0$ there, even though neither 0 nor 1 is a root over $\mathrm{GF}(2)$. This is Galois's "new number" from [Lesson 6](../06-which-clocks-are-fields/), exactly as $i$ is a new number with $i^2 + 1 = 0$.
 
 ## Irreducible polynomials are the primes
 
 A polynomial is **irreducible** over $\mathrm{GF}(p)$ if it cannot be written as a product of two polynomials of smaller degree (each of degree at least 1). Otherwise it is **reducible**.
 
-**Reducible moduli give zero divisors.** If $f = g \times h$ with $g$ and $h$ of smaller degree, then $g$ and $h$ are nonzero remainders, but $g \times h = f \equiv 0$. The argument from Lesson 5 then shows $g$ has no inverse. Try it in the widget above: choose the modulus $x^2 + 1$, which over $\mathrm{GF}(2)$ equals $(x + 1)^2$, and watch $x + 1$ turn red.
+**Reducible moduli give zero divisors.** If $f = g \times h$ with $g$ and $h$ of smaller degree, then $g$ and $h$ are nonzero remainders, but $g \times h = f \equiv 0$. The argument from Lesson 6 then shows $g$ has no inverse. Try it in the widget above: choose the modulus $x^2 + 1$, which over $\mathrm{GF}(2)$ equals $(x + 1)^2$, and watch $x + 1$ turn red.
 
-**Irreducible moduli give fields.** If $f$ is irreducible and $a(x)$ is a nonzero remainder, then $a$ and $f$ have no common factor of degree 1 or more (the only factors of $f$ are constants and constant multiples of $f$ itself, which has larger degree than $a$). The extended Euclidean algorithm from Lesson 5 works for polynomials too, using long division in place of whole-number division. As in Lesson 5, its last nonzero remainder divides both $a$ and $f$, so here it is a nonzero constant $c$; dividing the final equation by $c$ (a number mod $p$, which has an inverse) produces polynomials $s(x)$ and $t(x)$ with
+**Irreducible moduli give fields.** If $f$ is irreducible and $a(x)$ is a nonzero remainder, then $a$ and $f$ have no common factor of degree 1 or more (the only factors of $f$ are constants and constant multiples of $f$ itself, which has larger degree than $a$). The extended Euclidean algorithm from Lesson 6 works for polynomials too, using long division in place of whole-number division. As in Lesson 6, its last nonzero remainder divides both $a$ and $f$, so here it is a nonzero constant $c$; dividing the final equation by $c$ (a number mod $p$, which has an inverse) produces polynomials $s(x)$ and $t(x)$ with
 
 $$
 s(x)\,a(x) + t(x)\,f(x) = 1.
@@ -112,7 +112,7 @@ No. In the second field, look for an element $r$ with $r^3 + r + 1 = 0$: a root 
 
 This always works: for every prime power $q$, any two fields with $q$ elements are isomorphic. The proof needs more machinery than we develop here, so we take it as a fact, which the widget lets you test for any pair of moduli. That is why it makes sense to speak of *the* field with $q$ elements, written $\mathrm{GF}(q)$. The choice of $f$ only chooses the labels.
 
-We now have every finite field there is. The [next lesson](../08-primitive-elements/) finds the feature of these fields that Singer's construction is built on: in each one, the powers of a single element run through every nonzero element, around one cycle.
+We now have every finite field there is. The [next lesson](../09-primitive-elements/) finds the feature of these fields that Singer's construction is built on: in each one, the powers of a single element run through every nonzero element, around one cycle.
 
 <section class="try-it">
 

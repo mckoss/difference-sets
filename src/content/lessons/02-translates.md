@@ -1,24 +1,24 @@
 ---
-title: "Rotations that never overlap too much"
+title: "Translates that never overlap too much"
 order: 2
 part: 1
 summary: "Translates of a difference set meet in exactly λ points, which is the clue that leads to geometry."
 status: ready
 ---
 
-**You'll learn:** what happens when you turn a difference set around the clock, and why two turned copies always overlap in the same number of points.
+**You'll learn:** what a translate of a difference set is, and why two translates always overlap in the same number of points.
 
-## Turning the clock
+## Translating a set
 
 Take the set $D = \{0, 1, 3\}$ on the seven-hour clock and add 1 to every member. You get $\{1, 2, 4\}$: the same shape, turned one step clockwise. Add 2 instead and you get $\{2, 3, 5\}$. Add 5 and you get $\{5, 6, 8\}$, and since $8 \equiv 1 \pmod 7$ (see the [notation box in Lesson 1](../01-differences-on-a-circle/)), that is $\{1, 5, 6\}$.
 
 > The **translate** $D + j$ is the set you get by adding $j$ to every member of $D$, working mod $v$. It is $D$ turned $j$ steps clockwise.
 
-A turned copy has the same differences as the original, because $(a + j) - (b + j) = a - b$. So every translate of a difference set is again a difference set with the same $v$, $k$, and $\lambda$.
+A translate has the same differences as the original, because $(a + j) - (b + j) = a - b$. So every translate of a difference set is again a difference set with the same $v$, $k$, and $\lambda$.
 
 ## How much do two copies overlap?
 
-Below, $D + i$ is drawn in red and $D + j$ in green; a point in both is red with a green ring. Drag the sliders, or press **j + 1** to keep turning the green copy.
+Below, $D + i$ is drawn in red and $D + j$ in green; a point in both is red with a green ring. Drag the sliders, or press **j + 1** to move the green translate on by one step.
 
 <div data-widget="translates" data-v="7" data-set="0,1,3" data-j="1"></div>
 
@@ -40,7 +40,7 @@ That makes $x$ and $x - j$ a pair of members of $D$ whose difference is $x - (x 
 
 > The number of points shared by $D$ and $D + j$ equals the number of times $j$ occurs as a difference of $D$.
 
-In a $(v, k, \lambda)$ difference set every nonzero $j$ occurs exactly $\lambda$ times, so $D$ and $D + j$ share exactly $\lambda$ points. The same holds for any two different translates $D + i$ and $D + j$: turn both back $i$ steps and you are comparing $D$ with $D + (j - i)$.
+In a $(v, k, \lambda)$ difference set every nonzero $j$ occurs exactly $\lambda$ times, so $D$ and $D + j$ share exactly $\lambda$ points. The same holds for any two different translates $D + i$ and $D + j$: translate both by $-i$ and you are comparing $D$ with $D + (j - i)$.
 
 You can watch this in the widget. With $D = \{0, 1, 2\}$ and $j = 1$ the copies share two points, and the difference 1 occurs twice in $D$ ($1 - 0$ and $2 - 1$).
 

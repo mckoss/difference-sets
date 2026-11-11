@@ -1,4 +1,4 @@
-/* Match-one cards: the deck maker playground and the Lesson 18 widget. */
+/* Match-one cards: the deck maker playground and the Lesson 20 widget. */
 
 :root {
   --card-face: #ffffff;
@@ -130,7 +130,7 @@
   }
 }
 
-/* Lesson 18: the whole small deck */
+/* Lesson 20: the whole small deck */
 
 .match-grid {
   display: grid;

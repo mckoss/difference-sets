@@ -2,7 +2,7 @@
 title: "A geometry with seven points"
 order: 3
 part: 2
-summary: "The Fano plane, whose seven lines are the seven rotations of {0, 1, 3}."
+summary: "The Fano plane, whose seven lines are the seven translates of {0, 1, 3}."
 status: ready
 ---
 
@@ -29,7 +29,7 @@ The first rule is familiar from ordinary geometry. The second is not: in the ord
 
 A few counts fall out of the picture. Every line has 3 points, and every point lies on 3 lines. There are 7 points and 7 lines. Click any single point in the widget to check that it lies on 3 lines.
 
-## The lines are rotations of {0, 1, 3}
+## The lines are translates of {0, 1, 3}
 
 Look at the labels. The list of lines under the picture shows that every line is a translate of $D = \{0, 1, 3\}$ mod 7:
 
@@ -39,9 +39,9 @@ $$
 
 This is no accident. Lesson 2 showed that for a planar difference set, any two points lie together in exactly one translate, and any two translates share exactly one point. Those are the two rules above. So the seven translates of $\{0, 1, 3\}$ form a geometry that obeys the two rules; and the labels in the picture show that this geometry is the Fano plane itself.
 
-## A symmetry that turns the whole plane
+## A symmetry that moves every point
 
-Press **Rotate: i ↦ i + 1** in the widget. The arrow $\mapsto$ is read "goes to": every point $i$ moves to the point $i + 1$, with 6 going to 0. The widget picks one line, shows where its three points go, and highlights the line they land on. Press **Next line** to step through all seven.
+Press **Translate: i ↦ i + 1** in the widget. The arrow $\mapsto$ is read "goes to": every point $i$ moves to the point $i + 1$, with 6 going to 0. The widget picks one line, shows where its three points go, and highlights the line they land on. Press **Next line** to step through all seven.
 
 Every line lands exactly on another line, because adding 1 to every point of $D + j$ gives $D + (j + 1)$. A rearrangement of the points that carries every line onto a line is called a **symmetry** of the geometry. (Geometers call it a *collineation*, and the papers cited in later lessons use that word.) This one is special: repeating it moves point 0 to 1, to 2, and so on through all seven points before returning to 0. One symmetry carries every point around a single cycle.
 

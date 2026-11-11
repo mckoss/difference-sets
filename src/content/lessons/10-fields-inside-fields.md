@@ -1,6 +1,6 @@
 ---
 title: "Fields inside fields"
-order: 9
+order: 10
 part: 3
 summary: "The freshman's dream, the Frobenius map x ↦ x^q, and how GF(q) sits inside GF(q³)."
 status: ready
@@ -25,7 +25,7 @@ $$
 (a + b)^p = a^p + \binom{p}{1} a^{p-1} b + \binom{p}{2} a^{p-2} b^2 + \dots + \binom{p}{p-1} a b^{p-1} + b^p.
 $$
 
-Here $\binom{p}{i}$, read "$p$ choose $i$", is the binomial coefficient: the number of ways to choose $i$ things out of $p$, the $C(p, i)$ of [Lesson 1](../01-differences-on-a-circle/). Each middle coefficient $\binom{p}{i} = \frac{p!}{i!\,(p - i)!}$, with $0 < i < p$, is a whole number divisible by $p$ (here $p!$, read "$p$ factorial", is $p (p - 1) \cdots 1$; multiply the top and bottom of Lesson 1's formula by $(p - i)!$ to get this form): the factor $p$ appears on top, and nothing on the bottom can cancel it, because every factor there is smaller than the prime $p$ (a prime that divides a product divides one of the factors, Euclid's lemma from [Lesson 5](../05-which-clocks-are-fields/), so $p$ cannot divide $i!\,(p - i)!$). For $p = 3$ the coefficients are $1, 3, 3, 1$; for $p = 5$ they are $1, 5, 10, 10, 5, 1$. In characteristic $p$, a multiple of $p$ is 0 (Lesson 6), so all the middle terms vanish:
+Here $\binom{p}{i}$, read "$p$ choose $i$", is the binomial coefficient: the number of ways to choose $i$ things out of $p$, the $C(p, i)$ of [Lesson 1](../01-differences-on-a-circle/). Each middle coefficient $\binom{p}{i} = \frac{p!}{i!\,(p - i)!}$, with $0 < i < p$, is a whole number divisible by $p$ (here $p!$, read "$p$ factorial", is $p (p - 1) \cdots 1$; multiply the top and bottom of Lesson 1's formula by $(p - i)!$ to get this form): the factor $p$ appears on top, and nothing on the bottom can cancel it, because every factor there is smaller than the prime $p$ (a prime that divides a product divides one of the factors, Euclid's lemma from [Lesson 6](../06-which-clocks-are-fields/), so $p$ cannot divide $i!\,(p - i)!$). For $p = 3$ the coefficients are $1, 3, 3, 1$; for $p = 5$ they are $1, 5, 10, 10, 5, 1$. In characteristic $p$, a multiple of $p$ is 0 (Lesson 7), so all the middle terms vanish:
 
 $$
 (a + b)^p = a^p + b^p.
@@ -43,11 +43,11 @@ $$
 
 It is also one-to-one, meaning that different elements go to different elements. Suppose $a^q = b^q$. Since $a = (a - b) + b$, the first rule gives $a^q = (a - b)^q + b^q$, so $(a - b)^q = 0$; a field has no zero divisors, so $a - b = 0$. In a finite field, a one-to-one map from the field to itself is a permutation of the elements: the outputs are all different, so they use up every element. So the Frobenius map is an isomorphism from $F$ to itself (an *automorphism*): it rearranges the elements and keeps every sum and product true.
 
-Here it is on $\mathrm{GF}(8)$. Each nonzero element is written $\alpha^i$ for a primitive $\alpha$ (Lesson 8) and drawn at position $i$ on the circle. Since $(\alpha^i)^2 = \alpha^{2i}$, the map $x \mapsto x^2$ sends position $i$ to position $2i$, counted on a clock with 7 hours (exponents wrap around at 7, because $\alpha^7 = 1$).
+Here it is on $\mathrm{GF}(8)$. Each nonzero element is written $\alpha^i$ for a primitive $\alpha$ (Lesson 9) and drawn at position $i$ on the circle. Since $(\alpha^i)^2 = \alpha^{2i}$, the map $x \mapsto x^2$ sends position $i$ to position $2i$, counted on a clock with 7 hours (exponents wrap around at 7, because $\alpha^7 = 1$).
 
 <div data-widget="frobenius" data-field="8" data-q="2"></div>
 
-In $\mathrm{GF}(8)$, $x \mapsto x^2$ moves every element except 0 and 1, in two cycles of length 3. Applying it three times returns everything home, since $x^8 = x$ for every $x$ (Lesson 8 showed $x^7 = 1$ for $x \ne 0$). Below the picture you can check the freshman's dream on any pair of elements.
+In $\mathrm{GF}(8)$, $x \mapsto x^2$ moves every element except 0 and 1, in two cycles of length 3. Applying it three times returns everything home, since $x^8 = x$ for every $x$ (Lesson 9 showed $x^7 = 1$ for $x \ne 0$). Below the picture you can check the freshman's dream on any pair of elements.
 
 ## What the Frobenius map leaves alone
 
@@ -89,7 +89,7 @@ Here $v = 21$, and $x \mapsto x^4$ fixes $0, 1, \alpha^{21}, \alpha^{42}$: a cop
 
 ## Building GF(q³) directly
 
-For $q = p^e$, the big field has $q^3 = p^{3e}$ elements. Lesson 7 builds it in one step: take a primitive polynomial $f$ of degree $3e$ over $\mathrm{GF}(p)$, and work with remainders mod $f$, which are polynomials of degree below $3e$ with coefficients mod $p$. Then $\alpha = x$ is primitive, $\mathrm{GF}(q)$ is found inside as $\{0\} \cup \langle \alpha^v \rangle$, and there is never any need to construct $\mathrm{GF}(q)$ separately. This is exactly what the code behind this site does.
+For $q = p^e$, the big field has $q^3 = p^{3e}$ elements. Lesson 8 builds it in one step: take a primitive polynomial $f$ of degree $3e$ over $\mathrm{GF}(p)$, and work with remainders mod $f$, which are polynomials of degree below $3e$ with coefficients mod $p$. Then $\alpha = x$ is primitive, $\mathrm{GF}(q)$ is found inside as $\{0\} \cup \langle \alpha^v \rangle$, and there is never any need to construct $\mathrm{GF}(q)$ separately. This is exactly what the code behind this site does.
 
 For $q = 4$ (so $p = 2$, $e = 2$), $\mathrm{GF}(64)$ is the remainders mod $x^6 + x + 1$ over $\mathrm{GF}(2)$, and the copy of $\mathrm{GF}(4)$ inside it is
 
@@ -97,7 +97,7 @@ $$
 \{\,0,\ 1,\ x^5 + x^4 + x^3 + x + 1,\ x^5 + x^4 + x^3 + x\,\},
 $$
 
-as listed under the widget above. Notice that the last two add up to 1, just as $x$ and $x + 1$ do in the $\mathrm{GF}(4)$ of Lesson 7.
+as listed under the widget above. Notice that the last two add up to 1, just as $x$ and $x + 1$ do in the $\mathrm{GF}(4)$ of Lesson 8.
 
 <aside class="notation">
 <span class="notation-title">Notation: maps on a field</span>
@@ -118,9 +118,9 @@ $$
 \mathrm{Tr}(x) = x + x^q + x^{q^2},
 $$
 
-gives $x^q + x^{q^2} + x^{q^3} = x^q + x^{q^2} + x$, the same three terms in a new order. So $\mathrm{Tr}(x)$ is always a fixed point: the **trace** carries every element of $\mathrm{GF}(q^3)$ down to $\mathrm{GF}(q)$, and by the freshman's dream it respects addition. [Lesson 14](../14-writing-down-a-difference-set/) uses exactly this map to write down a Singer difference set.
+gives $x^q + x^{q^2} + x^{q^3} = x^q + x^{q^2} + x$, the same three terms in a new order. So $\mathrm{Tr}(x)$ is always a fixed point: the **trace** carries every element of $\mathrm{GF}(q^3)$ down to $\mathrm{GF}(q)$, and by the freshman's dream it respects addition. [Lesson 15](../15-writing-down-a-difference-set/) uses exactly this map to write down a Singer difference set.
 
-That completes the toolkit: fields of every prime power size, a primitive element in each, and the small field found inside the big one. Part IV puts it to work. [Lesson 10](../10-vectors-over-a-finite-field/) uses a field as coordinates, and a projective plane follows.
+That completes the toolkit: fields of every prime power size, a primitive element in each, and the small field found inside the big one. Part IV puts it to work. [Lesson 11](../11-vectors-over-a-finite-field/) uses a field as coordinates, and a projective plane follows.
 
 <section class="try-it">
 

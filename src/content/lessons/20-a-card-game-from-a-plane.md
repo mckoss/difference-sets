@@ -1,6 +1,6 @@
 ---
 title: "A card game from a plane"
-order: 18
+order: 20
 part: 7
 summary: "Why every two cards of Spot It share exactly one symbol, and how a difference set deals the deck."
 status: ready
@@ -45,7 +45,7 @@ The table leaves out some sizes that work, such as 5 pictures per card (order 4,
 
 Designing a deck by hand is hard. Put pictures on cards one at a time and you soon paint yourself into a corner, with two cards that already share a picture and a third that can't be fitted. Even for eight pictures per card, a computer search through all possible decks would take far too long (Lesson 1 showed how fast such searches blow up).
 
-A difference set removes the search. Take a planar difference set $D$ mod $v$, the $(v, n + 1, 1)$ sets of Lessons 1 and 4, and number the pictures $0, 1, \dots, v - 1$. Then:
+A difference set removes the search. Take a planar difference set $D$ mod $v$, the $(v, n + 1, 1)$ sets of Lessons 1 and 5, and number the pictures $0, 1, \dots, v - 1$. Then:
 
 > Card $j$ holds the pictures numbered by the translate $D + j$, for $j = 0, 1, \dots, v - 1$.
 
@@ -67,18 +67,18 @@ Matt Parker of Stand-up Maths takes a real deck apart and shows the geometry ins
 
 ## Try it
 
-In the 13-card deck dealt from $D = \{0, 1, 3, 9\}$ mod 13, which card shows both picture 5 and picture 6? Use Lesson 4's trick: find the pair in $D$ whose difference is $6 - 5 = 1$.
+In the 13-card deck dealt from $D = \{0, 1, 3, 9\}$ mod 13, which card shows both picture 5 and picture 6? Use Lesson 5's method: find the pair in $D$ whose difference is $6 - 5 = 1$.
 
 <details>
 <summary>Show the answer</summary>
 
-The pair is $1$ and $0$. Turning $D$ so that 0 lands on 5 means adding $j = 5$, which also moves 1 to 6. So the card is $D + 5 = \{5, 6, 8, 14\} = \{1, 5, 6, 8\}$ mod 13 (since $14 \equiv 1$). It is the only card with both pictures, by rule 1.
+The pair is $1$ and $0$. Translating $D$ so that 0 lands on 5 means adding $j = 5$, which also moves 1 to 6. So the card is $D + 5 = \{5, 6, 8, 14\} = \{1, 5, 6, 8\}$ mod 13 (since $14 \equiv 1$). It is the only card with both pictures, by rule 1.
 
 </details>
 
 </section>
 
-Make your own deck in the [deck maker](../../playgrounds/deck-maker/?deck=q7&theme=all): choose from 3 to 12 pictures per card (one more than each prime power order from 2 to 11, so 7 and 11 pictures per card are the sizes it cannot offer), play the matching game, check every pair of cards, and print the deck to cut out. It also offers *match 2*, *match 3* and *match 4* decks, where any two cards share exactly 2, 3 or 4 pictures, built from the difference sets with larger $\lambda$ in [Lesson 16](../16-beyond-the-plane/). Besides the cartoon stickers, it can deal decks of US presidents, classic movie stars, and famous scientists, each labeled with a name: the full set of 133 people fills the largest deck, with 12 portraits per card.
+Make your own deck in the [deck maker](../../playgrounds/deck-maker/?deck=q7&theme=all): choose from 3 to 12 pictures per card (one more than each prime power order from 2 to 11, so 7 and 11 pictures per card are the sizes it cannot offer), play the matching game, check every pair of cards, and print the deck to cut out. It also offers *match 2*, *match 3* and *match 4* decks, where any two cards share exactly 2, 3 or 4 pictures, built from the difference sets with larger $\lambda$ in [Lesson 17](../17-beyond-the-plane/). Besides the cartoon stickers, it can deal decks of US presidents, classic movie stars, and famous scientists, each labeled with a name: the full set of 133 people fills the largest deck, with 12 portraits per card.
 
 The cards on this site are square, and every picture is the same size and stands upright in a fixed slot. Slot $i$ on card $j$ holds the point $d_i + j$, where $d_i$ is the $i$-th number of $D$. Follow one picture, say point $p$, through the deck: it is on card $p - d_i$ (mod $v$) in slot $i$, for each $i$. So every picture visits every slot exactly once, and no position on the card gives anything away.
 

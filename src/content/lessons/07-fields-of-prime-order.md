@@ -1,6 +1,6 @@
 ---
 title: "Every field with p elements is ℤ/pℤ"
-order: 6
+order: 7
 part: 3
 summary: "Counting 1, 1 + 1, 1 + 1 + 1, … inside any finite field: the characteristic, the prime subfield, and why there is only one field of each prime size."
 status: ready
@@ -14,7 +14,7 @@ status: ready
 
 ## A field you have never seen
 
-[Lesson 5](../05-which-clocks-are-fields/) found fields among the clocks. But a field is anything that obeys the rules, and its elements do not have to be numbers. So before building any more fields, it is worth asking how many different ones there could be, and what sizes they can have. The answers shape everything that follows: they are the reason Singer's construction works for prime powers and for nothing else. Here is a field with 5 elements, called A, B, C, D, and E, given only by its addition and multiplication tables. The names were handed out in a random order, so the tables look like noise.
+[Lesson 6](../06-which-clocks-are-fields/) found fields among the clocks. But a field is anything that obeys the rules, and its elements do not have to be numbers. So before building any more fields, it is worth asking how many different ones there could be, and what sizes they can have. The answers shape everything that follows: they are the reason Singer's construction works for prime powers and for nothing else. Here is a field with 5 elements, called A, B, C, D, and E, given only by its addition and multiplication tables. The names were handed out in a random order, so the tables look like noise.
 
 <div data-widget="scrambled-field" data-p="5" data-seed="7"></div>
 
@@ -76,7 +76,7 @@ Inside a finite field $F$ of characteristic $p$, the prime subfield $\mathrm{GF}
 2. If they are not all of $F$, pick some $b_2$ that is not among them. The combinations $c_1 b_1 + c_2 b_2$ are $p^2$ different elements. To see why, suppose two of them are equal: $c_1 b_1 + c_2 b_2 = c_1' b_1 + c_2' b_2$. If $c_2 \ne c_2'$, collect terms to get $(c_2 - c_2')\, b_2 = (c_1' - c_1)\, b_1$ and divide by $c_2 - c_2'$, which has an inverse in $\mathrm{GF}(p)$. That writes $b_2$ as a multiple of $b_1$, and $b_2$ was chosen not to be one. So $c_2 = c_2'$, which leaves $c_1 b_1 = c_1' b_1$, and since $b_1 = 1$, also $c_1 = c_1'$. The two combinations were the same one.
 3. Keep going. Each new pick multiplies the count by $p$, by the same argument (compare the coefficients of the newest pick first, then work back), and since $F$ is finite, this stops after some number $e$ of picks, with every element of $F$ written in exactly one way as $c_1 b_1 + \dots + c_e b_e$.
 
-So $F$ has exactly $p^e$ elements. In the language of [Lesson 10](../10-vectors-over-a-finite-field/), $F$ is a vector space over $\mathrm{GF}(p)$, and each element is a list of $e$ coordinates $(c_1, \dots, c_e)$.
+So $F$ has exactly $p^e$ elements. In the language of [Lesson 11](../11-vectors-over-a-finite-field/), $F$ is a vector space over $\mathrm{GF}(p)$, and each element is a list of $e$ coordinates $(c_1, \dots, c_e)$.
 
 Throughout the site, $q = p^e$ stands for the size of a finite field, with $p$ its characteristic and $e$ the exponent. There is no field with 6, 10, or 12 elements, because those are not prime powers. Fields with 4, 8, 9, 16, … elements do exist, but they are *not* clocks, since $\mathbb{Z}/4\mathbb{Z}$ has the zero divisor $2 \times 2 = 0$. The next lesson builds them from polynomials.
 

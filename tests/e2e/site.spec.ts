@@ -21,15 +21,23 @@ test('home page says how to read the site and links ahead to the applications', 
   await expect(page.locator('h1')).toHaveText('A card game from a plane');
 });
 
-test('the path has a road map after Lesson 4 and the whole argument in Lesson 14', async ({ page }) => {
-  await page.goto('lessons/04-projective-planes/');
+test('the path has a road map after Lesson 5 and the whole argument in Lesson 15', async ({ page }) => {
+  await page.goto('lessons/05-cyclic-planes/');
   await expect(page.locator('.roadmap ol > li')).toHaveCount(3);
-  await page.locator('.roadmap a', { hasText: 'Lesson 14' }).click();
+  await page.locator('.roadmap a', { hasText: 'Lesson 15' }).click();
   await expect(page.locator('h2', { hasText: 'The algorithm, start to finish' })).toBeVisible();
   // One row per step of the argument, each naming the lesson that proves it.
   const steps = page.locator('h2:has-text("The whole argument on one page") ~ table').first().locator('tbody tr');
   await expect(steps).toHaveCount(8);
   await expect(steps.last()).toContainText('this lesson');
+});
+
+test('an old lesson address forwards to the renumbered lesson', async ({ page }) => {
+  await page.goto('lessons/17-every-planar-set-singer/');
+  await expect(page).toHaveURL(/lessons\/18-every-planar-set-singer\/$/);
+  await expect(page.locator('h1')).toHaveText('Is every planar difference set a Singer set?');
+  await page.goto('lessons/02-rotations/');
+  await expect(page.locator('h1')).toHaveText('Translates that never overlap too much');
 });
 
 test('sidebar is a numbered outline of every lesson, grouped by part', async ({ page }) => {
@@ -93,7 +101,7 @@ test('lesson 1 has a previous link to home', async ({ page }) => {
 });
 
 test('math is typeset by KaTeX at build time', async ({ page }) => {
-  await page.goto('lessons/06-fields-of-prime-order/');
+  await page.goto('lessons/07-fields-of-prime-order/');
   await expect(page.locator('.katex').first()).toBeVisible();
   expect(await page.locator('article').textContent()).not.toContain('$');
   await page.goto('lessons/01-differences-on-a-circle/');
@@ -106,7 +114,7 @@ test.describe('on a phone', () => {
   test.use({ viewport: { width: 375, height: 800 } });
 
   test('the sidebar folds behind a Contents button', async ({ page }) => {
-    await page.goto('lessons/05-which-clocks-are-fields/');
+    await page.goto('lessons/06-which-clocks-are-fields/');
     const sidebar = page.locator('#sidebar');
     const toggle = page.getByRole('button', { name: 'Contents' });
     await expect(sidebar).toBeHidden();
@@ -120,9 +128,13 @@ test.describe('on a phone', () => {
   for (const path of [
     './',
     'lessons/01-differences-on-a-circle/',
-    'lessons/02-rotations/',
+    'lessons/02-translates/',
     'lessons/03-fano-plane/',
     'lessons/04-projective-planes/',
+    'lessons/05-cyclic-planes/',
+    'lessons/19-how-a-proof-might-go/',
+    'lessons/26-a-fair-race/',
+    'lessons/27-any-number-of-cars/',
     'playgrounds/difference-workbench/?v=40&set=0,1,3,7,15,31',
     'playgrounds/singer-classes/?q=8',
   ]) {

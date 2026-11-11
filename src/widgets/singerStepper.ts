@@ -12,17 +12,17 @@ const ALL_QS = [2, 3, 4, 5, 7, 8, 9, 11, 13];
 
 const pow = (n: number) => (n === 0 ? '1' : n === 1 ? 'α' : `α${superscript(n)}`);
 
-/** The last step: one diagram of the lexicographically smallest rotation or reflection of D. */
+/** The last step: one diagram of the lexicographically smallest translate of D or of its mirror image. */
 function standardFormStep(D: readonly number[], v: number, z: ReturnType<typeof startAtZeroOne>): Node[] {
   const head = h('p', { class: 'pg-list-head', text: 'Smallest form' });
   if (!z) return [head, h('p', { text: `D = ${setText(D)} has no single pair of members one step apart.` })];
   const svg = chordDiagram(z.best, v);
   svg.classList.add('ss-smallest-diagram');
   const how = z.mirrorWins
-    ? `reflecting D (each member d becomes −d) and rotating it ${z.b + 1} notch${z.b + 1 === 1 ? '' : 'es'}: ${z.b + 1} − D`
+    ? `taking the mirror image −D and translating it by ${z.b + 1}: ${z.b + 1} − D`
     : z.b === 0
-      ? 'D itself, with no rotation'
-      : `rotating D back ${z.b} notch${z.b === 1 ? '' : 'es'}: D − ${z.b}`;
+      ? 'D itself, with no translation'
+      : `translating D by −${z.b}: D − ${z.b}`;
   return [
     head,
     h(
@@ -47,7 +47,7 @@ function standardFormStep(D: readonly number[], v: number, z: ReturnType<typeof 
  * i joins D. The chord diagram grows as members join; at the end the widget
  * checks every nonzero difference and sets the cost beside a brute-force
  * search. One last step (i = v + 1 in the URL) adds a second diagram: the
- * lexicographically smallest rotation or reflection of D, which starts {0, 1}.
+ * lexicographically smallest translate of D or of its mirror image, which starts {0, 1}.
  * With `data-url-state`, q and the step count live in `?q=&i=`.
  */
 export function mount(el: HTMLElement): void {
@@ -196,8 +196,8 @@ export function mount(el: HTMLElement): void {
             (offset === undefined
               ? ''
               : offset === 0
-                ? `It is the line z = 0 from Lesson 13, ${setText(Z)}.`
-                : `It is the line z = 0 from Lesson 13, ${setText(Z)}, turned ${offset} notches: D = ${setText(Z)} + ${offset}.`),
+                ? `It is the line z = 0 from Lesson 14, ${setText(Z)}.`
+                : `It is the line z = 0 from Lesson 14, ${setText(Z)}, translated by ${offset}: D = ${setText(Z)} + ${offset}.`),
         }),
         h('p', { class: 'pg-list-head', text: 'Every difference d = a − b (mod ' + v + '), with a and b in D' }),
         h(

@@ -1,50 +1,79 @@
 ---
 import { getCollection, render } from 'astro:content';
 import Base from '../../layouts/Base.astro';
-import { href, lessonPath, neighbors, PARTS } from '../../site';
+import { href, lessonPath, MOVED_LESSONS, neighbors, PARTS } from '../../site';
 import { lessonEntries } from '../../lib/lessons';
 
 export async function getStaticPaths() {
   const lessons = await getCollection('lessons');
-  return lessons.map((lesson) => ({ params: { id: lesson.id }, props: { lesson } }));
+  const current = lessons.map((lesson) => ({ params: { id: lesson.id }, props: { lesson, movedTo: undefined } }));
+  // Old addresses of renumbered lessons: a small page that forwards to the new one.
+  const moved = Object.entries(MOVED_LESSONS).map(([from, to]) => ({
+    params: { id: from },
+    props: { lesson: undefined, movedTo: to },
+  }));
+  return [...current, ...moved];
 }
 
-const { lesson } = Astro.props;
-const { Content } = await render(lesson);
+const { lesson, movedTo } = Astro.props;
 const base = import.meta.env.BASE_URL;
-const { prev, next } = neighbors(await lessonEntries(), lesson.id);
-const part = PARTS.find((p) => p.part === lesson.data.part)!;
+const target = movedTo ? href(base, lessonPath(movedTo)) : '';
+const { Content } = lesson ? await render(lesson) : { Content: undefined };
+const { prev, next } = lesson ? neighbors(await lessonEntries(), lesson.id) : { prev: undefined, next: undefined };
+const part = lesson ? PARTS.find((p) => p.part === lesson.data.part)! : undefined;
 ---
 
-<Base title={lesson.data.title} description={lesson.data.summary} current={lessonPath(lesson.id)}>
-  <article class="lesson">
-    <p class="eyebrow">Part {part.numeral} · {part.title} · Lesson {lesson.data.order}</p>
-    <h1>{lesson.data.title}</h1>
-    <p class="lede">{lesson.data.summary}</p>
-    <Content />
-  </article>
-  <nav class="pager" aria-label="Lesson navigation">
-    {
-      prev ? (
-        <a class="prev" rel="prev" href={href(base, lessonPath(prev.id))}>
-          <span>Previous</span> {prev.order}. {prev.title}
-        </a>
-      ) : (
-        <a class="prev" rel="prev" href={href(base)}>
-          <span>Previous</span> Home
-        </a>
-      )
-    }
-    {
-      next ? (
-        <a class="next" rel="next" href={href(base, lessonPath(next.id))}>
-          <span>Next</span> {next.order}. {next.title}
-        </a>
-      ) : (
-        <a class="next" rel="next" href={href(base, 'glossary/')}>
-          <span>Next</span> Glossary
-        </a>
-      )
-    }
-  </nav>
-</Base>
+{
+  movedTo && (
+    <html lang="en">
+      <head>
+        <meta charset="utf-8" />
+        <title>This lesson has moved</title>
+        <meta name="robots" content="noindex" />
+        <link rel="canonical" href={target} />
+        <meta http-equiv="refresh" content={`0; url=${target}`} />
+      </head>
+      <body>
+        <p>
+          This lesson has moved. <a href={target}>Continue to its new address.</a>
+        </p>
+      </body>
+    </html>
+  )
+}
+{
+  lesson && part && Content && (
+    <Base title={lesson.data.title} description={lesson.data.summary} current={lessonPath(lesson.id)}>
+      <article class="lesson">
+        <p class="eyebrow">Part {part.numeral} · {part.title} · Lesson {lesson.data.order}</p>
+        <h1>{lesson.data.title}</h1>
+        <p class="lede">{lesson.data.summary}</p>
+        <Content />
+      </article>
+      <nav class="pager" aria-label="Lesson navigation">
+        {
+          prev ? (
+            <a class="prev" rel="prev" href={href(base, lessonPath(prev.id))}>
+              <span>Previous</span> {prev.order}. {prev.title}
+            </a>
+          ) : (
+            <a class="prev" rel="prev" href={href(base)}>
+              <span>Previous</span> Home
+            </a>
+          )
+        }
+        {
+          next ? (
+            <a class="next" rel="next" href={href(base, lessonPath(next.id))}>
+              <span>Next</span> {next.order}. {next.title}
+            </a>
+          ) : (
+            <a class="next" rel="next" href={href(base, 'glossary/')}>
+              <span>Next</span> Glossary
+            </a>
+          )
+        }
+      </nav>
+    </Base>
+  )
+}

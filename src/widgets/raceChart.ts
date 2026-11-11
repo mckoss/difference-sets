@@ -167,7 +167,7 @@ export function mount(root: HTMLElement): void {
       } else if (meetings % (cars - 1) !== 0) {
         text += ` No chart can be perfect here: each car has ${meetings} meetings to share among ${cars - 1} opponents.`;
       } else {
-        text += ` A perfect rotation would need a (${cars}, ${lanes}, ${meetings / (cars - 1)}) difference set mod ${cars}, and there is none.`;
+        text += ` A perfect cyclic chart would need a (${cars}, ${lanes}, ${meetings / (cars - 1)}) difference set mod ${cars}, and there is none.`;
       }
     }
     const fairest = best !== undefined && best.lo === f.lo && best.hi === f.hi;

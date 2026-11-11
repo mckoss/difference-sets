@@ -3,9 +3,9 @@ import { expect, test } from './fixtures';
 const wake = '[data-widget="wake-up"]';
 const ruler = '[data-widget="golomb-ruler"]';
 
-test.describe('wake-up schedules (Lesson 22)', () => {
+test.describe('wake-up schedules (Lesson 24)', () => {
   test('radios on {0, 1, 3} always meet; a random schedule can miss', async ({ page }) => {
-    await page.goto('lessons/22-always-meet/');
+    await page.goto('lessons/24-always-meet/');
     const w = page.locator(wake);
     await expect(w.locator('.wake-timeline rect.slot')).toHaveCount(21);
     await expect(w.locator('.wake-pairs li')).toHaveCount(3);
@@ -32,7 +32,7 @@ test.describe('wake-up schedules (Lesson 22)', () => {
   });
 
   test('relabels slots as keys and quorums, and changes the cycle', async ({ page }) => {
-    await page.goto('lessons/22-always-meet/');
+    await page.goto('lessons/24-always-meet/');
     const w = page.locator(wake);
     await w.locator('.view-select').selectOption('keys');
     await expect(w.locator('.wake-pairs li').first()).toContainText('share key');
@@ -45,9 +45,9 @@ test.describe('wake-up schedules (Lesson 22)', () => {
   });
 });
 
-test.describe('Golomb ruler (Lesson 23)', () => {
+test.describe('Golomb ruler (Lesson 25)', () => {
   test('measures both ways round and tallies every distance once', async ({ page }) => {
-    await page.goto('lessons/23-a-ruler-with-no-repeats/');
+    await page.goto('lessons/25-a-ruler-with-no-repeats/');
     const r = page.locator(ruler);
     await expect(r.locator('.tally-cell.once')).toHaveCount(12);
     await r.locator('[data-mark="1"]').click();
@@ -63,7 +63,7 @@ test.describe('Golomb ruler (Lesson 23)', () => {
   });
 
   test('unwinds at the longest gap into a straight Golomb ruler', async ({ page }) => {
-    await page.goto('lessons/23-a-ruler-with-no-repeats/');
+    await page.goto('lessons/25-a-ruler-with-no-repeats/');
     const r = page.locator(ruler);
     await r.locator('.view-unwind').click();
     await expect(r.locator('.antenna')).toHaveCount(4);
@@ -85,7 +85,7 @@ test.describe('Golomb ruler (Lesson 23)', () => {
 test.describe('on a phone', () => {
   test.use({ viewport: { width: 390, height: 800 } });
 
-  for (const path of ['lessons/22-always-meet/', 'lessons/23-a-ruler-with-no-repeats/']) {
+  for (const path of ['lessons/24-always-meet/', 'lessons/25-a-ruler-with-no-repeats/']) {
     test(`${path} has no horizontal scroll`, async ({ page }) => {
       await page.goto(path);
       await page.locator('h1').waitFor();

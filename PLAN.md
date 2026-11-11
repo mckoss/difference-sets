@@ -37,7 +37,7 @@ Rules every lesson follows, so the path reads as one voice.
   re-explain what is: no second gloss of λ, ≡, exponents, or "prime power"
   ten lessons after they were taught. Point back to the lesson instead, and
   let the glossary hover do the reminding. Part VII is modular: each of its
-  lessons assumes Lessons 1 to 4 plus whatever earlier lesson it names, and
+  lessons assumes Lessons 1 to 5 plus whatever earlier lesson it names, and
   may briefly restate ideas from elsewhere in Part VII.
 - **Don't talk down.** Once a technical term has been introduced, use it:
   "translate" (not "turn" or "slide" as a noun), "permutes" (not
@@ -131,7 +131,7 @@ consequence rather than a trick.
    points on a clock face and watch the difference tally. Brute force finds
    {0, 1, 3} mod 7 instantly, but the search space C(v, k) explodes; a live
    counter shows how quickly hand search becomes hopeless.
-2. **Rotations that never overlap too much.** Translates D + j. For a
+2. **Translates that never overlap too much.** Translates D + j. For a
    difference set, any two translates share exactly λ points; for λ = 1 the
    translates behave like *lines*: two of them meet in exactly one point.
    This is the clue that leads to geometry.
@@ -140,13 +140,15 @@ consequence rather than a trick.
 
 3. **A geometry with seven points.** The Fano plane: every two points lie on
    one line, every two lines meet in one point. Lines of the Fano plane are
-   the 7 rotations of {0, 1, 3}. Interactive: click two points to see their
+   the 7 translates of {0, 1, 3}. Interactive: click two points to see their
    line, click two lines to see their intersection.
-4. **Projective planes in general.** The axioms, order n, the counts
-   n² + n + 1 points and n + 1 points per line, duality. A plane is *cyclic*
-   when one symmetry carries every point around a single cycle, and a cyclic
-   plane is exactly a planar difference set. So: *where do planes with that
-   symmetry come from?*
+4. **Projective planes in general.** The axioms, order n, duality, and the
+   counts: n² + n + 1 points, as many lines, n + 1 points per line.
+5. **Cyclic planes are difference sets.** A plane is *cyclic* when one
+   symmetry carries every point around a single cycle, and a cyclic plane is
+   exactly a planar difference set (both directions proved). So: *where do
+   planes with that symmetry come from?* Closes with the road map of Parts
+   III to V.
 
 **Part III — Finite fields**
 
@@ -159,7 +161,7 @@ a prime, and a finite field has q = p^e elements, built from a polynomial of
 degree e. The letters n and k are never used for clocks or degrees, since
 they belong to plane orders and difference-set sizes.
 
-5. **What a field is, and which clocks are fields.** The field axioms in
+6. **What a field is, and which clocks are fields.** The field axioms in
    plain terms: add, subtract, multiply, and divide by anything nonzero.
    Try ℤ/vℤ for several v with live addition and multiplication tables and
    a clock that shows multiplication as repeated jumps. For v = 6,
@@ -167,7 +169,7 @@ they belong to plane orders and difference-set sizes.
    multiplication table is a permutation (Euclid's lemma), and the extended
    Euclidean algorithm, stepped through in a widget, finds each inverse.
    Conclusion: ℤ/vℤ is a field exactly when v is prime. Name it GF(p).
-6. **Every field with p elements is ℤ/pℤ.** Start from any field F. Add 1 to
+7. **Every field with p elements is ℤ/pℤ.** Start from any field F. Add 1 to
    itself: 1, 1 + 1, 1 + 1 + 1, … In a finite field this eventually returns
    to 0, and the first time it does is a prime p (a composite would give zero
    divisors), the *characteristic*. The sums of 1 form a copy of ℤ/pℤ inside
@@ -178,26 +180,26 @@ they belong to plane orders and difference-set sizes.
    tables snap back into clock arithmetic. Corollary: picking elements one
    at a time shows any finite field is a vector space over its prime
    subfield, so its size is q = p^e.
-7. **Fields with p^e elements, built from polynomials.** Polynomials with
+8. **Fields with p^e elements, built from polynomials.** Polynomials with
    coefficients in GF(p), with long division shown step by step, reduced
    modulo a fixed monic polynomial f of degree e. Elements are the
    remainders a₀ + a₁x + … + a_(e−1)x^(e−1), that is, e-tuples over GF(p),
-   matching the vector space picture from Lesson 6. The parallel with
-   Lesson 5 is exact: irreducible polynomials play the role of primes.
+   matching the vector space picture from Lesson 7. The parallel with
+   Lesson 6 is exact: irreducible polynomials play the role of primes.
    Modulo a reducible f, zero divisors appear just as in ℤ/6ℤ; modulo an
    irreducible f, every nonzero element has an inverse (the extended
    Euclidean algorithm again, now for polynomials). Build GF(4), GF(8), and
    GF(9) in widgets, and note that GF(4) is not ℤ/4ℤ. Existence of
    irreducibles and uniqueness of GF(q) are stated without proof; the
    isomorphism finder demonstrates uniqueness for any two moduli.
-8. **One element to generate them all.** Primitive elements: the powers of α
+9. **One element to generate them all.** Primitive elements: the powers of α
    visit every nonzero element (a walk around a circle), so multiplication
    becomes adding exponents (log tables). Every order divides q − 1 (product
    of all nonzero elements). Primitive polynomials, and how to test one
    without trying every power: check α^((q − 1)/r) ≠ 1 for each prime r
    dividing q − 1. Existence of primitive elements gets a counting sketch
    with φ.
-9. **Fields inside fields.** The freshman's dream (x + y)^p = x^p + y^p in
+10. **Fields inside fields.** The freshman's dream (x + y)^p = x^p + y^p in
    characteristic p, the Frobenius map x ↦ x^q drawn as a permutation with
    arrows, its fixed points as a subfield with at most q elements, and GF(q)
    as the elements of GF(q³) it fixes, which is {0} ∪ ⟨α^(q² + q + 1)⟩. For
@@ -207,31 +209,31 @@ they belong to plane orders and difference-set sizes.
 
 **Part IV — Planes from fields**
 
-10. **Vectors over a finite field.** GF(q)³ as a finite grid of q³ vectors,
+11. **Vectors over a finite field.** GF(q)³ as a finite grid of q³ vectors,
     shown in 3D with three.js. Spans and subspaces; every line through the
     origin holds q − 1 nonzero vectors, so there are (q³ − 1)/(q − 1) =
     q² + q + 1 lines through the origin, and as many planes.
-11. **Coordinates for a projective plane.** PG(2, q): points are the
+12. **Coordinates for a projective plane.** PG(2, q): points are the
    1-dimensional subspaces of GF(q)³ (homogeneous coordinates [x : y : z]),
    lines are the 2-dimensional subspaces. Count them and check the axioms.
    Draw PG(2, 2) as the Fano plane and PG(2, 3) with 13 points.
-12. **The field hiding inside the plane.** GF(q³) *is* GF(q)³ as a vector
+13. **The field hiding inside the plane.** GF(q³) *is* GF(q)³ as a vector
    space, so its nonzero elements up to GF(q)* scalars are the points of
    PG(2, q). Since GF(q)* = ⟨α^v⟩, each point is α^i for exactly one
    i mod v, which gives every point a number.
-13. **The Singer cycle.** Multiplying by α is GF(q)-linear, so it sends lines
+14. **The Singer cycle.** Multiplying by α is GF(q)-linear, so it sends lines
     to lines, and it moves point i to point i + 1, cycling through all v
     points. So PG(2, q) is cyclic, and by Lesson 4 any one of its lines is a
-    difference set. Animate the rotation carrying one line onto the next.
+    difference set. Animate multiplication by α carrying one line onto its translate.
 
 **Part V — Singer's algorithm**
 
-14. **Writing down a difference set.** Choose one line: the trace-zero plane
+15. **Writing down a difference set.** Choose one line: the trace-zero plane
     {x : x + x^q + x^(q²) = 0}. Then D = {i mod v : Tr(α^i) = 0}. Step
     through it for q = 2, 3, 4: compute α^i, take the trace, keep or reject.
     This takes v field multiplications, with no search, set against the
     brute-force count from Lesson 1.
-15. **Many sets, few shapes.** Multipliers: t·D for t coprime to v is another
+16. **Many sets, few shapes.** Multipliers: t·D for t coprime to v is another
     difference set. Equivalence under translation, negation, and
     multipliers; Hall's multiplier theorem (multiplying by p gives a
     translate). Gallery of the distinct classes per q (the notebook port),
@@ -239,14 +241,14 @@ they belong to plane orders and difference-set sizes.
 
 **Part VI — The frontier**
 
-16. **Beyond the plane.** Singer sets from PG(m, q) in every dimension:
+17. **Beyond the plane.** Singer sets from PG(m, q) in every dimension:
     v = (q^(m+1) − 1)/(q − 1), k = (q^m − 1)/(q − 1),
     λ = (q^(m−1) − 1)/(q − 1). The q = 2 case is the zero set of a binary
     m-sequence (a shift register), whose ±1 form has two-level
     autocorrelation v and v − 4(k − λ) = −1; Part VII needs this. Contrast:
     Gordon–Mills–Welch sets share Singer's parameters without being Singer
     sets (smallest (63, 31, 15)), and never have planar parameters.
-17. **Is every planar difference set a Singer set?** The *completeness
+18. **Is every planar difference set a Singer set?** The *completeness
     conjecture*: Singer's construction finds every planar difference set, so
     every cyclic projective plane is Desarguesian.
     - Consequence: the *prime power conjecture*, that a planar difference set
@@ -257,19 +259,20 @@ they belong to plane orders and difference-set sizes.
       [A058241](https://oeis.org/A058241) and equal φ(q² + q + 1)/6e for
       q = p^e. Non-Desarguesian planes exist (order 9), but none known is
       cyclic.
-    - Hints at a proof: multiplier theorems, group rings and characters
-      (cyclotomic integers), Bruck–Ryser–Chowla-style non-existence tests,
-      and theorems showing that enough symmetry forces a plane to be
-      Desarguesian. The open question is whether a single cycle is enough.
     - Contrast: the higher-dimensional analogue is false (Gordon–Mills–Welch
       sets).
 
     Playground tie-in: exhaustive search for small v finds only sets
     equivalent to Singer sets. Widgets: the search itself, a table of
-    orders n ≤ 100 colored by status (cyclic planes or any plane), a
-    Bruck–Ryser checker, and the identity
-    D(x)·D(x⁻¹) ≡ n + (1 + x + … + x^(v−1)) mod (x^v − 1) worked term by
-    term, with x replaced by a turn to show |D| = √n.
+    orders n ≤ 100 colored by status (cyclic planes or any plane), and a
+    Bruck–Ryser checker.
+19. **How a proof might go.** Three lines of attack: multiplier theorems,
+    group rings and characters (the identity
+    D(x)·D(x⁻¹) ≡ n + (1 + x + … + x^(v−1)) mod (x^v − 1), worked term by
+    term, with x replaced by a root of unity to show |D(x)| = √n), and
+    theorems showing that enough symmetry forces a plane to be Desarguesian.
+    The open question is whether a single cycle is enough. Ends with
+    experiments and books for going further.
 
 **Part VII — Applications**
 
@@ -278,40 +281,43 @@ Each lesson is one real use of the translate-overlap property
 [docs/applications.md](docs/applications.md)). They may use any earlier
 lesson; where Parts III–V are needed, they explain the idea intuitively.
 
-18. **A card game from a plane.** Spot It (Dobble): cards are lines,
+20. **A card game from a plane.** Spot It (Dobble): cards are lines,
     symbols are points; card j = D + j. Order 7 gives 57 cards (retail deck
     commonly reported as 55). Click-to-load video by Matt Parker.
-19. **Pictures without a lens.** Coded-aperture imaging: a Singer q = 2 mask
+21. **Pictures without a lens.** Coded-aperture imaging: a Singer q = 2 mask
     (255 = 15 × 17, like ASTROSAT CZTI), shadows that look like noise,
     decoding to sharp peaks on a flat floor; a random mask leaves ghosts.
-20. **Finding an echo.** Two-level autocorrelation of m-sequences, finding a
+22. **Finding an echo.** Two-level autocorrelation of m-sequences, finding a
     delay in noise; radar, audio measurement, GPS (Gold codes, not
     difference sets).
-21. **Majority rules.** Difference-set cyclic codes and one-step majority
+23. **Majority rules.** Difference-set cyclic codes and one-step majority
     decoding: (7, 3) and (21, 11) in the demo, (273, 191) shortened to
     (272, 190) in DARC / VICS and Japanese teletext.
-22. **Always meet.** Wake-up schedules on (0, 1, 3) mod 7 (patent
+24. **Always meet.** Wake-up schedules on (0, 1, 3) mod 7 (patent
     US7747273B2), relabeled as shared keys and quorums.
-23. **A ruler with no repeats.** Modular Golomb rulers, v ≥ k² − k + 1 with
+25. **A ruler with no repeats.** Modular Golomb rulers, v ≥ k² − k + 1 with
     equality for planar sets, unwinding into antenna arrays and channel
     plans.
-24. **A fair race.** Pinewood Derby race charts: heat j is D + j, so every
+26. **A fair race.** Pinewood Derby race charts: heat j is D + j, so every
     car runs once in each lane, and two cars meet once per way of writing
     their difference from D. Perfect charts need λ(N − 1) = k(k − 1), so
     N = k² − k + 1 for λ = 1; a table of which car counts have a perfect
-    rotation for 2–8 lanes; the fairest rotation for other counts (Pope and
-    Young's Partial Perfect-N charts, modular Golomb rulers past k² − k + 1);
+    cyclic chart (one made of the translates of a lineup) for 2–8 lanes;
     every two heats share λ cars, so back-to-back races can't be avoided.
     Stan Pope's 1997 Perfect-N pages and DerbyNet's generators are this
     construction.
-25. **Rebuilding a disk.** Declustered RAID with stripes on the lines of
+27. **A race for any number of cars.** How the exhaustive search for the
+    fairest cyclic chart works; byes in a larger perfect chart and what they
+    cost; the fairest cyclic chart for other counts (Pope and Young's
+    Partial Perfect-N charts, modular Golomb rulers past k² − k + 1).
+28. **Rebuilding a disk.** Declustered RAID with stripes on the lines of
     the Fano plane: when a disk fails, every survivor reads the same amount.
-26. **Secrets that look like noise.** Key rings (back to Lesson 22),
+29. **Secrets that look like noise.** Key rings (back to Lesson 24),
     bent functions as (16, 6, 2) difference sets under XOR and why they
     resist linear cryptanalysis, S-boxes, and why linear shift registers
     alone make weak stream ciphers.
 
-Citations are checked against primary sources before Lesson 17 ships; the
+Citations are checked against primary sources before Lesson 18 ships; the
 verified notes so far are in [docs/citations.md](docs/citations.md).
 
 ### Playgrounds
@@ -326,7 +332,7 @@ verified notes so far are in [docs/citations.md](docs/citations.md).
 - **Projective plane explorer.** PG(2, q) for small q: points, lines,
   incidence, both the coordinate numbering and the Singer numbering.
 - **Singer construction stepper.** Choose q ≤ 13 (the primitive cubic of
-  Lessons 12–13), then step through α^i, its conjugates α^(iq) and α^(iq²),
+  Lessons 13–14), then step through α^i, its conjugates α^(iq) and α^(iq²),
   the trace, and the resulting D, with every intermediate value shown, ending
   in a chord diagram and a checked difference table (`?q=&i=`).
 - **Singer classes gallery.** The current home page: distinct classes for
@@ -394,12 +400,12 @@ verified notes so far are in [docs/citations.md](docs/citations.md).
    *(v0.2.0)*
 3. **Multi-page skeleton** on Astro: Markdown lessons with KaTeX, numbered
    sidebar outline, home page, and the classes gallery playground. *(v0.3.0)*
-4. **Part I–II**: Lessons 1–4 and the difference-set workbench.
-5. **Part III**: Lessons 5–9 and the finite field calculator.
-6. **Part IV**: Lessons 10–13 and the projective plane explorer.
-7. **Part V**: Lessons 14–15 and the Singer stepper.
-8. **Part VI**: Lesson 17, search versus construction, large-q explorer.
-9. **Part VII**: Lessons 18–24 and the match-one deck maker; Lesson 16
+4. **Part I–II**: Lessons 1–5 and the difference-set workbench.
+5. **Part III**: Lessons 6–10 and the finite field calculator.
+6. **Part IV**: Lessons 11–14 and the projective plane explorer.
+7. **Part V**: Lessons 15–16 and the Singer stepper.
+8. **Part VI**: Lesson 18, search versus construction, large-q explorer.
+9. **Part VII**: Lessons 20–26 and the match-one deck maker; Lesson 17
    written.
 10. **Polish**: accessibility, mobile layout, performance for large q.
 

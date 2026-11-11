@@ -44,8 +44,8 @@ describe('lessonSections', () => {
 
 describe('searchEntries', () => {
   const entries: SearchEntry[] = [
-    { title: 'Multiplying is jumping', where: 'Lesson 5', href: 'a', text: 'The trace appears once here.' },
-    { title: 'The trace', where: 'Lesson 14', href: 'b', text: 'The trace of x is x + x^q. Trace zero.' },
+    { title: 'Multiplying is jumping', where: 'Lesson 6', href: 'a', text: 'The trace appears once here.' },
+    { title: 'The trace', where: 'Lesson 15', href: 'b', text: 'The trace of x is x + x^q. Trace zero.' },
     { title: 'trace', where: 'Glossary', href: 'c', text: 'Tr(x) = x + x^q + x^q².' },
     { title: 'Clocks', where: 'Lesson 1', href: 'd', text: 'Nothing to see.' },
   ];

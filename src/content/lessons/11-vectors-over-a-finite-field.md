@@ -1,6 +1,6 @@
 ---
 title: "Vectors over a finite field"
-order: 10
+order: 11
 part: 4
 summary: "GF(q)³ as a finite grid of vectors, and counting the lines and planes through the origin."
 status: ready
@@ -14,7 +14,7 @@ status: ready
 
 ## Why we need this
 
-Part II ended with a question: where do projective planes with a turning symmetry come from? Part III built the finite fields $\mathrm{GF}(q)$, one for every prime power $q = p^e$. This part turns a field into a plane. The construction is old and short: take ordinary 3D space, but give its points coordinates in $\mathrm{GF}(q)$ instead of in the real numbers. Then call each *line through the origin* a "point" and each *plane through the origin* a "line". This lesson builds the space and counts its lines and planes. [Lesson 11](../11-coordinates/) checks that the result is a projective plane, and Lessons 12 and 13 find its turning symmetry inside $\mathrm{GF}(q^3)$.
+Part II ended with a question: where do cyclic projective planes come from? Part III built the finite fields $\mathrm{GF}(q)$, one for every prime power $q = p^e$. This part turns a field into a plane. The construction is old and short: take ordinary 3D space, but give its points coordinates in $\mathrm{GF}(q)$ instead of in the real numbers. Then call each *line through the origin* a "point" and each *plane through the origin* a "line". This lesson builds the space and counts its lines and planes. [Lesson 12](../12-coordinates/) checks that the result is a projective plane, and Lessons 13 and 14 find, inside $\mathrm{GF}(q^3)$, the symmetry that makes it cyclic.
 
 ## A finite space
 
@@ -28,13 +28,13 @@ $$
 
 since $1 + 2 = 3 \equiv 0$, $2 + 2 = 4 \equiv 1$, and $2 \cdot 2 = 4 \equiv 1$. A field element used to scale a vector is called a **scalar**. The vector $(0, 0, 0)$ is written $0$ and called the **origin**.
 
-This is the picture from [Lesson 6](../06-fields-of-prime-order/), one level up: there, a field with $p^e$ elements was a list of $e$ coordinates over $\mathrm{GF}(p)$. Here we take three coordinates over $\mathrm{GF}(q)$.
+This is the picture from [Lesson 7](../07-fields-of-prime-order/), one level up: there, a field with $p^e$ elements was a list of $e$ coordinates over $\mathrm{GF}(p)$. Here we take three coordinates over $\mathrm{GF}(q)$.
 
 Here is $\mathrm{GF}(q)^3$, drawn as a grid of $q^3$ dots. Drag it to turn it.
 
 <div data-widget="vector-grid" data-q="3"></div>
 
-The positions 0, 1, 2 along each axis are labels, not distances. Arithmetic wraps around, as on the clock of [Lesson 1](../01-differences-on-a-circle/): one step past 2 is 0 again. For $q = 4$ the labels are the elements $0, 1, \omega, \omega^2$ of $\mathrm{GF}(4)$, where $\omega$ (the Greek letter *omega*) is a primitive element, the $x$ of Lesson 7, with $\omega^2 = \omega + 1$.
+The positions 0, 1, 2 along each axis are labels, not distances. Arithmetic wraps around, as on the clock of [Lesson 1](../01-differences-on-a-circle/): one step past 2 is 0 again. For $q = 4$ the labels are the elements $0, 1, \omega, \omega^2$ of $\mathrm{GF}(4)$, where $\omega$ (the Greek letter *omega*) is a primitive element, the $x$ of Lesson 8, with $\omega^2 = \omega + 1$.
 
 ## Lines through the origin
 
@@ -48,7 +48,7 @@ Try $(1, 1, 2)$ instead: its multiples are $(0, 0, 0)$, $(1, 1, 2)$, $(2, 2, 1)$
 
 Two facts make lines through the origin easy to count.
 
-**Each one holds $q - 1$ nonzero vectors.** The $q$ scalars give $q$ multiples. They are all different: if $s \cdot u = t \cdot u$, then $(s - t) \cdot u = 0$, and since $u$ has a nonzero coordinate and a field has no zero divisors (Lesson 5), $s - t = 0$. One multiple, $0 \cdot u$, is the origin. That leaves $q - 1$ nonzero ones.
+**Each one holds $q - 1$ nonzero vectors.** The $q$ scalars give $q$ multiples. They are all different: if $s \cdot u = t \cdot u$, then $(s - t) \cdot u = 0$, and since $u$ has a nonzero coordinate and a field has no zero divisors (Lesson 6), $s - t = 0$. One multiple, $0 \cdot u$, is the origin. That leaves $q - 1$ nonzero ones.
 
 **Two different lines through the origin share only the origin.** If a nonzero vector $w$ lies on the line through $u$, then $w = s \cdot u$ with $s \neq 0$, so $u = s^{-1} \cdot w$, and every multiple of $u$ is a multiple of $w$. The two lines are the same line. So each nonzero vector lies on exactly one line through the origin.
 
@@ -58,7 +58,7 @@ $$
 \frac{q^3 - 1}{q - 1} = q^2 + q + 1,
 $$
 
-because $q^3 - 1 = (q - 1)(q^2 + q + 1)$, the same factorization as in [Lesson 9](../09-fields-inside-fields/). For $q = 3$ that is $26 / 2 = 13$ lines; for $q = 2$, each line has a single nonzero vector, so the $7$ nonzero vectors are the $7$ lines. These are exactly the numbers of points in the projective planes of orders 3 and 2. That is no coincidence, as the next lesson shows.
+because $q^3 - 1 = (q - 1)(q^2 + q + 1)$, the same factorization as in [Lesson 10](../10-fields-inside-fields/). For $q = 3$ that is $26 / 2 = 13$ lines; for $q = 2$, each line has a single nonzero vector, so the $7$ nonzero vectors are the $7$ lines. These are exactly the numbers of points in the projective planes of orders 3 and 2. That is no coincidence, as the next lesson shows.
 
 ## Planes through the origin
 
@@ -99,7 +99,7 @@ lines. With the widget on **Line and plane**, pick a line inside the plane and t
 
 ## More coordinates
 
-Nothing here depends on having three coordinates. With four, $\mathrm{GF}(q)^4$ has $q^4$ vectors, and its lines through the origin number $(q^4 - 1)/(q - 1) = q^3 + q^2 + q + 1$. They are the points of a projective *space* of dimension 3 (one less than the number of coordinates), called $\mathrm{PG}(3, q)$, and [Lesson 16](../16-beyond-the-plane/) builds Singer difference sets from it. This part stays with three coordinates, which give planes.
+Nothing here depends on having three coordinates. With four, $\mathrm{GF}(q)^4$ has $q^4$ vectors, and its lines through the origin number $(q^4 - 1)/(q - 1) = q^3 + q^2 + q + 1$. They are the points of a projective *space* of dimension 3 (one less than the number of coordinates), called $\mathrm{PG}(3, q)$, and [Lesson 17](../17-beyond-the-plane/) builds Singer difference sets from it. This part stays with three coordinates, which give planes.
 
 <section class="try-it">
 
@@ -107,7 +107,7 @@ Nothing here depends on having three coordinates. With four, $\mathrm{GF}(q)^4$ 
 
 Work in $\mathrm{GF}(3)^3$.
 
-1. List the vectors on the line through 0 and $(2, 1, 1)$. Which vector on it has first nonzero coordinate 1? (This is the *normalized* vector of [Lesson 11](../11-coordinates/).)
+1. List the vectors on the line through 0 and $(2, 1, 1)$. Which vector on it has first nonzero coordinate 1? (This is the *normalized* vector of [Lesson 12](../12-coordinates/).)
 2. List the 9 vectors of the plane $x + y + z = 0$, and sort its 8 nonzero vectors into its 4 lines through the origin.
 
 <details>

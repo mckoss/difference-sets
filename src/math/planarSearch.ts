@@ -1,5 +1,5 @@
 // Backtracking search for every planar difference set of order n, used by
-// the search-versus-construction playground (in a worker) and by Lesson 17.
+// the search-versus-construction playground (in a worker) and by Lesson 18.
 
 /** Parameters of a planar difference set of order n: v = n² + n + 1, k = n + 1. */
 export function planarVK(n: number): { v: number; k: number } {

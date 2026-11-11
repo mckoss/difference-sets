@@ -1,6 +1,6 @@
 ---
 title: "Beyond the plane"
-order: 16
+order: 17
 part: 6
 summary: "Singer sets in every dimension, and the q = 2 case that becomes the shift-register sequence engineers call an m-sequence."
 status: ready
@@ -10,7 +10,7 @@ status: ready
 
 ## From a plane to a space
 
-Part IV built the projective plane $\mathrm{PG}(2, q)$ from the vectors of $\mathrm{GF}(q)^3$. A point is a line through the origin, that is, a nonzero vector together with its multiples. A line is a plane through the origin, the set of solutions of one equation $ax + by + cz = 0$ ([Lessons 10](../10-vectors-over-a-finite-field/) and [11](../11-coordinates/)).
+Part IV built the projective plane $\mathrm{PG}(2, q)$ from the vectors of $\mathrm{GF}(q)^3$. A point is a line through the origin, that is, a nonzero vector together with its multiples. A line is a plane through the origin, the set of solutions of one equation $ax + by + cz = 0$ ([Lessons 11](../11-vectors-over-a-finite-field/) and [11](../12-coordinates/)).
 
 Nothing in that construction needs exactly three coordinates. With $m + 1$ coordinates, the lines through the origin of $\mathrm{GF}(q)^{m+1}$ are the points of a projective space of dimension $m$, written $\mathrm{PG}(m, q)$. The role of the lines is now played by **hyperplanes**: the solutions of one equation
 
@@ -18,19 +18,19 @@ $$
 a_0 x_0 + a_1 x_1 + \dots + a_m x_m = 0
 $$
 
-whose coefficients are not all zero. A hyperplane is a subspace in the sense of Lesson 10: it contains 0 and is closed under adding and scaling. In $\mathrm{GF}(q)^3$ the hyperplanes are the planes through the origin.
+whose coefficients are not all zero. A hyperplane is a subspace in the sense of Lesson 11: it contains 0 and is closed under adding and scaling. In $\mathrm{GF}(q)^3$ the hyperplanes are the planes through the origin.
 
 <aside class="notation">
 <span class="notation-title">Notation</span>
 
-- $\mathrm{PG}(m, q)$: the projective space of dimension $m$ over $\mathrm{GF}(q)$. Its points are the lines through the origin of $\mathrm{GF}(q)^{m+1}$. The plane of Lesson 11 is $\mathrm{PG}(2, q)$, and the Fano plane is $\mathrm{PG}(2, 2)$.
+- $\mathrm{PG}(m, q)$: the projective space of dimension $m$ over $\mathrm{GF}(q)$. Its points are the lines through the origin of $\mathrm{GF}(q)^{m+1}$. The plane of Lesson 12 is $\mathrm{PG}(2, q)$, and the Fano plane is $\mathrm{PG}(2, 2)$.
 - A **hyperplane** of $\mathrm{PG}(m, q)$: the points whose coordinates solve one equation $a_0 x_0 + \dots + a_m x_m = 0$.
 
 </aside>
 
 ## Counting points
 
-There are $q^{m+1}$ vectors with $m + 1$ coordinates. Leave out the zero vector. Each line through the origin holds $q - 1$ of the rest, as in Lesson 10, so the number of points is
+There are $q^{m+1}$ vectors with $m + 1$ coordinates. Leave out the zero vector. Each line through the origin holds $q - 1$ of the rest, as in Lesson 11, so the number of points is
 
 $$
 v = \frac{q^{m+1} - 1}{q - 1}.
@@ -46,13 +46,13 @@ points. For $m = 2$ these are the plane's numbers: $v = q^2 + q + 1$, $k = q + 1
 
 ## Singer's theorem in every dimension
 
-Singer's 1938 paper already covers every dimension. The field $\mathrm{GF}(q^{m+1})$ has a primitive element $\alpha$ (Lesson 8), and its elements are the vectors of $\mathrm{GF}(q)^{m+1}$, as in Lesson 12. Number the points so that point $i$ is the point of $\alpha^i$. Multiplying by $\alpha$ is linear, so it carries hyperplanes to hyperplanes, and it moves point $i$ to point $i + 1$, around a single cycle of $v$ points. So, exactly as in Lessons 4 and 13:
+Singer's 1938 paper already covers every dimension. The field $\mathrm{GF}(q^{m+1})$ has a primitive element $\alpha$ (Lesson 9), and its elements are the vectors of $\mathrm{GF}(q)^{m+1}$, as in Lesson 13. Number the points so that point $i$ is the point of $\alpha^i$. Multiplying by $\alpha$ is linear, so it carries hyperplanes to hyperplanes, and it moves point $i$ to point $i + 1$, around a single cycle of $v$ points. So, exactly as in Lessons 5 and 14:
 
 > **Theorem (Singer).** Pick any hyperplane of $\mathrm{PG}(m, q)$ and let $D$ be the numbers of its points. Then $D$ is a $(v, k, \lambda)$ difference set with the parameters above, and the other hyperplanes are its translates $D + j$.
 
 The reason is the same one as Lesson 2: two translates are two different hyperplanes, so they share exactly $\lambda$ points, and a set whose translates all overlap in $\lambda$ points has every nonzero difference exactly $\lambda$ times.
 
-We are stating this rather than proving it, so here is what is being carried over on faith. Every step of Lessons 10 to 13 goes through with "plane" replaced by "hyperplane". A hyperplane is the set of solutions of one linear equation $a_0 x_0 + a_1 x_1 + \dots + a_m x_m = 0$; two equations that are not multiples of each other share $q^{m-1}$ solutions, which is where $\lambda$ came from; and scaling an equation does not change its solutions, so there is one hyperplane for each choice of $[a_0 : \dots : a_m]$ up to scaling, that is, $v$ hyperplanes in all. Multiplying by $\alpha$ respects adding and scaling, exactly as in Lesson 13, so it carries hyperplanes to hyperplanes. The one piece of arithmetic to check afresh is the one Lesson 4 used to show that the translates $D + j$ are all different: there, $v = n(n + 1) + 1$ meant that no number bigger than 1 divides both $v$ and $k$. Here the same job is done by
+We are stating this rather than proving it, so here is what is being carried over on faith. Every step of Lessons 11 to 14 goes through with "plane" replaced by "hyperplane". A hyperplane is the set of solutions of one linear equation $a_0 x_0 + a_1 x_1 + \dots + a_m x_m = 0$; two equations that are not multiples of each other share $q^{m-1}$ solutions, which is where $\lambda$ came from; and scaling an equation does not change its solutions, so there is one hyperplane for each choice of $[a_0 : \dots : a_m]$ up to scaling, that is, $v$ hyperplanes in all. Multiplying by $\alpha$ respects adding and scaling, exactly as in Lesson 14, so it carries hyperplanes to hyperplanes. The one piece of arithmetic to check afresh is the one Lesson 5 used to show that the translates $D + j$ are all different: there, $v = n(n + 1) + 1$ meant that no number bigger than 1 divides both $v$ and $k$. Here the same job is done by
 
 $$
 v - q \cdot k = \frac{(q^{m+1} - 1) - (q^{m+1} - q)}{q - 1} = 1,
@@ -87,13 +87,13 @@ $$
 
 starting from $0, 0, 0, 1$. That gives $0, 0, 0, 1, 0, 0, 1, 1, 0, 1, 0, 1, 1, 1, 1$, and then it repeats with period 15. The 0s sit at positions $\{0, 1, 2, 4, 5, 8, 10\}$, which is exactly the Singer set $D$ of $\mathrm{PG}(3, 2)$, a $(15, 7, 3)$ difference set.
 
-This is no accident. The rule comes from the polynomial $x^4 + x + 1$ used to build the field with 16 elements, so $\alpha^4 = \alpha + 1$, and the bit $b_i$ is the trace of $\alpha^i$, the tool [Lesson 14](../14-writing-down-a-difference-set/) used to pick out one line. One adjustment is needed. Lesson 14's trace, $x + x^q + x^{q^2}$, was built for $\mathrm{GF}(q^3)$. The trace from $\mathrm{GF}(q^{m+1})$ down to $\mathrm{GF}(q)$ has $m + 1$ terms, one for each conjugate:
+This is no accident. The rule comes from the polynomial $x^4 + x + 1$ used to build the field with 16 elements, so $\alpha^4 = \alpha + 1$, and the bit $b_i$ is the trace of $\alpha^i$, the tool [Lesson 15](../15-writing-down-a-difference-set/) used to pick out one line. One adjustment is needed. Lesson 15's trace, $x + x^q + x^{q^2}$, was built for $\mathrm{GF}(q^3)$. The trace from $\mathrm{GF}(q^{m+1})$ down to $\mathrm{GF}(q)$ has $m + 1$ terms, one for each conjugate:
 
 $$
 \mathrm{Tr}(x) = x + x^q + x^{q^2} + \dots + x^{q^m}.
 $$
 
-Part V's three-term trace is the case $m = 2$. For $\mathrm{GF}(16)$ it is $x + x^2 + x^4 + x^8$, which comes out 0 or 1 for every $x$. (Try the three-term formula there and you get elements outside $\{0, 1\}$: it is not a trace of $\mathrm{GF}(16)$ at all.) The $m + 1$ terms are permuted by $x \mapsto x^q$, since $x^{q^{m+1}} = x$, so the sum lands in $\mathrm{GF}(q)$ and is linear, for the reasons of Lessons 9 and 14. Its zeros are one hyperplane, so they are a Singer set. And the register rule follows in one line: $\alpha^{i+4} = \alpha^i \cdot \alpha^4 = \alpha^{i+1} + \alpha^i$, and the trace respects addition, so
+Part V's three-term trace is the case $m = 2$. For $\mathrm{GF}(16)$ it is $x + x^2 + x^4 + x^8$, which comes out 0 or 1 for every $x$. (Try the three-term formula there and you get elements outside $\{0, 1\}$: it is not a trace of $\mathrm{GF}(16)$ at all.) The $m + 1$ terms are permuted by $x \mapsto x^q$, since $x^{q^{m+1}} = x$, so the sum lands in $\mathrm{GF}(q)$ and is linear, for the reasons of Lessons 10 and 15. Its zeros are one hyperplane, so they are a Singer set. And the register rule follows in one line: $\alpha^{i+4} = \alpha^i \cdot \alpha^4 = \alpha^{i+1} + \alpha^i$, and the trace respects addition, so
 
 $$
 \mathrm{Tr}(\alpha^{i+4}) = \mathrm{Tr}(\alpha^{i+1}) + \mathrm{Tr}(\alpha^i), \quad \text{that is,} \quad b_{i+4} = b_{i+1} + b_i.
@@ -111,9 +111,9 @@ $$
 \text{autocorrelation at } t \ne 0 \;=\; v - 4(k - \lambda).
 $$
 
-For $q = 2$ this is $(2^{m+1} - 1) - 4 \cdot 2^{m-1} = -1$, whatever $m$ is. The bottom chart in the widget shows it: one tall spike of height $v$ and a perfectly flat $-1$ everywhere else. A sequence like this looks like noise, yet it matches itself at exactly one alignment. That is what lets a receiver find an echo ([Lesson 20](../20-finding-an-echo/)) and a telescope unscramble a shadow ([Lesson 19](../19-pictures-without-a-lens/)).
+For $q = 2$ this is $(2^{m+1} - 1) - 4 \cdot 2^{m-1} = -1$, whatever $m$ is. The bottom chart in the widget shows it: one tall spike of height $v$ and a perfectly flat $-1$ everywhere else. A sequence like this looks like noise, yet it matches itself at exactly one alignment. That is what lets a receiver find an echo ([Lesson 22](../22-finding-an-echo/)) and a telescope unscramble a shadow ([Lesson 21](../21-pictures-without-a-lens/)).
 
-Try $q = 3$ in the widget: the off-peak value is no longer $-1$. Planar sets with larger $q$ have a flat but tall floor, so engineers use them where only the on/off pattern matters (Lessons 21–23), and use $q = 2$ for signs.
+Try $q = 3$ in the widget: the off-peak value is no longer $-1$. Planar sets with larger $q$ have a flat but tall floor, so engineers use them where only the on/off pattern matters (Lessons 23–25), and use $q = 2$ for signs.
 
 ## What about λ = 2?
 
@@ -136,11 +136,11 @@ Any difference set makes a card game: card $j$ holds the pictures at the points 
 
 ## A warning from higher dimensions
 
-In the plane, every known difference set with Singer's parameters is equivalent to a Singer set (a translate of some multiple $t \cdot D$ of it, as in [Lesson 15](../15-many-sets-few-shapes/)), and Lesson 17 asks whether that is always so. In higher dimensions the answer is known, and it is no. The smallest example uses Paley's construction from above: the nonzero squares mod 31, $\{1, 2, 4, 5, 7, 8, 9, 10, 14, 16, 18, 19, 20, 25, 28\}$, form a $(31, 15, 7)$ difference set, the parameters of $\mathrm{PG}(4, 2)$, yet no multiplication followed by a translation carries them onto the Singer set $\{1, 2, 4, 7, 8, 14, 15, 16, 19, 23, 25, 27, 28, 29, 30\}$ of the widget. (That is a finite check: 30 values of $t$ and 31 translations.)
+In the plane, every known difference set with Singer's parameters is equivalent to a Singer set (a translate of some multiple $t \cdot D$ of it, as in [Lesson 16](../16-many-sets-few-shapes/)), and Lesson 18 asks whether that is always so. In higher dimensions the answer is known, and it is no. The smallest example uses Paley's construction from above: the nonzero squares mod 31, $\{1, 2, 4, 5, 7, 8, 9, 10, 14, 16, 18, 19, 20, 25, 28\}$, form a $(31, 15, 7)$ difference set, the parameters of $\mathrm{PG}(4, 2)$, yet no multiplication followed by a translation carries them onto the Singer set $\{1, 2, 4, 7, 8, 14, 15, 16, 19, 23, 25, 27, 28, 29, 30\}$ of the widget. (That is a finite check: 30 values of $t$ and 31 translations.)
 
 In 1962 Basil Gordon, William Mills, and Lloyd Welch found an infinite family: difference sets with exactly Singer's parameters $v = (q^{N} - 1)/(q - 1)$ (here $N = m + 1$) that are not equivalent to any Singer set, whenever $N$ is a product of two whole numbers, one of them at least 3 and the other at least 2. Their smallest case is $q = 2$, $N = 6$, where the construction gives exactly two inequivalent $(63, 31, 15)$ sets: the Singer set and one other. Marshall Hall had already found that other set by search and listed the pair in his 1956 survey; the paper began as an explanation of why Hall's pair exists.
 
-The construction never produces planar parameters, since that needs $N = 3$, a prime (nor $(31, 15, 7)$, since $5$ is prime too). So it says nothing about the question of Lesson 17.
+The construction never produces planar parameters, since that needs $N = 3$, a prime (nor $(31, 15, 7)$, since $5$ is prime too). So it says nothing about the question of Lesson 18.
 
 <section class="try-it">
 

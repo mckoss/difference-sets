@@ -93,7 +93,7 @@ For $n = 2, 3, 4, 5$ this gives clocks with $v = 7, 13, 21, 31$ points and sets 
 
 ## Who needs a set like this?
 
-A set whose differences come out perfectly even is useful as well as elegant. The same evenness deals a deck of cards in which every two cards share exactly one picture ([Lesson 18](../18-a-card-game-from-a-plane/)), lets a telescope take a sharp picture through a plate full of holes ([Lesson 19](../19-pictures-without-a-lens/)), picks a radar echo out of noise ([Lesson 20](../20-finding-an-echo/)), corrects errors in data broadcast to car radios ([Lesson 21](../21-majority-rules/)), and makes a race schedule in which every car meets every other car ([Lesson 24](../24-a-fair-race/)). Part VII works through these and more, each with something to try. Every one of them needs a difference set to start from, and often a large one. So the practical question is how to get one.
+A set whose differences come out perfectly even is useful as well as elegant. The same evenness deals a deck of cards in which every two cards share exactly one picture ([Lesson 20](../20-a-card-game-from-a-plane/)), lets a telescope take a sharp picture through a plate full of holes ([Lesson 21](../21-pictures-without-a-lens/)), picks a radar echo out of noise ([Lesson 22](../22-finding-an-echo/)), corrects errors in data broadcast to car radios ([Lesson 23](../23-majority-rules/)), and makes a race schedule in which every car meets every other car ([Lesson 26](../26-a-fair-race/)). Part VII works through these and more, each with something to try. Every one of them needs a difference set to start from, and often a large one. So the practical question is how to get one.
 
 ## Why not just search?
 
@@ -111,7 +111,7 @@ Thirty-five candidates is nothing. But watch the table below as $n$ grows. The l
 
 Run the search for $v = 7$: it checks all 35 subsets and finds 14 difference sets, starting with $\{0, 1, 3\}$. For $v = 31$ it has to check 736,281 subsets, which still takes only a moment. But by $n = 10$, with $v = 111$, the count is in the hundreds of trillions, and by $n = 32$ no computer that could ever be built would finish. (Smarter searches prune most of these candidates, but they still grow far too fast.)
 
-Yet in 1938 James Singer pulled off a bit of mathematical magic. Rather than search through a very large number of possible combinations, he found a way to calculate the members of a planar difference set directly, with no brute-force search at all, for every order $n$ that is a prime or a power of a prime. The rest of this site explains how. The first clue comes from turning the clock: that's the next lesson.
+Yet in 1938 James Singer pulled off a bit of mathematical magic. Rather than search through a very large number of possible combinations, he found a way to calculate the members of a planar difference set directly, with no brute-force search at all, for every order $n$ that is a prime or a power of a prime. The rest of this site explains how. The first clue comes from translating the set around the clock: that's the next lesson.
 
 <section class="try-it">
 

@@ -2,9 +2,9 @@ import { expect, test } from './fixtures';
 
 const race = '[data-widget="race-chart"]';
 
-test.describe('race chart (Lesson 24)', () => {
+test.describe('race chart (Lesson 26)', () => {
   test('13 cars on 4 lanes: every pair meets once; a click follows a car', async ({ page }) => {
-    await page.goto('lessons/24-a-fair-race/');
+    await page.goto('lessons/26-a-fair-race/');
     const w = page.locator(race);
     await expect(w.locator('.race-table tbody tr')).toHaveCount(13);
     await expect(w.locator('.verdict')).toHaveClass(/ok/);
@@ -18,7 +18,7 @@ test.describe('race chart (Lesson 24)', () => {
   });
 
   test('a typed lineup can be unfair, and Fairest restores the chart', async ({ page }) => {
-    await page.goto('lessons/24-a-fair-race/');
+    await page.goto('lessons/26-a-fair-race/');
     const w = page.locator(race);
     await w.locator('.lineup-input').fill('0, 1, 2');
     await expect(w.locator('.lineup-message')).toHaveText('Heat 0 needs one car in each of the 4 lanes.');
@@ -32,7 +32,7 @@ test.describe('race chart (Lesson 24)', () => {
   });
 
   test('loads the fairest chart for other tracks', async ({ page }) => {
-    await page.goto('lessons/24-a-fair-race/');
+    await page.goto('lessons/26-a-fair-race/');
     const w = page.locator(race);
     await w.locator('.cars-select').selectOption('20');
     await expect(w.locator('.lineup-input')).toHaveValue('{0, 1, 3, 7}');
@@ -46,11 +46,17 @@ test.describe('race chart (Lesson 24)', () => {
   });
 });
 
+test('Lesson 27 opens on the fairest chart for 10 cars on 4 lanes', async ({ page }) => {
+  await page.goto('lessons/27-any-number-of-cars/');
+  await page.locator(`${race} .race-table`).waitFor();
+  await expect(page.locator(`${race} .race-table tbody tr`)).toHaveCount(10);
+});
+
 test.describe('on a phone', () => {
   test.use({ viewport: { width: 390, height: 800 } });
 
-  test('lessons/24-a-fair-race/ has no horizontal scroll', async ({ page }) => {
-    await page.goto('lessons/24-a-fair-race/');
+  test('lessons/26-a-fair-race/ has no horizontal scroll', async ({ page }) => {
+    await page.goto('lessons/26-a-fair-race/');
     await page.locator(`${race} .race-table`).waitFor();
     await page.locator(`${race} .lanes-select`).selectOption('8');
     const overflow = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth);

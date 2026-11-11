@@ -1,16 +1,16 @@
 ---
 title: "Secrets that look like noise"
-order: 26
+order: 29
 part: 7
 summary: "Bent functions: the Boolean functions that no linear approximation comes close to, and why they are difference sets."
 status: ready
 ---
 
-**You'll learn:** why a cipher must avoid anything that a linear function of its input bits can predict, what a bent function is, why bent functions are exactly difference sets in a group where "adding" means XOR, and why the shift registers from Lesson 20 are no good as secrets on their own.
+**You'll learn:** why a cipher must avoid anything that a linear function of its input bits can predict, what a bent function is, why bent functions are exactly difference sets in a group where "adding" means XOR, and why the shift registers from Lesson 22 are no good as secrets on their own.
 
 ## Keys that always meet
 
-[Lesson 22](../22-always-meet/) already showed one use of difference sets in security. Give sensor $i$ the numbered secret keys $D + i$. When $D$ is a planar difference set, any two sensors share exactly one key, so every pair can talk privately while each sensor stores only about $\sqrt{v}$ keys. That idea uses the *overlap* property of difference sets directly. This lesson is about a less obvious one: difference sets as the hardest things to imitate.
+[Lesson 24](../24-always-meet/) already showed one use of difference sets in security. Give sensor $i$ the numbered secret keys $D + i$. When $D$ is a planar difference set, any two sensors share exactly one key, so every pair can talk privately while each sensor stores only about $\sqrt{v}$ keys. That idea uses the *overlap* property of difference sets directly. This lesson is about a less obvious one: difference sets as the hardest things to imitate.
 
 ## Bits and XOR
 
@@ -46,7 +46,7 @@ Below are the 16 inputs. Click an input to switch $f$ on or off there; the input
 
 The starting function, $x_1 x_2 \oplus x_3 x_4$, matches every linear rule on either 6 or 10 inputs. So every affine rule is wrong on at least 6 of the 16 inputs. Try to beat that: change any one input, and some affine rule is suddenly right on 11. Pick **x1 ⊕ x3** to see the opposite extreme, a function that *is* a linear rule. Press **Random** a few times: a random function usually has an affine rule that is right on 11, 12, or 13 inputs. (Of all 65,536 functions on 4 bits, about three in four have one right on 12 or more.)
 
-Why can't any function do better than 6? Score $f$ against the rule $a \cdot x$ the way [Lesson 20](../20-finding-an-echo/) scored a code against a template: $+1$ for each input where they agree, $-1$ where they disagree. Call the score $W(a)$, so
+Why can't any function do better than 6? Score $f$ against the rule $a \cdot x$ the way [Lesson 22](../22-finding-an-echo/) scored a code against a template: $+1$ for each input where they agree, $-1$ where they disagree. Call the score $W(a)$, so
 
 $$
 W(a) = (\text{agreements}) - (\text{disagreements}) = 2 \cdot (\text{agreements}) - 16.
@@ -77,7 +77,7 @@ $$
 D \oplus a = \{\, x \oplus a : x \text{ in } D \,\}.
 $$
 
-This is [Lesson 2](../02-rotations/)'s translate $D + t$, with clock addition replaced by XOR. For $x_1 x_2 \oplus x_3 x_4$, the set $D = \{0011, 0111, 1011, 1100, 1101, 1110\}$ has 6 members and every bar is exactly 2. Equivalently, every nonzero string occurs exactly twice as $x \oplus y$ for two members $x, y$ of $D$. So $D$ is a **difference set** with $v = 16$, $k = 6$, $\lambda = 2$, in the group of 4-bit strings under XOR. (A *group* is a set with an operation that behaves like addition: it is associative, it has an identity, and every element has an inverse. The residues mod $v$ under $+$ are one, and the 4-bit strings under $\oplus$ are another. The definition in [Lesson 1](../01-differences-on-a-circle/) carries over with $\oplus$ in place of $-$.) Since $x \oplus a = y$ exactly when $x \oplus y = a$, "difference" and "sum" are the same thing here: there is no minus sign to worry about.
+This is [Lesson 2](../02-translates/)'s translate $D + t$, with clock addition replaced by XOR. For $x_1 x_2 \oplus x_3 x_4$, the set $D = \{0011, 0111, 1011, 1100, 1101, 1110\}$ has 6 members and every bar is exactly 2. Equivalently, every nonzero string occurs exactly twice as $x \oplus y$ for two members $x, y$ of $D$. So $D$ is a **difference set** with $v = 16$, $k = 6$, $\lambda = 2$, in the group of 4-bit strings under XOR. (A *group* is a set with an operation that behaves like addition: it is associative, it has an identity, and every element has an inverse. The residues mod $v$ under $+$ are one, and the 4-bit strings under $\oplus$ are another. The definition in [Lesson 1](../01-differences-on-a-circle/) carries over with $\oplus$ in place of $-$.) Since $x \oplus a = y$ exactly when $x \oplus y = a$, "difference" and "sum" are the same thing here: there is no minus sign to worry about.
 
 This is no accident. J. F. Dillon showed in his 1974 thesis that
 
@@ -97,9 +97,9 @@ $$
 16 - 2(k - \lambda_a) - 2(k - \lambda_a) = 16 - 4(k - \lambda_a).
 $$
 
-([Lesson 20](../20-finding-an-echo/) makes the same count for codes on a clock.) When $D$ is a $(16, 6, 2)$ difference set, that is $16 - 4 \cdot 4 = 0$ for every nonzero shift: a perfectly flat floor at 0.
+([Lesson 22](../22-finding-an-echo/) makes the same count for codes on a clock.) When $D$ is a $(16, 6, 2)$ difference set, that is $16 - 4 \cdot 4 = 0$ for every nonzero shift: a perfectly flat floor at 0.
 
-A flat floor in the self-comparison and a flat set of scores against the linear rules are the same fact seen from two sides. Here is the mechanism. Take the 16 numbers $W(b)^2$ as a list indexed by $b$, and score that list against the linear rule $a \cdot b$ in the usual way: add $W(b)^2$ where $a \cdot b = 0$ and subtract it where $a \cdot b = 1$. That total, divided by 16, is exactly the self-comparison score at shift $a$. A list of 16 equal numbers scores 0 against every nonzero rule (8 added, 8 subtracted), so flat scores give a flat floor; and the same step run the other way turns a flat floor back into flat scores. Dillon's thesis has the full proof. (The scores $W(a)$ are the *Fourier* or *Walsh transform* of $f$, and a transform is flat exactly when the self-comparison is a single spike.) Bent functions are the XOR world's version of the m-sequences, the shift-register codes of Lesson 20, whose floor was flat at $-1$.
+A flat floor in the self-comparison and a flat set of scores against the linear rules are the same fact seen from two sides. Here is the mechanism. Take the 16 numbers $W(b)^2$ as a list indexed by $b$, and score that list against the linear rule $a \cdot b$ in the usual way: add $W(b)^2$ where $a \cdot b = 0$ and subtract it where $a \cdot b = 1$. That total, divided by 16, is exactly the self-comparison score at shift $a$. A list of 16 equal numbers scores 0 against every nonzero rule (8 added, 8 subtracted), so flat scores give a flat floor; and the same step run the other way turns a flat floor back into flat scores. Dillon's thesis has the full proof. (The scores $W(a)$ are the *Fourier* or *Walsh transform* of $f$, and a transform is flat exactly when the self-comparison is a single spike.) Bent functions are the XOR world's version of the m-sequences, the shift-register codes of Lesson 22, whose floor was flat at $-1$.
 
 ## A second attack: following differences
 
@@ -111,7 +111,7 @@ Real ciphers need *S-boxes* (substitution boxes), pieces with several output bit
 
 ## Patterns that only look random
 
-The m-sequences from [Lesson 20](../20-finding-an-echo/) look random: equal numbers of 0s and 1s (almost), a flat correlation floor, no visible pattern. So why not use a shift register as a stream cipher, XORing its bits onto the message?
+The m-sequences from [Lesson 22](../22-finding-an-echo/) look random: equal numbers of 0s and 1s (almost), a flat correlation floor, no visible pattern. So why not use a shift register as a stream cipher, XORing its bits onto the message?
 
 Because a shift register is linear, and linear things are easy to undo. Each new bit is a XOR of earlier bits, so a stretch of known output gives a set of XOR equations for the unknown register. The **Berlekamp–Massey algorithm** (J. L. Massey, 1969) solves them quickly: if the register has $r$ stages, $2r$ consecutive output bits are enough to find the register and its starting state, and from then on every future bit. The 10-stage register behind a GPS code makes 1023 bits before repeating, but 20 of them give the whole thing away.
 
@@ -138,9 +138,9 @@ So real stream ciphers mix several shift registers *nonlinearly*. The A5/1 ciphe
 
 ## The end of the path
 
-This is the last lesson, so look back at how far one fact has gone. [Lesson 2](../02-rotations/) showed that two turned copies of a difference set always overlap in the same number of points. That fact turned a counting puzzle into geometry, the geometry into arithmetic in a finite field, and the arithmetic into an algorithm that writes the sets down at any size. Then the same fact dealt cards, unscrambled a telescope's shadows, found echoes, corrected errors, woke radios, scheduled races, rebuilt disks, and here measured how well a cipher's parts hide what they do.
+This is the last lesson, so look back at how far one fact has gone. [Lesson 2](../02-translates/) showed that two translates of a difference set always overlap in the same number of points. That fact turned a counting puzzle into geometry, the geometry into arithmetic in a finite field, and the arithmetic into an algorithm that writes the sets down at any size. Then the same fact dealt cards, unscrambled a telescope's shadows, found echoes, corrected errors, woke radios, scheduled races, rebuilt disks, and here measured how well a cipher's parts hide what they do.
 
-If you came to the applications first, the path to Singer's algorithm starts at [Lesson 1](../01-differences-on-a-circle/), and [Lesson 14](../14-writing-down-a-difference-set/) has the whole argument on one page. If you have read it all, [Lesson 17](../17-every-planar-set-singer/) lists experiments and books for going further.
+If you came to the applications first, the path to Singer's algorithm starts at [Lesson 1](../01-differences-on-a-circle/), and [Lesson 15](../15-writing-down-a-difference-set/) has the whole argument on one page. If you have read it all, [Lesson 19](../19-how-a-proof-might-go/) lists experiments and books for going further.
 
 ## Sources
 

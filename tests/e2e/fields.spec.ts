@@ -1,10 +1,10 @@
 import { expect, test } from './fixtures';
 
-const L5 = 'lessons/05-which-clocks-are-fields/';
-const L6 = 'lessons/06-fields-of-prime-order/';
-const L7 = 'lessons/07-prime-power-fields/';
-const L8 = 'lessons/08-primitive-elements/';
-const L9 = 'lessons/09-fields-inside-fields/';
+const L5 = 'lessons/06-which-clocks-are-fields/';
+const L6 = 'lessons/07-fields-of-prime-order/';
+const L7 = 'lessons/08-prime-power-fields/';
+const L8 = 'lessons/09-primitive-elements/';
+const L9 = 'lessons/10-fields-inside-fields/';
 
 test.describe('Part III widgets', () => {
   test('zn-tables marks permutations, zero divisors, and explains inverses', async ({ page }) => {
@@ -142,7 +142,7 @@ test.describe('Part III widgets', () => {
     await expect(first.locator('.dream-result')).toContainText('Equal.');
   });
 
-  test('lessons 5–9 each have a try-it answer and a calculator link', async ({ page }) => {
+  test('lessons 6–10 each have a try-it answer and a calculator link', async ({ page }) => {
     for (const path of [L5, L6, L7, L8, L9]) {
       await page.goto(path);
       await expect(page.locator('.try-it details')).toHaveCount(1);
