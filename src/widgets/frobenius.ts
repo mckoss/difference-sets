@@ -109,7 +109,7 @@ export function mount(el: HTMLElement): void {
       orbitChips.push(h('li', { class: orbit.length === 1 ? 'fixed' : '', text }));
     }
     cycles.replaceChildren(
-      h('p', { text: `The map shuffles the nonzero elements in cycles. Applying it ${deg / d} times returns every element to where it started:` }),
+      h('p', { text: `The map permutes the nonzero elements in cycles. Applying it ${deg / d} times returns every element to where it started:` }),
       h('ul', { class: 'chips orbits' }, ...orbitChips),
     );
 

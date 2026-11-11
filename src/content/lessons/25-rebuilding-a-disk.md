@@ -49,7 +49,7 @@ $$
 
 the translate from [Lesson 2](../02-rotations/), for $j = 0, 1, \dots, 6$. These seven stripes are the seven lines of the Fano plane ([Lesson 3](../03-fano-plane/)), with the disks as its points. Stripe 0 sits on disks 0, 1, 3; stripe 1 on disks 1, 2, 4; and so on round. Each disk is on 3 stripes, so it still holds 3 chunks, and each stripe still has 2 data chunks and 1 parity chunk.
 
-Now let disk 0 die. Lesson 2 showed that any two translates of a planar difference set share exactly one member. Turned around, that says any two *points* lie together on exactly one translate: any two disks share exactly $\lambda = 1$ stripe (the Greek letter lambda, as in Lesson 2). This is the "always meet" property of [Lesson 22](../22-always-meet/), with disks in place of radios. So each of the 6 surviving disks shares exactly one stripe with disk 0, and reads exactly one chunk. The rebuild takes 1 read-time instead of 3.
+Now let disk 0 die. Lesson 2 showed that any two translates of a planar difference set share exactly one member. Turned around, that says any two *points* lie together on exactly one translate: any two disks share exactly $\lambda = 1$ stripe. This is the "always meet" property of [Lesson 22](../22-always-meet/), with disks in place of radios. So each of the 6 surviving disks shares exactly one stripe with disk 0, and reads exactly one chunk. The rebuild takes 1 read-time instead of 3.
 
 The total work hasn't changed. Disk 0 lost 3 chunks, and each needs 2 reads, so there are $3 \times 2 = 6$ reads either way. The difference is that the Fano layout spreads them perfectly evenly over all 6 survivors, instead of piling them onto 2.
 

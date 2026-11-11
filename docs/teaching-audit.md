@@ -116,6 +116,80 @@ what the one fact from Lesson 2 did.
 for Lesson 4. Two new end-to-end tests cover the home page guide, the road map,
 the recipe, and the eight-row argument table.
 
+## Second pass: the reader model, and not talking down (v0.17.1)
+
+Mike's follow-up set two standing rules, now in PLAN.md's writing
+conventions: keep a model of what the reader has been taught, and don't talk
+down. The second pass went through every lesson with `src/glossary.ts` as the
+ledger (it records the lesson that introduces each term and symbol).
+
+**Explained again long after it was taught (removed).** λ was re-glossed as
+"the Greek letter lambda" in Lessons 16, 17, 18, 19, 20, 22, 24, and 25, and α
+in 16 and 17. Lesson 16 explained what an exponent is ("so 2⁴ = 16") eight
+lessons after GF(q³). Lesson 17 re-defined "prime power", ≡, q = pᵉ, and φ in
+a notation box, and re-taught translation and multiplication from Lesson 15.
+Lessons 16, 22, and 23 glossed ≠, ≥, and ≤, which Lessons 2 and 4 had used
+without comment. Lesson 5 re-read ℤ/vℤ aloud; Lesson 11 re-glossed ω one
+lesson after Lesson 10; Lesson 12 re-glossed the star of F*; Lesson 23
+re-glossed ↦.
+
+**Informal stand-ins for terms the reader has (replaced).**
+
+| Was | Now | Taught in |
+| --- | --- | --- |
+| "a turn of D", "a slide of D", "sliding" | translate, translation | Lesson 2 |
+| "shuffles" | permutes | Lesson 5 |
+| "the same field with different labels", "renaming" (as the claim) | isomorphic | Lesson 5 |
+| "a single element whose powers run through every nonzero element", "generator" | primitive element | Lesson 8 |
+| "a direction", "a flat sheet", "flat pieces" | line through the origin, plane through the origin, hyperplane defined by an equation | Lessons 10, 11 |
+| "recipe" (for Singer's method) | algorithm, construction | Lesson 14 |
+| "school geometry" | Euclidean geometry, coordinate geometry | |
+| "linear rule", "straight-line guess" | linear function, linear approximation (with "rule" kept as the lesson's shorthand) | Lesson 26 |
+
+**Terms that were avoided and never introduced (added).**
+
+- Lesson 5 listed the field axioms as "order doesn't matter", "grouping
+  doesn't matter", "multiplying spreads over adding". They are now
+  commutative, associative, and distributive, with identities and inverses.
+- "Shares no factor with" stood in for **coprime** fifteen times, and was
+  never quite right (1 is always a common factor). Lesson 5 now defines
+  coprime where the jumps and the greatest common divisor appear, and adds the
+  one-line reason that only coprime residues have inverses.
+- Lesson 17 replaced complex numbers by "arrows of length 1". It now says
+  complex number, absolute value, root of unity, and complex conjugate, and
+  keeps the arrows as the picture the widget draws.
+- Lesson 3 names *collineation* as the formal word for a symmetry; Lesson 7
+  names *indeterminate*; Lesson 9 names *automorphism*; Lesson 8 names
+  Euler's totient function where φ first appears.
+
+**Likely confusions (addressed).**
+
+- "Order" means two unrelated things (of a plane, Lessons 1 and 4; of a field
+  element, Lesson 8). Lesson 8 now says so.
+- Letters reserved by the conventions were reused: q as a quotient in Lesson
+  4, n as a multiplier in Lesson 5's footnote, j as the exponent of p in
+  Lesson 9, and n as a number of bits in Lesson 26. All changed.
+- φ was listed in the glossary as introduced in Lesson 17; it first appears in
+  Lesson 8.
+
+**Tone.** Removed "the division you learned in school", "by fiddling",
+"beginning algebra students sometimes write", "just a symbol", "this little
+geometry", and the minimizing "just" before steps a reader may find hard. In
+the first pass's own additions: "Remember this fact", "If you can explain each
+row to a friend", "Play with each figure", "Skip the folded boxes".
+
+**Guard.** Two unit tests in `tests/unit/glossary.test.ts`: each Greek letter
+is spelled out in one lesson only, and the retired stand-in phrases do not
+come back. The glossary gains *coprime*, *commutative*, *associative*, and
+*distributive*.
+
+**Left alone.** The clock, with its "hours", is the site's chosen picture for
+ℤ/vℤ and stays. Sliding a mask or a template (Lessons 19 and 20) is physical
+sliding, not a translate. The Singer stepper's caption ("rotating D back 14
+notches") was worded in recent commits and is unchanged. Part VII's lessons
+each define bit and XOR for themselves, because they are meant to be read in
+any order.
+
 ## Lesson by lesson
 
 "Step" is what the lesson adds toward the algorithm or its proof. "Stall" is
@@ -172,10 +246,9 @@ These are judgment calls or larger rewrites, so they were left alone.
    split into "which orders are possible" and "how a proof might go". Lesson 4
    (2,400 words, four proofs) could split at "Cyclic planes are difference
    sets".
-4. **One move, four names.** D + j is a *translate* and a *turn* in Lessons 2
-   to 15, a *rotation* in Lessons 3 and 24, and a *slide* in Lessons 16, 17,
-   and 19. Each lesson glosses its own word, so nobody is stuck, but one word
-   throughout (with "translate" as the formal name) would be cleaner.
+4. **One move, four names.** Done in the second pass: D + j is a *translate*
+   throughout. "Turn" survives as the picture in Lesson 2, and "rotation" as
+   the Pinewood Derby term in Lesson 24.
 5. **Two lede formats.** Lessons 1 to 4 and 16 to 26 open with one bold
    "You'll learn:" sentence; Lessons 5 to 15 open with a heading and bullets.
 6. **Lesson 6's place on the path.** That GF(p) is unique is not used by the

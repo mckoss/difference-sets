@@ -9,7 +9,7 @@ status: ready
 ## You'll learn
 
 - What the **trace** $\mathrm{Tr}(x) = x + x^q + x^{q^2}$ does: it carries each element of $\mathrm{GF}(q^3)$ down to $\mathrm{GF}(q)$, and it is linear, so the elements with trace 0 form a plane through the origin, which is a line of $\mathrm{PG}(2, q)$.
-- Singer's recipe: $D = \{\, i \bmod v : \mathrm{Tr}(\alpha^i) = 0 \,\}$, computed one power of $\alpha$ at a time.
+- Singer's construction: $D = \{\, i \bmod v : \mathrm{Tr}(\alpha^i) = 0 \,\}$, computed one power of $\alpha$ at a time.
 - Why the code behind this site gets $\{1, 2, 4\}$ mod 7 rather than $\{0, 1, 3\}$: the two are translates, two lines of the same plane.
 - What it costs: about $3v$ field multiplications, against the astronomically many sets a brute-force search would try.
 
@@ -21,9 +21,9 @@ That line depends on coordinates, and coordinates depend on choices. To have $c_
 
 Singer used a line that can be described with nothing but multiplication and addition in the big field, however it was built. It comes from the map that Lesson 9 previewed.
 
-## The recipe, start to finish
+## The algorithm, start to finish
 
-Here is the whole algorithm, so you can see where the lesson is heading. The sections after it explain why each step makes sense, run it by hand, and count what it costs.
+Here is the whole algorithm. The sections after it explain why each step works, run it by hand, and count what it costs.
 
 > **Singer's algorithm.** To write down a planar difference set of order $q$, where $q$ is a prime power:
 >
@@ -44,7 +44,7 @@ $$
 \mathrm{Tr}(x) = x + x^q + x^{q^2}.
 $$
 
-The three terms are the **conjugates** of $x$: what the Frobenius map $x \mapsto x^q$ of Lesson 9 does to $x$ once, twice, and three times ($x^{q^3} = x$ brings it home). Lesson 9 showed that applying $x \mapsto x^q$ to $\mathrm{Tr}(x)$ just shuffles the three terms, so $\mathrm{Tr}(x)$ is a fixed point of the Frobenius map. The fixed points are exactly $\mathrm{GF}(q)$, so **the trace of every element of the big field lands in the small field**.
+The three terms are the **conjugates** of $x$: what the Frobenius map $x \mapsto x^q$ of Lesson 9 does to $x$ once, twice, and three times ($x^{q^3} = x$ brings it home). Lesson 9 showed that applying $x \mapsto x^q$ to $\mathrm{Tr}(x)$ only permutes the three terms, so $\mathrm{Tr}(x)$ is a fixed point of the Frobenius map. The fixed points are exactly $\mathrm{GF}(q)$, so **the trace of every element of the big field lands in the small field**.
 
 <aside class="notation">
 <span class="notation-title">Notation: the trace</span>
@@ -71,7 +71,7 @@ $$
 \mathrm{Tr}(s \cdot u) = s \cdot \mathrm{Tr}(u).
 $$
 
-Now write an element in coordinates, $u = c_0 + c_1 \alpha + c_2 \alpha^2$. (The trace itself needs no coordinates, so this is only a way of seeing what it does. Any two fields with $q^3$ elements are the same field with different labels, a fact [Lesson 7](../07-prime-power-fields/) stated without proof, so we may argue in the coordinate version of Lesson 12 and the conclusion holds in the code's version too.) Linearity gives
+Now write an element in coordinates, $u = c_0 + c_1 \alpha + c_2 \alpha^2$. (The trace itself needs no coordinates, so this is only a way of seeing what it does. Any two fields with $q^3$ elements are isomorphic, a fact [Lesson 7](../07-prime-power-fields/) stated without proof, so we may argue in the coordinate version of Lesson 12 and the conclusion holds in the code's version too.) Linearity gives
 
 $$
 \mathrm{Tr}(u) = \mathrm{Tr}(1) \cdot c_0 + \mathrm{Tr}(\alpha) \cdot c_1 + \mathrm{Tr}(\alpha^2) \cdot c_2.
@@ -119,13 +119,13 @@ That is not the $\{0, 1, 3\}$ of Lesson 1, but it is a translate: $\{1, 2, 4\} =
 
 ## Step through it
 
-The stepper runs the construction for any $q$ up to 13. Each press of **Next i** computes the three conjugates of $\alpha^i$, adds them, and keeps $i$ when the sum is 0. The chord diagram grows as members join; notice that no difference label ever repeats. At the end, the widget checks every difference and names the line it found. A last step draws a second diagram: the *lexicographically smallest* rotation or reflection of $D$, the one whose members, listed in order, are smallest at the first place they differ. It always starts $\{0, 1\}$: the difference 1 occurs exactly once in a planar set, as $(b + 1) - b$, so rotating $D$ back $b$ notches puts 0 and 1 in it.
+The stepper runs the construction for any $q$ up to 13. Each press of **Next i** computes the three conjugates of $\alpha^i$, adds them, and keeps $i$ when the sum is 0. The chord diagram grows as members join; notice that no difference label ever repeats. At the end, the widget checks every difference and names the line it found. A last step draws a second diagram: the *lexicographically smallest* translate of $D$ or of its mirror image, the one whose members, listed in order, are smallest at the first place they differ. It always starts $\{0, 1\}$: the difference 1 occurs exactly once in a planar set, as $(b + 1) - b$, so the translate $D - b$ contains 0 and 1.
 
 <div data-widget="singer-stepper" data-q="2"></div>
 
-Switch to $q = 3$. Now $\mathrm{Tr}(1) = 1 + 1 + 1 = 3 = 0$, because 3 is 0 in characteristic 3, so 0 joins $D$ at the very first step. With $\alpha^3 = \alpha + 2$, the trace works out to $2c_2$, so here the trace-zero line *is* the line $z = 0$, and $D = \{0, 1, 3, 9\}$ exactly as in Lesson 13. For other $q$ the two lines differ by a turn:
+Switch to $q = 3$. Now $\mathrm{Tr}(1) = 1 + 1 + 1 = 3 = 0$, because 3 is 0 in characteristic 3, so 0 joins $D$ at the very first step. With $\alpha^3 = \alpha + 2$, the trace works out to $2c_2$, so here the trace-zero line *is* the line $z = 0$, and $D = \{0, 1, 3, 9\}$ exactly as in Lesson 13. For other $q$ the two lines differ by a translation:
 
-| $q$ | trace-zero line | $D = \{i : \mathrm{Tr}(\alpha^i) = 0\}$ | the line $z = 0$ | turn |
+| $q$ | trace-zero line | $D = \{i : \mathrm{Tr}(\alpha^i) = 0\}$ | the line $z = 0$ | translation |
 | --- | --- | --- | --- | --- |
 | 2 | $x = 0$ | $\{1, 2, 4\}$ | $\{0, 1, 3\}$ | $+1$ |
 | 3 | $z = 0$ | $\{0, 1, 3, 9\}$ | $\{0, 1, 3, 9\}$ | $+0$ |
@@ -134,7 +134,7 @@ Switch to $q = 3$. Now $\mathrm{Tr}(1) = 1 + 1 + 1 = 3 = 0$, because 3 is 0 in c
 
 ## How the code does it
 
-The function `singerSet` behind this site follows the recipe directly, in the field of Lesson 9: polynomials of degree below $3e$ over $\mathrm{GF}(p)$, modulo a primitive polynomial. It keeps three running values, $\alpha^i$, $\alpha^{iq}$, and $\alpha^{iq^2}$, all starting at 1. At each step it adds them and checks for 0, then multiplies them by $\alpha$, $\alpha^q$, and $\alpha^{q^2}$ (worked out once at the start) to move on to $i + 1$. There is no guessing anywhere: one pass through $i = 0, 1, \dots, v - 1$ and the set is done. The only search is at the very start, for a primitive polynomial, using the test of [Lesson 8](../08-primitive-elements/). That is a search over polynomials, not over sets of points, and a far smaller job; it could even be replaced by looking a polynomial up in a table.
+The function `singerSet` behind this site follows the algorithm directly, in the field of Lesson 9: polynomials of degree below $3e$ over $\mathrm{GF}(p)$, modulo a primitive polynomial. It keeps three running values, $\alpha^i$, $\alpha^{iq}$, and $\alpha^{iq^2}$, all starting at 1. At each step it adds them and checks for 0, then multiplies them by $\alpha$, $\alpha^q$, and $\alpha^{q^2}$ (worked out once at the start) to move on to $i + 1$. There is no guessing anywhere: one pass through $i = 0, 1, \dots, v - 1$ and the set is done. The only search is at the very start, for a primitive polynomial, using the test of [Lesson 8](../08-primitive-elements/). That is a search over polynomials, not over sets of points, and a far smaller job; it could even be replaced by looking a polynomial up in a table.
 
 For a prime $q$ the code uses the same cubic as the stepper, so it finds exactly the same $D$. For $q = 4$, $8$, or $9$ it builds the field from a different polynomial, so its $\alpha$ is a different primitive element, and it turns out that its set is not a translate of the stepper's. For $q = 4$ it gets $\{3, 6, 7, 12, 14\}$, the mirror image of $\{7, 9, 14, 15, 18\}$. [Lesson 15](../15-many-sets-few-shapes/) shows how all of these sets are related.
 
@@ -165,15 +165,15 @@ Lessons 1 to 14 make one argument. Here it is with the detail left out, and the 
 | 5 | The elements of $\mathrm{GF}(q^3)$ are vectors with three coordinates in $\mathrm{GF}(q)$. Call each line through the origin a point and each plane through the origin a line, and the result is a projective plane of order $q$, $\mathrm{PG}(2, q)$. | Lessons 10 to 12 |
 | 6 | Each point is the point of $\alpha^i$ for exactly one $i$ mod $v$, because the nonzero elements of $\mathrm{GF}(q)$ are the powers of $\alpha^v$. So the points are numbered by a clock with $v = q^2 + q + 1$ hours. | Lessons 9 and 12 |
 | 7 | Multiplying by $\alpha$ carries lines to lines and moves point $i$ to point $i + 1$. So the plane has the symmetry of step 2, and the numbers on any one of its lines are a difference set. | Lesson 13 |
-| 8 | The elements with trace 0 make up one line. So $D = \{\, i \bmod v : \mathrm{Tr}(\alpha^i) = 0 \,\}$ is a $(q^2 + q + 1,\ q + 1,\ 1)$ difference set, and the recipe at the top of this lesson computes it. | this lesson |
+| 8 | The elements with trace 0 make up one line. So $D = \{\, i \bmod v : \mathrm{Tr}(\alpha^i) = 0 \,\}$ is a $(q^2 + q + 1,\ q + 1,\ 1)$ difference set, and the algorithm at the top of this lesson computes it. | this lesson |
 
 Three facts along the way were stated without proof:
 
 - for every prime $p$ and every degree there is an irreducible polynomial over $\mathrm{GF}(p)$, so a field of every prime power size exists (Lesson 7);
 - every finite field has a primitive polynomial of every degree, so $\mathrm{GF}(q^3)$ can be built with $\alpha = x$ (Lesson 8, which also sketches why primitive elements exist);
-- two fields with the same number of elements are the same field with different labels (Lesson 7), which lets us switch between the two ways of building $\mathrm{GF}(q^3)$.
+- two fields with the same number of elements are isomorphic (Lesson 7), which lets us switch between the two ways of building $\mathrm{GF}(q^3)$.
 
-All three are standard theorems, proved in any textbook on finite fields. Everything else in the table is proved in the lesson named. If you can explain each row to a friend, you understand Singer's theorem.
+All three are standard theorems, proved in any textbook on finite fields. Everything else in the table is proved in the lesson named.
 
 <section class="try-it">
 
@@ -190,7 +190,7 @@ Use $q = 3$, where $\alpha^3 = \alpha + 2$ and the exponents wrap around at 26.
 
 1. $(\alpha^2 + 2\alpha) + (\alpha^2 + 2) + (\alpha^2 + \alpha) = 3\alpha^2 + 3\alpha + 2 = 2$, since 3 is 0 mod 3. The trace is $2 \ne 0$, so 4 is not in $D$. The stepper shows the same three lines at $i = 4$.
 2. Point 0 is $\alpha^0 = 1$, and $\mathrm{Tr}(1) = 1 + 1 + 1 = 3$. That is 0 exactly in characteristic 3, so 0 is in $D$ exactly when $p = 3$: for $q = 3$ and $q = 9$, for example.
-3. Try sending 0 to each member of $D$ in turn. Sending it to 14 works: $\{0, 1, 4, 14, 16\} + 14 = \{14, 15, 18, 28, 30\} \equiv \{14, 15, 18, 7, 9\}$ mod 21, which is $D$. So $j = 14$, the turn in the table above.
+3. Try sending 0 to each member of $D$ in turn. Sending it to 14 works: $\{0, 1, 4, 14, 16\} + 14 = \{14, 15, 18, 28, 30\} \equiv \{14, 15, 18, 7, 9\}$ mod 21, which is $D$. So $j = 14$, the translation in the table above.
 
 </details>
 

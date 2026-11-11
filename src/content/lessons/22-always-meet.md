@@ -28,7 +28,7 @@ However you set the clocks, every two radios with different offsets share exactl
 
 A radio whose clock is $i$ slots ahead is awake in the slots $D + i$: the translate from [Lesson 2](../02-rotations/), with every member of $D$ moved $i$ steps around the 7-slot clock (counting mod 7, as in [Lesson 1](../01-differences-on-a-circle/)). Two radios with offsets $i$ and $j$ are both awake in the slots in both $D + i$ and $D + j$, the *intersection* $(D + i) \cap (D + j)$.
 
-Lesson 2 counted that intersection: two translates share as many points as there are ways to write $j - i$ as a difference of two members of $D$. In a difference set, every nonzero difference occurs exactly $\lambda$ (the Greek letter lambda) times, and for $\{0, 1, 3\}$ mod 7 that is once. So any two radios with different clocks share exactly $\lambda = 1$ awake slot, whatever the offsets are. The radios don't need to know the offset. The schedule works for all of them at once.
+Lesson 2 counted that intersection: two translates share as many points as there are ways to write $j - i$ as a difference of two members of $D$. In a difference set, every nonzero difference occurs exactly $\lambda$ times, and for $\{0, 1, 3\}$ mod 7 that is once. So any two radios with different clocks share exactly $\lambda = 1$ awake slot, whatever the offsets are. The radios don't need to know the offset. The schedule works for all of them at once.
 
 ## How few slots can a radio be awake?
 
@@ -37,8 +37,6 @@ Being awake costs battery, so we want each radio awake in as few slots as possib
 $$
 k(k - 1) \ge v - 1.
 $$
-
-(The sign $\ge$ means "is greater than or equal to".)
 
 A planar difference set meets this with nothing to spare: each of the $k(k - 1)$ pairs covers a different offset. With $v = q^2 + q + 1$ slots and $k = q + 1$ awake, as Singer's construction gives for every prime power $q$, a radio is awake for about $1/q$ of the time:
 

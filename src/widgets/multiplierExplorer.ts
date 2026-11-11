@@ -101,7 +101,7 @@ export function mount(el: HTMLElement): void {
 
     const phi = totient(v);
     summary.textContent =
-      `φ(${v}) = ${phi} choices of t share no factor with ${v}. The multipliers are the ${3 * e} powers of p = ${p}: ` +
+      `φ(${v}) = ${phi} choices of t are coprime to ${v}. The multipliers are the ${3 * e} powers of p = ${p}: ` +
       `${setText([...powers].sort((a, b) => a - b))}. So the ${phi} sets t·D fall into ${phi} / ${3 * e} = ${groups.length} ` +
       `classes up to translation, and ${groups.length / 2} up to translation and mirror images.`;
 

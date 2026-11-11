@@ -96,7 +96,7 @@ export const GLOSSARY: GlossaryTerm[] = [
   {
     term: 'translate',
     lesson: 2,
-    def: 'D + j: the set made by adding j to every member of D, mod v. It is D turned j steps clockwise. A translate has the same differences as D.',
+    def: 'D + j: the set made by adding j to every member of D, mod v. On the clock it is D turned j steps clockwise. A translate has the same differences as D.',
     forms: ['translate'],
     see: ['translation class'],
   },
@@ -192,7 +192,7 @@ export const GLOSSARY: GlossaryTerm[] = [
   {
     term: 'isomorphism',
     lesson: 5,
-    def: 'A renaming of the elements of one field as the elements of another that turns its addition and multiplication tables into the other\'s. Isomorphic fields are the same field with different labels.',
+    def: 'A one-to-one matching of the elements of one field with the elements of another that turns its addition and multiplication tables into the other\'s. Isomorphic fields are the same field with different labels.',
     forms: ['isomorphism', 'isomorphic'],
   },
   {
@@ -204,7 +204,7 @@ export const GLOSSARY: GlossaryTerm[] = [
   {
     term: 'multiplicative inverse',
     lesson: 5,
-    def: 'For a nonzero number a, the number a⁻¹ with a × a⁻¹ = 1. Dividing by a means multiplying by a⁻¹. On a v-hour clock, a has one exactly when a and v share no factor.',
+    def: 'For a nonzero number a, the number a⁻¹ with a × a⁻¹ = 1. Dividing by a means multiplying by a⁻¹. In ℤ/vℤ, a has one exactly when a and v are coprime.',
     see: ['extended Euclidean algorithm'],
   },
   {
@@ -225,6 +225,31 @@ export const GLOSSARY: GlossaryTerm[] = [
     def: 'The number system made by counting numbers as the same when they differ by a member of an ideal. ℤ/vℤ, the integers mod v, is the quotient of the integers by the multiples of v.',
     forms: [],
     see: ['ideal', 'integers mod v'],
+  },
+  {
+    term: 'commutative',
+    lesson: 5,
+    def: 'An operation is commutative when the order of the two inputs does not matter: a + b = b + a and a × b = b × a.',
+    see: ['field'],
+  },
+  {
+    term: 'associative',
+    lesson: 5,
+    def: 'An operation is associative when the grouping does not matter: (a + b) + c = a + (b + c), and the same for ×.',
+    see: ['field'],
+  },
+  {
+    term: 'distributive',
+    lesson: 5,
+    def: 'Multiplication is distributive over addition: a × (b + c) = a × b + a × c.',
+    forms: ['distributive', 'distributes'],
+    see: ['field'],
+  },
+  {
+    term: 'coprime',
+    lesson: 5,
+    def: 'Two whole numbers are coprime when their only common factor is 1, that is, when their greatest common divisor is 1. In ℤ/vℤ, a has a multiplicative inverse exactly when a and v are coprime.',
+    see: ['greatest common divisor', 'multiplicative inverse'],
   },
   {
     term: 'zero divisor',
@@ -314,7 +339,7 @@ export const GLOSSARY: GlossaryTerm[] = [
   {
     term: 'Frobenius map',
     lesson: 9,
-    def: 'The map x ↦ x^p in a field of characteristic p, or more generally x ↦ x^q for q = p^j. By the freshman\'s dream it respects both adding and multiplying, so it is a renaming of the field onto itself.',
+    def: 'The map x ↦ x^p in a field of characteristic p, or more generally x ↦ x^q for q = pᵉ. By the freshman\'s dream it respects both adding and multiplying, so it is an isomorphism from the field to itself (an automorphism).',
     see: ['freshman\'s dream', 'fixed point', 'conjugates'],
   },
   {
@@ -430,27 +455,27 @@ export const GLOSSARY: GlossaryTerm[] = [
   {
     term: 'multiplier',
     lesson: 15,
-    def: 'A number t, sharing no factor with v, for which t · D (every member multiplied by t, mod v) is a translate of D. For a Singer set of order q = pᵉ, p is always a multiplier.',
+    def: 'A number t, coprime to v, for which t · D (every member multiplied by t, mod v) is a translate of D. For a Singer set of order q = pᵉ, p is always a multiplier.',
     see: ['translate'],
   },
   {
     term: 'shape',
     lesson: 15,
-    def: 'A translation class together with its mirror image, the class of −D. Two sets have the same shape when one is a turn of the other or of the other\'s mirror image.',
+    def: 'A translation class together with its mirror image, the class of −D. Two sets have the same shape when one is a translate of the other or of the other\'s mirror image.',
     forms: [],
     see: ['translation class'],
   },
   {
     term: 'translation class',
     lesson: 15,
-    def: 'A set D together with all its translates D + j. Two sets are in the same class exactly when one is a turn of the other.',
+    def: 'A set D together with all its translates D + j. Two sets are in the same class exactly when one is a translate of the other.',
     see: ['translate', 'shape'],
   },
   // Part VI: the frontier
   {
     term: 'autocorrelation',
     lesson: 16,
-    def: 'The score of a ±1 sequence against a copy of itself slid t steps: multiply position by position and add. A sequence made from a difference set scores v at shift 0 and the same small value at every other shift.',
+    def: 'The score of a ±1 sequence against a copy of itself shifted t steps: multiply position by position and add. A sequence made from a difference set scores v at shift 0 and the same small value at every other shift.',
     see: ['correlation', 'sidelobes'],
   },
   {
@@ -466,7 +491,7 @@ export const GLOSSARY: GlossaryTerm[] = [
   {
     term: 'hyperplane',
     lesson: 16,
-    def: 'A flat piece of a space one dimension smaller than the whole, the way a plane sits in 3-dimensional space. In PG(m, q) the hyperplanes play the role of lines, and their points give Singer\'s higher difference sets.',
+    def: 'The solutions of one linear equation a₀x₀ + … + aₘxₘ = 0 in GF(q)^(m+1): a subspace with one dimension fewer than the whole space, as a plane through the origin is in GF(q)³. In PG(m, q) the hyperplanes play the role of lines, and their points give Singer\'s higher difference sets.',
     see: ['projective space'],
   },
   {
@@ -497,14 +522,14 @@ export const GLOSSARY: GlossaryTerm[] = [
   {
     term: 'equivalent',
     lesson: 17,
-    def: 'Two difference sets are equivalent when one can be turned into the other by multiplying every member by some t that shares no factor with v and then sliding. A set equivalent to a Singer set is "of Singer type".',
+    def: 'Two difference sets are equivalent when one is a translate of a multiple t · D of the other, for some t coprime to v. A set equivalent to a Singer set is "of Singer type".',
     forms: [],
     see: ['multiplier', 'translate'],
   },
   {
     term: 'Euler\'s totient',
-    lesson: 17,
-    def: 'φ(v), "phi of v": how many of 1, 2, …, v share no common factor with v. For example φ(7) = 6 and φ(21) = 12.',
+    lesson: 8,
+    def: 'φ(v), "phi of v": how many of 1, 2, …, v are coprime to v. For example φ(7) = 6 and φ(21) = 12.',
     forms: ['totient'],
   },
   {
@@ -712,7 +737,7 @@ export const SYMBOLS: GlossarySymbol[] = [
   { symbol: 't · D', read: 't times D', lesson: 15, def: 'Every member of D multiplied by t, mod v.' },
   { symbol: '−D', lesson: 15, def: 'The mirror image of D: every member negated.' },
   { symbol: 'PG(m, q)', lesson: 16, def: 'Projective space of dimension m over GF(q), with m + 1 coordinates.' },
-  { symbol: 'φ(v)', read: 'phi of v', lesson: 17, def: 'Euler\'s totient: how many of 1, …, v share no common factor with v.' },
+  { symbol: 'φ(v)', read: 'phi of v', lesson: 8, def: 'Euler\'s totient function: how many of 1, …, v are coprime to v.' },
   { symbol: 'Σ', read: 'sigma', lesson: 20, def: '"Add up": Σ xᵢ is x₀ + x₁ + … + x_{v−1}.' },
   { symbol: '⊕', read: 'XOR', lesson: 21, def: 'Adding bits mod 2.' },
 ];

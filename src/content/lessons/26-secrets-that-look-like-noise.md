@@ -2,11 +2,11 @@
 title: "Secrets that look like noise"
 order: 26
 part: 7
-summary: "Bent functions: the rules a cipher can use that no straight-line guess can imitate, and why they are difference sets."
+summary: "Bent functions: the Boolean functions that no linear approximation comes close to, and why they are difference sets."
 status: ready
 ---
 
-**You'll learn:** why a cipher must avoid anything that a simple XOR rule can predict, what a bent function is, why bent functions are exactly difference sets in a group where "adding" means XOR, and why the shift registers from Lesson 20 are no good as secrets on their own.
+**You'll learn:** why a cipher must avoid anything that a linear function of its input bits can predict, what a bent function is, why bent functions are exactly difference sets in a group where "adding" means XOR, and why the shift registers from Lesson 20 are no good as secrets on their own.
 
 ## Keys that always meet
 
@@ -14,7 +14,7 @@ status: ready
 
 ## Bits and XOR
 
-Computers store everything as **bits**, 0s and 1s, and ciphers spend most of their time mixing bits. The most important way to mix two bits is **XOR**, written $\oplus$ ("exclusive or"): $a \oplus b$ is 1 when exactly one of $a$ and $b$ is 1.
+Ciphers work on **bits**, and the basic way to combine two bits is **XOR**, written $\oplus$ ("exclusive or"): $a \oplus b$ is 1 when exactly one of $a$ and $b$ is 1.
 
 $$
 0 \oplus 0 = 0, \qquad 0 \oplus 1 = 1, \qquad 1 \oplus 0 = 1, \qquad 1 \oplus 1 = 0.
@@ -27,14 +27,14 @@ This is addition mod 2, the clock with two hours from [Lesson 1](../01-differenc
 
 - An **input** $x = x_1 x_2 x_3 x_4$ is a string of 4 bits, such as $0110$. There are $2^4 = 16$ of them.
 - A **Boolean function** $f$ gives one output bit, $f(x)$, for each input. For example $f(x) = x_1 x_2 \oplus x_3 x_4$, where $x_1 x_2$ means "$x_1$ times $x_2$", which is 1 only when both are 1.
-- A **linear rule** XORs some of the input bits together: $x_1 \oplus x_3$, or $x_2$, or $x_1 \oplus x_2 \oplus x_3 \oplus x_4$. There are 16 of them, one for each choice of which bits to use (including none, the rule that always says 0). Write $a \cdot x$ for the rule that uses the bits where $a$ has a 1: for $a = 1010$, $a \cdot x = x_1 \oplus x_3$.
-- An **affine rule** is a linear rule, or a linear rule with its answer flipped: $a \cdot x \oplus 1$.
+- A **linear function** XORs some of the input bits together: $x_1 \oplus x_3$, or $x_2$, or $x_1 \oplus x_2 \oplus x_3 \oplus x_4$. There are 16 of them, one for each choice of which bits to use (including none, the function that is always 0). Write $a \cdot x$ for the one that uses the bits where $a$ has a 1: for $a = 1010$, $a \cdot x = x_1 \oplus x_3$. To keep these 16 apart from the function $f$ under study, this lesson and its widget call them **linear rules**.
+- An **affine function**, or **affine rule**, is a linear rule or a linear rule with its output flipped: $a \cdot x \oplus 1$.
 
 </aside>
 
 ## How a cipher can leak
 
-A cipher scrambles a message using a secret **key**. Inside, it is built from small pieces, each a function of a few bits. If one of those pieces is close to a linear rule, say its output equals $x_1 \oplus x_3$ for 14 of its 16 inputs, then an attacker can pretend that piece *is* $x_1 \oplus x_3$ and be right most of the time. Linear rules are easy to chain together, so the attacker can write down a XOR of a few message bits, cipher bits, and key bits that holds noticeably more often than half the time. Collect enough messages and their scrambled versions, count how often the XOR comes out 0, and the bias gives away a bit of the key.
+A cipher scrambles a message using a secret **key**. Inside, it is built from small pieces, each a function of a few bits. If one of those pieces is close to a linear rule, say its output equals $x_1 \oplus x_3$ for 14 of its 16 inputs, then an attacker can replace that piece by $x_1 \oplus x_3$ (a *linear approximation*) and be right most of the time. Linear rules are easy to chain together, so the attacker can write down a XOR of a few message bits, cipher bits, and key bits that holds noticeably more often than half the time. Collect enough messages and their scrambled versions, count how often the XOR comes out 0, and the bias gives away a bit of the key.
 
 This is **linear cryptanalysis**, published by Mitsuru Matsui in 1993 against DES, then the U.S. standard cipher. His attack on the full cipher needed about $2^{47}$ (some 140 trillion) known message pairs: far too many for most attackers, but far fewer than trying every key. A designer's defense is to use pieces that are *far* from every linear rule. How far can a function on 4 bits get?
 
@@ -67,7 +67,7 @@ Now add that over all 16 rules $a$. A pair with $x = y$ contributes $F(x)^2 L_a(
 
 </details>
 
-If any one score is small, some other score must be big. The 16 squares add up to 256, so they average $256 / 16 = 16$, and the largest is at least 16: some score has size at least 4. The biggest score is as small as it can be when all 16 scores have the same size: $16 \times 4^2 = 256$, so every $W(a) = \pm 4$, every rule is right on $(16 \pm 4)/2 = 10$ or $6$ inputs, and the closest affine rule is wrong 6 times. A function whose scores all have the same size is called **bent**, a name O. S. Rothaus gave them in a 1976 paper. For $n$ input bits the scores of a bent function are all $\pm 2^{n/2}$, which is a whole number only when $n$ is even, so bent functions exist only for an even number of bits.
+If any one score is small, some other score must be big. The 16 squares add up to 256, so they average $256 / 16 = 16$, and the largest is at least 16: some score has size at least 4. The biggest score is as small as it can be when all 16 scores have the same size: $16 \times 4^2 = 256$, so every $W(a) = \pm 4$, every rule is right on $(16 \pm 4)/2 = 10$ or $6$ inputs, and the closest affine rule is wrong 6 times. A function whose scores all have the same size is called **bent**, a name O. S. Rothaus gave them in a 1976 paper. For $m$ input bits the scores of a bent function are all $\pm 2^{m/2}$, which is a whole number only when $m$ is even, so bent functions exist only for an even number of bits.
 
 ## Bent functions are difference sets
 
@@ -77,19 +77,19 @@ $$
 D \oplus a = \{\, x \oplus a : x \text{ in } D \,\}.
 $$
 
-This is [Lesson 2](../02-rotations/)'s translate $D + t$, with clock addition replaced by XOR. For $x_1 x_2 \oplus x_3 x_4$, the set $D = \{0011, 0111, 1011, 1100, 1101, 1110\}$ has 6 members and every bar is exactly 2. Equivalently, every nonzero string occurs exactly twice as $x \oplus y$ for two members $x, y$ of $D$. So $D$ is a **difference set** with $v = 16$, $k = 6$, $\lambda = 2$, in the group of 4-bit strings under XOR. (A *group* here just means a set of things with an "addition" that can be undone: the hours of a clock with $+$, or the 4-bit strings with $\oplus$. The definition in [Lesson 1](../01-differences-on-a-circle/) carries over with $\oplus$ in place of $-$.) Since $x \oplus a = y$ exactly when $x \oplus y = a$, "difference" and "sum" are the same thing here: there is no minus sign to worry about.
+This is [Lesson 2](../02-rotations/)'s translate $D + t$, with clock addition replaced by XOR. For $x_1 x_2 \oplus x_3 x_4$, the set $D = \{0011, 0111, 1011, 1100, 1101, 1110\}$ has 6 members and every bar is exactly 2. Equivalently, every nonzero string occurs exactly twice as $x \oplus y$ for two members $x, y$ of $D$. So $D$ is a **difference set** with $v = 16$, $k = 6$, $\lambda = 2$, in the group of 4-bit strings under XOR. (A *group* is a set with an operation that behaves like addition: it is associative, it has an identity, and every element has an inverse. The residues mod $v$ under $+$ are one, and the 4-bit strings under $\oplus$ are another. The definition in [Lesson 1](../01-differences-on-a-circle/) carries over with $\oplus$ in place of $-$.) Since $x \oplus a = y$ exactly when $x \oplus y = a$, "difference" and "sum" are the same thing here: there is no minus sign to worry about.
 
 This is no accident. J. F. Dillon showed in his 1974 thesis that
 
-> $f$ is bent exactly when the set $D$ of inputs where $f = 1$ is a difference set in the group of $n$-bit strings under XOR.
+> $f$ is bent exactly when the set $D$ of inputs where $f = 1$ is a difference set in the group of $m$-bit strings under XOR.
 
 The parameters are always
 
 $$
-v = 2^n, \qquad k = 2^{n-1} \pm 2^{n/2 - 1}, \qquad \lambda = 2^{n-2} \pm 2^{n/2 - 1},
+v = 2^m, \qquad k = 2^{m-1} \pm 2^{m/2 - 1}, \qquad \lambda = 2^{m-2} \pm 2^{m/2 - 1},
 $$
 
-(with the same sign in both places), which are called **Hadamard** or **Menon** parameters. For $n = 4$ they are $(16, 6, 2)$ and $(16, 10, 6)$; the preset **x1x4 ⊕ x2x3 ⊕ 1** is a $(16, 10, 6)$ example. Of the $2^{16} = 65{,}536$ functions on 4 bits, exactly 896 are bent, and exactly those 896 have a flat bar chart (leaving out sets with 0, 1, 15, or 16 members, whose charts are flat for trivial reasons).
+(with the same sign in both places), which are called **Hadamard** or **Menon** parameters. For $m = 4$ they are $(16, 6, 2)$ and $(16, 10, 6)$; the preset **x1x4 ⊕ x2x3 ⊕ 1** is a $(16, 10, 6)$ example. Of the $2^{16} = 65{,}536$ functions on 4 bits, exactly 896 are bent, and exactly those 896 have a flat bar chart (leaving out sets with 0, 1, 15, or 16 members, whose charts are flat for trivial reasons).
 
 Here is why the two ideas match. Turn $f$ into a code of $\pm 1$s, $-1$ where $f = 1$, and compare it with itself shifted by $a$ (XOR instead of a clock shift): $+1$ for each input where the two copies agree, $-1$ where they disagree. The copies disagree exactly at the inputs that are in one of $D$ and $D \oplus a$ but not both. If bar $a$ has height $\lambda_a$, then $D$ has $k - \lambda_a$ members outside $D \oplus a$, and $D \oplus a$ has $k - \lambda_a$ members outside $D$: $2(k - \lambda_a)$ disagreements, $16 - 2(k - \lambda_a)$ agreements, and a score of
 
@@ -113,7 +113,7 @@ Real ciphers need *S-boxes* (substitution boxes), pieces with several output bit
 
 The m-sequences from [Lesson 20](../20-finding-an-echo/) look random: equal numbers of 0s and 1s (almost), a flat correlation floor, no visible pattern. So why not use a shift register as a stream cipher, XORing its bits onto the message?
 
-Because a shift register is linear, and linear things are easy to undo. Each new bit is a XOR of earlier bits, so a stretch of known output gives a set of XOR equations for the unknown register. The **Berlekamp–Massey algorithm** (J. L. Massey, 1969) solves them quickly: if the register has $n$ stages, $2n$ consecutive output bits are enough to find the register and its starting state, and from then on every future bit. The 10-stage register behind a GPS code makes 1023 bits before repeating, but 20 of them give the whole thing away.
+Because a shift register is linear, and linear things are easy to undo. Each new bit is a XOR of earlier bits, so a stretch of known output gives a set of XOR equations for the unknown register. The **Berlekamp–Massey algorithm** (J. L. Massey, 1969) solves them quickly: if the register has $r$ stages, $2r$ consecutive output bits are enough to find the register and its starting state, and from then on every future bit. The 10-stage register behind a GPS code makes 1023 bits before repeating, but 20 of them give the whole thing away.
 
 So real stream ciphers mix several shift registers *nonlinearly*. The A5/1 cipher in GSM mobile phones runs three registers of 19, 22, and 23 bits and moves them irregularly by a majority vote; the E0 cipher in Bluetooth combines four registers through a small nonlinear machine with memory. Both have since been broken, which shows how hard it is to get the nonlinear part right.
 
@@ -138,9 +138,9 @@ So real stream ciphers mix several shift registers *nonlinearly*. The A5/1 ciphe
 
 ## The end of the path
 
-This is the last lesson, so look back at how far one small fact has gone. [Lesson 2](../02-rotations/) showed that two turned copies of a difference set always overlap in the same number of points. That fact turned a counting puzzle into geometry, the geometry into arithmetic in a finite field, and the arithmetic into a recipe that writes the sets down at any size. Then the same fact dealt cards, unscrambled a telescope's shadows, found echoes, corrected errors, woke radios, scheduled races, rebuilt disks, and here measured how well a cipher's parts hide what they do.
+This is the last lesson, so look back at how far one fact has gone. [Lesson 2](../02-rotations/) showed that two turned copies of a difference set always overlap in the same number of points. That fact turned a counting puzzle into geometry, the geometry into arithmetic in a finite field, and the arithmetic into an algorithm that writes the sets down at any size. Then the same fact dealt cards, unscrambled a telescope's shadows, found echoes, corrected errors, woke radios, scheduled races, rebuilt disks, and here measured how well a cipher's parts hide what they do.
 
-If you came to the applications first, the path to Singer's recipe starts at [Lesson 1](../01-differences-on-a-circle/), and [Lesson 14](../14-writing-down-a-difference-set/) has the whole argument on one page. If you have read it all, [Lesson 17](../17-every-planar-set-singer/) lists experiments and books for going further.
+If you came to the applications first, the path to Singer's algorithm starts at [Lesson 1](../01-differences-on-a-circle/), and [Lesson 14](../14-writing-down-a-difference-set/) has the whole argument on one page. If you have read it all, [Lesson 17](../17-every-planar-set-singer/) lists experiments and books for going further.
 
 ## Sources
 

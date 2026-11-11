@@ -21,8 +21,8 @@ Our pattern is a **code**: a list of $v$ numbers, each $+1$ or $-1$, sent over a
 <aside class="notation">
 <span class="notation-title">Notation</span>
 
-- $s_i$ (read "s sub i") is entry number $i$ of the code. The code repeats, so the index is taken mod $v$: $s_{v} = s_0$, and $s_{-1} = s_{v-1}$.
-- $\sum$ (the capital Greek letter sigma) means "add up". $\sum_{i=0}^{v-1} x_i$ is $x_0 + x_1 + \dots + x_{v-1}$.
+- $s_i$ is entry number $i$ of the code. The code repeats, so the index is taken mod $v$: $s_{v} = s_0$, and $s_{-1} = s_{v-1}$.
+- $\sum$ (the capital Greek letter sigma) is summation notation: $\sum_{i=0}^{v-1} x_i$ is $x_0 + x_1 + \dots + x_{v-1}$.
 - The **match score** at shift $t$ multiplies each received value by the template shifted $t$ steps, and adds:
 
 $$
@@ -43,7 +43,7 @@ The two charts at the bottom compare each code with an exact copy of itself, wit
 
 ## Why the floor is flat
 
-The m-sequence code is built from a difference set $D$, a set of $k$ points on a clock with $v$ hours in which every nonzero difference occurs $\lambda$ times (λ is the Greek letter lambda; see [Lesson 1](../01-differences-on-a-circle/)). Put $s_i = -1$ when $i$ is in $D$, and $s_i = +1$ otherwise.
+The m-sequence code is built from a difference set $D$, a set of $k$ points on a clock with $v$ hours in which every nonzero difference occurs $\lambda$ times ([Lesson 1](../01-differences-on-a-circle/)). Put $s_i = -1$ when $i$ is in $D$, and $s_i = +1$ otherwise.
 
 Compare the code with itself shifted by $t$, a shift that is not $0 \pmod v$. Entry by entry, the product is $+1$ where the two agree and $-1$ where they disagree. They disagree exactly at the points that are in one of $D$ and $D + t$ but not in the other. By [Lesson 2](../02-rotations/), $D$ and $D + t$ share exactly $\lambda$ points, so each has $k - \lambda$ points the other lacks: $2(k - \lambda)$ disagreements in all, and $v - 2(k - \lambda)$ agreements. So
 

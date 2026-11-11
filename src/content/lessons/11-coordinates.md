@@ -20,7 +20,7 @@ status: ready
 - a **line** is a plane through the origin;
 - a point **lies on** a line when the line through the origin sits inside the plane.
 
-The geometry this makes is called $\mathrm{PG}(2, q)$, the *projective geometry* of dimension 2 over $\mathrm{GF}(q)$. (The 2 is its *dimension*, which here just means the number of coordinates minus one: a plane needs three coordinates, and the space of Lesson 10's last section needs four.) It is an old idea from perspective drawing: a point in a painting is a ray of light through the painter's eye, and a line in the painting is a flat fan of rays.
+The geometry this makes is called $\mathrm{PG}(2, q)$, the *projective geometry* of dimension 2 over $\mathrm{GF}(q)$. (The 2 is its *dimension*, which here means the number of coordinates minus one: a plane needs three coordinates, and the space of Lesson 10's last section needs four.) It is an old idea from perspective drawing: a point in a painting is a ray of light through the painter's eye, and a line in the painting is a flat fan of rays.
 
 ## Homogeneous coordinates
 
@@ -58,7 +58,7 @@ The left side is the **dot product** of $(a, b, c)$ and $(x, y, z)$, written $(a
 
 <div data-widget="pg2-explorer" data-q="3" data-qs="2,3,4,5,7"></div>
 
-The explorer lays out the $q^2$ points $[1 : y : z]$ as a square, row $y$ and column $z$, with the other $q + 1$ points below. Click a point to see the $q + 1$ lines through it. Click a second point to see the line through both, with the dot products that prove it. Click two lines in the list to see where they meet. For $q = 4$ the coordinates come from $\mathrm{GF}(4)$, which is not a clock, so the explorer writes its elements as $0, 1, \omega, \omega^2$: the powers of a primitive element $\omega$ (the Greek letter omega) from [Lesson 8](../08-primitive-elements/), with $\omega^2 = \omega + 1$. Later lessons save $\alpha$ for a primitive element of the bigger field $\mathrm{GF}(q^3)$, so the small field gets its own letter.
+The explorer lays out the $q^2$ points $[1 : y : z]$ as a square, row $y$ and column $z$, with the other $q + 1$ points below. Click a point to see the $q + 1$ lines through it. Click a second point to see the line through both, with the dot products that prove it. Click two lines in the list to see where they meet. For $q = 4$ the coordinates come from $\mathrm{GF}(4)$, which is not a clock, so the explorer writes its elements as $0, 1, \omega, \omega^2$: the powers of a primitive element $\omega$ from [Lesson 8](../08-primitive-elements/), with $\omega^2 = \omega + 1$. Later lessons save $\alpha$ for a primitive element of the bigger field $\mathrm{GF}(q^3)$, so the small field gets its own letter.
 
 ## The plane axioms
 
@@ -86,7 +86,7 @@ So $\mathrm{PG}(2, q)$ is a projective plane. Each line holds $q + 1$ points, th
 
 The square of points $[1 : y : z]$ in the explorer behaves like an ordinary grid. A line $[a : b : c]$ with $c \neq 0$ meets each row once: for each $y$ there is one $z$ with $a + b y + c z = 0$, like the graph of a straight line that wraps around at the edges.
 
-Lines $[a : b : c]$ with the same $b$ and $c$ (not both 0) but different $a$ never meet inside the square. They are *parallel*, as in school geometry. But they all pass through the same extra point $[0 : c : -b]$ below the square, because $0 \cdot a + c \cdot b + (-b) \cdot c = 0$ for every $a$. The $q + 1$ points with $x = 0$ make up one more line, $[1 : 0 : 0]$, the **line at infinity**, where each family of parallel lines meets. That is how a projective plane gets rid of parallels: it adds a point at infinity for each direction, as railway tracks meet at the horizon in a painting.
+Lines $[a : b : c]$ with the same $b$ and $c$ (not both 0) but different $a$ never meet inside the square. They are *parallel*, as in the ordinary plane. But they all pass through the same extra point $[0 : c : -b]$ below the square, because $0 \cdot a + c \cdot b + (-b) \cdot c = 0$ for every $a$. The $q + 1$ points with $x = 0$ make up one more line, $[1 : 0 : 0]$, the **line at infinity**, where each family of parallel lines meets. That is how a projective plane gets rid of parallels: it adds a point at infinity for each direction, as railway tracks meet at the horizon in a painting.
 
 ## The two smallest planes
 

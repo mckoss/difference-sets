@@ -25,7 +25,7 @@ test('the path has a road map after Lesson 4 and the whole argument in Lesson 14
   await page.goto('lessons/04-projective-planes/');
   await expect(page.locator('.roadmap ol > li')).toHaveCount(3);
   await page.locator('.roadmap a', { hasText: 'Lesson 14' }).click();
-  await expect(page.locator('h2', { hasText: 'The recipe, start to finish' })).toBeVisible();
+  await expect(page.locator('h2', { hasText: 'The algorithm, start to finish' })).toBeVisible();
   // One row per step of the argument, each naming the lesson that proves it.
   const steps = page.locator('h2:has-text("The whole argument on one page") ~ table').first().locator('tbody tr');
   await expect(steps).toHaveCount(8);

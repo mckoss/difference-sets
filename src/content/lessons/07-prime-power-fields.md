@@ -25,9 +25,9 @@ Singer's construction for a plane of order $q$ runs inside a field with $q^3$ el
 | remainders mod $v$: $\mathbb{Z}/v\mathbb{Z}$ | remainders mod $f(x)$ |
 | a field exactly when $v$ is prime | a field exactly when $f$ is irreducible |
 
-## Polynomials with clock coefficients
+## Polynomials with coefficients mod p
 
-A **polynomial over $\mathrm{GF}(p)$** is an expression like $x^3 + 2x + 1$ whose coefficients are numbers mod $p$. Here $x$ is just a symbol; we never plug in a value for it unless we say so. Add and multiply as in high-school algebra, then reduce each coefficient mod $p$. Over $\mathrm{GF}(2)$, where $1 + 1 = 0$:
+A **polynomial over $\mathrm{GF}(p)$** is an expression like $x^3 + 2x + 1$ whose coefficients are numbers mod $p$. Here $x$ is a formal symbol (an *indeterminate*), not a number waiting to be filled in; we never substitute a value for it unless we say so. Add and multiply as in ordinary algebra, then reduce each coefficient mod $p$. Over $\mathrm{GF}(2)$, where $1 + 1 = 0$:
 
 $$
 (x^2 + x) + (x + 1) = x^2 + 2x + 1 = x^2 + 1, \qquad (x + 1)^2 = x^2 + 2x + 1 = x^2 + 1.
@@ -70,7 +70,7 @@ $$
 
 with each coefficient $a_i$ one of the $p$ numbers mod $p$. That makes $p^e$ remainders. Each one is a list of $e$ coefficients, which is exactly the "$e$ coordinates over $\mathrm{GF}(p)$" picture from Lesson 6. The widgets also write a remainder as its string of coefficient digits, highest power first, so over $\mathrm{GF}(2)$ the remainder $x^2 + 1$ is written $101$.
 
-To add two remainders, add them as polynomials. To multiply, multiply as polynomials, then take the remainder mod $f$. This is clock arithmetic, with $f(x)$ playing the role of the number of hours, and for the same reason as in [Lesson 5](../05-which-clocks-are-fields/) (reducing at the end gives the same answer as reducing along the way, because multiples of $f$ absorb sums and products just as multiples of $v$ do), the first five field rules carry over from ordinary polynomial algebra. Only the last rule, inverses, is in question.
+To add two remainders, add them as polynomials. To multiply, multiply as polynomials, then take the remainder mod $f$. This is clock arithmetic, with $f(x)$ playing the role of the number of hours, and for the same reason as in [Lesson 5](../05-which-clocks-are-fields/) (reducing at the end gives the same answer as reducing along the way, because multiples of $f$ absorb sums and products just as multiples of $v$ do), the first five field axioms carry over from ordinary polynomial algebra. Only the last axiom, multiplicative inverses, is in question.
 
 Here is the smallest example that is not a clock: $p = 2$ and $f(x) = x^2 + x + 1$. The four remainders are $0, 1, x, x + 1$. The only new rule is how to reduce $x^2$: since $x^2 + x + 1 \equiv 0$, we have $x^2 \equiv x + 1$ (over $\mathrm{GF}(2)$, moving terms across the equals sign doesn't change their sign). So, for instance, $x \times (x + 1) = x^2 + x \equiv (x + 1) + x = 1$.
 
@@ -78,7 +78,7 @@ Here is the smallest example that is not a clock: $p = 2$ and $f(x) = x^2 + x + 
 
 Every nonzero row of the multiplication table contains a 1, so this is a field with 4 elements, $\mathrm{GF}(4)$. It is not $\mathbb{Z}/4\mathbb{Z}$: in $\mathrm{GF}(4)$, $1 + 1 = 0$, while on the 4-hour clock $1 + 1 = 2$.
 
-Notice what has happened to $x$. We said it was just a symbol, but in this new field it is itself one of the four numbers, and it is a root of the modulus: $x^2 + x + 1 = 0$ there, even though neither 0 nor 1 is a root over $\mathrm{GF}(2)$. This is Galois's "new number" from [Lesson 5](../05-which-clocks-are-fields/), exactly as $i$ is a new number with $i^2 + 1 = 0$.
+Notice what has happened to $x$. It began as a formal symbol, but in this new field it is one of the four elements, and it is a root of the modulus: $x^2 + x + 1 = 0$ there, even though neither 0 nor 1 is a root over $\mathrm{GF}(2)$. This is Galois's "new number" from [Lesson 5](../05-which-clocks-are-fields/), exactly as $i$ is a new number with $i^2 + 1 = 0$.
 
 ## Irreducible polynomials are the primes
 

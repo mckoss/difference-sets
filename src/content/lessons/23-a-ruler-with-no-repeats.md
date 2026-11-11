@@ -35,7 +35,7 @@ Below are the marks $\{0, 1, 3, 9\}$ on a circle of 13 steps. Click two marks to
 
 ## The smallest possible circle
 
-How small can the circle be for $k$ marks? The $k$ marks form $k(k - 1)$ ordered pairs, one for each choice of a first mark and a different second mark. On a modular Golomb ruler these pairs are all different distances, and there are only $v - 1$ distances available, so $k(k - 1) \le v - 1$ (the sign $\le$ means "is less than or equal to", and $\ge$ means "is greater than or equal to"), or
+How small can the circle be for $k$ marks? The $k$ marks form $k(k - 1)$ ordered pairs, one for each choice of a first mark and a different second mark. On a modular Golomb ruler these pairs are all different distances, and there are only $v - 1$ distances available, so $k(k - 1) \le v - 1$, or
 
 $$
 v \ge k^2 - k + 1.
@@ -66,7 +66,7 @@ Unwind $D = \{0, 1, 4, 14, 16\}$ mod 21 by hand, cutting at its longest gap. Whe
 <details>
 <summary>Show the answer</summary>
 
-Going clockwise, the gaps are $0 \to 1$ (1 step), $1 \to 4$ (3), $4 \to 14$ (10), $14 \to 16$ (2), and $16 \to 0$ (5 steps, since $21 - 16 = 5$). The longest is from 4 to 14. Cutting there and starting at 14 puts the marks at $14 \mapsto 0$, $16 \mapsto 2$, $0 \mapsto 7$, $1 \mapsto 8$, and $4 \mapsto 11$ (the arrow $\mapsto$ reads "goes to"). So the antennas are at $\{0, 2, 7, 8, 11\}$, a ruler of length $21 - 10 = 11$.
+Going clockwise, the gaps are $0 \to 1$ (1 step), $1 \to 4$ (3), $4 \to 14$ (10), $14 \to 16$ (2), and $16 \to 0$ (5 steps, since $21 - 16 = 5$). The longest is from 4 to 14. Cutting there and starting at 14 puts the marks at $14 \mapsto 0$, $16 \mapsto 2$, $0 \mapsto 7$, $1 \mapsto 8$, and $4 \mapsto 11$. So the antennas are at $\{0, 2, 7, 8, 11\}$, a ruler of length $21 - 10 = 11$.
 
 Its ten spacings are $2, 7, 8, 11, 5, 6, 9, 1, 4, 3$: every length from 1 to 11 except 10. No five marks can do better, because the shortest Golomb ruler with five marks has length 11.
 

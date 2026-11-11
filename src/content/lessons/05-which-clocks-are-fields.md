@@ -14,13 +14,13 @@ status: ready
 
 ## Clocks, again
 
-[Lesson 1](../01-differences-on-a-circle/) did arithmetic on a clock: with $v$ hours, you add or multiply as usual and then keep only the remainder after dividing by $v$. The set of hours $\{0, 1, \dots, v - 1\}$ with that arithmetic is written $\mathbb{Z}/v\mathbb{Z}$[^quotient], read "the integers mod $v$", and $a \equiv b \pmod v$ means $a$ and $b$ land on the same hour.
+[Lesson 1](../01-differences-on-a-circle/) did arithmetic in $\mathbb{Z}/v\mathbb{Z}$[^quotient], the integers mod $v$: add or multiply as usual, then keep the remainder after dividing by $v$.
 
 For example, on a clock with 7 hours, $5 + 4 = 9 \equiv 2$ and $3 \times 5 = 15 \equiv 1 \pmod 7$.
 
 ## Why a plane needs division
 
-[Lesson 4](../04-projective-planes/) ended with a plan: build a finite plane the way school geometry builds the ordinary one, with coordinates. There, a point is a pair of numbers $(x, y)$, and a line is the set of points that solve an equation such as $y = 2x$. Try that with coordinates taken from a clock.
+[Lesson 4](../04-projective-planes/) ended with a plan: build a finite plane the way coordinate geometry builds the ordinary one. There, a point is a pair of numbers $(x, y)$, and a line is the set of points that solve an equation such as $y = 2x$. Try that with coordinates taken from a clock.
 
 On the 7-hour clock, the lines $y = 0$ and $y = 2x$ meet where $2x \equiv 0 \pmod 7$. The only such hour is $x = 0$, so the lines cross once, at $(0, 0)$, as lines should. On the 6-hour clock, $2x \equiv 0 \pmod 6$ has *two* solutions, $x = 0$ and $x = 3$, because $2 \times 3 = 6 \equiv 0$. Now the two lines cross twice, at $(0, 0)$ and at $(3, 0)$, and the rule that two points lie on only one line is broken.
 
@@ -30,20 +30,20 @@ What went wrong is that on the 6-hour clock you cannot divide by 2. In ordinary 
 
 A **field** is a collection of objects over which two operations, addition and multiplication, are defined with the following properties. (We call the objects *numbers*, even though in later lessons they won't look like ordinary numbers.)
 
-| Rule | In words |
+| Axiom | What it says |
 | --- | --- |
-| Order doesn't matter | $a + b = b + a$ and $a \times b = b \times a$ |
-| Grouping doesn't matter | $(a + b) + c = a + (b + c)$, and the same for $\times$ |
-| Multiplying spreads over adding | $a \times (b + c) = a \times b + a \times c$ |
-| There are a 0 and a 1 (different from each other) | $a + 0 = a$ and $a \times 1 = a$ |
-| Every number has a negative (its **additive inverse**) | some $-a$ has $a + (-a) = 0$, so subtraction works |
+| Both operations are **commutative** | $a + b = b + a$ and $a \times b = b \times a$ |
+| Both operations are **associative** | $(a + b) + c = a + (b + c)$, and the same for $\times$ |
+| Multiplication is **distributive** over addition | $a \times (b + c) = a \times b + a \times c$ |
+| There are **identities** 0 and 1, different from each other | $a + 0 = a$ and $a \times 1 = a$ |
+| Every number has an **additive inverse** | some $-a$ has $a + (-a) = 0$, so subtraction works |
 | Every number except 0 has a **multiplicative inverse** | some $a^{-1}$ (read "$a$ inverse") has $a \times a^{-1} = 1$, so division works |
 
 From here on, "inverse" on its own always means the multiplicative inverse, the one that makes division work.
 
 The fractions (rational numbers) form a field, and so do the real numbers. The whole numbers $\dots, -1, 0, 1, 2, \dots$ do not: 2 has no multiplicative inverse among them, because $\tfrac12$ is not a whole number.
 
-Clock arithmetic inherits the first five rules from ordinary whole-number arithmetic, because taking remainders at the end gives the same answer as taking them along the way. The negative of $a$ on a $v$-hour clock is $v - a$. So the only question is the last rule: **does every nonzero hour have a multiplicative inverse?**
+These are the **field axioms**. Clock arithmetic inherits the first five from ordinary whole-number arithmetic, because taking remainders at the end gives the same answer as taking them along the way. The negative of $a$ on a $v$-hour clock is $v - a$. So the only question is the last axiom: **does every nonzero residue have a multiplicative inverse?**
 
 ## Look at the multiplication tables
 
@@ -61,7 +61,7 @@ Multiplying $a \times b$ on a clock is the same as starting at 0 and jumping $a$
 
 <div data-widget="zn-clock" data-v="7" data-a="3"></div>
 
-Try $v = 6$ with jumps of 2, 3, 4, and 5, and then $v = 12$. The jumps that visit every hour are exactly the ones that share no factor with $v$.
+Try $v = 6$ with jumps of 2, 3, 4, and 5, and then $v = 12$. The jumps that visit every hour are exactly the ones whose only common factor with $v$ is 1. Two whole numbers like that are called **coprime**.
 
 ## Why composite clocks fail
 
@@ -71,7 +71,7 @@ $$
 b \equiv b \times (a \times c) \equiv (b \times a) \times c \equiv 0 \times c \equiv 0,
 $$
 
-which contradicts $b$ being between 1 and $v$. So $\mathbb{Z}/6\mathbb{Z}$, $\mathbb{Z}/4\mathbb{Z}$, and every other composite clock break the last rule.
+which contradicts $b$ being between 1 and $v$. So $\mathbb{Z}/6\mathbb{Z}$, $\mathbb{Z}/4\mathbb{Z}$, and every other composite clock fail the last axiom.
 
 ## Why prime clocks succeed
 
@@ -83,9 +83,9 @@ For a large prime, reading across a row is slow. The **extended Euclidean algori
 
 <div data-widget="euclid" data-a="5" data-v="13"></div>
 
-Step through it for $a = 5$, $v = 13$: the remainders are 13, 5, 3, 2, 1, and the last line says $1 = 2 \times 13 + (-5) \times 5$. So $5^{-1} \equiv -5 \equiv 8$, and indeed $5 \times 8 = 40 = 3 \times 13 + 1$. If $a$ and $v$ share a factor, the remainders stop at that factor instead of 1, and there is no inverse.
+Step through it for $a = 5$, $v = 13$: the remainders are 13, 5, 3, 2, 1, and the last line says $1 = 2 \times 13 + (-5) \times 5$. So $5^{-1} \equiv -5 \equiv 8$, and indeed $5 \times 8 = 40 = 3 \times 13 + 1$. If $a$ and $v$ are not coprime, the remainders stop at their largest common factor instead of 1, and there is no inverse.
 
-**Why the chain ends at the greatest common divisor.** Each remainder is built from the two numbers before it, so every remainder is some multiple of $v$ plus some multiple of $a$; a factor shared by $v$ and $a$ therefore divides every remainder, including the last nonzero one. In the other direction, the last nonzero remainder divides the one before it (that division came out even), hence the one before that, and so on back up the chain to $a$ and $v$. So the last nonzero remainder is a common factor of $v$ and $a$ that every common factor divides: their **greatest common divisor**. When $v = p$ is prime and $a$ is a nonzero hour, the only common factor is 1, so the chain ends at 1 and every nonzero $a$ has an inverse. That is a second proof of the last section's result, and this one carries over to polynomials in [Lesson 7](../07-prime-power-fields/).
+**Why the chain ends at the greatest common divisor.** Each remainder is built from the two numbers before it, so every remainder is some multiple of $v$ plus some multiple of $a$; a factor shared by $v$ and $a$ therefore divides every remainder, including the last nonzero one. In the other direction, the last nonzero remainder divides the one before it (that division came out even), hence the one before that, and so on back up the chain to $a$ and $v$. So the last nonzero remainder is a common factor of $v$ and $a$ that every common factor divides: their **greatest common divisor**. Coprime numbers are the ones whose greatest common divisor is 1, so the chain ends at 1, and produces an inverse of $a$ mod $v$, exactly when $a$ and $v$ are coprime. (Otherwise there is no inverse at all: if $y \times a \equiv 1 \pmod v$, then $y \times a - 1$ is a multiple of $v$, so any common factor of $a$ and $v$ divides 1.) When $v = p$ is prime and $a$ is a nonzero hour, the only common factor is 1, so the chain ends at 1 and every nonzero $a$ has an inverse. That is a second proof of the last section's result, and this one carries over to polynomials in [Lesson 7](../07-prime-power-fields/).
 
 The same equation proves Euclid's lemma. If a prime $p$ does not divide $a$, then $1 = x \times p + y \times a$ for some integers $x$ and $y$; multiplying by $b$ gives $b = x \times p \times b + y \times (a \times b)$. If $p$ divides $a \times b$, it divides both terms on the right, so $p$ divides $b$.
 
@@ -110,7 +110,7 @@ The letters stand for **Galois field**, after Évariste Galois (1811–1832), a 
 
 The complete picture came later. In 1893 the American mathematician E. H. Moore proved that a finite field always has a prime or a power of a prime as its number of elements, and that for each such number there is essentially only one field. Any two finite fields with the same number of elements are **isomorphic**: they are the same field with the elements renamed, so that one's addition and multiplication tables turn into the other's. That is why it makes sense to speak of *the* field with 7 elements and give it one name, $\mathrm{GF}(7)$.
 
-You won't have to take this on trust for the prime sizes: the [next lesson](../06-fields-of-prime-order/) proves that every field with a prime number $p$ of elements is just $\mathrm{GF}(p)$ with its elements renamed. For the larger fields of Lesson 7, the proof needs more algebra than this site develops, so Lesson 7 states it as a fact and gives you a widget that tests it on examples. A full proof is in any textbook on finite fields, for example chapter 2 of Lidl and Niederreiter's *Finite Fields*.
+You won't have to take this on trust for the prime sizes: the [next lesson](../06-fields-of-prime-order/) proves that every field with a prime number $p$ of elements is isomorphic to $\mathrm{GF}(p)$. For the larger fields of Lesson 7, the proof needs more algebra than this site develops, so Lesson 7 states it as a fact and gives you a widget that tests it on examples. A full proof is in any textbook on finite fields, for example chapter 2 of Lidl and Niederreiter's *Finite Fields*.
 
 <section class="try-it">
 
@@ -141,12 +141,12 @@ Explore any clock up to 24 hours in the [finite field calculator](../../playgrou
     $$
     is a **class**: all the integers that land on the same hour as $a$. For example, $3 + 7\mathbb{Z} = \{\dots, -11, -4, 3, 10, 17, \dots\}$. There are exactly seven classes, $0 + 7\mathbb{Z}$ through $6 + 7\mathbb{Z}$, and every integer is in exactly one of them. The *elements* of $\mathbb{Z}/7\mathbb{Z}$ are these seven classes. The hours $0, 1, \dots, 6$ are just short names for them, each class named by its smallest member that isn't negative. The slash is apt: the integers are cut into $v$ shifted copies of $v\mathbb{Z}$, just as $21/7 = 3$ counts the copies of 7 that make 21.
 
-    To add or multiply two classes, pick any member of each, compute as usual, and take the class of the answer. It doesn't matter which members you pick. If $a' = a + mv$ and $b' = b + nv$, then
+    To add or multiply two classes, pick any member of each, compute as usual, and take the class of the answer. It doesn't matter which members you pick. If $a' = a + sv$ and $b' = b + tv$, then
     $$
-    a' + b' = (a + b) + (m + n)v,
+    a' + b' = (a + b) + (s + t)v,
     $$
     $$
-    a'b' = ab + (an + bm + mnv)v,
+    a'b' = ab + (at + bs + stv)v,
     $$
     which are in the classes of $a + b$ and $ab$. This works because the multiples of $v$ *absorb*: a multiple of $v$ plus a multiple of $v$, or times any integer, is again a multiple of $v$. A collection with that absorbing property is called an **ideal**, and you can always take the quotient of a number system by an ideal.
 

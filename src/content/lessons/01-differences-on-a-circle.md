@@ -24,7 +24,7 @@ Counting around a clock is ordinary arithmetic with one twist: after 6 comes 0 a
 
 <div data-widget="clock-mod" data-v="7" data-n="10"></div>
 
-The pattern is the division you learned in school: divide n by 7 and keep the remainder. For 10 that is $10 = 1 \cdot 7 + 3$, so 10 lands on 3. For negative numbers we always choose the remainder between 0 and 6, so the quotient may be negative. For $-1$ it is $-1 = (-1) \cdot 7 + 6$, so $-1$ lands on 6. The remainder is always one of 0, 1, …, 6, which is why every number lands on one of the seven points.
+This is division with remainder: divide $n$ by 7 and keep the remainder. For 10 that is $10 = 1 \cdot 7 + 3$, so 10 lands on 3. For negative numbers we always choose the remainder between 0 and 6, so the quotient may be negative. For $-1$ it is $-1 = (-1) \cdot 7 + 6$, so $-1$ lands on 6. The remainder is always one of 0, 1, …, 6, which is why every number lands on one of the seven points.
 
 <aside class="notation">
 <span class="notation-title">Notation: clock arithmetic</span>
@@ -93,11 +93,11 @@ For $n = 2, 3, 4, 5$ this gives clocks with $v = 7, 13, 21, 31$ points and sets 
 
 ## Who needs a set like this?
 
-A set whose differences come out perfectly even turns out to be useful, not just pretty. The same evenness deals a deck of cards in which every two cards share exactly one picture ([Lesson 18](../18-a-card-game-from-a-plane/)), lets a telescope take a sharp picture through a plate full of holes ([Lesson 19](../19-pictures-without-a-lens/)), picks a radar echo out of noise ([Lesson 20](../20-finding-an-echo/)), repairs flipped bits in data broadcast to car radios ([Lesson 21](../21-majority-rules/)), and makes a race schedule in which every car meets every other car ([Lesson 24](../24-a-fair-race/)). Part VII works through these and more, each with something to try. Every one of them needs a difference set to start from, and often a large one. So the practical question is how to get one.
+A set whose differences come out perfectly even is useful as well as elegant. The same evenness deals a deck of cards in which every two cards share exactly one picture ([Lesson 18](../18-a-card-game-from-a-plane/)), lets a telescope take a sharp picture through a plate full of holes ([Lesson 19](../19-pictures-without-a-lens/)), picks a radar echo out of noise ([Lesson 20](../20-finding-an-echo/)), corrects errors in data broadcast to car radios ([Lesson 21](../21-majority-rules/)), and makes a race schedule in which every car meets every other car ([Lesson 24](../24-a-fair-race/)). Part VII works through these and more, each with something to try. Every one of them needs a difference set to start from, and often a large one. So the practical question is how to get one.
 
 ## Why not just search?
 
-For $v = 7$ you can find $\{0, 1, 3\}$ by fiddling. A computer could fiddle systematically: list every way to choose $k$ of the $v$ points, and check each one. How many are there?
+For $v = 7$ you can find $\{0, 1, 3\}$ by trial and error. A computer could do the same systematically: list every way to choose $k$ of the $v$ points, and check each one. How many are there?
 
 The number of ways to choose $k$ things from $v$ is written $C(v, k)$ and read "$v$ choose $k$". To count them, pick the points one at a time: $v$ choices for the first, $v - 1$ for the second, and so on down to $v - k + 1$ for the last. Each set has been counted once for every order its $k$ points could have been picked in, and there are $k \cdot (k - 1) \cdots 2 \cdot 1$ such orders. So
 
