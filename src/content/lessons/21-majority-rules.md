@@ -92,7 +92,7 @@ Use the smallest plane: 7 bits, with the lines being the translates of $\{0, 1, 
 
 </section>
 
-The checks are just the translates of a difference set, so you can draw them yourself: open the [difference set workbench with $\{0, 1, 4, 14, 16\}$ mod 21](../../playgrounds/difference-workbench/?v=21&set=0,1,4,14,16) and turn the translates to see the lines through any point.
+The checks are the translates of a difference set, so you can draw them yourself: open the [difference set workbench with $\{0, 1, 4, 14, 16\}$ mod 21](../../playgrounds/difference-workbench/?v=21&set=0,1,4,14,16) and turn the translates to see the lines through any point.
 
 ## Sources
 

@@ -42,24 +42,24 @@ const lessonHref = (order: number) => href(base, lessonPath(lessons.find((l) => 
   <ul class="how-to-read">
     <li>
       <strong>Lessons 1 to 15 are the main path.</strong> Lessons 1 to 4 turn the puzzle into geometry, 5 to 9 build the
-      number systems called finite fields, 10 to 13 build a plane from a field and prove Singer's theorem, and{' '}
+      finite fields, 10 to 13 build a plane from a field and prove Singer's theorem, and{' '}
       <a href={lessonHref(14)}>Lesson 14</a> gives the algorithm, with the whole argument on one page.
     </li>
     <li>
-      <strong>Play with each figure before reading the argument under it.</strong> Every lesson has one, and a{' '}
-      <em>Try it</em> exercise at the end with its answer folded away.
+      <strong>Every lesson has an interactive figure.</strong> Use it before reading the argument under it. Each lesson
+      ends with a <em>Try it</em> exercise, with its answer folded away.
     </li>
     <li>
-      <strong>Skip the folded "Why…" boxes the first time through.</strong> They hold the longer proofs, and the main
-      thread never depends on having read them.
+      <strong>The folded "Why…" boxes hold the longer proofs.</strong> The main thread does not depend on them, so they
+      can wait for a second reading.
     </li>
     <li>
       <strong>Words with a dotted underline are in the <a href={href(base, 'glossary/')}>glossary</a>.</strong> Hover
-      or tap for a reminder of what they mean.
+      or tap for the definition.
     </li>
     <li>
-      <strong>Want to see what it is all for first?</strong> After Lesson 4 you can read most of{' '}
-      <a href={lessonHref(18)}>Part VII</a>, the applications, and come back.
+      <strong>The applications can be read early.</strong> Most of{' '}
+      <a href={lessonHref(18)}>Part VII</a> depends only on Lessons 1 to 4.
     </li>
   </ul>
 

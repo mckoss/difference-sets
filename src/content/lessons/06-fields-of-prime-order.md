@@ -14,7 +14,7 @@ status: ready
 
 ## A field you have never seen
 
-[Lesson 5](../05-which-clocks-are-fields/) found fields among the clocks. But a field is anything that obeys the rules, and its elements do not have to be numbers. So before building any more fields, it is worth asking how many different ones there could be, and what sizes they can have. The answers shape everything that follows: they are the reason Singer's construction works for prime powers and for nothing else. Start with a puzzle. Here is a field with 5 elements, called A, B, C, D, and E, given only by its addition and multiplication tables. The names were handed out in a random order, so the tables look like noise.
+[Lesson 5](../05-which-clocks-are-fields/) found fields among the clocks. But a field is anything that obeys the rules, and its elements do not have to be numbers. So before building any more fields, it is worth asking how many different ones there could be, and what sizes they can have. The answers shape everything that follows: they are the reason Singer's construction works for prime powers and for nothing else. Here is a field with 5 elements, called A, B, C, D, and E, given only by its addition and multiplication tables. The names were handed out in a random order, so the tables look like noise.
 
 <div data-widget="scrambled-field" data-p="5" data-seed="7"></div>
 

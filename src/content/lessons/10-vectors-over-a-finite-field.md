@@ -14,7 +14,7 @@ status: ready
 
 ## Why we need this
 
-Part II ended with a question: where do projective planes with a turning symmetry come from? Part III built the finite fields $\mathrm{GF}(q)$, one for every prime power $q = p^e$. This part turns a field into a plane. The recipe is old and short: take ordinary 3D space, but give its points coordinates in $\mathrm{GF}(q)$ instead of in the real numbers. Then call each *line through the origin* a "point" and each *plane through the origin* a "line". This lesson builds the space and counts its lines and planes. [Lesson 11](../11-coordinates/) checks that the result is a projective plane, and Lessons 12 and 13 find its turning symmetry inside $\mathrm{GF}(q^3)$.
+Part II ended with a question: where do projective planes with a turning symmetry come from? Part III built the finite fields $\mathrm{GF}(q)$, one for every prime power $q = p^e$. This part turns a field into a plane. The construction is old and short: take ordinary 3D space, but give its points coordinates in $\mathrm{GF}(q)$ instead of in the real numbers. Then call each *line through the origin* a "point" and each *plane through the origin* a "line". This lesson builds the space and counts its lines and planes. [Lesson 11](../11-coordinates/) checks that the result is a projective plane, and Lessons 12 and 13 find its turning symmetry inside $\mathrm{GF}(q^3)$.
 
 ## A finite space
 

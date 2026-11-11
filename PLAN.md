@@ -22,11 +22,27 @@ Published with GitHub Pages at
 Rules every lesson follows, so the path reads as one voice.
 
 - **Assume only arithmetic and high-school algebra.** No familiarity with
-  Greek letters or math symbols is assumed. At its first use, spell out and
-  explain every symbol: "λ (the Greek letter lambda)", ∈ ("is an element
+  Greek letters or math symbols is assumed. At its first use on the site (once,
+  not once per lesson), spell out and explain every symbol: "λ (the Greek letter lambda)", ∈ ("is an element
   of"), ⊆ ("is a subset of"), ∩ ("intersection": the points in both), ≡
   ("is congruent to"), ↦ ("goes to"), ∑, and the binomial coefficient
   C(v, k), read "v choose k". Prefer words when a symbol isn't needed.
+- **Keep a model of the reader.** At every sentence, know what the reader has
+  been taught so far: the terms, symbols, and facts of the earlier lessons
+  (`src/glossary.ts` records the lesson that introduces each term and symbol).
+  Use nothing that is not in that model without explaining it, and don't
+  re-explain what is: no second gloss of λ, ≡, exponents, or "prime power"
+  ten lessons after they were taught. Point back to the lesson instead, and
+  let the glossary hover do the reminding. Part VII is modular: each of its
+  lessons assumes Lessons 1 to 4 plus whatever earlier lesson it names, and
+  may briefly restate ideas from elsewhere in Part VII.
+- **Don't talk down.** Once a technical term has been introduced, use it:
+  "translate" (not "turn" or "slide" as a noun), "permutes" (not
+  "shuffles"), "coprime" (not "shares no factor"), "isomorphic",
+  "primitive element", "subspace", "commutative / associative /
+  distributive". An everyday picture is welcome beside the proper term, never
+  in place of it. Avoid minimizers such as "just" and "simply" about steps
+  the reader may find hard, and avoid "as you learned in school".
 - **Fixed letters.** The parameters are always (v, k, λ): v is the number of
   points on the clock (the modulus), k is the number of elements of the set
   D, and λ is how many times each nonzero difference occurs. For planes, n

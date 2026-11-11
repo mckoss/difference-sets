@@ -49,7 +49,7 @@ A difference set removes the search. Take a planar difference set $D$ mod $v$, t
 
 > Card $j$ holds the pictures numbered by the translate $D + j$, for $j = 0, 1, \dots, v - 1$.
 
-Lesson 2 showed that two different translates of a difference set share exactly $\lambda$ points (λ is the Greek letter lambda), and here $\lambda = 1$. That is the whole proof. Singer's construction (Part V) writes down such a $D$ for every prime power $n$, so the deck comes straight out of a formula.
+Lesson 2 showed that two different translates of a difference set share exactly $\lambda$ points, and here $\lambda = 1$. That is the whole proof. Singer's construction (Part V) writes down such a $D$ for every prime power $n$, so the deck comes straight out of a formula.
 
 Here is the deck for $D = \{0, 1, 3, 9\}$ mod 13, with four pictures per card:
 

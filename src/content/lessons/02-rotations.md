@@ -44,7 +44,7 @@ In a $(v, k, \lambda)$ difference set every nonzero $j$ occurs exactly $\lambda$
 
 You can watch this in the widget. With $D = \{0, 1, 2\}$ and $j = 1$ the copies share two points, and the difference 1 occurs twice in $D$ ($1 - 0$ and $2 - 1$).
 
-Remember this fact. It is the working part of every application in Part VII: two cards that share exactly one picture, two radios that are awake together in exactly one time slot, and a telescope mask that overlaps a shifted copy of itself by the same amount whichever way it is shifted are all two translates sharing exactly $\lambda$ points.
+This fact is the working part of every application in Part VII: two cards that share exactly one picture, two radios that are awake together in exactly one time slot, and a telescope mask that overlaps a shifted copy of itself by the same amount whichever way it is shifted are all two translates sharing exactly $\lambda$ points.
 
 ## The same fact, seen from the points
 
@@ -69,14 +69,14 @@ These two facts should sound familiar. In ordinary geometry, through any two poi
 > - a **line** is one of the translates $D + j$ of $D$;
 > - a point is **on** a line when it is a member of that translate.
 
-We have been calling the hours "points" all along; now the word has a partner. These are new terms, not claims about anything drawn with a ruler: a line here is just a set of $k$ hours. What the names buy us is that the two facts above now read like the rules of geometry:
+We have been calling the hours "points" all along; now the word has a partner. These are new terms, not claims about anything drawn with a ruler: a line here is a set of $k$ hours. What the names buy us is that the two facts above now read like the rules of geometry:
 
 - through any two different points there is exactly one line;
 - any two different lines meet in exactly one point.
 
 These lines even behave better than ordinary ones: no two are parallel, since every two of them meet.
 
-There are $v$ of these lines, all different. If $D + i$ were the same set as $D + j$ for some $i \ne j$, the two would share all $k$ of their points; but we showed that two translates with $i \ne j$ share exactly one point, and $k > 1$. For $\{0, 1, 3\}$ that is 7 points and 7 lines, each line with 3 points. The next lesson draws this little geometry, and finds that it is a famous one.
+There are $v$ of these lines, all different. If $D + i$ were the same set as $D + j$ for some $i \ne j$, the two would share all $k$ of their points; but we showed that two translates with $i \ne j$ share exactly one point, and $k > 1$. For $\{0, 1, 3\}$ that is 7 points and 7 lines, each line with 3 points. The next lesson draws this geometry, and it turns out to be a famous one.
 
 <section class="try-it">
 

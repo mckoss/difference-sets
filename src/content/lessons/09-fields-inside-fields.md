@@ -19,7 +19,7 @@ Singer's construction lives in a big field, $\mathrm{GF}(q^3)$, but its projecti
 
 ## The freshman's dream
 
-Beginning algebra students sometimes write $(a + b)^2 = a^2 + b^2$, which is wrong for ordinary numbers because it drops the $2ab$. But in a field of characteristic 2, $2ab = ab + ab = 0$, so there it is right. The same thing happens for every prime $p$. By the binomial theorem,
+A well-known slip in algebra is to write $(a + b)^2 = a^2 + b^2$, which is wrong for ordinary numbers because it drops the $2ab$. But in a field of characteristic 2, $2ab = ab + ab = 0$, so there it is right. The same thing happens for every prime $p$. By the binomial theorem,
 
 $$
 (a + b)^p = a^p + \binom{p}{1} a^{p-1} b + \binom{p}{2} a^{p-2} b^2 + \dots + \binom{p}{p-1} a b^{p-1} + b^p.
@@ -31,17 +31,17 @@ $$
 (a + b)^p = a^p + b^p.
 $$
 
-Multiplication was never a problem: $(ab)^p = a^p b^p$ in any field. Applying the dream again and again, the same two rules hold for $x \mapsto x^{p^j}$, for any $j$.
+Multiplication was never a problem: $(ab)^p = a^p b^p$ in any field. Applying the dream again and again, the same two rules hold for $x \mapsto x^{p^e}$, for any exponent $e \ge 1$.
 
 ## The Frobenius map
 
-In a field $F$ of characteristic $p$, the **Frobenius map** (after the mathematician Georg Frobenius) sends each element $x$ to $x^p$. More generally, for $q = p^j$ we look at $x \mapsto x^q$. By the freshman's dream, it respects both operations:
+In a field $F$ of characteristic $p$, the **Frobenius map** (after the mathematician Georg Frobenius) sends each element $x$ to $x^p$. More generally, for any power $q = p^e$ of $p$ we look at $x \mapsto x^q$. By the freshman's dream, it respects both operations:
 
 $$
 (a + b)^q = a^q + b^q, \qquad (ab)^q = a^q b^q.
 $$
 
-It is also one-to-one: if $a^q = b^q$, then $(a - b)^q = 0$, so $a - b = 0$. In a finite field, one-to-one means it is a permutation of the elements. So the Frobenius map is a *renaming of the field onto itself*, an isomorphism from $F$ to $F$.
+It is also one-to-one: if $a^q = b^q$, then $(a - b)^q = 0$, so $a - b = 0$. In a finite field, one-to-one means it is a permutation of the elements. So the Frobenius map is an isomorphism from $F$ to itself (an *automorphism*): it rearranges the elements and keeps every sum and product true.
 
 Here it is on $\mathrm{GF}(8)$. Each nonzero element is written $\alpha^i$ for a primitive $\alpha$ (Lesson 8) and drawn at position $i$ on the circle. Since $(\alpha^i)^2 = \alpha^{2i}$, the map $x \mapsto x^2$ sends position $i$ to position $2i$, counted on a clock with 7 hours (exponents wrap around at 7, because $\alpha^7 = 1$).
 

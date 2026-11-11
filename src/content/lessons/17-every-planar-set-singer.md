@@ -10,38 +10,24 @@ status: ready
 
 ## Two ways to find a set
 
-There are two ways to get a planar difference set, a $(v, k, 1)$ difference set with $v = n^2 + n + 1$ points and $k = n + 1$ members. (Here $n$ is the order of the plane, as in Lesson 4, and λ, the Greek letter lambda, is 1: every nonzero difference occurs exactly once.)
+There are two ways to get a planar difference set, a $(v, k, 1)$ difference set with $v = n^2 + n + 1$ points and $k = n + 1$ members.
 
 1. **Search.** Try sets until one works. Lesson 1 showed how quickly blind search becomes hopeless, though a smarter search that backs up as soon as a difference repeats gets much further.
-2. **Construct.** When the order is a prime power $q$ (a prime, or a prime multiplied by itself some number of times, like $8 = 2^3$), Singer's construction writes a set down directly: build the field with $q^3$ elements, take a generator α (the Greek letter alpha), and keep the exponents $i$ for which the trace of $\alpha^i$ is zero. That takes $v$ steps and no search.
+2. **Construct.** When the order is a prime power $q$, Singer's construction writes a set down directly: take a primitive element $\alpha$ of $\mathrm{GF}(q^3)$ and keep the exponents $i$ mod $v$ for which $\mathrm{Tr}(\alpha^i) = 0$ ([Lesson 14](../14-writing-down-a-difference-set/)). That takes $v$ steps and no search.
 
 The question of this lesson is whether the two ways ever disagree. Does a search ever turn up a planar difference set that Singer's construction misses?
 
-Run a search and see. The widget below looks for every planar difference set of order $n$ that contains 0 and 1. (That loses nothing: the difference 1 occurs exactly once, say as $a - b = 1$, and sliding the set back by $b$ gives a copy containing 0 and 1.) Each set it finds is compared with the Singer sets.
+Run a search and see. The widget below looks for every planar difference set of order $n$ that contains 0 and 1. (That loses nothing: the difference 1 occurs exactly once, say as $a - b = 1$, and the translate $D - b$ contains 0 and 1.) Each set it finds is compared with the Singer sets.
 
 <div data-widget="planar-search" data-n="5"></div>
 
 Every set the search finds has a "Singer type" badge. Try every order from 2 to 9: each finds exactly the sets Singer's construction predicts, and orders 6 and 10 find nothing at all.
 
-## Sliding and multiplying
+## When two sets count as the same
 
-To say "Singer type" precisely we need to know when two sets count as the same. There are two moves that turn one difference set into another.
+To say "Singer type" precisely we need to say when two difference sets count as the same. [Lesson 15](../15-many-sets-few-shapes/) gave the two moves that turn one difference set into another: **translation**, $D + j$, and **multiplication**, $t \cdot D$ for a $t$ coprime to $v$. (A $t$ for which $t \cdot D$ is a translate of $D$ itself is a multiplier of $D$, and $t = -1$ gives the mirror image $-D$.)
 
-- **Sliding** (a translate, Lesson 2): add the same number $j$ to every member, $D + j$. Differences don't change.
-- **Multiplying**: multiply every member by a number $t$ that shares no common factor with $v$, written $t \cdot D$. The differences all get multiplied by $t$ too, and multiplying by such a $t$ just shuffles the nonzero residues, so each one still occurs once. Such a $t$ is called a **multiplier** of $D$ when $t \cdot D$ turns out to be a slide of $D$ itself.
-
-For example, take $D = \{0, 1, 3\}$ mod 7 and $t = 2$. Then $2 \cdot D = \{0, 2, 6\}$, which is $D + 6 = \{6, 7, 9\} = \{6, 0, 2\}$ mod 7. So 2 is a multiplier of $\{0, 1, 3\}$. Multiplying by $t = -1$ gives the mirror image $-D = \{0, 6, 4\}$, which is not a slide of $D$.
-
-Two difference sets are **equivalent** when one can be turned into the other by multiplying and then sliding. A set is **of Singer type** when it is equivalent to a Singer set. Equivalent sets give the same plane with its points renamed: rename point $i$ as $t \cdot i + j$, and every line $D + s$ goes to $t \cdot D + (ts + j)$, a line of the other set's plane (the renaming is one-to-one because $t$ has an inverse mod $v$). So equivalence is the right notion of "the same".
-
-<aside class="notation">
-<span class="notation-title">Notation</span>
-
-- $q = p^e$: the order, when it is a prime power. $p$ is a prime and $e$ is the exponent, so $8 = 2^3$ has $p = 2$, $e = 3$, and a prime $q$ has $e = 1$.
-- $\varphi(v)$, read "phi of v" (φ is the Greek letter phi), is **Euler's totient**: how many of $1, 2, \dots, v$ share no common factor with $v$. For example $\varphi(7) = 6$ and $\varphi(21) = 12$ (leave out the multiples of 3 and of 7).
-- $a \equiv b \pmod m$ means $a$ and $b$ leave the same remainder when divided by $m$ (Lesson 1). So $21 \equiv 1 \pmod 4$.
-
-</aside>
+Two difference sets are **equivalent** when one is a translate of a multiple of the other. A set is **of Singer type** when it is equivalent to a Singer set. Equivalent sets give the same plane with its points renumbered: send point $i$ to point $t \cdot i + j$, and every line $D + s$ goes to $t \cdot D + (ts + j)$, a line of the other set's plane. The renumbering is a permutation of the points because $t$ has an inverse mod $v$. So equivalence is the right notion of "the same".
 
 ## The completeness conjecture
 
@@ -88,7 +74,7 @@ A difference set has much more structure than a general plane, and several theor
 
 ### Computer searches
 
-What no theorem rules out, computers have checked. Evans and Mann (1951) checked cyclic planes up to order 1600. Gordon (1994) reached 2,000,000, Baumert and Gordon (2004) showed that no cyclic plane has an order up to $2 \cdot 10^9$ (two billion) that is not a prime power, and Gordon (2022) raised the bound to $2 \cdot 10^{10}$. These searches don't try sets one at a time like the widget above. Instead they check each order against necessary conditions built from multiplier theorems, which the next section describes.
+What no theorem rules out, computers have checked. Evans and Mann (1951) checked cyclic planes up to order 1600. Gordon (1994) reached 2,000,000, Baumert and Gordon (2004) showed that no cyclic plane has an order up to $2 \cdot 10^9$ that is not a prime power, and Gordon (2022) raised the bound to $2 \cdot 10^{10}$. These searches don't try sets one at a time like the widget above. Instead they check each order against necessary conditions built from multiplier theorems, which the next section describes.
 
 There is also a result about *all* orders at once. Peluse (2021) proved that the number of orders up to $N$ that have a planar difference set is, for large $N$, about $N / \ln N$ (with $\ln$ the natural logarithm), the same as the number of primes up to $N$. Every prime works, so the orders that are not prime powers, if there are any, are vanishingly rare.
 
@@ -96,15 +82,15 @@ There is also a result about *all* orders at once. Peluse (2021) proved that the
 
 The second half of the conjecture has been checked for many prime-power orders. Marshall Hall (1956) checked the orders 2, 3, 4, 5, 7, 8, 9, 11, 13, 16, 25, 27, and 32; Bruck (1960) added 49, 64, and 81. Huang and Schmidt (2009) checked every order below 41 and the orders 121, 125, 128, 169, 256, and 1024. The last of these says that the Singer set for $q = 1024$, with 1,025 members on a clock of 1,049,601 points, is the only one there is up to equivalence. You can draw it in the [large-q explorer](../../playgrounds/explorer/?q=1024).
 
-The counts tell the same story. Up to sliding, there are exactly
+The counts tell the same story. Up to translation, there are exactly
 
 $$
 \frac{\varphi(q^2 + q + 1)}{3e}
 $$
 
-different Singer sets mod $q^2 + q + 1$. Singer conjectured this count, and Berman (1953) and Halberstam and Laxton (1964) proved it. For $q = 2$ that is $\varphi(7)/3 = 2$: the set $\{0, 1, 3\}$ and its mirror image $\{0, 1, 5\}$. These counts are OEIS [A335866](https://oeis.org/A335866): 2, 4, 2, 10, 12, 8, 12, 36, … for $q = 2, 3, 4, 5, 7, 8, 9, 11, \dots$ The search widget above finds exactly these numbers.
+different Singer sets mod $q^2 + q + 1$, where $q = p^e$ and $\varphi$ is Euler's totient function (Lesson 15). Singer conjectured this count, and Berman (1953) and Halberstam and Laxton (1964) proved it. For $q = 2$ that is $\varphi(7)/3 = 2$: the set $\{0, 1, 3\}$ and its mirror image $\{0, 1, 5\}$. These counts are OEIS [A335866](https://oeis.org/A335866): 2, 4, 2, 10, 12, 8, 12, 36, … for $q = 2, 3, 4, 5, 7, 8, 9, 11, \dots$ The search widget above finds exactly these numbers.
 
-A separate OEIS entry, [A058241](https://oeis.org/A058241), counts *every* planar difference set, Singer or not, as computed by its contributors, treating a set and its mirror image as the same. (The entry lists only a conjectured formula, since a formula would need the completeness conjecture.) Its terms run 1, 2, 1, 5, 0, 6, 4, 6, 0, 18, … for orders 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, …, and they reach order 22. Every term is exactly half the Singer count. Half, because $-1$ is never a multiplier (Gordon, Mills, and Welch 1962; Johnsen 1964): a planar difference set and its mirror image are never slides of each other, so they pair off. A searched count matching a constructed count at every order is the main evidence for the conjecture. The [Singer classes gallery](../../playgrounds/singer-classes/) draws every one of these sets.
+A separate OEIS entry, [A058241](https://oeis.org/A058241), counts *every* planar difference set, Singer or not, as computed by its contributors, treating a set and its mirror image as the same. (The entry lists only a conjectured formula, since a formula would need the completeness conjecture.) Its terms run 1, 2, 1, 5, 0, 6, 4, 6, 0, 18, … for orders 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, …, and they reach order 22. Every term is exactly half the Singer count. Half, because $-1$ is never a multiplier (Gordon, Mills, and Welch 1962; Johnsen 1964): a planar difference set and its mirror image are never translates of each other, so they pair off. A searched count matching a constructed count at every order is the main evidence for the conjecture. The [Singer classes gallery](../../playgrounds/singer-classes/) draws every one of these sets.
 
 Non-Desarguesian planes do exist. Order 9 has exactly four projective planes (Lam, Kolesova, and Thiel 1991): the one from the field with 9 elements and three others, and 9 is the smallest order with planes that don't come from a field. But none of the known planes that don't come from a field is cyclic. Huang and Schmidt still call the evidence "quite flimsy": a few dozen orders is a small sample of an infinite family.
 
@@ -114,7 +100,7 @@ Nobody knows how to prove the conjecture, but several tools settle special cases
 
 ### Multipliers pin down structure
 
-Marshall Hall (1947) proved that **every prime $p$ that divides the order $n$ is a multiplier**: $p \cdot D$ is always a slide of $D$. That is a strong constraint on a set nobody has found yet. For example, with $D = \{0, 1, 3, 9\}$ mod 13 (order 3) and $p = 3$: $3 \cdot D = \{0, 3, 9, 27\} = \{0, 3, 9, 1\}$ mod 13, which is $D$ itself.
+Marshall Hall (1947) proved that **every prime $p$ that divides the order $n$ is a multiplier**: $p \cdot D$ is always a translate of $D$. That is a strong constraint on a set nobody has found yet. For example, with $D = \{0, 1, 3, 9\}$ mod 13 (order 3) and $p = 3$: $3 \cdot D = \{0, 3, 9, 27\} = \{0, 3, 9, 1\}$ mod 13, which is $D$ itself.
 
 For a Singer set of order $q = p^e$, the multipliers are exactly the powers of $p$ (Gordon, Mills, and Welch 1962), and there are $3e$ of them. Many non-existence proofs start from Hall's theorem: the multipliers have to fit together in ways that some orders can't support. That is how the excluded divisors above are found. Hall and Ryser (1951) extended the theorem beyond planar sets, and Ho (1992) bounded how many multipliers a planar difference set can have.
 
@@ -138,7 +124,7 @@ The $k = n + 1$ ones split as $n$ plus the 1 that begins the long sum. For $\{0,
 
 <div data-widget="polynomial-identity" data-v="7" data-set="0,1,3"></div>
 
-This turns a counting puzzle into algebra. Putting $x = 1$ gives $(n + 1)^2 = n + v$, the counting rule from Lesson 1. The bottom of the widget makes a stronger substitution: replace $x$ by an arrow of length 1 that points $j/v$ of the way around a circle, for some $j \ne 0$. Two facts about arrows are needed, and we state them. Arrows multiply by multiplying lengths and adding angles, so $x^d$ is an arrow of length 1 turned $d$ times as far, and $x^{-d}$ is its mirror image across the horizontal line. And an arrow times its mirror image is the square of its length (the angles cancel). Adding terms now means laying arrows head to tail. The $v$ arrows of $1 + x + \dots + x^{v-1}$ point evenly in all directions and cancel to nothing, and $D(x^{-1})$ becomes the mirror image of the total arrow of $D(x)$, so the left side is the squared length of that total. So the identity says that the arrows of $D$ add up to a total of length exactly $\sqrt n$, for every turn except the zero turn (where every arrow points right and the total is $n + 1$). Mathematicians call these substitutions *characters*, and the totals are numbers called *cyclotomic integers*.
+This turns a counting puzzle into algebra. Putting $x = 1$ gives $(n + 1)^2 = n + v$, the counting rule from Lesson 1. The bottom of the widget makes a stronger substitution: replace $x$ by a complex number of absolute value 1, the one that sits $j/v$ of the way around the unit circle, for some $j \ne 0$. Its $v$-th power is 1 (it is a $v$-th *root of unity*), which is exactly what working mod $x^v - 1$ requires. The widget draws each complex number as an arrow from the origin, and two facts about them are needed. Complex numbers multiply by multiplying lengths and adding angles, so $x^d$ is an arrow of length 1 turned $d$ times as far, and $x^{-d}$ is its complex conjugate, the mirror image across the horizontal axis. And a complex number times its conjugate is the square of its length (the angles cancel). Adding terms now means laying arrows head to tail. The $v$ arrows of $1 + x + \dots + x^{v-1}$ point evenly in all directions and cancel to nothing, and $D(x^{-1})$ becomes the mirror image of the total arrow of $D(x)$, so the left side is the squared length of that total. So the identity says that the arrows of $D$ add up to a total of length exactly $\sqrt n$, for every turn except the zero turn (where every arrow points right and the total is $n + 1$). Mathematicians call these substitutions *characters*, and the totals are numbers called *cyclotomic integers*.
 
 <details>
 <summary>Why the v evenly spaced arrows cancel</summary>
@@ -157,13 +143,13 @@ A third approach is geometric. A plane built from a field has a huge number of s
 
 - **Ostrom and Wagner (1959):** if a plane has symmetries that can carry any two points to any other two points, it is Desarguesian.
 - **Kantor (1987)** reached a similar conclusion for planes whose symmetries carry any point and line through it to any other such pair, apart from one narrow exception he could not rule out.
-- **Ho (1998):** if a plane has two different abelian "Singer groups", families of symmetries that carry one point to every other in exactly one way, then it is Desarguesian. (*Abelian* means commutative: applying two of the symmetries in either order gives the same result, as the turns of a clock do.)
+- **Ho (1998):** if a plane has two different abelian "Singer groups", families of symmetries that carry one point to every other in exactly one way, then it is Desarguesian. (*Abelian* means commutative: applying two of the symmetries in either order gives the same result, as translations do.)
 
 A cyclic plane comes with one such group, its turns. The open question, in this language, is whether **a single cycle is enough** to force a field.
 
 ## A contrast: higher dimensions
 
-In higher dimensions the analogous question has been answered, and the answer is no. The smallest case is $\mathrm{PG}(4, 2)$, with parameters $(31, 15, 7)$: the nonzero squares mod 31 form a difference set with those parameters (Paley's construction, [Lesson 16](../16-beyond-the-plane/)) that is not equivalent to the Singer set, as a check of all 30 multipliers and 31 slides confirms. Gordon, Mills, and Welch (1962) then built an infinite family of difference sets with Singer's parameters that are not equivalent to Singer sets, starting at $(63, 31, 15)$. Their construction needs the dimension plus one to be a product of two whole numbers, one at least 3 and the other at least 2, and for planes that number is 3, a prime. So it never produces planar parameters, and the planar question remains open.
+In higher dimensions the analogous question has been answered, and the answer is no. The smallest case is $\mathrm{PG}(4, 2)$, with parameters $(31, 15, 7)$: the nonzero squares mod 31 form a difference set with those parameters (Paley's construction, [Lesson 16](../16-beyond-the-plane/)) that is not equivalent to the Singer set, as a check of all 30 values of $t$ and 31 translations confirms. Gordon, Mills, and Welch (1962) then built an infinite family of difference sets with Singer's parameters that are not equivalent to Singer sets, starting at $(63, 31, 15)$. Their construction needs the dimension plus one to be a product of two whole numbers, one at least 3 and the other at least 2, and for planes that number is 3, a prime. So it never produces planar parameters, and the planar question remains open.
 
 <section class="try-it">
 
@@ -190,13 +176,13 @@ This is the end of the theory on this site, and about where the textbooks begin.
 
 **Experiment.**
 
-- Write the recipe as a program. For a prime $q$, [Lesson 14](../14-writing-down-a-difference-set/)'s algorithm needs only arithmetic mod $q$ and a cubic from the table in [Lesson 13](../13-singer-cycle/). For $q = 7$, find a primitive cubic yourself with the test of [Lesson 8](../08-primitive-elements/), build the set of 8 marks on the 57-hour clock, and deal a deck of cards from it as in [Lesson 18](../18-a-card-game-from-a-plane/).
+- Write the algorithm as a program. For a prime $q$, [Lesson 14](../14-writing-down-a-difference-set/)'s algorithm needs only arithmetic mod $q$ and a cubic from the table in [Lesson 13](../13-singer-cycle/). For $q = 7$, find a primitive cubic yourself with the test of [Lesson 8](../08-primitive-elements/), build the set of 8 marks on the 57-hour clock, and deal a deck of cards from it as in [Lesson 18](../18-a-card-game-from-a-plane/).
 - Before opening the [Singer classes gallery](../../playgrounds/singer-classes/) for a new $q$, predict how many shapes it will show from the formula $\varphi(q^2 + q + 1)/6e$ of [Lesson 15](../15-many-sets-few-shapes/).
 - Run the [search](../../playgrounds/search-vs-construction/?n=6) for orders 6 and 10 and watch it come back empty. Then check each order against the theorems above: which one rules it out?
 
 **Read.**
 
-- Emily Moore and Harriet Pollatsek, *Difference Sets: Connecting Algebra, Combinatorics, and Geometry* (American Mathematical Society, 2013), is written for undergraduates. It has chapters on multipliers and on the Bruck–Ryser theorem in its general form (called Bruck–Ryser–Chowla), two results this site only quotes, and it treats difference sets in groups other than the clock, like the XOR group of [Lesson 26](../26-secrets-that-look-like-noise/).
+- Emily Moore and Harriet Pollatsek, *Difference Sets: Connecting Algebra, Combinatorics, and Geometry* (American Mathematical Society, 2013), is written for undergraduates. It has chapters on multipliers and on the Bruck–Ryser theorem in its general form (called Bruck–Ryser–Chowla), two results this site only quotes, and it treats difference sets in settings other than $\mathbb{Z}/v\mathbb{Z}$; [Lesson 26](../26-secrets-that-look-like-noise/) meets one.
 - Rudolf Lidl and Harald Niederreiter, *Introduction to Finite Fields and Their Applications* (Cambridge University Press, revised edition 1994), proves the facts about finite fields that Lessons 7 and 8 took on trust.
 - Albrecht Beutelspacher and Ute Rosenbaum, *Projective Geometry: From Foundations to Applications* (Cambridge University Press, 1998), starts from axioms like those of [Lesson 4](../04-projective-planes/) and ends with codes and cryptography.
 

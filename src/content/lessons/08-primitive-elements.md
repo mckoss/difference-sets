@@ -33,7 +33,7 @@ Take $\mathrm{GF}(8)$ from [Lesson 7](../07-prime-power-fields/): remainders mod
 A few words for what the widget shows:
 
 - For a field $F$, write $F^*$ (read "$F$ star") for its nonzero elements. A field with $q$ elements has $q - 1$ of them. Multiplying two nonzero elements always gives a nonzero element (Lesson 6), so multiplication never leaves $F^*$.
-- The **order** of a nonzero element $g$ is the smallest exponent $d \ge 1$ with $g^d = 1$. (Some power of $g$ is 1: in a finite field the powers of $g$ cannot all be different, so $g^i = g^j$ for some $i < j$, and multiplying both sides by $(g^{-1})^i$ gives $g^{j - i} = 1$.) Its powers $1, g, g^2, \dots, g^{d-1}$ are then $d$ different elements, by the same cancellation (two equal ones would give a power below $d$ equal to 1), and after that they repeat. We write $\langle g \rangle$ (read "the powers of $g$") for this set.
+- The **order** of a nonzero element $g$ is the smallest exponent $d \ge 1$ with $g^d = 1$. This is a second, unrelated use of the word: the order $n$ of a plane or a difference set (Lessons 1 and 4) counts points on a line, and the order of an element counts multiplications. (Some power of $g$ is 1: in a finite field the powers of $g$ cannot all be different, so $g^i = g^j$ for some $i < j$, and multiplying both sides by $(g^{-1})^i$ gives $g^{j - i} = 1$.) Its powers $1, g, g^2, \dots, g^{d-1}$ are then $d$ different elements, by the same cancellation (two equal ones would give a power below $d$ equal to 1), and after that they repeat. We write $\langle g \rangle$ (read "the powers of $g$") for this set.
 - $g$ is **primitive** when its order is $q - 1$, that is, when $\langle g \rangle = F^*$.
 
 Primitive elements are usually called $\alpha$, the Greek letter *alpha*.
@@ -67,7 +67,7 @@ and since $\alpha^{q-1} = 1$, exponents can be reduced mod $q - 1$. So multiplyi
 
 **Claim:** for every nonzero $g$ in a field with $q$ elements, $g^{q-1} = 1$.
 
-Multiply all $q - 1$ nonzero elements together, and call the product $P$. Now multiply each of them by $g$ first. Multiplying by $g$ only shuffles the nonzero elements, as in the tables of Lesson 5, but now for a reason that works in any field: if $g b = g c$, multiplying by $g^{-1}$ gives $b = c$, so row $g$ of the multiplication table never repeats a value and is a permutation of $F^*$. So the product is still $P$. But it is also $g^{q-1} P$. So $g^{q-1} P = P$, and dividing by $P$ (which is nonzero) gives $g^{q-1} = 1$.
+Multiply all $q - 1$ nonzero elements together, and call the product $P$. Now multiply each of them by $g$ first. Multiplying by $g$ permutes the nonzero elements, as in the tables of Lesson 5, but now for a reason that works in any field: if $g b = g c$, multiplying by $g^{-1}$ gives $b = c$, so row $g$ of the multiplication table never repeats a value and is a permutation of $F^*$. So the product is still $P$. But it is also $g^{q-1} P$. So $g^{q-1} P = P$, and dividing by $P$ (which is nonzero) gives $g^{q-1} = 1$.
 
 So the order $d$ of $g$ **divides** $q - 1$, written $d \mid q - 1$. Indeed, divide $q - 1$ by $d$: $q - 1 = s d + t$ with remainder $0 \le t < d$. Then $g^t = g^{q-1} / (g^d)^s = 1$, and since $d$ is the smallest positive exponent giving 1, $t = 0$.
 
@@ -86,9 +86,9 @@ Yes: every finite field has a primitive element. Here is a sketch of that fact f
 <details>
 <summary>Why a primitive element always exists (sketch)</summary>
 
-Write $\varphi(d)$ (the Greek letter *phi*) for the number of whole numbers from 1 to $d$ that share no factor with $d$; for example $\varphi(6) = 2$, counting 1 and 5.
+Write $\varphi(d)$ (the Greek letter *phi*) for the number of whole numbers from 1 to $d$ that are coprime to $d$ ([Lesson 5](../05-which-clocks-are-fields/)); for example $\varphi(6) = 2$, counting 1 and 5. This is **Euler's totient function**.
 
-Fix a divisor $d$ of $q - 1$. If some $g$ has order $d$, its $d$ powers are $d$ different solutions of $y^d = 1$. A polynomial of degree $d$ has at most $d$ roots in a field (each root $c$ splits off a factor $y - c$, and with no zero divisors a product is 0 only when a factor is), so these powers are *all* the solutions. Among them, $g^j$ has order exactly $d$ when $j$ shares no factor with $d$. So for each $d$, either no element has order $d$, or exactly $\varphi(d)$ do.
+Fix a divisor $d$ of $q - 1$. If some $g$ has order $d$, its $d$ powers are $d$ different solutions of $y^d = 1$. A polynomial of degree $d$ has at most $d$ roots in a field (each root $c$ splits off a factor $y - c$, and with no zero divisors a product is 0 only when a factor is), so these powers are *all* the solutions. Among them, $g^j$ has order exactly $d$ when $j$ is coprime to $d$. So for each $d$, either no element has order $d$, or exactly $\varphi(d)$ do.
 
 Every nonzero element has some order dividing $q - 1$, so adding up over all divisors $d$ of $q - 1$ must give $q - 1$ elements. A classical identity says that for any whole number, adding up $\varphi(d)$ over all its divisors $d$ gives back the number itself (for 6: $\varphi(1) + \varphi(2) + \varphi(3) + \varphi(6) = 1 + 1 + 2 + 2 = 6$). So no divisor can be skipped, and in particular there are $\varphi(q - 1) \ge 1$ elements of order $q - 1$.
 

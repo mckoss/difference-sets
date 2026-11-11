@@ -37,6 +37,32 @@ describe('glossary data', () => {
     }
   });
 
+  // The reader model of PLAN.md: a symbol is explained once, where it is
+  // introduced, and a term that has been taught is used from then on.
+  it('spells out each Greek letter in one lesson only', () => {
+    const where = new Map<string, string[]>();
+    for (const f of lessonFiles) {
+      const text = readFileSync(`${lessonDir}/${f}`, 'utf8');
+      for (const m of text.matchAll(/Greek letter \*{0,2}([a-z]+)/g)) {
+        where.set(m[1], [...new Set([...(where.get(m[1]) ?? []), f])]);
+      }
+    }
+    for (const [letter, files] of where) expect(files, `"the Greek letter ${letter}"`).toHaveLength(1);
+  });
+
+  it('uses the taught term, not an informal stand-in', () => {
+    const standIns: [RegExp, string][] = [
+      [/shares? no (common )?factor with/i, 'coprime'],
+      [/\b(a|the) (turn|slide)s? of (\$|its|the other)/i, 'translate'],
+      [/\bjust shuffles\b|\bshuffles the (nonzero|residues)/i, 'permutes'],
+      [/you learned in school|school geometry/i, 'the name of the subject'],
+    ];
+    for (const f of lessonFiles) {
+      const text = readFileSync(`${lessonDir}/${f}`, 'utf8');
+      for (const [re, better] of standIns) expect(text.match(re)?.[0], `${f}: say "${better}"`).toBeUndefined();
+    }
+  });
+
   it('sorts alphabetically, ignoring case', () => {
     const names = sortedGlossary().map((t) => t.term);
     expect(names.indexOf('additive inverse')).toBe(0);

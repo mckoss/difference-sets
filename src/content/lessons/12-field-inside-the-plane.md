@@ -20,7 +20,7 @@ The payoff is multiplication. As vectors, the elements can be added and scaled. 
 
 ## GF(q³) as vectors over GF(q)
 
-[Lesson 7](../07-prime-power-fields/) built a field from remainders: choose an irreducible polynomial of degree 3, and work with the remainders of degree below 3. Lesson 7 took its coefficients mod a prime $p$, but long division only ever adds, multiplies, and divides coefficients, so the same recipe works with coefficients in any field, including $\mathrm{GF}(q)$. Choose a primitive polynomial of degree 3 over $\mathrm{GF}(q)$ (there always is one: [Lesson 8](../08-primitive-elements/) states that every finite field, not only $\mathrm{GF}(p)$, has a primitive polynomial of every degree), and call the remainder $x$ by the name $\alpha$. Every element of $\mathrm{GF}(q^3)$ is then
+[Lesson 7](../07-prime-power-fields/) built a field from remainders: choose an irreducible polynomial of degree 3, and work with the remainders of degree below 3. Lesson 7 took its coefficients mod a prime $p$, but long division only ever adds, multiplies, and divides coefficients, so the same construction works with coefficients in any field, including $\mathrm{GF}(q)$. Choose a primitive polynomial of degree 3 over $\mathrm{GF}(q)$ (there always is one: [Lesson 8](../08-primitive-elements/) states that every finite field, not only $\mathrm{GF}(p)$, has a primitive polynomial of every degree), and call the remainder $x$ by the name $\alpha$. Every element of $\mathrm{GF}(q^3)$ is then
 
 $$
 c_0 + c_1 \alpha + c_2 \alpha^2
@@ -28,7 +28,7 @@ $$
 
 for exactly one choice of $c_0, c_1, c_2$ in $\mathrm{GF}(q)$, and $\alpha$ is primitive: its powers visit every nonzero element.
 
-For $q = 3$, the site uses $x^3 + 2x + 1$, so $\alpha^3 + 2\alpha + 1 = 0$, which means $\alpha^3 = \alpha + 2$ (since $-2 \equiv 1$ and $-1 \equiv 2$ mod 3). For $q = 2$ it uses $x^3 + x + 1$ from Lesson 7, so $\alpha^3 = \alpha + 1$. For $q = 4$ the coefficients come from $\mathrm{GF}(4) = \{0, 1, \omega, \omega^2\}$, and $\alpha^3 = \alpha^2 + \alpha + \omega$. (Lesson 9 built $\mathrm{GF}(64)$ differently, from a polynomial of degree 6 over $\mathrm{GF}(2)$. The two are the same field with different labels, since all fields of one size are, as the isomorphism finder of Lesson 7 shows.)
+For $q = 3$, the site uses $x^3 + 2x + 1$, so $\alpha^3 + 2\alpha + 1 = 0$, which means $\alpha^3 = \alpha + 2$ (since $-2 \equiv 1$ and $-1 \equiv 2$ mod 3). For $q = 2$ it uses $x^3 + x + 1$ from Lesson 7, so $\alpha^3 = \alpha + 1$. For $q = 4$ the coefficients come from $\mathrm{GF}(4) = \{0, 1, \omega, \omega^2\}$, and $\alpha^3 = \alpha^2 + \alpha + \omega$. (Lesson 9 built $\mathrm{GF}(64)$ differently, from a polynomial of degree 6 over $\mathrm{GF}(2)$. The two are isomorphic, as all fields of one size are; the isomorphism finder of Lesson 7 shows it for small cases.)
 
 Now read the three coefficients as a vector:
 
@@ -55,7 +55,7 @@ $$
 \mathrm{GF}(q)^* = \{1, \alpha^v, \alpha^{2v}, \dots, \alpha^{(q-2)v}\} = \langle \alpha^v \rangle.
 $$
 
-(The star in $\mathrm{GF}(q)^*$ means "the nonzero elements".) So the $q - 1$ multiples of $\alpha^i$ by nonzero scalars are
+So the $q - 1$ multiples of $\alpha^i$ by nonzero scalars are
 
 $$
 \alpha^i, \quad \alpha^{i + v}, \quad \alpha^{i + 2v}, \quad \dots, \quad \alpha^{i + (q-2)v}.
