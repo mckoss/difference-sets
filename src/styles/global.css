@@ -294,6 +294,14 @@ blockquote p {
   margin-bottom: 0.25rem;
 }
 
+.how-to-read {
+  padding-left: 1.25rem;
+}
+
+.how-to-read li {
+  margin: 0.4rem 0;
+}
+
 .path-list {
   padding-left: 1.75rem;
 }
@@ -1011,7 +1019,8 @@ blockquote p {
 
 /* Lesson furniture: a reusable notation box and revealable answers. */
 
-.notation {
+.notation,
+.roadmap {
   margin: 1.5rem 0;
   padding: 0.75rem 1rem;
   border: 1px solid var(--border);
@@ -1020,15 +1029,22 @@ blockquote p {
   background: var(--bg-raised);
 }
 
-.notation > :first-child {
+.roadmap {
+  border-left-color: var(--accent);
+}
+
+.notation > :first-child,
+.roadmap > :first-child {
   margin-top: 0;
 }
 
-.notation > :last-child {
+.notation > :last-child,
+.roadmap > :last-child {
   margin-bottom: 0;
 }
 
-.notation .notation-title {
+.notation .notation-title,
+.roadmap .notation-title {
   display: block;
   margin-bottom: 0.25rem;
   font-size: 0.75rem;

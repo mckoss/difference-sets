@@ -136,6 +136,12 @@ So real stream ciphers mix several shift registers *nonlinearly*. The A5/1 ciphe
 
 </section>
 
+## The end of the path
+
+This is the last lesson, so look back at how far one small fact has gone. [Lesson 2](../02-rotations/) showed that two turned copies of a difference set always overlap in the same number of points. That fact turned a counting puzzle into geometry, the geometry into arithmetic in a finite field, and the arithmetic into a recipe that writes the sets down at any size. Then the same fact dealt cards, unscrambled a telescope's shadows, found echoes, corrected errors, woke radios, scheduled races, rebuilt disks, and here measured how well a cipher's parts hide what they do.
+
+If you came to the applications first, the path to Singer's recipe starts at [Lesson 1](../01-differences-on-a-circle/), and [Lesson 14](../14-writing-down-a-difference-set/) has the whole argument on one page. If you have read it all, [Lesson 17](../17-every-planar-set-singer/) lists experiments and books for going further.
+
 ## Sources
 
 - J. F. Dillon, *Elementary Hadamard Difference Sets*, PhD thesis, University of Maryland, 1974, [doi:10.13016/M2MS3K194](https://doi.org/10.13016/M2MS3K194); also "Elementary Hadamard difference sets," *Proc. 6th Southeastern Conference on Combinatorics, Graph Theory and Computing* (Congressus Numerantium XIV), 1975, 237–249.

@@ -102,6 +102,21 @@ So: **where do planes with that symmetry come from?**
 
 Singer's answer is that they come from arithmetic, in number systems where you can add, subtract, multiply, and divide just as with ordinary fractions, but with only finitely many numbers. Those are the *finite fields*, and Part III builds them from scratch.
 
+<aside class="roadmap">
+<span class="notation-title">The road ahead</span>
+
+The answer takes three steps, and the next three parts take them one at a time.
+
+1. **Build the number systems (Part III, Lessons 5 to 9).** A finite field with $q$ elements exists exactly when $q$ is a prime or a power of a prime. That is where the "prime power" in Singer's result comes from.
+2. **Use a field as coordinates (Part IV, Lessons 10 to 13).** School geometry describes a line by an equation in coordinates. Do the same with coordinates from a field with $q$ elements, and out comes a projective plane of order $q$. Then comes the surprise: the lists of coordinates can be multiplied together like numbers, and multiplying by one well-chosen element carries the whole plane around a single cycle.
+3. **Turn it into a recipe (Part V, Lessons 14 and 15).** One formula picks out a line of that plane, and the numbers of its points are the difference set.
+
+The question above gets its answer in [Lesson 13](../13-singer-cycle/), and the finished recipe is in [Lesson 14](../14-writing-down-a-difference-set/).
+
+</aside>
+
+This is also a good moment for a side trip. You already know enough to see what difference sets are used for: the lessons of Part VII on a [card game](../18-a-card-game-from-a-plane/), [error-correcting codes](../21-majority-rules/), [radios that always meet](../22-always-meet/), [rulers with no repeated distance](../23-a-ruler-with-no-repeats/), [race charts](../24-a-fair-race/), and [disk arrays](../25-rebuilding-a-disk/) rest on Lessons 1 to 4. Read any of them now and come back.
+
 <section class="try-it">
 
 ## Try it

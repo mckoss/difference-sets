@@ -21,6 +21,21 @@ That line depends on coordinates, and coordinates depend on choices. To have $c_
 
 Singer used a line that can be described with nothing but multiplication and addition in the big field, however it was built. It comes from the map that Lesson 9 previewed.
 
+## The recipe, start to finish
+
+Here is the whole algorithm, so you can see where the lesson is heading. The sections after it explain why each step makes sense, run it by hand, and count what it costs.
+
+> **Singer's algorithm.** To write down a planar difference set of order $q$, where $q$ is a prime power:
+>
+> 1. Set $v = q^2 + q + 1$.
+> 2. Build the field $\mathrm{GF}(q^3)$ from a primitive polynomial, and let $\alpha$ be its primitive element $x$ (Lessons 7 to 9).
+> 3. For each $i = 0, 1, \dots, v - 1$, work out $\alpha^i$, raise it to the powers $q$ and $q^2$, and add the three results.
+> 4. Keep $i$ when the sum is 0.
+>
+> The numbers kept are a $(q^2 + q + 1,\ q + 1,\ 1)$ difference set.
+
+Nothing in it is a guess or a search over sets of points. The sum in step 3 has a name.
+
 ## The trace
 
 For an element $x$ of $\mathrm{GF}(q^3)$, its **trace** is
@@ -136,6 +151,29 @@ Each step costs three multiplications in $\mathrm{GF}(q^3)$, and there are $v$ s
 | 13 | 183 | 549 | about $3.3 \times 10^{20}$ |
 
 The multiplications grow like $q^2$; the search grows far faster than that. A smarter search that backs up as soon as a difference repeats does much better than blind search, but it still slows to minutes by order 12 (the [search versus construction](../../playgrounds/search-vs-construction/?n=9) playground runs one, and [Lesson 17](../17-every-planar-set-singer/) uses it). The construction, with a few table lookups in place of polynomial arithmetic, builds a Singer set for $q = 1024$, with more than a million points, in a fraction of a second in the [large-q explorer](../../playgrounds/explorer/?q=1024).
+
+## The whole argument on one page
+
+Lessons 1 to 14 make one argument. Here it is with the detail left out, and the lesson that supplies each step.
+
+| | Step | Where |
+| --- | --- | --- |
+| 1 | In a planar difference set, any two points lie together in exactly one translate, and any two translates share exactly one point. So the translates behave like lines. | Lesson 2 |
+| 2 | A projective plane with a symmetry that carries its points around a single cycle is the same thing as a planar difference set: number the points along the cycle, and the numbers on any one line are the set. | Lesson 4 |
+| 3 | For every prime power $q$ there is a field $\mathrm{GF}(q)$ with $q$ elements, and a bigger field $\mathrm{GF}(q^3)$ that contains it. | Lessons 5 to 7 and 9 |
+| 4 | Some element $\alpha$ of $\mathrm{GF}(q^3)$ is primitive: its powers run through every nonzero element. | Lesson 8 |
+| 5 | The elements of $\mathrm{GF}(q^3)$ are vectors with three coordinates in $\mathrm{GF}(q)$. Call each line through the origin a point and each plane through the origin a line, and the result is a projective plane of order $q$, $\mathrm{PG}(2, q)$. | Lessons 10 to 12 |
+| 6 | Each point is the point of $\alpha^i$ for exactly one $i$ mod $v$, because the nonzero elements of $\mathrm{GF}(q)$ are the powers of $\alpha^v$. So the points are numbered by a clock with $v = q^2 + q + 1$ hours. | Lessons 9 and 12 |
+| 7 | Multiplying by $\alpha$ carries lines to lines and moves point $i$ to point $i + 1$. So the plane has the symmetry of step 2, and the numbers on any one of its lines are a difference set. | Lesson 13 |
+| 8 | The elements with trace 0 make up one line. So $D = \{\, i \bmod v : \mathrm{Tr}(\alpha^i) = 0 \,\}$ is a $(q^2 + q + 1,\ q + 1,\ 1)$ difference set, and the recipe at the top of this lesson computes it. | this lesson |
+
+Three facts along the way were stated without proof:
+
+- for every prime $p$ and every degree there is an irreducible polynomial over $\mathrm{GF}(p)$, so a field of every prime power size exists (Lesson 7);
+- every finite field has a primitive polynomial of every degree, so $\mathrm{GF}(q^3)$ can be built with $\alpha = x$ (Lesson 8, which also sketches why primitive elements exist);
+- two fields with the same number of elements are the same field with different labels (Lesson 7), which lets us switch between the two ways of building $\mathrm{GF}(q^3)$.
+
+All three are standard theorems, proved in any textbook on finite fields. Everything else in the table is proved in the lesson named. If you can explain each row to a friend, you understand Singer's theorem.
 
 <section class="try-it">
 

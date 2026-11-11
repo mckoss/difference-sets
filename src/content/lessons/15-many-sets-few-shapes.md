@@ -14,6 +14,8 @@ status: ready
 
 ## Multiplying a difference set
 
+[Lesson 14](../14-writing-down-a-difference-set/) left a loose end. For $q = 4$, the stepper and the code behind this site both follow Singer's recipe, yet they produce two different sets, and neither is a turn of the other. So how many Singer sets are there for one $q$, and how are they related? The answer starts with a second way to move a set around the clock.
+
 [Lesson 2](../02-rotations/) moved a difference set around the clock by adding: $D + j$. Here is another move: multiply every member by the same number $t$, mod $v$. Write the result $t \cdot D$ ("$t$ times $D$"). For $D = \{0, 1, 3\}$ mod 7,
 
 $$
@@ -130,6 +132,8 @@ Every one of these sets is a Singer set in its own right: it comes from choosing
 That explains the last loose end of Lesson 14. For $q = 4$ the site's `singerSet` builds the field from a degree-6 polynomial over $\mathrm{GF}(2)$, so its $\alpha$ is a different element, and it finds $\{3, 6, 7, 12, 14\}$. That is $5 \cdot D$ for the stepper's $D = \{7, 9, 14, 15, 18\}$, in the same class as $-D$, the mirror image.
 
 So the many sets are one family: all the Singer sets of order $q$ are the multiples $t \cdot D$ and their translates, the lines of one plane read with different choices of $\alpha$. That upgrades the count: there are exactly $\varphi(v)/3e$ **Singer sets** of order $q$ up to translation, and $\varphi(v)/6e$ up to translation and mirror images. The words matter here. Under translation and multiplication together, there is exactly **one** Singer set per $q$. The numbers above count *different sets*, up to translation alone or up to translation and mirror images, not essentially different ones.
+
+That finishes the construction and the count of what it produces. Part VI looks past it. [Lesson 16](../16-beyond-the-plane/) carries the same idea into more dimensions, where the sets become the bit streams that Part VII's telescopes and radars use. [Lesson 17](../17-every-planar-set-singer/) asks a question nobody has answered: are Singer's sets the only planar difference sets there are?
 
 <section class="try-it">
 

@@ -16,6 +16,8 @@ status: ready
 
 [Lesson 11](../11-coordinates/) built the plane $\mathrm{PG}(2, q)$ out of vectors with three coordinates. [Lesson 9](../09-fields-inside-fields/) built the field $\mathrm{GF}(q^3)$, with $q^3$ elements, and found $\mathrm{GF}(q)$ sitting inside it. This lesson notices that these are the same object, seen two ways.
 
+The payoff is multiplication. As vectors, the elements can be added and scaled. As field elements they can also be multiplied and divided by each other, with every rule of ordinary algebra in force. And once the points of the plane are field elements, they can be numbered by the powers of a primitive element $\alpha$. [Lesson 13](../13-singer-cycle/) then shows that multiplying by $\alpha$ is the turning symmetry that Lesson 4 asked for.
+
 ## GF(q³) as vectors over GF(q)
 
 [Lesson 7](../07-prime-power-fields/) built a field from remainders: choose an irreducible polynomial of degree 3, and work with the remainders of degree below 3. Lesson 7 took its coefficients mod a prime $p$, but long division only ever adds, multiplies, and divides coefficients, so the same recipe works with coefficients in any field, including $\mathrm{GF}(q)$. Choose a primitive polynomial of degree 3 over $\mathrm{GF}(q)$ (there always is one: [Lesson 8](../08-primitive-elements/) states that every finite field, not only $\mathrm{GF}(p)$, has a primitive polynomial of every degree), and call the remainder $x$ by the name $\alpha$. Every element of $\mathrm{GF}(q^3)$ is then

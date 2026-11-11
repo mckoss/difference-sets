@@ -94,6 +94,10 @@ Lines $[a : b : c]$ with the same $b$ and $c$ (not both 0) but different $a$ nev
 
 **$\mathrm{PG}(2, 3)$** has 13 points and 13 lines, with 4 points on each line, the plane of order 3 from Lesson 4.
 
+## What is still missing
+
+We have a projective plane of every prime power order. But Lesson 4 asked for more: a plane with a symmetry that carries every point around a single cycle, because only such a plane gives a difference set. Nothing in these coordinates shows one. The next two lessons find it, and the idea is the one from [Lesson 8](../08-primitive-elements/): the vectors of $\mathrm{GF}(q)^3$ can be multiplied together like the elements of a field, and the powers of one of them run around a cycle.
+
 <aside class="notation">
 <span class="notation-title">Notation: the projective plane</span>
 

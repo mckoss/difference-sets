@@ -18,7 +18,13 @@ status: ready
 
 For example, on a clock with 7 hours, $5 + 4 = 9 \equiv 2$ and $3 \times 5 = 15 \equiv 1 \pmod 7$.
 
-Singer's construction needs more than clock arithmetic: it needs a number system in which every calculation of ordinary algebra still works, including division. This lesson asks which clocks give one.
+## Why a plane needs division
+
+[Lesson 4](../04-projective-planes/) ended with a plan: build a finite plane the way school geometry builds the ordinary one, with coordinates. There, a point is a pair of numbers $(x, y)$, and a line is the set of points that solve an equation such as $y = 2x$. Try that with coordinates taken from a clock.
+
+On the 7-hour clock, the lines $y = 0$ and $y = 2x$ meet where $2x \equiv 0 \pmod 7$. The only such hour is $x = 0$, so the lines cross once, at $(0, 0)$, as lines should. On the 6-hour clock, $2x \equiv 0 \pmod 6$ has *two* solutions, $x = 0$ and $x = 3$, because $2 \times 3 = 6 \equiv 0$. Now the two lines cross twice, at $(0, 0)$ and at $(3, 0)$, and the rule that two points lie on only one line is broken.
+
+What went wrong is that on the 6-hour clock you cannot divide by 2. In ordinary algebra, $2x = 0$ is solved by dividing both sides by 2, which leaves $x = 0$ and nothing else. So coordinates will only give a geometry if they come from a number system in which every calculation of ordinary algebra still works, including division. This lesson asks which clocks give one.
 
 ## What a field is
 

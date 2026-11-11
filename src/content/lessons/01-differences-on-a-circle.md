@@ -91,6 +91,10 @@ $$
 
 For $n = 2, 3, 4, 5$ this gives clocks with $v = 7, 13, 21, 31$ points and sets of $k = 3, 4, 5, 6$ points.
 
+## Who needs a set like this?
+
+A set whose differences come out perfectly even turns out to be useful, not just pretty. The same evenness deals a deck of cards in which every two cards share exactly one picture ([Lesson 18](../18-a-card-game-from-a-plane/)), lets a telescope take a sharp picture through a plate full of holes ([Lesson 19](../19-pictures-without-a-lens/)), picks a radar echo out of noise ([Lesson 20](../20-finding-an-echo/)), repairs flipped bits in data broadcast to car radios ([Lesson 21](../21-majority-rules/)), and makes a race schedule in which every car meets every other car ([Lesson 24](../24-a-fair-race/)). Part VII works through these and more, each with something to try. Every one of them needs a difference set to start from, and often a large one. So the practical question is how to get one.
+
 ## Why not just search?
 
 For $v = 7$ you can find $\{0, 1, 3\}$ by fiddling. A computer could fiddle systematically: list every way to choose $k$ of the $v$ points, and check each one. How many are there?
