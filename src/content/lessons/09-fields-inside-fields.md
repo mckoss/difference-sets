@@ -41,7 +41,7 @@ $$
 (a + b)^q = a^q + b^q, \qquad (ab)^q = a^q b^q.
 $$
 
-It is also one-to-one: if $a^q = b^q$, then $(a - b)^q = 0$, so $a - b = 0$. In a finite field, one-to-one means it is a permutation of the elements. So the Frobenius map is an isomorphism from $F$ to itself (an *automorphism*): it rearranges the elements and keeps every sum and product true.
+It is also one-to-one, meaning that different elements go to different elements. Suppose $a^q = b^q$. Since $a = (a - b) + b$, the first rule gives $a^q = (a - b)^q + b^q$, so $(a - b)^q = 0$; a field has no zero divisors, so $a - b = 0$. In a finite field, a one-to-one map from the field to itself is a permutation of the elements: the outputs are all different, so they use up every element. So the Frobenius map is an isomorphism from $F$ to itself (an *automorphism*): it rearranges the elements and keeps every sum and product true.
 
 Here it is on $\mathrm{GF}(8)$. Each nonzero element is written $\alpha^i$ for a primitive $\alpha$ (Lesson 8) and drawn at position $i$ on the circle. Since $(\alpha^i)^2 = \alpha^{2i}$, the map $x \mapsto x^2$ sends position $i$ to position $2i$, counted on a clock with 7 hours (exponents wrap around at 7, because $\alpha^7 = 1$).
 
@@ -53,7 +53,7 @@ In $\mathrm{GF}(8)$, $x \mapsto x^2$ moves every element except 0 and 1, in two 
 
 Call $x$ a **fixed point** of $x \mapsto x^q$ when $x^q = x$.
 
-**The fixed points form a subfield.** If $a^q = a$ and $b^q = b$, then $(a + b)^q = a^q + b^q = a + b$ and $(ab)^q = ab$, and likewise $-a$ and $a^{-1}$ are fixed. So the fixed points are closed under all four operations: a field inside $F$.
+**The fixed points form a subfield.** If $a^q = a$ and $b^q = b$, then $(a + b)^q = a^q + b^q = a + b$ and $(ab)^q = ab$, and likewise $-a$ and $a^{-1}$ are fixed. So adding, subtracting, multiplying, or dividing fixed points always gives a fixed point (the fixed points are *closed under* the four operations): they form a field inside $F$.
 
 **There are at most $q$ of them.** Fixed points are roots of the polynomial $y^q - y$, which has degree $q$. A polynomial of degree $q$ has at most $q$ roots in a field: each root $c$ splits off a factor $y - c$, and with no zero divisors, a product is 0 only when one of its factors is.
 
@@ -73,7 +73,7 @@ $$
 q^3 - 1 = (q - 1)(q^2 + q + 1) = (q - 1)\,v.
 $$
 
-So $\beta = \alpha^v$ (the Greek letter *beta*) has order exactly $q - 1$. Its powers $1, \beta, \dots, \beta^{q-2}$ are $q - 1$ different nonzero elements, and each satisfies $y^{q-1} = 1$, so $y^q = y$: all are fixed by $x \mapsto x^q$. Together with 0, that is $q$ fixed points, the most there can be. So the fixed points are exactly the set below, where $\cup$ ("union") combines two sets into one:
+So $\beta = \alpha^v$ (the Greek letter *beta*) has order exactly $q - 1$. Indeed $\beta^{q-1} = \alpha^{(q-1)v} = \alpha^{q^3 - 1} = 1$, and a smaller exponent $d$ would give $\alpha^{vd} = 1$ with $0 < vd < q^3 - 1$, which cannot happen for an element of order $q^3 - 1$. Its powers $1, \beta, \dots, \beta^{q-2}$ are $q - 1$ different nonzero elements, and each satisfies $y^{q-1} = 1$, so $y^q = y$: all are fixed by $x \mapsto x^q$. Together with 0, that is $q$ fixed points, the most there can be. So the fixed points are exactly the set below, where $\cup$ ("union") combines two sets into one:
 
 $$
 \{0\} \cup \langle \alpha^v \rangle = \{0, 1, \alpha^v, \alpha^{2v}, \dots, \alpha^{(q-2)v}\},

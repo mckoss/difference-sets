@@ -44,7 +44,7 @@ For the pairing: the line $PX$ is not $M$, because $P$ is not on $M$, so it meet
 
 </details>
 
-Call that number $n + 1$. The number $n$ is the **order** of the plane. The Fano plane has 3 points on each line, so its order is $n = 2$.
+Call that number $n + 1$. The number $n$ is the **order** of the plane. (Counting one less than the size of a line keeps the formulas below simple, and it matches Lesson 1, where a planar difference set has $k = n + 1$ members.) The Fano plane has 3 points on each line, so its order is $n = 2$.
 
 **Every point lies on $n + 1$ lines.** Take a point $P$ and a line $L$ that does not pass through it. (One exists: among the four points of axiom 3, pick three different from $P$, say $A$, $B$, $C$; the lines $AB$ and $BC$ meet only at $B$, so at least one of them misses $P$.) Each line through $P$ meets $L$ in exactly one point, and two different lines through $P$ cannot meet $L$ at the same point, since they would then share two points. Every point $X$ of $L$ is reached, by the line through $P$ and $X$. So the lines through $P$ pair off with the $n + 1$ points of $L$.
 
@@ -79,7 +79,7 @@ Here is why, in two directions.
 **From a plane to a difference set.** Now start with a cyclic plane, numbered so that the symmetry is "add 1". Pick any line and call its set of points $D$. It has $k = n + 1$ points.
 
 1. *The translates of $D$ are lines.* Applying the symmetry $j$ times turns the line $D$ into $D + j$, and a symmetry carries lines to lines.
-2. *They are all different.* Suppose some turn by $s$ steps, with $s$ not a multiple of $v$, gave $D + s = D$. Then $D$ would be made up of whole cycles of such a turn, all of the same length, and that length would divide both $v$ and $k = n + 1$ (see below). But $v = n(n + 1) + 1$, so a number dividing both $v$ and $n + 1$ must divide 1. So the cycles have length 1, which forces $s$ to be a multiple of $v$ after all. So $D, D + 1, \dots, D + (v - 1)$ are $v$ different lines.
+2. *They are all different.* Suppose some turn by $s$ steps, with $s$ not a multiple of $v$, gave $D + s = D$. Then $D$ would be made up of whole cycles of such a turn, all of the same length, and that length would divide both $v$ and $k = n + 1$ (see below). But $v = n(n + 1) + 1$, so a number dividing both $v$ and $n + 1$ also divides $v - n(n + 1) = 1$. So the cycles have length 1, which forces $s$ to be a multiple of $v$ after all. So $D, D + 1, \dots, D + (v - 1)$ are $v$ different lines.
 3. *They are all the lines.* The plane has exactly $v = n^2 + n + 1$ lines, and we've found $v$ different ones.
 4. *Every difference occurs once.* Take any nonzero difference $d$. The points 0 and $d$ lie on exactly one line, which is some translate $D + j$. As in Lesson 2, each pair $a, b$ in $D$ with $a - b \equiv d$ gives a translate containing 0 and $d$ (namely $j = -b$), and different pairs give different translates. Since there is exactly one such translate, there is exactly one such pair.
 

@@ -61,7 +61,7 @@ $$
 \alpha^i, \quad \alpha^{i + v}, \quad \alpha^{i + 2v}, \quad \dots, \quad \alpha^{i + (q-2)v}.
 $$
 
-Two powers $\alpha^i$ and $\alpha^j$ name the same point exactly when $j - i$ is a multiple of $v$, that is, when $i \equiv j \pmod v$. The $q^3 - 1 = (q - 1) \cdot v$ nonzero elements fall into $v$ groups of $q - 1$, one group per point, and each group is one residue class mod $v$.
+Two powers $\alpha^i$ and $\alpha^j$ name the same point exactly when $j - i$ is a multiple of $v$, that is, when $i \equiv j \pmod v$. The $q^3 - 1 = (q - 1) \cdot v$ nonzero elements fall into $v$ groups of $q - 1$, one group per point, and each group consists of the powers whose exponents have one fixed residue mod $v$.
 
 > **Point $i$** is the point of $\alpha^i$. Its number $i$ is defined mod $v$, and every point gets exactly one number in $\mathbb{Z}/v\mathbb{Z}$.
 

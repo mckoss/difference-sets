@@ -190,6 +190,33 @@ notches") was worded in recent commits and is unchanged. Part VII's lessons
 each define bit and XOR for themselves, because they are meant to be read in
 any order.
 
+## Third pass: what the reader might not follow (v0.17.2)
+
+The second pass mostly removed things. This one looked for the opposite
+failure: a step the reader cannot supply, or a word used before it means
+anything to them. The model is now written down in
+[reader-model.md](reader-model.md).
+
+**Steps asserted without a reason (reason added).**
+
+- Lesson 9: that β = αᵛ has order exactly q − 1; that x ↦ x^q is one-to-one
+  (the step from a^q = b^q to (a − b)^q = 0 was skipped); that a one-to-one
+  map of a finite set to itself is a permutation.
+- Lesson 16: that two hyperplanes share q^(m−1) vectors.
+- Lesson 19: that folding 255 hours into a 15 × 17 grid fills every cell.
+- Lesson 8: the converse half of the fast primitivity test.
+- Lesson 6: the count of p² combinations, now argued for two picks in full
+  instead of in one compressed parenthesis.
+- Lesson 4: why the line size is called n + 1, and the one-line reason that a
+  common divisor of v and n + 1 divides 1.
+- Lesson 7: "multiples of f absorb sums and products" leaned on a word from a
+  footnote; it now says what happens.
+
+**Words used before they were defined (defined, or replaced).** map (Lesson
+6), closed under (Lesson 9), residue class (Lesson 12), image and induces
+(Lesson 13), nontrivial difference set (Lesson 15), "one dimension fewer"
+for a subspace (Lesson 16), Desarguesian's namesake (Lesson 17).
+
 ## Lesson by lesson
 
 "Step" is what the lesson adds toward the algorithm or its proof. "Stall" is

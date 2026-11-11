@@ -43,7 +43,7 @@ From here on, "inverse" on its own always means the multiplicative inverse, the 
 
 The fractions (rational numbers) form a field, and so do the real numbers. The whole numbers $\dots, -1, 0, 1, 2, \dots$ do not: 2 has no multiplicative inverse among them, because $\tfrac12$ is not a whole number.
 
-These are the **field axioms**. Clock arithmetic inherits the first five from ordinary whole-number arithmetic, because taking remainders at the end gives the same answer as taking them along the way. The negative of $a$ on a $v$-hour clock is $v - a$. So the only question is the last axiom: **does every nonzero residue have a multiplicative inverse?**
+These are the **field axioms**. Clock arithmetic inherits the first five from ordinary whole-number arithmetic, because taking remainders at the end gives the same answer as taking them along the way (the footnote on $\mathbb{Z}/v\mathbb{Z}$ checks this). The negative of $a$ on a $v$-hour clock is $v - a$. So the only question is the last axiom: **does every nonzero residue have a multiplicative inverse?**
 
 ## Look at the multiplication tables
 
